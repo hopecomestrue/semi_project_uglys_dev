@@ -4,3 +4,5 @@
 /.dbeaver/
 *.iml
 *.idea
+/src/main/webapp/upload
+/src/main/webapp/images
