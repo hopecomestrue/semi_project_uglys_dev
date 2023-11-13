@@ -4,5 +4,6 @@
 /.dbeaver/
 *.iml
 *.idea
-/src/main/webapp/upload
-/src/main/webapp/images
+/src/main/webapp/upload/
+/src/main/webapp/images/
+.DS_Store
