@@ -4,7 +4,8 @@
 
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
+  <head>
+  	<script src="/docs/5.3/assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -137,6 +138,7 @@
       }
       
     </style>
+<body>
   <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <div class="col-md-3 mb-2 mb-md-0">
@@ -155,26 +157,26 @@
   </div>
 
 <!-- 상단 메뉴 -->
-<div class="container text-center">
-    <div class="row align-items-center">
-      <div class="col">
-        <a class="dropdown-item rounded-2" href="#">회원관리</a>
-      </div>
-      <div class="col">
-        <a class="dropdown-item rounded-2" href="#">상품등록</a>
-      </div>
-      <div class="col">
-        <a class="dropdown-item rounded-2" href="#">주문현황</a>
-      </div>
-      <div class="col">
-        <a class="dropdown-item rounded-2" href="#">환불관리</a>
-      </div>
-      <div class="col">
-        <a class="dropdown-item rounded-2" href="#">고객센터</a>
-      </div>
-      <div class="col">
-        <a class="dropdown-item rounded-2" href="#">후기관리</a>
-      </div>
-    </div>
+	<div class="container text-center">
+	    <div class="row align-items-center">
+	      <div class="col">
+	        <a class="dropdown-item rounded-2" href="#">회원관리</a>
+	      </div>
+	      <div class="col">
+	        <a class="dropdown-item rounded-2" href="#">상품등록</a>
+	      </div>
+	      <div class="col">
+	        <a class="dropdown-item rounded-2" href="#">주문현황</a>
+	      </div>
+	      <div class="col">
+	        <a class="dropdown-item rounded-2" href="#">환불관리</a>
+	      </div>
+	      <div class="col">
+	        <a class="dropdown-item rounded-2" href="#">고객센터</a>
+	      </div>
+	      <div class="col">
+	        <a class="dropdown-item rounded-2" href="#">후기관리</a>
+	      </div>
+	    </div>
   </div>
 </header>

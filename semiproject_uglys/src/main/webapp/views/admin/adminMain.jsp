@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/header.jsp" %>
 <body>
-	body
+
+<h1>메인페이지</h1>
+
 </body>
-</html>
+
+<%@ include file="/views/admin/common/footer.jsp" %>
