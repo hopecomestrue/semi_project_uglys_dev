@@ -32,7 +32,9 @@
   <body class="goto-here">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">채소랑</a>
+	      <a class="navbar-brand" href="index.html">
+	      <img src="<%=request.getContextPath() %>/images/brand_image (4).png" alt="브랜드 로고" style="max-width:70%" >
+	      </a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -43,6 +45,12 @@
 	          <li class="nav-item" style="list-style-type: none;"><a href="blog.html" class="nav-link">커뮤니티</a></li>
 	          <li class="nav-item" style="list-style-type: none;"><a href="contact.html" class="nav-link">고객센터</a></li>
 	          <li class="nav-item cta cta-colored" style="list-style-type: none;"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          
+	          <%-- <%if(loginMember==null){ %> --%>
+	          <li class="nav-item"><a href="#" class="nav-link">로그인</a></li>
+	          
+	          <%-- <%}else{ %>
+	          <%} %> --%>
 	        </ul>
 	    	</div>
 	    </div>
