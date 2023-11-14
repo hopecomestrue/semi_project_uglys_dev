@@ -1,4 +1,4 @@
-package com.uglys.common;
+package com.veg.common;
 
 import java.io.FileReader;
 import java.sql.Connection;
