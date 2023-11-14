@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/header.jsp" %>
 
+<%
+	//환불신청 리스트를 getAttribute로 받기
+	// Refund refu=(Refund)request.getAttribute("refundList");
+%>
+
  <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -113,17 +118,19 @@
 <div>
   <h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">환불 현황</h1>
 </div>
+<form id="refundselectFrm" action="<%=request.getContextPath() %>/admin/refundselect.do" method="post">
 <div class="refund-check">
-  <select class="form-select form-select-lg" aria-label=".form-select-lg example" id="refund-check">
-    <option selected>대기중</option>
-    <option value="1">승인</option>
-    <option value="2">거부</option>
+  <select class="form-select form-select-lg" aria-label=".form-select-lg example" 
+  			id="refund-check" onchange="refund-check()">
+    <option value="1" name="refundCheck">대기중</option>
+    <option value="2" name="refundCheck">승인</option>
+    <option value="3" name="refundCheck">거부</option>
   </select>
 </div>
 <div class="refund-tb">
 <table class="table table-bordered">
     <tr>
-      <th><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></th>
+      <th><input class="form-check-input" type="checkbox" id="checkboxAll" value="" aria-label="..."></th>
       <th>주문 상세 번호</th>
       <th>주문 아이디</th>
       <th>이름</th>
@@ -134,7 +141,8 @@
       <th>승인 여부</th>
   </tr>
   <tr>
-      <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
+      <td><input class="form-check-input" type="checkbox" id="checkboxNo" value="" aria-label="..."
+      			name="<%-- <%=refu.getNo %> --%>"></td>
       <td><a href="">123456789</a></td>
       <td>admin123</td>
       <td>홍길동</td>
@@ -146,6 +154,7 @@
   </tr>    
   </table>
 </div>
+</form>
 <div class="search_3">
   <div>
 <select class="form-select form-select-lm" aria-label="Small select example">
@@ -178,6 +187,19 @@
     </ul>
   </nav>
 
+<script>
+	document.getElementById("checkboxAll").addEventListener('click',function(){
+		var checkboxes=document.querySelectorAll('#checkboxNo');
+		for(var checkbox of checkboxes){
+			checkbox.checked=this.checked;
+		}
+	});
+	
+	const refund-check=()=>{
+		
+	}
+	
+</script>
 
 </main>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

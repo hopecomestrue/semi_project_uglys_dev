@@ -163,10 +163,10 @@
 	        <a class="dropdown-item rounded-2" href="#">상품등록</a>
 	      </div>
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">주문현황</a>
+	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/deliveryList.do">주문현황</a>
 	      </div>
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">환불관리</a>
+	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/refundList.do">환불관리</a>
 	      </div>
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="#">고객센터</a>
