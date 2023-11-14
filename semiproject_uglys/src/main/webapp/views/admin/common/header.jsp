@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
@@ -146,13 +145,11 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3YIR4yyeQgs9tgIWXuAH7AmYGRNHCQ8ZJ-Q&usqp=CAU" width="40" height="32">
         </a>
       </div>
-
       <h1><a href="" class="admin-title">채소랑 어드민</a></h1>
 
       <div class="col-md-3 text-end">
-        <!-- <button type="button" class="btn btn-outline-primary me-2">Login</button> -->
         <span>관리자님, 환영합니다</span>
-        <button type="button" class="btn btn-primary">로그아웃</button>
+        <button type="button" class="btn btn-primary" onclick="location.assign('<%=request.getContextPath()%>/admin/logout.do')">로그아웃</button>
       </div>
   </div>
 
@@ -166,10 +163,10 @@
 	        <a class="dropdown-item rounded-2" href="#">상품등록</a>
 	      </div>
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">주문현황</a>
+	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/deliveryList.do">주문현황</a>
 	      </div>
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">환불관리</a>
+	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/refundList.do">환불관리</a>
 	      </div>
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="#">고객센터</a>
