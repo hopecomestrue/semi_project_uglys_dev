@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/admin/common/header.jsp" %>
 <style>
 	.container_recipe{
 	display: flex;
@@ -27,10 +27,9 @@
 	<div class="container_recipe">
 	<h4>레시피 작성</h4>
 	<form action='<%=request.getContextPath()%>/asd' method="post" enctype="multipart/form-data">
-		<p style="text-align: center">
-			반복적이거나 성의 없는 콘텐츠는 관리자에 의해<br>
-			콘텐츠 삭제 후 적립금이 반환될 수 있습니다.
-		</p>
+		<input type="text" value="레시피고유번호" readonly="readonly"><br><br>
+		<input type="text" value="작성자 아이디" readonly="readonly"><br><br>
+		
 		<input type="file" name="recipe_main_file"><br>
 		<input type="text" name="recipe_title" maxlength="20" placeholder="레시피의 이름이 무엇인가요?"><br>
 		<input type="text" name="recipe_explain" maxlength="240" placeholder="레시피에 대한 간단한 설명을 덧붙여 주세요.">
@@ -96,10 +95,10 @@
 		<input type="button" value="추가"><br>
 		<div>
 		<br><br>
-		<input type="submit" value="완료">
+		<input type="submit" value="수정">
 		
 		</div>
 	</form>
 	</div>
 </section>
-<%@ include file="/views/common/footer.jsp" %>
+<%@ include file="/views/admin/common/footer.jsp" %>

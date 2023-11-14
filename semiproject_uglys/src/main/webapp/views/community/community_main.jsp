@@ -56,9 +56,10 @@
           </div> <!-- .col-md-8 -->
           <div class="col-lg-4 sidebar ftco-animate">
             <div class="sidebar-box">
+            <p>오늘의 레시피는?</p>
               <form action="#" class="search-form">
                 <div class="form-group">
-                  <span class="icon ion-ios-search">오늘의 채소 요리는?</span>
+                  <span class="icon ion-ios-search"></span>
                   <input type="text" class="form-control" placeholder="ex) 감자">
                 </div>
               </form>
