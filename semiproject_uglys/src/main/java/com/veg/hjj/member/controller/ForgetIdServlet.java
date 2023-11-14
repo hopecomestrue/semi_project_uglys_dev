@@ -1,4 +1,4 @@
-package com.uglys.member.controller;
+package com.veg.hjj.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class enrollMemberServlet
+ * Servlet implementation class ForgetIdServlet
  */
-@WebServlet("/member/enrollmember.do")
-public class enrollMemberServlet extends HttpServlet {
+@WebServlet("/member/forgetid.do")
+public class ForgetIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public enrollMemberServlet() {
+    public ForgetIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class enrollMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/member/enrollmember.jsp")
+		request.getRequestDispatcher("/views/member/forgetid.jsp")
 		.forward(request, response);
 	}
 

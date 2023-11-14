@@ -47,7 +47,7 @@
 	          <li class="nav-item cta cta-colored" style="list-style-type: none;"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 	          
 	          <%-- <%if(loginMember==null){ %> --%>
-	          <li class="nav-item"><a href="#" class="nav-link">로그인</a></li>
+	          <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a></li>
 	          
 	          <%-- <%}else{ %>
 	          <%} %> --%>

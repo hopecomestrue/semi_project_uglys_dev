@@ -1,4 +1,4 @@
-package com.uglys.member.controller;
+package com.veg.hjj.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
