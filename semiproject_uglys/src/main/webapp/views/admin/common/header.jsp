@@ -151,7 +151,7 @@
 
       <div class="col-md-3 text-end">
         <!-- <button type="button" class="btn btn-outline-primary me-2">Login</button> -->
-        <span>관리자님, 환영합니다</span>
+        <span>관리자님d, 환영합니다</span>
         <button type="button" class="btn btn-primary">로그아웃</button>
       </div>
   </div>
