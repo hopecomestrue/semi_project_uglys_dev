@@ -35,6 +35,8 @@
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/flaticon.css">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/icomoon.css">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
+		
+		
 		<style>
 			#sidebar {
 				padding-top: 70px;
@@ -49,6 +51,44 @@
                 word-break: break-all;
                 padding: 15px; 
             }
+            
+            
+			.datatable-input {
+			    display: inline-block;
+			    width: 80%;
+			    padding: 10px;
+			    margin-bottom: 10px;
+			    font-size: 16px;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			}
+			
+			button {
+			    display: block;
+			    width: 100%;
+			    padding: 10px;
+			    font-size: 16px;
+			    color: white;
+			    background-color: #4CAF50;
+			    border: none;
+			    border-radius: 4px;
+			    cursor: pointer;
+			}
+			
+			button:hover {
+			    background-color: #45a049;
+			}
+			
+			table {
+			    width: 100%;
+			}
+			
+			td {
+			    padding: 10px;
+			}
+
+            
+            
 		</style>
 	  </head>
 	<body class="is-preload">
@@ -95,139 +135,67 @@
 							<!-- Section -->
 								<section>
 									<header class="major">
-										<h2>회원조회</h2>
-									</header>
-									<div class="card-body">
-									<div class="datatable-wraooer datatable-loading no-footer sortable searchable fixed-colums">
-									<div class="datable-top">
-									<div class="datatable-dropdown">
-									
-									<div class="datatable-search">
-									<input class="datatable-input" placeholder="회원조회" type="search" title="search within table" 
-									aria-controls="datatableSimple">
-									</div>
-									</div>
-									</div>
-									</div>
-									</div>
-									<div class="features">
-                                        <div class="table-wrapper">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>아이디</th>
-                                                        <th>이름</th>
-                                                        <th>연령대</th>
-                                                        <th>휴대폰번호</th>
-                                                        <th>이메일</th>
-                                                        <th>주소</th>
-                                                        <th>수정/삭제</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
-                                                        <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
-                                                        <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
-                                                        <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
-                                                        <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
-                                                        <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
-                                                        <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                </tbody>
+										<h2>상품관리</h2>
+				</header>
+				<div class="card-body">
+
+				    <div class="datatable-wraooer datatable-loading no-footer sortable searchable fixed-colums">
+				        <div class="datable-top">
+				            <div class="datatable-dropdown">
+				                <div class="datatable-search">
+				                    <!-- 새로운 입력 필드 -->
+				                    <table>
+				                        <tr>
+				                            <td>등록일:</td>
+				                            <td><input class="datatable-input" type="date"></td>
+				                        </tr>
+				                        <tr>
+				                            <td>상품번호:</td>
+				                            <td><input class="datatable-input" type="text"></td>
+				                        </tr>
+				                        <tr>
+				                            <td>상품명:</td>
+				                            <td><input class="datatable-input" type="text"></td>
+				                        </tr>
+				                        <tr>
+				                            <td>가격:</td>
+				                            <td><input class="datatable-input" type="number"></td>
+				                        </tr>
+				                        <tr>
+				                            <td>생산지:</td>
+				                            <td><input class="datatable-input" type="text"></td>
+				                        </tr>
+				                        <tr>
+				                            <td>재고:</td>
+				                            <td><input class="datatable-input" type="number"></td>
+				                        </tr>
+				                    </table>
+				                    <!-- 검색 버튼 -->
+				                    <button type="submit">검색</button>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				<div class="features">
+                    <div class="table-wrapper">
+                      <table>
+                          <thead>
+                              <tr>
+                                  <th><th>
+                                  <th>번호</th>
+                                  <th>상품고유번호</th>
+                                  <th>상품명</th>
+                                  <th>상품종류</th>
+                                  <th>가격</th>
+                                  <th>재고</th>
+                                  <th>생산지</th>
+                                  <th>등록일</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                                   
+                          </tbody>
                                                 <!-- <tfoot>
                                                     <tr>
                                                         <td colspan="2"></td>
@@ -249,7 +217,6 @@
                                         <li><a href="#" class="button">Next</a></li>
                                     </ul>
 								</section>
-
 						</div>
 					</div>
 
@@ -259,19 +226,19 @@
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
-										<h2>회원조회</h2>
+										<h2>상품관리</h2>
 									</header>
 									<ul>
 										<li>
-											<span class="opener">회원조회</span>
+											<span class="opener">상품관리</span>
 											<ul>
-												<li><a href="#">주문 조회</a></li>
-												<li><a href="#">반품 조회</a></li>
-												<li><a href="#">장바구니</a></li>
+												<li><a href="#">상품등록</a></li>
+												<li><a href="#">상품삭제</a></li>
+												
 											</ul>
 										</li>
 										<li>
-											<span class="opener">나의 활동</span>
+											<span class="opener">회원관리</span>
 											<ul>
 												<li><a href="#">나의 리뷰</a></li>
 												<li><a href="#">북마크</a></li>
@@ -279,7 +246,15 @@
 											</ul>
 										</li>
 										<li>
-											<span class="opener">내 정보</span>
+											<span class="opener">커뮤니티</span>
+											<ul>
+												<li><a href="#">내 정보 수정</a></li>
+												<li><a href="#">배송지 관리</a></li>
+											</ul>
+										</li>
+										
+										<li>
+											<span class="opener">고객센터</span>
 											<ul>
 												<li><a href="#">내 정보 수정</a></li>
 												<li><a href="#">배송지 관리</a></li>
