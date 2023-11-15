@@ -2,12 +2,14 @@ package com.veg.hjj.member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.veg.hjj.member.dto.Member;
 import com.veg.hjj.member.service.MemberService;
@@ -45,6 +47,19 @@ public class LoginEndServlet extends HttpServlet {
 			}
 			Member m=new MemberService().selectMemberByIdAndPw(memberId,memberPw);
 			System.out.println(m);
+			
+			//로그인 성공, 실패
+			if(m!=null) {
+				HttpSession session=request.getSession();
+				session.setAttribute("loginMember", m);
+				response.sendRedirect(request.getContextPath());
+			}else {
+				request.setAttribute("msg", "아이디나 패스워드가 일치하지 않습니다.");
+				request.setAttribute("loc","/member/login.do");
+				request.getRequestDispatcher("/views/member/msg.jsp")
+				.forward(request, response);
+			}
+			
 			
 		
 	}
