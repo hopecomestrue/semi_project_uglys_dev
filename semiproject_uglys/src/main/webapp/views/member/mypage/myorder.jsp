@@ -100,6 +100,7 @@
                                                         <th>상세 설명</th>
                                                         <th>수량</th>
                                                         <th>가격</th>
+                                                        <th>배송상태</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -108,30 +109,36 @@
                                                         <td>친환경 절임배추</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상</td>
+                                                        
                                                     </tr>
                                                     <tr>
                                                         <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
                                                         <td>친환경 절임배추</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상태</td>
                                                     </tr>
                                                     <tr>
                                                         <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
                                                         <td>친환경 절임배추</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상태</td>
                                                     </tr>
                                                     <tr>
                                                         <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
                                                         <td>친환경 절임배추</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상태</td>
                                                     </tr>
                                                     <tr>
                                                         <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
                                                         <td>친환경 절임배추입니다아아아아앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아앙아아앙ㅇ</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상태</td>
                                                     </tr>
                                                 </tbody>
                                                 <!-- <tfoot>
@@ -187,7 +194,7 @@
 										<li>
 											<span class="opener">내 정보</span>
 											<ul>
-												<li><a href="myinfo.html">내 정보 수정</a></li>
+					 s							<li><a href="myinfo.html">내 정보 수정</a></li>
 												<li><a href="myaddress.html">배송지 관리</a></li>
 											</ul>
 										</li>
@@ -213,5 +220,6 @@
 					}
 				}
 			</script>
+			
 	</body>
 </html>

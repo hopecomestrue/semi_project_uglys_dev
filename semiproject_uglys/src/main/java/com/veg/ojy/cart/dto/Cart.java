@@ -1,29 +1,18 @@
 package com.veg.ojy.cart.dto;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
 public class Cart {
 	
 	private int cartNo;
 	private int memberNo;
 	private int productNo;
 	private int count;
-	public int getCartNo() {
-		return cartNo;
-	}
-	public void setCartNo(int cartNo) {
-		this.cartNo = cartNo;
-	}
-	public int getMemberNo() {
-		return memberNo;
-	}
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-	public int getProductNo() {
-		return productNo;
-	}
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
-	}
+	
+	// 상품개수 불러오기 때문에 적어봄..........
 	public int getCount() {
 		return count;
 	}
