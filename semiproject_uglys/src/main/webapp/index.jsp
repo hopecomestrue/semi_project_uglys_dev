@@ -13,11 +13,9 @@
 	              <h3 class="subheading mb-4"> 매주 만나는 신선함  </h3>
 	              <p><a href="#" class="btn btn-primary">신선한 채소 보기</a></p>
 	            </div>
-
 	          </div>
 	        </div>
 	      </div>
-
 	      <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
@@ -28,7 +26,7 @@
 	              <h3 class="subheading mb-4">요리도 하고 자신만의 노하우를 공유해 보세요</h3>
 	              <p><a href="#" class="btn btn-primary">레시피 보기</a></p>
 	            </div>
-
+	            
 	          </div>
 	        </div>
 	      </div>
