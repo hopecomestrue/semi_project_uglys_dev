@@ -17,7 +17,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 	
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/open-iconic-bootstrap.min.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/open-iconic-bootstrap.min.css"> 
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/animate.css">
 		
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.carousel.min.css">
@@ -92,7 +92,7 @@
 		</style>
 	  </head>
 	<body class="is-preload">
-
+		
 		<!-- Wrapper -->
 			<div id="wrapper">
 				<!-- Main -->
@@ -186,7 +186,7 @@
                       <table >
                           <thead>
                               <tr>
-                                  <th>체크박스</th>
+                                  <th></th>
                                   <th>번호</th>
                                   <th>상품고유번호</th>
                                   <th>상품명</th>
@@ -200,7 +200,7 @@
                           <tbody>
                            <tbody>
 					        <tr>
-					            <td><input type="checkbox" id="product1"></td>
+					            <td><input type="checkbox" style="opacity: 1; -webkit-appearance: checkbox; -moz-appearance: checkbox; appearance: checkbox;"></td>
 					            <td>1</td>
 					            <td>100001</td>
 					            <td>상품A</td>
@@ -211,7 +211,7 @@
 					            <td>2023-11-15</td>
 					        </tr>
 					        <tr>
-					            <td><input type="checkbox" id="product2"></td>
+					            <td><input type="checkbox" style="opacity: 1; -webkit-appearance: checkbox; -moz-appearance: checkbox; appearance: checkbox;"></td>
 					            <td>2</td>
 					            <td>100002</td>
 					            <td>상품B</td>
