@@ -11,24 +11,24 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css2/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css2/animate.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/animate.css">
     
-    <link rel="stylesheet" href="css2/owl.carousel.min.css">
-    <link rel="stylesheet" href="css2/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css2/magnific-popup.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/owl.carousel.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/magnific-popup.css">
 
-    <link rel="stylesheet" href="css2/aos.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/aos.css">
 
-    <link rel="stylesheet" href="css2/ionicons.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/ionicons.min.css">
 
-    <link rel="stylesheet" href="css2/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css2/jquery.timepicker.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/jquery.timepicker.css">
 
     
-    <link rel="stylesheet" href="css2/flaticon.css">
-    <link rel="stylesheet" href="css2/icomoon.css">
-    <link rel="stylesheet" href="css2/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/flaticon.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/icomoon.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
   </head>
   <body class="goto-here">
 		<div class="py-1 bg-primary">
@@ -153,30 +153,28 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js2/jquery.min.js"></script>
-  <script src="js2/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js2/popper.min.js"></script>
-  <script src="js2/bootstrap.min.js"></script>
-  <script src="js2/jquery.easing.1.3.js"></script>
-  <script src="js2/jquery.waypoints.min.js"></script>
-  <script src="js2/jquery.stellar.min.js"></script>
-  <script src="js2/owl.carousel.min.js"></script>
-  <script src="js2/jquery.magnific-popup.min.js"></script>
-  <script src="js2/aos.js"></script>
-  <script src="js2/jquery.animateNumber.min.js"></script>
-  <script src="js2/bootstrap-datepicker.js"></script>
-  <script src="js2/scrollax.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery-migrate-3.0.1.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/popper.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/bootstrap.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.easing.1.3.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.waypoints.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.stellar.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/owl.carousel.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.magnific-popup.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/aos.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.animateNumber.min.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/bootstrap-datepicker.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js2/google-map.js"></script>
-  <script src="js2/main.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/google-map.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jyjs/js2/main.js"></script>
 
   <script>
 		$(document).ready(function(){
 
 		var quantitiy=0;
 		   $('.quantity-right-plus').click(function(e){
-		        
-		       
 		        e.preventDefault();
 		    
 		        var quantity = parseInt($('#quantity').val());

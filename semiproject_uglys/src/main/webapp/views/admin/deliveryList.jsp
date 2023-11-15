@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/header.jsp" %>
 
+<%
+	//주문내역 리스트를 getAttribute로 받기
+	// Delivery deli=(Delivery)request.getAttribute("deliveryList");
+%>
+
 <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -122,7 +127,7 @@
 <div class="delivery-tb">
 <table class="table table-bordered">
     <tr>
-      <th><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></th>
+      <th><input class="form-check-input" type="checkbox" id="checkboxAll" value="" aria-label="..." ></th>
       <th>주문 상세 번호</th>
       <th>주문 아이디</th>
       <th>이름</th>
@@ -133,7 +138,8 @@
       <th>배송 실패 사유</th>
   </tr>
   <tr>
-      <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
+      <td><input class="form-check-input" type="checkbox" id="checkboxNo" 
+      				name="<%-- <%=deli.getNo %> --%>" aria-label="..."></td>
       <td><a href="">123456789</a></td>
       <td>admin123</td>
       <td>홍길동</td>
@@ -176,7 +182,16 @@
       </li>
     </ul>
   </nav>
-
+<script>
+	//체크박스 All 체크
+	document.getElementById('checkboxAll').addEventListener('click', function() {
+	  var checkboxes = document.querySelectorAll('#checkboxNo');
+	  for (var checkbox of checkboxes) {
+	    checkbox.checked = this.checked;
+	  }
+	});
+	
+</script>
 
 </main>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
