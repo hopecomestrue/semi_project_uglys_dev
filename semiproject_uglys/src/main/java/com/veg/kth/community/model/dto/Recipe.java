@@ -18,7 +18,7 @@ public class Recipe {
 	private String recipeComment;
 	private String recipeLeadTime;
 	private Category category;
-	private List<RecipeHashtag> recipeHashtag = new ArrayList<>();
+	private List<Hashtag> Hashtag = new ArrayList<>();
 	private int recipeCapa;
 	private List<Material> material = new ArrayList<>();
 	private List<Procedure> procedure = new ArrayList<>();

@@ -8,7 +8,7 @@ import lombok.Data;
 public class Procedure {
 
 	private int procedureNo;
-	private int procedureOrder;
+	private Long procedureOrder;
 	private String procedureComment;
 	private String procedureOriginalFileName;
 	private String procedureRenamedFileName;
