@@ -1,5 +1,6 @@
 package com.veg.kth.community.model.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,6 @@ import lombok.Data;
 
 public class RecipeHashtag {
 
-	private List<Hashtag> hashtag;
+	private List<Hashtag> hashtag = new ArrayList<>();
 	private int recipeNo;
 }

@@ -10,5 +10,5 @@ public class Category {
 	private int categoryNo;
 	private String categoryDept1;
 	private String categoryDept2;
-	private int receipeNo;
+	private int recipeNo;
 }

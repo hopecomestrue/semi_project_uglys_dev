@@ -1,6 +1,7 @@
 package com.veg.kth.community.model.dto;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Builder;
@@ -16,10 +17,10 @@ public class Recipe {
 	private String recipeTitle;
 	private String recipeComment;
 	private String recipeLeadTime;
-	private List<Category> category;
-	private List<RecipeHashtag> recipeHashtag;
+	private Category category;
+	private List<RecipeHashtag> recipeHashtag = new ArrayList<>();
 	private int recipeCapa;
-	private List<Material> material;
-	private List<Procedure> procedure;
+	private List<Material> material = new ArrayList<>();
+	private List<Procedure> procedure = new ArrayList<>();
 	private Date recipeDate;
 }
