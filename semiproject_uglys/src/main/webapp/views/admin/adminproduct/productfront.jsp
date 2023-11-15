@@ -76,7 +76,7 @@
 			}
 			
 			button:hover {
-			    background-color: #45a049;
+			    background-color: #45a000;
 			}
 			
 			table {
@@ -95,7 +95,6 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
@@ -143,35 +142,40 @@
 				        <div class="datable-top">
 				            <div class="datatable-dropdown">
 				                <div class="datatable-search">
-				                    <!-- 새로운 입력 필드 -->
-				                    <table>
-				                        <tr>
-				                            <td>등록일:</td>
-				                            <td><input class="datatable-input" type="date"></td>
-				                        </tr>
-				                        <tr>
-				                            <td>상품번호:</td>
-				                            <td><input class="datatable-input" type="text"></td>
-				                        </tr>
-				                        <tr>
-				                            <td>상품명:</td>
-				                            <td><input class="datatable-input" type="text"></td>
-				                        </tr>
-				                        <tr>
-				                            <td>가격:</td>
-				                            <td><input class="datatable-input" type="number"></td>
-				                        </tr>
-				                        <tr>
-				                            <td>생산지:</td>
-				                            <td><input class="datatable-input" type="text"></td>
-				                        </tr>
-				                        <tr>
-				                            <td>재고:</td>
-				                            <td><input class="datatable-input" type="number"></td>
-				                        </tr>
-				                    </table>
+				                   <!-- 새로운 입력 필드 -->
+				                   <table>
+                        <tr>
+                            <td>등록일</td>
+                            <td><input class="datatable-input" type="date"></td>
+                            <td>~</td>
+                            <td><input class="datatable-input" type="date"></td>
+                        </tr>
+                        <tr>
+                            <td>상품번호:</td>
+                            <td><input class="datatable-input" type="text"></td>
+                            <td>상품명:</td>
+                            <td><input class="datatable-input" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>가격:</td>
+                            <td><input class="datatable-input" type="number"></td>
+                            <td>~</td>
+                            <td><input class="datatable-input" type="number"></td>
+                        </tr>
+                        <tr>
+                            <td>재고:</td>
+                            <td><input class="datatable-input" type="text"></td>
+                            <td>~</td>
+                            <td><input class="datatable-input" type="number"></td>
+                        </tr>
+                        <tr>
+                            <td>생산지:</td>
+                            <td><input class="datatable-input" type="text"></td>
+                        </tr>
+                        
+                    	</table>
 				                    <!-- 검색 버튼 -->
-				                    <button type="submit">검색</button>
+				                    <button type="submit" style="font-weight: 600;">검색</button>
 				                </div>
 				            </div>
 				        </div>
@@ -179,10 +183,10 @@
 				</div>
 				<div class="features">
                     <div class="table-wrapper">
-                      <table>
+                      <table >
                           <thead>
                               <tr>
-                                  <th><th>
+                                  <th>체크박스</th>
                                   <th>번호</th>
                                   <th>상품고유번호</th>
                                   <th>상품명</th>
@@ -194,15 +198,34 @@
                               </tr>
                           </thead>
                           <tbody>
-                                   
-                          </tbody>
-                                                <!-- <tfoot>
-                                                    <tr>
-                                                        <td colspan="2"></td>
-                                                        <td>100.00</td>
-                                                    </tr>
-                                                </tfoot> -->
-                                            </table>
+                           <tbody>
+					        <tr>
+					            <td><input type="checkbox" id="product1"></td>
+					            <td>1</td>
+					            <td>100001</td>
+					            <td>상품A</td>
+					            <td>식품</td>
+					            <td>10,000원</td>
+					            <td>100개</td>
+					            <td>대한민국</td>
+					            <td>2023-11-15</td>
+					        </tr>
+					        <tr>
+					            <td><input type="checkbox" id="product2"></td>
+					            <td>2</td>
+					            <td>100002</td>
+					            <td>상품B</td>
+					            <td>가구</td>
+					            <td>20,000원</td>
+					            <td>50개</td>
+					            <td>대한민국</td>
+					            <td>2023-11-15</td>
+					        </tr>
+					        
+					    </tbody>        
+                        
+                                                
+                        </table>
                                         </div>
 									</div>
                                     <ul class="pagination justify-content-center" >
@@ -281,6 +304,23 @@
 						alert("로그아웃 취소되었습니다.");
 					}
 				}
+				
+				
+				
 			</script>
+			<script>
+		window.onload = function() {
+   	 		let checkboxes = document.querySelectorAll("input[type=checkbox]");
+    		for (let i = 0; i < checkboxes.length; i++) {
+        	checkboxes[i].addEventListener('change', function() {
+            if (this.checked) {
+                console.log('체크박스 ' + (i + 1) + '번이 선택되었습니다.');
+            } else {
+                console.log('체크박스 ' + (i + 1) + '번 선택이 해제되었습니다.');
+            }
+        });
+    }
+}
+</script>
 	</body>
 </html>
