@@ -78,6 +78,7 @@
             
             <input type="text" id="memberId" name="memberId" placeholder="아이디" required><br>
             <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" required><br>
+            <!-- <span class="fail" >입력하신 정보가 일치하지 않습니다.<br>다시 확인해 주세요<br> -->
             <label class="remember">
                 <input type="checkbox" name="remember" id="remember">아이디 저장
             </label>

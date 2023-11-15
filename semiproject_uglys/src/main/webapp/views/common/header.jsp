@@ -1,5 +1,10 @@
+<%@page import="com.veg.ksj.admin.AdminLogout"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.veg.hjj.member.dto.Member" %>
+<%
+	Member loginMember=(Member)session.getAttribute("loginMember");
+%>
 <!DOCTYPE html>
  <head>
     <title>채소랑</title>
@@ -46,11 +51,23 @@
 	          <li class="nav-item" style="list-style-type: none;"><a href="contact.html" class="nav-link">고객센터</a></li>
 	          <li class="nav-item cta cta-colored" style="list-style-type: none;"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 	          
-	          <%-- <%if(loginMember==null){ %> --%>
+	          <%if(loginMember==null){ %>
 	          <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a></li>
-	          
-	          <%-- <%}else{ %>
-	          <%} %> --%>
+	         <%} else{%>
+	         	<table>
+	         		<tr>
+	         			<td colspan="2">
+	         				<span style="font-weight: bolder; margin-left: 10%;"><%=loginMember.getMemberName() %></span>님 환영합니다.
+	         			</td>
+	         		</tr>
+	         		<tr>
+	         			<td><button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+	         				onclick="location.replace('<%=request.getContextPath()%>/member/mypage/myinfo.do')">마이페이지</button></td>
+	         			<td><button type="button" class="btn btn-outline-dark" onclick="location.replace('<%=request.getContextPath()%>/loginout.do');">로그아웃</button></td>
+	         		</tr>
+	         		
+	         	</table>
+	         <%} %>
 	        </ul>
 	    	</div>
 	    </div>

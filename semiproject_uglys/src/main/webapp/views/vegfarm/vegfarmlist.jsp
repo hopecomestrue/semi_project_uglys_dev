@@ -11,11 +11,17 @@
     }
     
     </style>
-
-
-
 	<div style="max-width: 1200px; margin: 0 auto;">
-	<h2 style="font-weight: 600; margin-top: 40px;margin-bottom: -60px; font-size: 26px;">곧 다시만날수있어요</h2>
+	<div class="hero-wrap hero-bread" style="width: 100%; height: auto;">
+    <img src="https://uglyus.s3.ap-northeast-2.amazonaws.com/assets/ustore/pb-tomato-banner/pc.png" style="width: 100%; height: auto;">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          </div>
+        </div>
+      </div>
+    </div>
+	<h2 style="font-weight: 600; margin-top: 40px;margin-bottom: -60px; font-size: 26px;">지금 만날수있어요</h2>
     <section class="ftco-section">
           <div class="row">
              <div class="col-md-6 col-lg-4 ftco-animate">
@@ -67,5 +73,7 @@
                 </div>
              </div>
              </div>
+             <a style="display: block; margin: auto; text-align: center; padding: 72px 0;"href="http://localhost:8080/semiproject_uglys/views/vegfarm/vegfarmsoldout.jsp"><p>돌아올 품목 확인하기</p></a>
+             
 </section>
 <%@ include file="/views/common/footer.jsp" %>
