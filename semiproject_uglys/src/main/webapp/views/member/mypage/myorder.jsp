@@ -6,29 +6,29 @@
 		<title></title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css/main.css" />
 		<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 	
-		<link rel="stylesheet" href="css2/open-iconic-bootstrap.min.css">
-		<link rel="stylesheet" href="css2/animate.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/open-iconic-bootstrap.min.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/animate.css">
 		
-		<link rel="stylesheet" href="css2/owl.carousel.min.css">
-		<link rel="stylesheet" href="css2/owl.theme.default.min.css">
-		<link rel="stylesheet" href="css2/magnific-popup.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.theme.default.min.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/magnific-popup.css">
 	
-		<link rel="stylesheet" href="css2/aos.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/aos.css">
 	
-		<link rel="stylesheet" href="css2/ionicons.min.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/ionicons.min.css">
 	
-		<link rel="stylesheet" href="css2/bootstrap-datepicker.css">
-		<link rel="stylesheet" href="css2/jquery.timepicker.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/bootstrap-datepicker.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/jquery.timepicker.css">
 	
 		
-		<link rel="stylesheet" href="css2/flaticon.css">
-		<link rel="stylesheet" href="css2/icomoon.css">
-		<link rel="stylesheet" href="css2/style.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/flaticon.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/icomoon.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
 		<style>
 			#sidebar {
 				padding-top: 70px;
@@ -100,6 +100,7 @@
                                                         <th>상세 설명</th>
                                                         <th>수량</th>
                                                         <th>가격</th>
+                                                        <th>배송상태</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -108,30 +109,36 @@
                                                         <td>친환경 절임배추</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상</td>
+                                                        
                                                     </tr>
                                                     <tr>
                                                         <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
                                                         <td>친환경 절임배추</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상태</td>
                                                     </tr>
                                                     <tr>
                                                         <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
                                                         <td>친환경 절임배추</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상태</td>
                                                     </tr>
                                                     <tr>
                                                         <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
                                                         <td>친환경 절임배추</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상태</td>
                                                     </tr>
                                                     <tr>
                                                         <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
                                                         <td>친환경 절임배추입니다아아아아앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아앙아아앙ㅇ</td>
                                                         <td>1개</td>
                                                         <td>29,900원</td>
+                                                        <td>배송상태</td>
                                                     </tr>
                                                 </tbody>
                                                 <!-- <tfoot>
@@ -187,7 +194,7 @@
 										<li>
 											<span class="opener">내 정보</span>
 											<ul>
-												<li><a href="myinfo.html">내 정보 수정</a></li>
+					 s							<li><a href="myinfo.html">내 정보 수정</a></li>
 												<li><a href="myaddress.html">배송지 관리</a></li>
 											</ul>
 										</li>
@@ -198,11 +205,11 @@
 						</div>
 					</div>
 			</div>
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+				<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
+			<script src="<%=request.getContextPath() %>/js/jyjs/js/browser.min.js"></script>
+			<script src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
+			<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>
+			<script src="<%=request.getContextPath() %>/js/jyjs/js/main.js"></script>
 			<script>
 				function confirmLogout() {
 					var result = confirm("로그아웃 하시겠습니까?");
@@ -213,5 +220,6 @@
 					}
 				}
 			</script>
+			
 	</body>
 </html>
