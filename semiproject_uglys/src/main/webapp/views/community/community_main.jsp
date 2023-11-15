@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-<%@ page import="com.veg.kth.community.model.dto.Recipe, java.util.List" %>
+<%@ page import="com.veg.kth.community.model.dto.Recipe, java.util.List,com.veg.kth.community.model.dto.Hashtag" %>
 
 <%
 
-	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipe");  
+	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");  
 
 %>
 <style>
@@ -140,14 +140,15 @@
               </form>
               <div class="sidebar-box ftco-animate">
                 <div class="tagcloud">
-                  <a href="#" class="tag-cloud-link">fruits</a>
-                  <a href="#" class="tag-cloud-link">tomatoe</a>
-                  <a href="#" class="tag-cloud-link">mango</a>
-                  <a href="#" class="tag-cloud-link">apple</a>
-                  <a href="#" class="tag-cloud-link">carrots</a>
-                  <a href="#" class="tag-cloud-link">orange</a>
-                  <a href="#" class="tag-cloud-link">pepper</a>
-                  <a href="#" class="tag-cloud-link">eggplant</a>
+                <%if(!recipes.isEmpty()){ 
+            		for(Recipe r : recipes){%>
+                  <% for(Hashtag h : r.getHashtag()){ %>
+                  <a href="#" class="tag-cloud-link">
+                		#<%=h.getHashtagValue()%>
+                	</a>
+                	<%} %>
+                 <%}
+            	}%>
                 </div>
               </div>
             </div>
@@ -158,152 +159,36 @@
         <section class="review-section rev1">
           <div class="section-inner">
             <ul class="review-items">
+            <%if(!recipes.isEmpty()){ 
+            for(Recipe r : recipes){%>
               <li class="item">
                 <div class="img-area">
-                  <img src="../img/review/art1.png" alt="" />
+                  <img src="<%=request.getContextPath() %>/images/<%=r.getRecipeOriginalFileName() %>" alt="" />
                 </div>
-
                 <div class="icon-area">
-                  <img class="i1" src="../img/review/quote.png" alt="" />
-                  <img class="i2" src="../img//review/stars.png" alt="" />
+                	<p><% for(Hashtag h : r.getHashtag()){ %>
+                		#<%=h.getHashtagValue()%>
+                	<%} %>
+                	</p>
+                  <!-- <img class="i1" src="../img/review/quote.png" alt="" />
+                  <img class="i2" src="../img//review/stars.png" alt="" /> -->
                 </div>
-
                 <div class="desc-area">
+                	<h6><%=r.getRecipeTitle() %></h6>
                   <p>
-                    어글리어스 첫배송! 여러가지 제품군을 저렴한 가격으로 받아볼
-                    수 있다고 하여 주문해봤어요. 아기가 이유식을 시작해서 다양한
-                    채소들도 필요한데 아무래도 제가 고르면 한정적인 재료들만
-                    고를 것 같아서 이렇게 다양한 제품을 소량씩 받을 수 있다는
-                    점이 마음에 들었어요.
+                    <%=r.getRecipeComment() %>
                   </p>
                 </div>
 
                 <div class="info-area">
-                  <h6>2회차 어글리어스 채소박스</h6>
                   <div class="line"></div>
-                  <h5>김*원 고객님</h5>
+                  <h5>아이디 가져오기</h5>
                 </div>
               </li>
-              <li class="item">
-                <div class="img-area">
-                  <img src="../img/review/art2.png" alt="" />
-                </div>
-
-                <div class="icon-area">
-                  <img class="i1" src="../img/review/quote.png" alt="" />
-                  <img class="i2" src="../img//review/stars.png" alt="" />
-                </div>
-
-                <div class="desc-area">
-                  <p>
-                    이때 양상추 볶음 레시피 였나 추천받아서 반신반의하면서
-                    먹어봤는데 맛있어서 놀랐어요 ㅠ 야채를 자주 접하니 어떻게
-                    먹는지 알게되는게 재밋어요ㅋㅋ 특히 라따뚜이를 자주 해먹게
-                    됩니다.
-                  </p>
-                </div>
-
-                <div class="info-area">
-                  <h6>2회차 어글리어스 채소박스</h6>
-                  <div class="line"></div>
-                  <h5>김*원 고객님</h5>
-                </div>
-              </li>
-              <li class="item">
-                <div class="img-area">
-                  <img src="../img/review/art3.png" alt="" />
-                </div>
-
-                <div class="icon-area">
-                  <img class="i1" src="../img/review/quote.png" alt="" />
-                  <img class="i2" src="../img//review/stars.png" alt="" />
-                </div>
-
-                <div class="desc-area">
-                  <p>
-                    이번에 온 버섯과 로메인으로 오픈 샌드위치 열심히
-                    만들어먹었네요 싱싱하고 신선해서 엄청 맛있었어요
-                  </p>
-                </div>
-
-                <div class="info-area">
-                  <h6>2회차 어글리어스 채소박스</h6>
-                  <div class="line"></div>
-                  <h5>김*원 고객님</h5>
-                </div>
-              </li>
-              <li class="item">
-                <div class="img-area">
-                  <img src="../img/review/art4.png" alt="" />
-                </div>
-
-                <div class="icon-area">
-                  <img class="i1" src="../img/review/quote.png" alt="" />
-                  <img class="i2" src="../img//review/stars.png" alt="" />
-                </div>
-
-                <div class="desc-area">
-                  <p>
-                    보내주신 야채들 모두 신선하고 요리가 괜시리 재미지게하는
-                    매력있는 못난이 유기농 채소들이예 이번에 캠핑가서 호박전이랑
-                    호박구이 맛있게 해먹었어요
-                  </p>
-                </div>
-
-                <div class="info-area">
-                  <h6>2회차 어글리어스 채소박스</h6>
-                  <div class="line"></div>
-                  <h5>김*원 고객님</h5>
-                </div>
-              </li>
-              <li class="item">
-                <div class="img-area">
-                  <img src="../img/review/art5.png" alt="" />
-                </div>
-
-                <div class="icon-area">
-                  <img class="i1" src="../img/review/quote.png" alt="" />
-                  <img class="i2" src="../img//review/stars.png" alt="" />
-                </div>
-
-                <div class="desc-area">
-                  <p>
-                    싱싱한 채소들로 잘 왔어요 적혀있는 레시피대로
-                    양배추간장국수를 해먹었는데 맛있게 잘 먹었습니다 ^^
-                  </p>
-                </div>
-
-                <div class="info-area">
-                  <h6>2회차 어글리어스 채소박스</h6>
-                  <div class="line"></div>
-                  <h5>김*원 고객님</h5>
-                </div>
-              </li>
-              <li class="item">
-                <div class="img-area">
-                  <img src="../img/review/art6.png" alt="" />
-                </div>
-
-                <div class="icon-area">
-                  <img class="i1" src="../img/review/quote.png" alt="" />
-                  <img class="i2" src="../img//review/stars.png" alt="" />
-                </div>
-
-                <div class="desc-area">
-                  <p>
-                    외식과 배달음식도 줄여볼겸 취지도 좋은것같아 어글리어스를
-                    신청해봤어요. 레시피 이용해서 비트 라페도 만들어보고
-                    애호박팽이버섯 덮밥도 해보고 평소라면 해먹을일 없는
-                    단호박에그슬럿 등 다양한 요리를 하게 되네요.
-                  </p>
-                </div>
-
-                <div class="info-area">
-                  <h6>2회차 어글리어스 채소박스</h6>
-                  <div class="line"></div>
-                  <h5>김*원 고객님</h5>
-                </div>
-              </li>
+              <%
+            	}
+            }
+              %>
             </ul>
             </div>
             </section>

@@ -59,18 +59,17 @@ public class CommunityDao {
 			recipe.stream().filter(e->Objects.equals(e.getRecipeNo(),pk))
 			.forEach(e->{
 				try {
-					if(rs.getString("procedure_no")!=null) { // 중복값은 저장되지 않도록 처리
+					if(rs.getString("procedure_no")!=null && !e.getProcedure().contains(getProcedure(rs))) { 
 						e.getProcedure().add(getProcedure(rs));
 					}
 					
-					if(rs.getString("material_no")!=null) {
+					if(rs.getString("material_no")!=null && !e.getMaterial().contains(getMaterial(rs))) {
 						e.getMaterial().add(getMaterial(rs));
 					}
 					
-					if(rs.getString("hashtag_no")!=null) { 
-						e.getHashtag().add(getHashtag(rs)); //나중에 체크
+					if(rs.getString("hashtag_no")!=null && !e.getHashtag().contains(getHashtag(rs))) { 
+						e.getHashtag().add(getHashtag(rs));
 					}	
-//List<RecipeHashtag> recipeHashTagList = e.getRecipeHashtag();
 					
 				}catch(SQLException e1) {
 					e1.printStackTrace();

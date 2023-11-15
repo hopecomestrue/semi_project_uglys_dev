@@ -34,10 +34,10 @@ public class CommunityMainServlet extends HttpServlet {
 		
 		List<Recipe> recipes = new CommunityService().selectRecipeAll();
 		
-		System.out.println(recipes);
+//		System.out.println(recipes);
 		
 		request.setAttribute("recipes", recipes);
-		
+//		System.out.println(recipes);
 		request.getRequestDispatcher("/views/community/community_main.jsp")
 		.forward(request, response);
 		
