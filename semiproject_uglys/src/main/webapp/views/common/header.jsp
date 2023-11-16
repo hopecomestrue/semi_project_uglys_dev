@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/flaticon.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/icomoon.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
+    <script src="<%=request.getContextPath() %>/js/jquery-3.7.0.min.js"></script>
   </head>
   <body class="goto-here">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">

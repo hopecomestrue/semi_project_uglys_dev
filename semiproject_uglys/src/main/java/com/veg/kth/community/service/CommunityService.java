@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.veg.kth.community.model.dao.CommunityDao;
+import com.veg.kth.community.model.dto.Hashtag;
 import com.veg.kth.community.model.dto.Recipe;
 
 public class CommunityService {
@@ -19,4 +20,13 @@ public class CommunityService {
 		close(conn);
 		return result;
 	}
+	
+	
+	public List<Hashtag> selectHashtagAll(){
+		Connection conn = getConnection();
+		List<Hashtag> result = dao.selectHashtagAll(conn);
+		close(conn);
+		return result;
+	}
+	
 }

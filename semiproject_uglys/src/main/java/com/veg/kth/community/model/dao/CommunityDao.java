@@ -53,6 +53,28 @@ public class CommunityDao {
 		return result;
 	}
 	
+	
+	public List<Hashtag> selectHashtagAll(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Hashtag> result = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectHashtagAll"));
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result.add(getHashtag(rs));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
+	
+	
 	public void addRecipeAll(List<Recipe> recipe, ResultSet rs) throws SQLException {
 		int pk = rs.getInt("recipe_no");
 		if(recipe.stream().anyMatch(e->pk==(e.getRecipeNo()))) {
