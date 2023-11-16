@@ -12,7 +12,7 @@
 		<title></title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<%-- <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css/main.css" />
+		 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css/main.css" />
 		<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
 		
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/flaticon.css">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/icomoon.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css"> --%>
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
 		
 		
 		<style>
@@ -113,9 +113,14 @@
             77.8% {opacity: 1;}
             88.91% {opacity: 0;}
         }
-         #pageBar button.active {
+         #pageBar {
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+}
+#pageBar button.active {
     background-color: #777;
-}   
+}
             
 		</style>
 	  </head>
@@ -303,44 +308,45 @@
 				        '할인율: ' + discountRate;
 				}
 				</script>
+
 <script>
     var currentSlideIndex = 0;
     var slideShow;
     var pageBar;
 
     document.querySelector('input[type=file]').addEventListener('change', function(e) {
-        if(this.files.length > 6) {
-            alert('최대 6장의 이미지만 업로드할 수 있습니다.');
-            this.value = '';
-        } else {
-            slideShow = document.getElementById('slideShow');
-            pageBar = document.getElementById('pageBar');
-            for(let i = 0; i < this.files.length; i++) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.style.display = 'none';  // 처음에는 모든 이미지를 숨김
-                    slideShow.appendChild(img);
-                    
-                    // 페이지 버튼 추가
-                    var btn = document.createElement('button');
-                    btn.textContent = slideShow.querySelectorAll('img').length;
-                    btn.addEventListener('click', function() {
-                        goToSlide(slideShow.querySelectorAll('img').length-1);
-                    });
-                    pageBar.appendChild(btn);
+        slideShow = document.getElementById('slideShow');
+        pageBar = document.getElementById('pageBar');
+
+        for(let i = 0; i < this.files.length; i++) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.display = 'none';  // 처음에는 모든 이미지를 숨김
+                slideShow.appendChild(img);
+                
+                // 페이지 버튼 추가
+                var btn = document.createElement('button');
+                btn.textContent = slideShow.querySelectorAll('img').length;
+                let index = slideShow.querySelectorAll('img').length-1;
+                btn.addEventListener('click', function() {
+                    goToSlide(index);
+                });
+                pageBar.appendChild(btn);
+
+                // 첫 이미지 보이기
+                if(slideShow.querySelectorAll('img').length === 1) {
+                    goToSlide(0);
                 }
-                reader.readAsDataURL(this.files[i]);
             }
+            reader.readAsDataURL(this.files[i]);
         }
     });
 
     function goToSlide(index) {
         var slides = slideShow.querySelectorAll('img');
         var dots = pageBar.querySelectorAll('button');
-        if (index >= slides.length) {index = 0} 
-        if (index < 0) {index = slides.length - 1}
         for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";  
             dots[i].classList.remove("active");
