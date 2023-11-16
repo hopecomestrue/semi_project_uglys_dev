@@ -4,7 +4,7 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <section class="ftco-section">
-<form class="billing-form">
+ <form class="pay-form" id="pay-form" action="/order/ordersuccess.do" method="post">
 	<div class="container">
 		<div class="row justify-content-center">
           <div class="col-xl-7 ftco-animate">
@@ -47,7 +47,7 @@
 		            </div>
 		            <div class="col-md-6">
 		            	<div class="form-group">
-	                  <input type="button" class="btn btn-outline-secondary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+	                  <button type="button" class="btn btn-outline-secondary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 	                </div>
 		            </div>
 		            <div class="w-100"></div>
@@ -69,13 +69,13 @@
 		            <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="phone">전화번호</label>
-	                  <input type="text" class="form-control" placeholder="">
+	                  <input type="text" class="form-control" placeholder="" value="<%=loginMember.getMemberPhone()%>">
 	                </div>
 	              </div>
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="emailaddress">이메일</label>
-	                  <input type="email" class="form-control" placeholder="">
+	                  <input type="email" class="form-control" placeholder="" value="<%=loginMember.getMemberEmail()%>">
 	                </div>
                 </div>
                 <div class="w-100"></div>
@@ -111,7 +111,7 @@
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="radio">
-											   <label><input type="radio" name="payment" class="mr-2" value="card"> 카드 결제</label>
+											   <label><input type="radio" name="payment" class="mr-2" value="kcp"> 카드 결제</label>
 											</div>
 										</div>
 									</div>
@@ -122,18 +122,25 @@
 											</div>
 										</div>
 									</div>
-									<p><input type="submit" class="btn btn-primary py-3 px-4" value="결제하기"></p>
+									<button class="btn btn-primary py-3 px-4" value="결제하기" onclick="paymentOrder_btn()">
 								</div>
 	          	</div>
 	          </div>
           </div> <!-- .col-md-8 -->
         </div>
       </div>
-     </form>
+      </form> 
     </section> <!-- .section -->
 
+
+	<!-- 택배 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script src="/main.js"></script>
 	<script>
+	/* 택배 api 함수 */
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
         new daum.Postcode({
@@ -168,11 +175,9 @@
             }
         }).open();
     }
-</script>
 
 	
-
-  <script>
+		/* 템플릿 함수 */
 		$(document).ready(function(){
 
 		var quantitiy=0;
@@ -207,23 +212,102 @@
 		    });
 		    
 		});
-	</script>
 	
-	<script>
+	<!-- 배달요청 직접입력 체크박스 -->
 		function deliInputOn(){
 			var select=document.getElementById("deli-memo-choice");
 			var input=document.getElementById("deli-input");
 			if(select.value==='-'){
-				input.innerHTML = '';
+				input.value = '';
 				input.disabled=false;
 			}else{
-				input.innerHTML = '';
+				input.value = '';
 				input.disabled=true;
 			}
 		}
+	
+		<!-- 결제 분기점 -->
+		function paymentOrder_btn(){
+			var kcp=document.querySelector('input[name="payment"][value="kcp"]');
+			var cacao=document.querySelector('input[name="payment"][value="cacao"]');
+			
+			if(kcp.checked){
+				kcp_payment();
+			}else if(cacao.checked){
+				cacao_payment();
+			}else{
+				alert('결제수단을 선택하세요.');
+			}
+		}
+		
+	<!-- 카드 결제 함수 -->
+	
+	
+	/* 카카오결제 */
+	function cacao_payment(){
+    	var IMP = window.IMP;
+    	IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
+        var msg;
+        
+        IMP.request_pay({
+            pg : 'kakaopay',
+            pay_method : 'card',
+            merchant_uid : 'merchant_' + new Date().getTime(),
+            name : '고구마',
+            amount : '300',
+            buyer_email : 'email@email',
+            buyer_name : '구매자이름',
+            buyer_tel : '010-5335',
+            buyer_addr : '서울 금천구',
+            buyer_postcode : '123-456',
+        }, function(rsp) {
+            if (rsp.success) {
+                $("#pay-form").submit();
+                    }
+                })
+            } else {
+                msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+                //실패시 이동할 페이지
+                location.href="<%=request.getContextPath()%>/order/orderfail.do";
+                alert(msg);
+            }
+        });
+    }
+	/* kcp결제 */
+	function kcp_payment(){
+    	var IMP = window.IMP;
+    	IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
+        var msg;
+        
+        IMP.request_pay({
+            pg : 'kcp.{AO09C}',
+            pay_method : 'card',
+            merchant_uid : 'merchant_' + new Date().getTime(),
+            name : '고구마',
+            amount : '300',
+            buyer_email : 'email@email',
+            buyer_name : '구매자이름',
+            buyer_tel : '010-5335',
+            buyer_addr : '서울 금천구',
+            buyer_postcode : '123-456',
+        }, function(rsp) {
+            if (rsp.success) {
+            	//결제 완료시 form 실행
+            	$("#pay-form").submit();
+                    }
+                })
+            } else {
+                msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+                //실패시 이동할 페이지
+                location.href="<%=request.getContextPath()%>/fail.do";
+                alert(msg);
+            }
+        });
+    }
+	
 	</script>
-	
-	
 	
 	
 	
