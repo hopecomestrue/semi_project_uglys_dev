@@ -173,10 +173,16 @@ section {
                         	<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
                         </ol>
                         <div>
-                            <span class="section-title text-primary mb-3 mb-sm-4">Education</span>
-                            <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-                            <p class="mb-1-9">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-              
+                        	<form>
+                            <span class="section-title text-primary mb-3 mb-sm-4">댓글</span>
+                        	<input type="hidden" name="boardRef" value="">
+							<input type="hidden" name="level" value="1">
+							<input type="hidden" name="writer" value="">
+					
+							<input type="hidden" name="boardCommentRef" value="0"><br>
+                            <textarea name="content" rows="3" cols="55"></textarea>
+                            <button type="submit" id="btn-insert">작성</button>
+                            </form>
                         </div>
                     </div>
                 </div>

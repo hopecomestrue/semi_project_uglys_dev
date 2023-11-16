@@ -37,7 +37,7 @@
   <body class="goto-here">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">
+	      <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp">
 	      <img src="<%=request.getContextPath() %>/images/brand_image (4).png" alt="브랜드 로고" style="max-width:70%" >
 	      </a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,9 +47,11 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="index.html" class="nav-link">정기배송</a></li>
 	          <li class="nav-item"><a class="nav-link" href="index.html">채소농장</a></li>
-	          <li class="nav-item" style="list-style-type: none;"><a href="blog.html" class="nav-link">커뮤니티</a></li>
-	          <!-- <li class="nav-item" style="list-style-type: none;"><a href="contact.html" class="nav-link">고객센터</a></li> -->
+
+	          <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
+	          
 	          <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/notice/noticeList.do" class="nav-link">고객센터</a></li>
+
 	          <li class="nav-item cta cta-colored" style="list-style-type: none;"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 	          
 	          <%if(loginMember==null){ %>
