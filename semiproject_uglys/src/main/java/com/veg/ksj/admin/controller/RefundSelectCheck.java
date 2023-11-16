@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RefundSelectCheck
  */
-@WebServlet("/admin/refundselect.do")
+@WebServlet("/admin/refundList.do")
 public class RefundSelectCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
