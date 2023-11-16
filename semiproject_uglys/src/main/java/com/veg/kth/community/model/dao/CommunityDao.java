@@ -49,7 +49,7 @@ public class CommunityDao {
 		}finally {
 			close(pstmt);
 			close(rs);
-		}System.out.println(result);
+		}
 		return result;
 	}
 	

@@ -135,7 +135,8 @@
               <form action="#" class="search-form">
                 <div class="form-group">
                   <span class="icon ion-ios-search"></span>
-                  <input type="text" class="form-control" placeholder="ex) 감자">
+                  <input type="search" id="searchtag" list="data" class="form-control" placeholder="ex) 감자">
+                	<datalist id="data"></datalist>
                 </div>
               </form>
               <div class="sidebar-box ftco-animate">
@@ -191,5 +192,25 @@
               %>
             </ul>
             </div>
-            </section>
+       </section>
+ <script>
+  $("#searchtag").keyup(e=>{
+	const value=e.target.value;
+	$.ajax({
+		url:"<%=request.getContextPath()%>/community/searchhashtag.do",
+		data:{"keyword":value},
+		success:data=>{
+			const hashtag=data.split(",");
+			$("#data").html("");
+			hashtag.forEach(e=>{
+				const $op=#("<option>").attr("value",e).text(e);
+				$("#data").append($op);
+			});
+		}
+		
+	})
+	  
+  });
+ 
+ </script>
 <%@ include file="/views/common/footer.jsp" %>
