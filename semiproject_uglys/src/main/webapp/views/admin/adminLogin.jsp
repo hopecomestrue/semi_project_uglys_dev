@@ -51,7 +51,7 @@
   <body class="text-center">
     
 <main class="form-signin">
-  <form id="adminLoginFrm" action="<%=request.getContextPath()%>/admin/login.do" method="post">
+  <form id="adminLoginFrm" action="<%=request.getContextPath()%>/admin/loginend.do" method="post">
   
     <h1 class="h3 mb-3 fw-normal">Admin_Login</h1>
 
