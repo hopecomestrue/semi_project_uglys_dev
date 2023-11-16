@@ -1,23 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="java.util.List,com.veg.seoj.cscenter.model.dto.Notice,java.sql.Timestamp,java.text.SimpleDateFormat" %>
-
+<%@ page
+        import="java.util.List,com.veg.seoj.cscenter.model.dto.Inquiry,java.sql.Timestamp,java.text.SimpleDateFormat" %>
 <%
-    List<Notice> notices = (List<Notice>)request.getAttribute("notices");
+    List<Inquiry> inquiryList = (List<Inquiry>)request.getAttribute("inquiryList");
 %>
 <%@ include file="/views/common/header.jsp" %>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<%-- <%
-	// Oracle에서 Timestamp 값을 가져온다고 가정
-	Timestamp oracleTimestamp = (Timestamp) request.getAttribute("oracleTimestamp");
-
-// SimpleDateFormat을 사용하여 날짜 및 시간 형식을 지정
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-// 변환된 날짜 문자열을 얻음
-	String formattedDate = dateFormat.format(oracleTimestamp);
-%> --%>
-
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css/main.css"/>
@@ -48,7 +37,13 @@
         padding-top: 70px;
     }
 </style>
-<!-- 큰 div를 만들어서 같은곳에 넣어줌 -->
+
+<script>
+    내용입력여부
+    확인
+    후
+    전송
+</script>
 <div class="container">
     <div class="row">
         <!-- Sidebar -->
@@ -57,7 +52,7 @@
                 <!-- Menu -->
                 <nav id="menu">
                     <header class="major">
-                        <h2>공지사항</h2>
+                        <h2>1:1 문의</h2>
                     </header>
                     <ul>
                         <li>
@@ -77,8 +72,9 @@
                                                                         </ul> -->
                         </li>
                         <li>
-                            <span><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do"
-                                     class="opener">1:1 문의</a></span>
+
+                            <a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link"
+                               class="opener">1:1 문의</a>
                             <!-- 											<ul>
                                                                             <li><a href="myinfo.html">내 정보 수정</a></li>
                                                                             <li><a href="myaddress.html">배송지 관리</a></li>
@@ -97,96 +93,97 @@
 
             </div>
         </div>
-        <section id="board-container">
-            <style>
+        <section id='board-container' style='margin: 0 auto;'>
+                    <style>
                 #board-container {
                     padding-top: 100px; /* 위쪽 여백 설정 */
                     padding-bottom: 100px; /* 아래쪽 여백 설정 */
                     text-align: center;
                 }
             </style>
-            <%
-                int noticeCount = notices.size();
-            %>
+         <h7 style="margin-right: 600px;">1:1 문의 작성</h7>
 
-            <h7 style="margin-right: 600px;">전체 글 수      <%=noticeCount%>
-
-                <%--			<% int noticeCount=
-                        <%=int noticeCount=notices.size()%>
-
-                        <%}%>--%>
-            </h7>
-            <p></p>
+            <script>
+                $(document).ready(function () {
+                    // 이미지가 선택될 때마다 실행되는 이벤트 핸들러
+                    $("#upfile2").change(function (e) {
+                    	$("#prevImg").empty();
+                        // 선택된 파일들을 미리보기에 출력
+                        previewImages(e.target.files);
+                    });
 
 
-            <table id="tbl-board">
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>첨부파일</th>
-                    <th>조회수</th>
-                </tr>
-                <tr>
-                    <%
-                        if (!notices.isEmpty()) {
-                            for (Notice n : notices) {
-                    %>
-                    <td><%=n.getNoticeNo() %>
-                    </td>
-                    <td>
-                        <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=n.getNoticeNo()%>">
-                            <%=n.getNoticeTitle() %>
-                        </a>
-                    </td>
-                    <td>
-                        <%-- <%=n.getNoticeDate() %> --%>
-                        관리자
-                    </td>
-                    <td>
-                        <%
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                            String sdfResult = sdf.format(n.getNoticeDate());
-                        %>
-                        <%=sdfResult%>
-                    </td>
-                    <td>
-                        <%if (n.getNoticeOriginalFilename() != null) { %>
-                        <img src="<%=request.getContextPath()%>/images/file.png"
-                             width="25">
-                        <%} %>
-                    </td>
-                    <td><%=n.getNoticeView() %>
-                    </td>
-                </tr>
-                <%
-                        }
+                    // 이미지 미리보기 함수
+                    function previewImages(files) {
+                        $.each(files, function (i, file) {
+                            const filereader = new FileReader();
+                            filereader.readAsDataURL(file);
+                            filereader.onload = (e) => {
+                                const path = e.target.result;
+                                const img = $("<img>").attr({
+                                    "src": path,
+                                    "width": "100",
+                                    "height": "100"
+                                });
+                                $("#prevImg").append(img);
+                            }
+                        });
                     }
-                %>
-            </table>
+                });
 
-            <div id="pageBar"><a>
-
-                    <%=request.getAttribute("pageBar") %>
-
-            </div>
-            <div class="col-md-4">
-
-                <%--
-<%if(loginMember!=null){ %>
---%>
-                <span class="">
-					<button onclick="location.assign('<%=request.getContextPath() %>/board/boardWrite.do')"
-                            style="margin-left: 600px;">
-				글쓰기
-			</button>
-					</span>
-
-                <%--	<%} %>--%>
-            </div>
-
+            </script>
+            <form action='<%=request.getContextPath()%>/inquiry/inquiryWriteEnd.do'
+                  enctype="multipart/form-data" method="post" id="uploadForm">
+                <table id='tbl-board'>
+                    <tr>
+                        <th>카테고리</th>
+                        <td><select name="category">
+                            <option value="배송">배송</option>
+                            <option value="주문">주문</option>
+                            <option value="상품">상품</option>
+                            <option value="기타">기타</option>
+                            <option value="미설정">미설정</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <th>제목</th>
+                        <td><input type="text" name="title" required></td>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <td><input type="text" name="writer"
+                                   value="<%--<%=loginMember.getUserId()%>--%>로그인 한 사람" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>첨부 이미지</th>
+                        <td>
+                        <style>
+                        	#upfile2,
+                        	#prevImg{
+                        		display: inline-block;
+                        	}
+                        </style>
+                             <div id="prevImg"></div>
+                            <input type="file" name="upfile2" id="upfile2" accept="image/*">
+                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td>
+                            <textarea cols="47" rows="10" name="content"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <input type="submit" value="저장">
+                            <input type="reset" value="취소">
+                        </th>
+                    </tr>
+                </table>
+            </form>
         </section>
     </div>
 </div>
+
 <%@ include file="/views/common/footer.jsp" %>

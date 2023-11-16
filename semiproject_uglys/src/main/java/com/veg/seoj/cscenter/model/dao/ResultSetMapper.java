@@ -1,4 +1,4 @@
-package com.veg.seoj.notice.model.dao;
+package com.veg.seoj.cscenter.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
  * @version 2023-11-15
  */
 
-public interface ResultSetMapper<T> {
+public interface ResultSetMapper <T> {
     T fromResultSet(ResultSet rs) throws SQLException;
 
     class MapperUtil {

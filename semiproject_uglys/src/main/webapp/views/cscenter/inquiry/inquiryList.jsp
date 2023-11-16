@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="java.util.List,com.veg.seoj.cscenter.model.dto.Notice,java.sql.Timestamp,java.text.SimpleDateFormat" %>
+<%@ page
+        import="java.util.List,com.veg.seoj.cscenter.model.dto.Inquiry,java.sql.Timestamp,java.text.SimpleDateFormat" %>
 
 <%
-    List<Notice> notices = (List<Notice>)request.getAttribute("notices");
+    List<Inquiry> inquiryList = (List<Inquiry>)request.getAttribute("inquiryList");
 %>
 <%@ include file="/views/common/header.jsp" %>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -57,7 +58,7 @@
                 <!-- Menu -->
                 <nav id="menu">
                     <header class="major">
-                        <h2>공지사항</h2>
+                        <h2>1:1 문의</h2>
                     </header>
                     <ul>
                         <li>
@@ -77,8 +78,9 @@
                                                                         </ul> -->
                         </li>
                         <li>
-                            <span><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do"
-                                     class="opener">1:1 문의</a></span>
+
+                            <a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link"
+                               class="opener">1:1 문의</a>
                             <!-- 											<ul>
                                                                             <li><a href="myinfo.html">내 정보 수정</a></li>
                                                                             <li><a href="myaddress.html">배송지 관리</a></li>
@@ -106,18 +108,15 @@
                 }
             </style>
             <%
-                int noticeCount = notices.size();
+                int inquiryCount = inquiryList.size();
             %>
-
-            <h7 style="margin-right: 600px;">전체 글 수      <%=noticeCount%>
+            <h7 style="margin-right: 600px;">전체 글 수      <%=inquiryCount%>
 
                 <%--			<% int noticeCount=
                         <%=int noticeCount=notices.size()%>
 
                         <%}%>--%>
             </h7>
-            <p></p>
-
 
             <table id="tbl-board">
                 <tr>
@@ -126,18 +125,19 @@
                     <th>작성자</th>
                     <th>작성일</th>
                     <th>첨부파일</th>
-                    <th>조회수</th>
+                    <%--                 <th>조회수</th>--%>
                 </tr>
                 <tr>
                     <%
-                        if (!notices.isEmpty()) {
-                            for (Notice n : notices) {
+                        if (!inquiryList.isEmpty()) {
+                            /*바꿔야함*/
+                            for (Inquiry n : inquiryList) {
                     %>
-                    <td><%=n.getNoticeNo() %>
+                    <td><%=n.getInquiryNo() %>
                     </td>
                     <td>
-                        <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=n.getNoticeNo()%>">
-                            <%=n.getNoticeTitle() %>
+                        <a href="<%=request.getContextPath()%>/inquiry/inquiryView.do?no=<%=n.getInquiryNo()%>">
+                            <%=n.getInquiryTitle() %>
                         </a>
                     </td>
                     <td>
@@ -147,18 +147,18 @@
                     <td>
                         <%
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                            String sdfResult = sdf.format(n.getNoticeDate());
+                            String sdfResult = sdf.format(n.getInquiryDate());
                         %>
                         <%=sdfResult%>
                     </td>
                     <td>
-                        <%if (n.getNoticeOriginalFilename() != null) { %>
+                        <%if (n.getInquiryOriginalFilename() != null) { %>
                         <img src="<%=request.getContextPath()%>/images/file.png"
                              width="25">
                         <%} %>
                     </td>
-                    <td><%=n.getNoticeView() %>
-                    </td>
+                    <%--                    <td><%=n.getNoticeView() %>
+                                        </td>--%>
                 </tr>
                 <%
                         }
@@ -177,8 +177,8 @@
 <%if(loginMember!=null){ %>
 --%>
                 <span class="">
-					<button onclick="location.assign('<%=request.getContextPath() %>/board/boardWrite.do')"
-                            style="margin-left: 600px;">
+							<button onclick="location.assign('<%=request.getContextPath() %>/inquiry/inquiryWrite.do')"
+                                    style="margin-left: 600px;">
 				글쓰기
 			</button>
 					</span>
