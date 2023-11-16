@@ -93,26 +93,26 @@
             position: relative;
         }
         #slideShow img {
-            position: absolute;
-            animation: slideShow 18s infinite;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-        }
-        @keyframes slideShow {
-            0% {opacity: 0;}
-            11.11% {opacity: 1;}
-            22.22% {opacity: 0;}
-            22.23% {opacity: 0;}
-            33.34% {opacity: 1;}
-            44.45% {opacity: 0;}
-            44.46% {opacity: 0;}
-            55.57% {opacity: 1;}
-            66.68% {opacity: 0;}
-            66.69% {opacity: 0;}
-            77.8% {opacity: 1;}
-            88.91% {opacity: 0;}
-        }
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;  // 모든 이미지를 처음에는 숨김
+}
+
+@keyframes slideShow {
+    0% {left: 0%; opacity: 1;}
+    11.11% {left: -100%; opacity: 1;}
+    22.22% {left: -200%; opacity: 1;}
+    22.23% {left: -300%; opacity: 1;}
+    33.34% {left: -400%; opacity: 1;}
+    44.45% {left: -500%; opacity: 1;}
+    44.46% {left: -600%; opacity: 1;}
+    55.57% {left: -700%; opacity: 1;}
+    66.68% {left: -800%; opacity: 1;}
+    66.69% {left: -900%; opacity: 1;}
+    77.8% {left: -1000%; opacity: 1;}
+    88.91% {left: -1100%; opacity: 1;}
+}
          #pageBar {
     display: flex;
     justify-content: start;
@@ -310,50 +310,46 @@
 				</script>
 
 <script>
-    var currentSlideIndex = 0;
-    var slideShow;
-    var pageBar;
+document.querySelector('input[type=file]').addEventListener('change', function(e) {
+    slideShow = document.getElementById('slideShow');
+    pageBar = document.getElementById('pageBar');
 
-    document.querySelector('input[type=file]').addEventListener('change', function(e) {
-        slideShow = document.getElementById('slideShow');
-        pageBar = document.getElementById('pageBar');
+    for(let i = 0; i < this.files.length; i++) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.display = 'none';  // 처음에는 모든 이미지를 숨김
+            slideShow.appendChild(img);
+            
+            // 페이지 버튼 추가
+            var btn = document.createElement('button');
+            btn.textContent = slideShow.querySelectorAll('img').length;
+            let index = slideShow.querySelectorAll('img').length-1;
+            btn.addEventListener('click', function() {
+                goToSlide(index);
+            });
+            pageBar.appendChild(btn);
 
-        for(let i = 0; i < this.files.length; i++) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.display = 'none';  // 처음에는 모든 이미지를 숨김
-                slideShow.appendChild(img);
-                
-                // 페이지 버튼 추가
-                var btn = document.createElement('button');
-                btn.textContent = slideShow.querySelectorAll('img').length;
-                let index = slideShow.querySelectorAll('img').length-1;
-                btn.addEventListener('click', function() {
-                    goToSlide(index);
-                });
-                pageBar.appendChild(btn);
-
-                // 첫 이미지 보이기
-                if(slideShow.querySelectorAll('img').length === 1) {
-                    goToSlide(0);
-                }
+            // 첫 이미지 보이기
+            if(slideShow.querySelectorAll('img').length === 1) {
+                goToSlide(0);
             }
-            reader.readAsDataURL(this.files[i]);
         }
-    });
-
-    function goToSlide(index) {
-        var slides = slideShow.querySelectorAll('img');
-        var dots = pageBar.querySelectorAll('button');
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-            dots[i].classList.remove("active");
-        }
-        slides[index].style.display = "block";  
-        dots[index].classList.add("active");
+        reader.readAsDataURL(this.files[i]);
     }
+});
+
+function goToSlide(index) {
+    var slides = slideShow.querySelectorAll('img');
+    var dots = pageBar.querySelectorAll('button');
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+        dots[i].classList.remove("active");
+    }
+    slides[index].style.display = "block";  
+    dots[index].classList.add("active");
+}
 </script>
 			
 	</body>
