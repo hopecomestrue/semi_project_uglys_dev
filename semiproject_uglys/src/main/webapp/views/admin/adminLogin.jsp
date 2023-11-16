@@ -56,7 +56,7 @@
     <h1 class="h3 mb-3 fw-normal">Admin_Login</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="adminid">
+      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="adminid">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
