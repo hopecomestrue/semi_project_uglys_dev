@@ -39,6 +39,20 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
+
+ p{
+ margin-top: 10px;
+ margin-bottom: 5px;
+ 
+ }
+ 
+ .container_recipe{
+ 	max-height: calc(100vh - 120px); /* 화면 높이에서 헤더와 푸터의 높이를 뺀 값으로 제한 */
+    overflow-y: auto;
+
+ }
+ 
 </style>
 
 <section>
@@ -89,14 +103,12 @@ input::-webkit-inner-spin-button {
 				
 				<%if(!hashtags.isEmpty()){ 
             		for(Hashtag h : hashtags){%>
-                  <a href="#" class="tag-cloud-link">
+                  <a href="#" name= class="tag-cloud-link">
                 		#<%=h.getHashtagValue()%>
                 	</a>
                 	<%} %>
                  <%}%>
-                 
                  <div id="tag-list"></div>
-                 
                  <div class="form-group">
             	<input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;"/>
            </div>
@@ -108,21 +120,26 @@ input::-webkit-inner-spin-button {
 		<input type="button" value="+" onclick="plusbtn();">
 		<p style="display:inline-block;">인분</p>
 		</div>
-		<h4>재료</h4>
+		<div class="material_part">
+		<h4 id="material">재료</h4>
 		<select name="material_type" id="material_type">
 			<option value="main">필수재료</option>
 			<option value="sub">부재료</option>
 			<option value="source">양념</option>
-		</select>
-		<input type="text" name="material_name" maxlength="20" placeholder="ex)감자">
-		<input type="text" name="material_capa" maxlength="10" placeholder="ex)1개">
+		</select><br>
+		<input type="text" id="material_name" name="material_name" maxlength="20" placeholder="ex)감자">
+		<input type="text" id="material_capa" name="material_capa" maxlength="10" placeholder="ex)1개">
 		<input type="button" value="추가" onclick="addMaterial();">
+		</div>
+		
 
+		<div class="procedure_part">
 		<h4>만드는 방법</h4>
-		<p>1번</p>
-		<input type="text" name="procedure_comment" maxlength="150" placeholder="만드는 방법을 입력하세요.">
-		<input type="file" name="procedure_file">
-		<input type="button" value="추가" onclick="addProcedure();"><br>
+		<p id="procedure_no" name="procedure_no">1</p>
+		<input type="text" id="procedure_comment" name="procedure_comment" maxlength="150" placeholder="만드는 방법을 입력하세요.">
+		<input type="file" id="procedure_file" name="procedure_file">
+		<input type="button" value="추가" onclick="addProcedure();">
+		</div>
 		<div>
 
 		<input type="submit" value="완료">
@@ -211,9 +228,38 @@ input::-webkit-inner-spin-button {
 
 		}
 		
-		foun
-		
-</script>
+	    let count1 = 1;
+	    let count2 = 1;
+	    let addMaterial=()=>{
 
+	        if(count1<6){
+	        let $select = $(".material_part").append("<div><select name='material_type' id='material_type'> \
+	            <option value='main'>필수재료</option> \
+				<option value='sub'>부재료</option> \
+				<option value='source'>양념</option> \
+			</select>"
+	         );
+
+	         $select.append("<input type='text' id='material_name' name='material_name' maxlength='20' placeholder='ex)감자'> \
+			<input type='text' id='material_capa' name='material_capa' maxlength='10' placeholder='ex)1개'></div>");
+	        count1++;
+	        }
+	    }
+	    
+	    
+	    let addProcedure=()=>{
+
+	        if(count2<6){
+	            count2++;
+	            $(".procedure_part").append("<p id='procedure_no' name='procedure_no'>"+count2+"</p>\
+	            <input type='text' id='procedure_comment' name='procedure_comment' maxlength='150' placeholder='만드는 방법을 입력하세요.'>\
+	            <input type='file' id='procedure_file' name='procedure_file'>"
+	            );
+	        }
+
+	    }
+	   	
+	   	
+</script>
 
 <%@ include file="/views/common/footer.jsp" %>
