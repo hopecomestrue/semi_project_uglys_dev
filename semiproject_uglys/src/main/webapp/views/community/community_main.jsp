@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 <%@ page import="com.veg.kth.community.model.dto.Recipe, java.util.List,com.veg.kth.community.model.dto.Hashtag" %>
-
 <%
 
 	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");  
@@ -123,7 +122,55 @@
   	align-items: center;
     justify-content: center;
 	}
-  
+	
+	
+	.float-button-container {
+	z-index: 1000;
+	position: fixed;
+	transform: translate(-50%, 0%);
+	left: 50%;
+	bottom: 30px;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	padding:0 10px;
+
+	background: white;
+	height: 40px;
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+	border:1px solid #e9e9e9;
+	border-radius: 30px;
+	text-decoration: none !important;
+
+}
+
+.float-button {
+	display: flex;
+	align-items: center;
+	padding:0 20px;
+	background-color:#82ae46
+
+	cursor: pointer;
+	color:#2b2b2b !important;
+	font-size: 13px;
+	text-decoration: none !important;
+	white-space: nowrap;
+	font-weight: bold;
+	transition: 0.5s;
+}
+
+.float-button:hover {
+	transform: translate(0%, -20%);
+}
+
+.float-button-image {
+	height: 20px;
+	margin-right:5px;
+}
+
+
 }
 
 </style>
@@ -155,6 +202,11 @@
             </div>
         </div>
       </div>
+       <div class="float-button-container" style="text-align: right">
+			  <a class="float-button" href="<%=request.getContextPath() %>/community/recipewrite.do" target="_blank">
+			    레시피 작성하기
+			  </a>
+		</div>
       </div>
 
         <section class="review-section rev1">
