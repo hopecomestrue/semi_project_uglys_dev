@@ -82,8 +82,10 @@
             <label class="remember">
                 <input type="checkbox" name="remember" id="remember">아이디 저장
             </label>
+             <div id="error-message" style="color: red;" ></div>
             <button type="submit">로그인</button>
         </form>
+       
         <div class="login-links">
             <a href="<%=request.getContextPath()%>/member/forgetid.do">아이디 찾기</a>
             <a href="<%=request.getContextPath()%>/member/forgetpw.do">비밀번호 찾기</a>
@@ -122,6 +124,13 @@
         );
         naverLogin.init();
 </script>
+
+<script>
+	 const msg = '<%= request.getAttribute("msg") %>';
+	    if (msg != null) {
+	        document.getElementById('error-message').innerText = msg;
+	    }
+	</script>
 </body>
 
 </html>
