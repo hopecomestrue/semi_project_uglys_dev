@@ -55,8 +55,7 @@ public class LoginEndServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath());
 			}else {
 				request.setAttribute("msg", "아이디나 패스워드가 일치하지 않습니다.");
-				request.setAttribute("loc","/member/login.do");
-				request.getRequestDispatcher("/views/member/msg.jsp")
+				request.getRequestDispatcher("/views/member/login.jsp")
 				.forward(request, response);
 			}
 			
