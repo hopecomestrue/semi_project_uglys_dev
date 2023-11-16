@@ -1,9 +1,10 @@
+<%@page import="com.veg.hjj.member.dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--     <% 
+    <% 
     	Member loginMember=(Member)session.getAttribute("loginMember");
     %>
-    <%if(loginMember.getName().equals("admin")){ %> --%>
+    <%if(loginMember!=null){ %>
 <%@ include file="/views/admin/common/header.jsp" %>
 <body>
 
@@ -12,4 +13,4 @@
 </body>
 
 <%@ include file="/views/admin/common/footer.jsp" %>
-<%-- <%}%> --%>
+<%}%>

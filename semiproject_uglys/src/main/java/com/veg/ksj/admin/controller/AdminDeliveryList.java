@@ -1,4 +1,4 @@
-package com.veg.ksj.admin;
+package com.veg.ksj.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

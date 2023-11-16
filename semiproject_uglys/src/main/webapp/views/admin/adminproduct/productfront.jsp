@@ -64,15 +64,15 @@
 			}
 			
 			button {
-			    display: block;
-			    width: 100%;
+			    display: block;	    
 			    padding: 10px;
 			    font-size: 16px;
 			    color: white;
-			    background-color: #4CAF50;
+			    background-color: #C8f498;
 			    border: none;
 			    border-radius: 4px;
 			    cursor: pointer;
+			    width: 100%;
 			}
 			
 			button:hover {
@@ -174,9 +174,12 @@
                         </tr>
                         
                     	</table>
-				                    <!-- 검색 버튼 -->
-				                    <button type="submit" style="font-weight: 600;">검색</button>
-				                </div>
+				         <div><button type="submit" style="margin-bottom: 30px; margin-top: 30px;">검색</button></div>
+    <div style="display: flex; justify-content: flex-end; align-items: center;">
+    <button type="submit" style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품등록</button>
+    <button type="submit" style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품삭제</button>
+    
+</div>
 				            </div>
 				        </div>
 				    </div>
