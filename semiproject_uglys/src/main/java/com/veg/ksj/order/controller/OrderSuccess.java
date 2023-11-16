@@ -27,15 +27,20 @@ public class OrderSuccess extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String imp=request.getParameter("imp_uid"); //결제고유번호
-		String merchant_uid=request.getParameter("merchant_uid"); //주문번호
-		String name=request.getParameter("buyerName"); //구매자 이름
-		String total=request.getParameter("total"); //총가격
-		String amount=request.getParameter("amount"); //결제금액
+		String merchantuid=request.getParameter("merchant_uid"); //주문번호
+		String amount=request.getParameter("paid_amount"); //결제금액
+		String buyerName=request.getParameter("buyer_name"); //구매자 이름
+		String pg=request.getParameter("pg_provider"); //PG사 구분코드, kakaopay,kcp(NHN KCP)
+		String buyerEmail=request.getParameter("buyer_email"); //주문자 email
+		String buyerPhone=request.getParameter("buyer_tel"); //주문자 연락처
+		String buyerAddr=request.getParameter("buyer_addr"); //주문자 주소
+		String paidAt=request.getParameter("paid_at"); //결제승인시각
+		
 		System.out.println(imp);
-		System.out.println(merchant_uid);
-		System.out.println(name);
-		System.out.println(total);
+		System.out.println(merchantuid);
 		System.out.println(amount);
+		System.out.println(buyerName);
+		System.out.println(pg);
 		
 		
 		

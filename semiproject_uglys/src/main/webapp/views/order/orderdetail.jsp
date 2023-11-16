@@ -252,7 +252,7 @@
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
+            merchant_uid : new Date().getTime(),
             name : '고구마',
             amount : '300',
             buyer_email : 'email@email',
@@ -261,10 +261,25 @@
             buyer_addr : '서울 금천구',
             buyer_postcode : '123-456',
         }, function(rsp) {
-            if (rsp.success) {
-                $("#pay-form").submit();
-                    }
-                })
+        	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            jQuery.ajax({
+                url: "<%=request.getContextPath()%>/payments/complete.do", //cross-domain error가 발생하지 않도록 주의해주세요
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    imp_uid : rsp.imp_uid,         //결제 고유번호
+                    merchant_uid : rsp.merchant_uid, //주문번호
+                    paid_amount : rsp.paid_amount, //결제된 금액
+                    buyer_name : rsp.buyer_name, //주문자 이름
+                    pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
+                    buyer_email : rsp.buyer_email, // 주문자 email
+                    buyer_tel : rsp.buyer_tel, // 주문자 연락처
+                    buyer_addr : rsp.buyer_addr, //주문자 주소
+                    paid_at : rsp.paid_at // 결제승인시각
+                    
+                    //필요한 데이터가 있으면 추가
+                }
+            })
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
@@ -283,7 +298,7 @@
         IMP.request_pay({
             pg : 'kcp.{AO09C}',
             pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
+            merchant_uid : new Date().getTime(),
             name : '고구마',
             amount : '300',
             buyer_email : 'email@email',
@@ -293,8 +308,21 @@
             buyer_postcode : '123-456',
         }, function(rsp) {
             if (rsp.success) {
-            	//결제 완료시 form 실행
-            	$("#pay-form").submit();
+            	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+                jQuery.ajax({
+                    url: "<%=request.getContextPath()%>/payments/complete.do", //cross-domain error가 발생하지 않도록 주의해주세요
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                    	imp_uid : rsp.imp_uid,         //결제 고유번호
+                        merchant_uid : rsp.merchant_uid, //주문번호
+                        paid_amount : rsp.paid_amount, //결제된 금액
+                        buyer_name : rsp.buyer_name, //주문자 이름
+                        pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
+                        buyer_email : rsp.buyer_email, // 주문자 email
+                        buyer_tel : rsp.buyer_tel, // 주문자 연락처
+                        buyer_addr : rsp.buyer_addr, //주문자 주소
+                        paid_at : rsp.paid_at // 결제승인시각
                     }
                 })
             } else {
