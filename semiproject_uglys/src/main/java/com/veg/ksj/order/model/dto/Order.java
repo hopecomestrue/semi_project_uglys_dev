@@ -12,7 +12,6 @@ public class Order {
 	private String orderName;
 	private String orderPhone;
 	private String orderAddress;
-	private String orderAddressDetail;
 	private String orderComment;
 	private int orderCount;
 	private int totalPrice;

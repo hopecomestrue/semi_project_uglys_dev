@@ -16,7 +16,7 @@ public class Recipe {
 	private String recipeRenamedFileName;
 	private String recipeTitle;
 	private String recipeComment;
-	private String recipeLeadTime;
+	private int recipeLeadTime;
 	private Category category;
 	private List<Hashtag> Hashtag = new ArrayList<>();
 	private int recipeCapa;

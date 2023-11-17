@@ -18,8 +18,7 @@ public class OrderDao {
 	private Properties sql=new Properties();
 	
 	{
-		String path=OrderDao.class
-				.getResource("/sql/order/order_sql.properties").getPath();
+		String path=OrderDao.class.getResource("/sql/order/order_sql.properties").getPath();
 		try(FileReader fr=new FileReader(path)){
 			sql.load(fr);
 		}catch(IOException e) {
@@ -102,7 +101,6 @@ public class OrderDao {
 					.orderName(rs.getString("orderName"))
 					.orderPhone(rs.getString("orderPhone"))
 					.orderAddress(rs.getString("orderAddress"))
-					.orderAddressDetail(rs.getString("orderAddressDetail"))
 					.orderComment(rs.getString("orderComment"))
 					.orderCount(rs.getInt("orderCount"))
 					.totalPrice(rs.getInt("totalPrice"))
