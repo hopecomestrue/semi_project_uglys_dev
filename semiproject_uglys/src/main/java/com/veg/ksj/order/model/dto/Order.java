@@ -8,7 +8,8 @@ import lombok.Data;
 @Data
 @Builder
 public class Order {
-	private int orderNo;
+	private String orderNo;
+	private int memberNo;
 	private String orderName;
 	private String orderPhone;
 	private String orderAddress;
