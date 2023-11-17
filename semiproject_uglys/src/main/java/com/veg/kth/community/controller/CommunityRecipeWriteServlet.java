@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veg.kth.community.model.dto.Category;
 import com.veg.kth.community.model.dto.Hashtag;
 import com.veg.kth.community.service.CommunityService;
 
@@ -33,8 +34,10 @@ public class CommunityRecipeWriteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Hashtag> hashtags = new CommunityService().selectHashtagAll();
+		List<Category> category = new CommunityService().selectCategoryAll();
 		
 		request.setAttribute("hashtags", hashtags);
+		request.setAttribute("category", category);
 		
 		request.getRequestDispatcher("/views/community/write_recipe.jsp")
 		.forward(request, response);

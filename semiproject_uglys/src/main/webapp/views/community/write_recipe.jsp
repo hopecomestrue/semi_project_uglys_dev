@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-<%@ page import="com.veg.kth.community.model.dto.Hashtag, java.util.List" %>
+<%@ page import="com.veg.kth.community.model.dto.Hashtag,java.util.List,com.veg.kth.community.model.dto.Category" %>
 <%
 
-	List<Hashtag> hashtags = (List<Hashtag>)request.getAttribute("hashtags");  
+	
+	List<Hashtag> hashtags = (List<Hashtag>)request.getAttribute("hashtags");
+	List<Category> category = (List<Category>)request.getAttribute("category"); 
 
 %>
 <script src="https://unpkg.com/@yaireo/tagify"></script>
@@ -48,7 +50,7 @@ input::-webkit-inner-spin-button {
  }
  
  .container_recipe{
- 	max-height: calc(100vh - 120px); /* 화면 높이에서 헤더와 푸터의 높이를 뺀 값으로 제한 */
+ 	max-height: calc(150vh - 120px); /* 화면 높이에서 헤더와 푸터의 높이를 뺀 값으로 제한 */
     overflow-y: auto;
 
  }
@@ -58,7 +60,7 @@ input::-webkit-inner-spin-button {
 <section>
 	<div class="container_recipe">
 	<h4>레시피 작성</h4>
-	<form action='<%=request.getContextPath()%>/asd' method="post" enctype="multipart/form-data">
+	<form action="<%=request.getContextPath()%>/community/recipewriteend.do" id="myForm" method="post" enctype="multipart/form-data">
 		<p style="text-align: center">
 			반복적이거나 성의 없는 콘텐츠는 관리자에 의해<br>
 			콘텐츠 삭제 후 적립금이 반환될 수 있습니다.
@@ -70,53 +72,90 @@ input::-webkit-inner-spin-button {
 		<input type="radio" name="leadtime" value="15">15분 컷
 		<input type="radio" name="leadtime" value="30">30분 컷
 		<input type="radio" name="leadtime" value="45">45분 컷
-		<input type="radio" name="leadtime" value="60+">60분 이상
+		<input type="radio" name="leadtime" value="60">60분 이상
 		<h4>카테고리</h4>
-		<select name="category_dept1" id="category_dept1">
-			<option value="한식">한식</option>
-			<option value="중식">중식</option>
-			<option value="양식">양식</option>
-			<option value="일식">일식</option>
-			<option value="분식">분식</option>
-			<option value="퓨전">퓨전</option>
-			<option value="베이킹">베이킹</option>
-			
+		
+		<select name="category_dept1" id="category_dept1" onchange="categoryChange(this);">
+			<option>카테고리를 선택해 주세요.</option>
+		<%if(!category.isEmpty()){ 
+            		for(Category c : category){%>
+			<option value="<%=c.getCategoryDept1()%>"><%=c.getCategoryDept1()%></option>	
+			<%}
+           }%>
 		</select>
 		<select name="category_dept2" id="category_dept2">
-			<option value="덮밥+볶음밥">덮밥,볶음밥</option>
-			<option value="면요리">면요리</option>
-			<option value="샐러드">샐러드</option>
-			<option value="밑반찬">밑반찬</option>
-			<option value="볶음요리">볶음요리</option>
-			<option value="찌개+국">찌개,국</option>
-			<option value="조림">조림</option>
-			<option value="찜">찜</option>
-			<option value="전골">전골</option>
-			<option value="스프">스프</option>
+			<option>세부 카테고리를 선택해 주세요.</option>
 		</select>
 
+           
+<script>
+function categoryChange(e) {
+	
+	
+	<%if(!category.isEmpty()){
+	for(int i=0;i<category.size();i++){
+	%>
+	
+	var good_<%=category.get(i).getCategoryDept1()%> = ["<%=category.get(i).getCategoryDept2()%>"];
+	
+	var target = document.getElementById("category_dept2");
+
+	if(e.value == "<%=category.get(i).getCategoryDept1()%>") var d = good_<%=category.get(i).getCategoryDept1()%>;
+	<%}
+	}
+	%>
+
+	target.options.length = 0;
+
+	for (x in d) {
+		var opt = document.createElement("option");
+		opt.value = d[x];
+		opt.innerHTML = d[x];
+		target.appendChild(opt);
+	}
+}
+</script>
+    
 		<h4>해시태그</h4>
 		<div class="tr_hashTag_area">
 		<div class="form-group">
                 <input type="hidden" value="" name="tag" id="rdTag" />
             </div>
-				
 				<%if(!hashtags.isEmpty()){ 
             		for(Hashtag h : hashtags){%>
-                  <a href="#" name= class="tag-cloud-link">
+                  <button type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
                 		#<%=h.getHashtagValue()%>
-                	</a>
-                	<%} %>
-                 <%}%>
+                	</button>
+                	<%} 
+                	}%>
                  <div id="tag-list"></div>
                  <div class="form-group">
             	<input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;"/>
            </div>
          </div>
+         <script>
+         function toggleButton(button) {
+				
+        	 let $rdTag = $('.rdtag');
+        	 if($rdTag.value==button.value){
+        	 $rdTag.value = "";
+        	 alert("값 지움")
+					        		 
+        	 }else{
+        	alert("값 넣음")
+        	 $rdTag.value += button.value;
+        		 
+        	 }
+	    	 
+	    	
+	    	}
+        </script>
+         
+         
 		<h4>기준량</h4>
 		<div>
 		<input type="button" value="-" onclick="minusbtn();">
-		<input type="number" style="width:40px; height:40px;" id="capacity_ab" value="1" min="1" max="10">
+		<input type="number" style="width:40px; height:40px;" name="capacity" id="capacity_ab" value='1' min='1' max='10'>
 		<input type="button" value="+" onclick="plusbtn();">
 		<p style="display:inline-block;">인분</p>
 		</div>
@@ -131,8 +170,6 @@ input::-webkit-inner-spin-button {
 		<input type="text" id="material_capa" name="material_capa" maxlength="10" placeholder="ex)1개">
 		<input type="button" value="추가" onclick="addMaterial();">
 		</div>
-		
-
 		<div class="procedure_part">
 		<h4>만드는 방법</h4>
 		<p id="procedure_no" name="procedure_no">1</p>
@@ -141,9 +178,7 @@ input::-webkit-inner-spin-button {
 		<input type="button" value="추가" onclick="addProcedure();">
 		</div>
 		<div>
-
-		<input type="submit" value="완료">
-		
+		<input type="submit" id="lastBtn" value="완료">
 		</div>
 	</form>
 	</div>
@@ -192,7 +227,7 @@ input::-webkit-inner-spin-button {
                 
                     // 해시태그가 중복되었는지 확인
                     if (result.length == 0) { 
-                        $("#tag-list").append("<a class='tag-item'>#"+tagValue+"<span class='del-btn' idx='"+counter+"'> x </span></a>");
+                        $("#tag-list").append("<button class='tag-item' name='hashtag' >#"+tagValue+"<span class='del-btn' idx='"+counter+"'> x </span></button>");
                         addTag(tagValue);
                         self.val("");
                     } else {
@@ -258,8 +293,9 @@ input::-webkit-inner-spin-button {
 	        }
 
 	    }
-	   	
-	   	
+	    
+
+	    
 </script>
 
 <%@ include file="/views/common/footer.jsp" %>
