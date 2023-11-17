@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>아이디 중복확인</title>
 </head>
 <body>
@@ -20,5 +21,7 @@
 				<input type="submit" value="중복검사" >
 			</form>
 	</div>
+ 
+    	
 </body>
 </html>
