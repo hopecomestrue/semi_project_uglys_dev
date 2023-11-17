@@ -1,4 +1,4 @@
-package com.veg.ksj.admin.controller;
+package com.veg.hjj.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AdminLogout
+ * Servlet implementation class ForgetFindIdServlet
  */
-@WebServlet("/admin/logout.do")
-public class AdminLogout extends HttpServlet {
+@WebServlet("/forgetfindpw.do")
+public class ForgetFindPwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminLogout() {
+    public ForgetFindPwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,14 +26,10 @@ public class AdminLogout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//어드민 로그인 정보 삭제
-		HttpSession session=request.getSession(false);
-		if(session!=null) {
-			session.invalidate();
-		}
-		
-		response.sendRedirect(request.getContextPath()+"/views/admin/adminLogin.jsp");
-		
+		request.getRequestDispatcher("/views/member/forgetfindpw.jsp").forward(request, response);
+	
+	
+	
 	}
 
 	/**

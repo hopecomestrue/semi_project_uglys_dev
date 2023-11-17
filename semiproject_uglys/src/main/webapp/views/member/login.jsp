@@ -1,6 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="/views/common/header.jsp" %>
+    <%
+    	String msg=(String)request.getAttribute("msg");
+    %>
+    <%
+    	Cookie[] cookies=request.getCookies();	
+    	String saveId=null;
+    	if(cookies!=null){
+    		for(Cookie c:cookies){
+	    		String name=c.getName();
+	    		
+	    		
+	    		if(name.equals("saveId")){
+	    			saveId=c.getValue();
+	    			break;
+	    		}
+    			
+    		}
+    	}
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +32,7 @@
 .login-container {
     max-width: 360px;
     margin: 0 auto;
-     margin-top: 50px;
+    margin-top: 50px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -73,17 +92,21 @@
     <div class="login-container">
         <h2>채소랑 로그인</h2>
 	
-       
+      
         <form action="<%=request.getContextPath()%>/member/loginend.do" id="loginFrm" method="post">
             
-            <input type="text" id="memberId" name="memberId" placeholder="아이디" required><br>
+            <input type="text" id="memberId" name="memberId" placeholder="아이디" 
+            		value="<%=saveId!=null?saveId:"" %>" required><br>
             <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" required><br>
-            <!-- <span class="fail" >입력하신 정보가 일치하지 않습니다.<br>다시 확인해 주세요<br> -->
-            <label class="remember">
-                <input type="checkbox" name="remember" id="remember">아이디 저장
+            
+            <label class="saveId">
+                <input type="checkbox" name="saveId" id="saveId"
+                <%=saveId!=null?"checked":"" %>>아이디 저장
             </label>
+             <div id="error-message" style="color: red;" ></div>
             <button type="submit">로그인</button>
         </form>
+  
         <div class="login-links">
             <a href="<%=request.getContextPath()%>/member/forgetid.do">아이디 찾기</a>
             <a href="<%=request.getContextPath()%>/member/forgetpw.do">비밀번호 찾기</a>
@@ -98,12 +121,12 @@
     
 
     <hr>
-        <p style="justify-content: center; display: flex;">
-          상호명 : 주식회사 어글리스 | 대표 : 유병승 | 사업자등록번호 123-45-678901 | 소재지 : 서울특별시 금천구 가산디지털2로 95(가산동, km타워) 2층, 3층<br>
-          통신판매업 신고번호 : 2023-가산-1312 | 제휴 및 납품 문의 : biz@uglys.co.kr | 농산물 납품 및 긴급구출 제보 : farm@uglys.co.kr<br>
-          
-                Copyright ⓒ 2023 주식회사 어글리즈 All rights reserved
-              </p>
+    <p style="justify-content: center; display: flex;">
+      상호명 : 주식회사 어글리스 | 대표 : 유병승 | 사업자등록번호 123-45-678901 | 소재지 : 서울특별시 금천구 가산디지털2로 95(가산동, km타워) 2층, 3층<br>
+      통신판매업 신고번호 : 2023-가산-1312 | 제휴 및 납품 문의 : biz@uglys.co.kr | 농산물 납품 및 긴급구출 제보 : farm@uglys.co.kr<br>
+      
+            Copyright ⓒ 2023 주식회사 어글리즈 All rights reserved
+    </p>
     
     
     
@@ -122,6 +145,15 @@
         );
         naverLogin.init();
 </script>
+
+<script>
+	 const msg = '<%= msg!=null? msg:"" %>';
+	    if (msg != '') {
+
+	        document.getElementById('error-message').innerText = msg;
+	    }
+	    
+	</script>
 </body>
 
 </html>
