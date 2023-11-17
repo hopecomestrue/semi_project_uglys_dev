@@ -35,12 +35,14 @@ public class OrderSuccess extends HttpServlet {
 		String buyerPhone=request.getParameter("buyer_tel"); //주문자 연락처
 		String buyerAddr=request.getParameter("buyer_addr"); //주문자 주소
 		String paidAt=request.getParameter("paid_at"); //결제승인시각
+		String delrequest=request.getParameter("delrequest"); //배송요청사항
 		
 		System.out.println(imp);
 		System.out.println(merchantuid);
 		System.out.println(amount);
 		System.out.println(buyerName);
 		System.out.println(pg);
+		System.out.println(delrequest);
 		
 		
 		
