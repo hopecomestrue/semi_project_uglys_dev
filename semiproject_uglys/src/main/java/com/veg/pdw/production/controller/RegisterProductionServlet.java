@@ -2,6 +2,7 @@ package com.veg.pdw.production.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpRequest;
 import java.sql.Array;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -55,31 +56,43 @@ public class RegisterProductionServlet extends HttpServlet {
 			
 			
 			Enumeration<String> fileNames = mr.getFileNames();
+
+			while (fileNames.hasMoreElements()) {
+			    String paramName = fileNames.nextElement();
+			    String fileName = mr.getFilesystemName(paramName);
+			    System.out.println(fileName);
+			}
 			
 		        
-		    }
+			String productionName=mr.getParameter("production_name");
+			int productionPrice=Integer.parseInt(mr.getParameter("production_price"));
+			int productionDiscount=Integer.parseInt(mr.getParameter("production_discount"));
+			String productionTag=mr.getParameter("production_tag");
+			String productionEnvironment=mr.getParameter("production_environment");
+			String productionPlace=mr.getParameter("production_place");
+			int productionStock=Integer.parseInt(mr.getParameter("production_stock"));
+			Production p=Production.builder()
+					.production_name(productionName)
+					.discount(productionDiscount)
+					.price(productionPrice)
+					.tag(productionTag)
+					.environment(productionEnvironment)
+					.place(productionPlace)
+					.stock(productionStock)
+					.build();
+			int result = new ProductionService().insertProduction(p);
+			
+			if(result>0) {
+				System.out.println("되네");
+			}else {
+				System.out.println("안될줄알았어");
+			}
+		    
 	
 			
 		
 		
-		String productionName=request.getParameter("production_name");
-		int productionPrice=Integer.parseInt(request.getParameter("production_price"));
-		int productionDiscount=Integer.parseInt(request.getParameter("production_discount"));
-		String productionTag=request.getParameter("production_tag");
-		String productionEnvironment=request.getParameter("production_environment");
-		String productionPlace=request.getParameter("production_place");
-		int productionStock=Integer.parseInt(request.getParameter("production_stock"));
-		 Production p=Production.builder()
-						.production_name(productionName)
-						.discount(productionDiscount)
-						.price(productionPrice)
-						.tag(productionTag)
-						.environment(productionEnvironment)
-						.place(productionPlace)
-						.stock(productionStock)
-						.build();
-		int result = new ProductionService().insertProduction(p);
-		
+		}
 		
 		
 		
