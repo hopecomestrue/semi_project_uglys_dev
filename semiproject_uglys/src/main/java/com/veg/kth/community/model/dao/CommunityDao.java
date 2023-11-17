@@ -53,6 +53,47 @@ public class CommunityDao {
 		return result;
 	}
 	
+	
+	public List<Hashtag> selectHashtagAll(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Hashtag> result = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectHashtagAll"));
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result.add(getHashtag(rs));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
+	
+	public List<Category> selectCategoryAll(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Category> result = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectCategoryAll"));
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result.add(getCategory(rs));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
+	
 	public void addRecipeAll(List<Recipe> recipe, ResultSet rs) throws SQLException {
 		int pk = rs.getInt("recipe_no");
 		if(recipe.stream().anyMatch(e->pk==(e.getRecipeNo()))) {
@@ -96,7 +137,7 @@ public class CommunityDao {
 				.recipeRenamedFileName(rs.getString("recipe_renamed_file_name"))
 				.recipeTitle(rs.getString("recipe_title"))
 				.recipeComment(rs.getString("recipe_comment"))
-				.recipeLeadTime(rs.getString("recipe_leadtime"))
+				.recipeLeadTime(rs.getInt("recipe_leadtime"))
 				.category(getCategory(rs))
 				.Hashtag(new ArrayList<>())
 				.material(new ArrayList<>())

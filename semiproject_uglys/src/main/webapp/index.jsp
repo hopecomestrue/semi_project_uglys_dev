@@ -24,7 +24,7 @@
 	            <div class="col-sm-12 ftco-animate text-center">
 	              <h2 class="mb-2"style="color: white;">신선한 채소로 모두가 만들어 가는 레시피</h2>
 	              <h3 class="subheading mb-4">요리도 하고 자신만의 노하우를 공유해 보세요</h3>
-	              <p><a href="#" class="btn btn-primary">레시피 보기</a></p>
+	              <p><a href="<%=request.getContextPath() %>/community/communitymain.do" class="btn btn-primary">레시피 보기</a></p>
 	            </div>
 	            
 	          </div>
@@ -224,5 +224,5 @@
           </div>
         </div>
       </div>
-
+      </section>
 <%@ include file="/views/common/footer.jsp" %>

@@ -1,4 +1,4 @@
-<%@page import="com.veg.ksj.admin.controller.AdminLogout"%>
+<%@ page import="com.veg.ksj.admin.controller.AdminLogout"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.veg.hjj.member.dto.Member" %>
@@ -33,11 +33,12 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/flaticon.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/icomoon.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
+    <script src="<%=request.getContextPath() %>/js/jquery-3.7.0.min.js"></script>
   </head>
   <body class="goto-here">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp">
+	      <a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">
 	      <img src="<%=request.getContextPath() %>/images/brand_image (4).png" alt="브랜드 로고" style="max-width:70%" >
 	      </a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
