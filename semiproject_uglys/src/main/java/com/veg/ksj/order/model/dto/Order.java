@@ -13,8 +13,8 @@ public class Order {
 	private String orderPhone;
 	private String orderAddress;
 	private String orderAddressDetail;
-	private String order_comment;
-	private int order_count;
+	private String orderComment;
+	private int orderCount;
 	private int totalPrice;
 	private int deliveryPay;
 	private String payment;
