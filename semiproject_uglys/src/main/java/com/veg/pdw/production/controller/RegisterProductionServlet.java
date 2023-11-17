@@ -1,9 +1,13 @@
 package com.veg.pdw.production.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.*;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.veg.pdw.production.model.dto.Production;
 import com.veg.pdw.prodution.service.ProductionService;
@@ -48,8 +52,13 @@ public class RegisterProductionServlet extends HttpServlet {
 			
 			MultipartRequest mr = new MultipartRequest(request,path,maxSize,encoding,dfr);
 			
-			System.out.println(mr.getFilesystemName("production_img2"));
-		}
+			
+			
+			Enumeration<String> fileNames = mr.getFileNames();
+			
+		        
+		    }
+	
 			
 		
 		
@@ -72,12 +81,12 @@ public class RegisterProductionServlet extends HttpServlet {
 		int result = new ProductionService().insertProduction(p);
 		
 		
-		System.out.println(result);
 		
-		
-		 
 		
 	}
+		 
+		
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
