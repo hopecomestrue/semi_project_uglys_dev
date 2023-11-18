@@ -130,6 +130,23 @@ public class CommunityDao {
 	}
 	
 	
+	public int insertRecipe(Connection conn, Recipe r) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement("insertRecipe");
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+		
+	}
+	
+	
+	
 	public Recipe getRecipe(ResultSet rs) throws SQLException {
 		return Recipe.builder()
 				.recipeNo(rs.getInt("recipe_no"))
@@ -144,6 +161,7 @@ public class CommunityDao {
 				.procedure(new ArrayList<>())
 				.recipeCapa(rs.getInt("recipe_capa"))
 				.recipeDate(rs.getDate("recipe_date"))
+				.member_no(rs.getInt("member_no"))
 				.build();
 	}
 

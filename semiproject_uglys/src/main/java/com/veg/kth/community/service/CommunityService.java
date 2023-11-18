@@ -1,6 +1,6 @@
 package com.veg.kth.community.service;
 
-import static com.veg.common.JDBCTemplate.close;
+import static com.veg.common.JDBCTemplate.*;
 import static com.veg.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -35,6 +35,22 @@ public class CommunityService {
 		List<Category> result = dao.selectCategoryAll(conn);
 		close(conn);
 		return result;
+	}
+	
+	
+	public int insertRecipe(Recipe r) {
+		Connection conn = getConnection();
+		int result = dao.insertRecipe(conn, r);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
 	}
 	
 }

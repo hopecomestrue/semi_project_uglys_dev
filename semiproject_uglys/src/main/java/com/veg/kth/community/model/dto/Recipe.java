@@ -23,4 +23,5 @@ public class Recipe {
 	private List<Material> material = new ArrayList<>();
 	private List<Procedure> procedure = new ArrayList<>();
 	private Date recipeDate;
+	private int member_no;
 }
