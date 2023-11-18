@@ -14,7 +14,7 @@ public class OrderService {
 	
 	public Order selectOrderDetails(int orderNo) {
 		Connection conn=getConnection();
-		Order o=dao.selectOrderDetails(conn,orderNo);
+		Order o=dao.selectOrderDetailsByOrderNo(conn,orderNo);
 		close(conn);
 		return o;
 	}

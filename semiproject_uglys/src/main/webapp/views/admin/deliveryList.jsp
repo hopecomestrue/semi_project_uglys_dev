@@ -1,10 +1,12 @@
+<%@page import="com.veg.ksj.order.model.dto.Order"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/header.jsp" %>
 
 <%
 	//주문내역 리스트를 getAttribute로 받기
-	// Delivery deli=(Delivery)request.getAttribute("deliveryList");
+	List<Order> orderList=(List<Order>)request.getAttribute("orderList");
 %>
 
 <style>
@@ -129,26 +131,28 @@
     <tr>
       <th><input class="form-check-input" type="checkbox" id="checkboxAll" value="" aria-label="..." ></th>
       <th>주문 상세 번호</th>
-      <th>주문 아이디</th>
+      <th>주문 아이디 고유번호</th>
       <th>이름</th>
       <th>전화번호</th>
       <th>주소</th>
       <th>주문 날짜</th>
-      <th>배송현황</th>
-      <th>배송 실패 사유</th>
+      <th>주문현황</th>
   </tr>
+  <%if(!orderList.isEmpty()){
+	  for(Order o : orderList){%>
   <tr>
       <td><input class="form-check-input" type="checkbox" id="checkboxNo" 
       				name="<%-- <%=deli.getNo %> --%>" aria-label="..."></td>
-      <td><a href="">123456789</a></td>
-      <td>admin123</td>
-      <td>홍길동</td>
-      <td>010-1234-1234</td>
-      <td>서울시 금천구</td>
-      <td>2023-11-10</td>
-      <td>배송준비중</td>
-      <td>재고 부족</td>
-  </tr>    
+      <td><a href="<%=request.getContextPath()%>/admin/deliveryDetail.do"><%=o.getOrderNo() %></a></td>
+      <td><%=o.getOrderNo()%></td>
+      <td><%=o.getOrderName() %></td>
+      <td><%=o.getOrderPhone() %></td>
+      <td><%=o.getOrderAddress() %></td>
+      <td><%=o.getOrderDate() %></td>
+      <td><%=o.getOrderStatus() %></td>
+  </tr>
+  <%}
+	  }%>
   </table>
 </div>
 <div class="search_3">
