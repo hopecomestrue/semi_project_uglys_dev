@@ -1,5 +1,7 @@
 package com.veg.pdw.production.dao;
 
+import static com.veg.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -7,12 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
-
 import com.veg.pdw.production.model.dto.Production;
-
-
-
-import static com.veg.common.JDBCTemplate.*;
+import com.veg.pdw.production.model.dto.ProductionContent;
 
 public class ProductionDao {
 	private Properties sql = new Properties();
@@ -49,5 +47,24 @@ public class ProductionDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	public int insertProductionContent(Connection conn,ProductionContent pc) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql.getProperty("insertProductionContent"));
+			pstmt.setString(1, pc.getProductionContent());
+			pstmt.setString(2, pc.getProductionImg());
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
 	}
 }

@@ -258,7 +258,7 @@
 										<li>
 											<span class="opener">상품관리</span>
 											<ul>
-												<li><a href="#">상품등록</a></li>
+												<li><a href="<%=request.getContextPath() %>/admin/productregi.do">상품등록</a></li>
 												<li><a href="#">상품삭제</a></li>
 												
 											</ul>
