@@ -137,20 +137,20 @@
 	          			<h3 class="billing-heading mb-4">장바구니 합계</h3>
 	          			<p class="d-flex">
 		    						<span>총가격</span>
-		    						<span>$20.60</span>
+		    						<span>23000</span>
 		    					</p>
 		    					<p class="d-flex">
 		    						<span>배송비</span>
-		    						<span id="del-pay">$0.00</span>
+		    						<span id="del-pay">0</span>
 		    					</p>
 		    					<p class="d-flex">
 		    						<span>할인</span>
-		    						<span id="sale-per">$3.00</span>
+		    						<span id="sale-per">0</span>
 		    					</p>
 		    					<hr>
 		    					<p class="d-flex total-price">
 		    						<span>총합계</span>
-		    						<span id="total-price">$17.60</span>
+		    						<span id="total-price">23000</span>
 		    					</p>
 								</div>
 	          	</div>
@@ -297,24 +297,25 @@
        var IMP = window.IMP;
        IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
         var msg; //결제 성공,실패시 출력할 msg
+        var memberNo=<%=loginMember.getMemberNo()%>;
         var buyerName=$('#buyer-name').val(); //구매자 이름
-        var name='테스트';//상품명
-        var amount=$('#total-price').val();//총가격
-        var buyer_email=$('#buyer-email').val();//구매자 이메일
-        var buyer_tel=$('#buyer-phone').val();//구매자 폰번호
-        var buyer_addr=$('#sample4_roadAddress').val()+' '+$('#sample4_detailAddress').val();//구매자 주소
-        var delrequest='테스트 요청사항';//배송요청사항
+        var name='상품명';//상품명
+        var amount=parseInt($('#total-price').text(),10);//총가격
+        var buyerEmail=$('#buyer-email').val();//구매자 이메일
+        var buyerTel=$('#buyer-phone').val();//구매자 폰번호
+        var buyerAddr=$('#sample4_roadAddress').val()+' '+$('#sample4_detailAddress').val();//구매자 주소
+        var delrequest='배송 요청사항';//배송요청사항
 
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
-            merchant_uid : 'merchant_'+new Date().getTime(),
-            name : '고구마',
-            amount : '300',
-            buyer_name : '구매자이름',
-            buyer_email : 'email@email',
-            buyer_tel : '010-5335',
-            buyer_addr : '서울 금천구',
+            merchant_uid : new Date().getTime(),
+            name : name,
+            amount : amount,
+            buyer_name : buyerName,
+            buyer_email : buyerEmail,
+            buyer_tel : buyerTel,
+            buyer_addr : buyerAddr,
             buyer_postcode : '123-456',
         }, function(rsp){
            if (rsp.success) {
@@ -323,17 +324,20 @@
                 url: "<%=request.getContextPath()%>/order/ordersuccess.do", //cross-domain error가 발생하지 않도록 주의해주세요
                 type: 'POST',
                 dataType: 'json',
-                data: {
+                data: {	
                     pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
                     merchant_uid : rsp.merchant_uid, //주문번호
+                    order_name : rsp.name, //주문명
                     imp_uid : rsp.imp_uid,         //결제 고유번호
                     paid_amount : rsp.paid_amount, //결제된 금액
                     buyer_name : rsp.buyer_name, //주문자 이름
                     buyer_email : rsp.buyer_email, // 주문자 email
                     buyer_tel : rsp.buyer_tel, // 주문자 연락처
                     buyer_addr : rsp.buyer_addr, //주문자 주소
+                    order_status : rsp.status, //결제상태(결제완료,한도초과,결제실패)
                     /* paid_at : rsp.paid_at, // 결제승인시각 */
-                    delrequest : "배송요청 사항"
+                    delrequest : delrequest,
+                    memberNo : memberNo
                     //필요한 데이터가 있으면 추가
                 }
             })
