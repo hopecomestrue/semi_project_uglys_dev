@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dto.Order;
 import static com.veg.common.JDBCTemplate.*;
 
@@ -44,12 +45,19 @@ public class OrderDao {
 		return o;
 	}
 	
-	public int insertOrderDetails(Connection conn,Order order) {
+	public int insertOrderDetails(Connection conn,Order o,Member m) {
 		PreparedStatement pstmt=null;
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("insertOrderDetails"));
-			pstmt.setInt(1, order.getOrderNo());
+			pstmt.setLong(1, o.getOrderNo());
+			pstmt.setInt(2, m.getMemberNo());
+			
+			
+			
+			
+			
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,9 +103,9 @@ public class OrderDao {
 		return result;
 	}
 	
-	private Order getOrder(ResultSet rs) throws SQLException{
+	public static Order getOrder(ResultSet rs) throws SQLException{
 		return Order.builder()
-					.orderNo(rs.getInt("orderNo"))
+					.orderNo(rs.getLong("orderNo"))
 					.orderName(rs.getString("orderName"))
 					.orderPhone(rs.getString("orderPhone"))
 					.orderAddress(rs.getString("orderAddress"))
