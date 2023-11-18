@@ -3,6 +3,7 @@ package com.veg.ksj.order.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dao.OrderDao;
 import com.veg.ksj.order.model.dto.Order;
 import static com.veg.common.JDBCTemplate.*;
@@ -18,9 +19,9 @@ public class OrderService {
 		return o;
 	}
 	
-	public int insertOrderDetails(Order order) {
+	public int insertOrderDetails(Order order,Member m) {
 		Connection conn=getConnection();
-		int result=dao.insertOrderDetails(conn,order);
+		int result=dao.insertOrderDetails(conn,order,m);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);
