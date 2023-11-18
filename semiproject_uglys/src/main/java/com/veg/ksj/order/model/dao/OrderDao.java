@@ -50,7 +50,7 @@ public class OrderDao {
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("insertOrderDetails"));
-			pstmt.setString(1, o.getOrderNo());
+			pstmt.setLong(1, o.getOrderNo());
 			pstmt.setInt(2, m.getMemberNo());
 			
 			
@@ -105,7 +105,7 @@ public class OrderDao {
 	
 	public static Order getOrder(ResultSet rs) throws SQLException{
 		return Order.builder()
-					.orderNo(rs.getString("orderNo"))
+					.orderNo(rs.getLong("orderNo"))
 					.orderName(rs.getString("orderName"))
 					.orderPhone(rs.getString("orderPhone"))
 					.orderAddress(rs.getString("orderAddress"))
