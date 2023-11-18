@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ProductionregisterJSPServlet
  */
 @WebServlet("/admin/productregi.do")
-public class ProductionregisterJSPServlet extends HttpServlet {
+public class ProductionRegisterJSPServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductionregisterJSPServlet() {
+    public ProductionRegisterJSPServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,8 +27,10 @@ public class ProductionregisterJSPServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
 		request.getRequestDispatcher("/views/admin/adminproduct/productregister.jsp")
-		.forward(request, response);;
+		.forward(request, response);
 	}
 
 	/**

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.veg.pdw.production.model.dto.Production" %>
+
+<%
+	List<Production>productions=(List<Production>)request.getAttribute("productions");
+	
+%>
 <!DOCTYPE html>
 
 <!--
@@ -176,7 +182,10 @@
                     	</table>
 				         <div><button type="submit" style="margin-bottom: 30px; margin-top: 30px;">검색</button></div>
     <div style="display: flex; justify-content: flex-end; align-items: center;">
-    <button type="submit" style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품등록</button>
+    <a href="<%=request.getContextPath() %>/admin/productregi.do">
+    <button style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품등록</button>
+	</a>
+
     <button type="submit" style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품삭제</button>
     
 </div>
@@ -202,28 +211,23 @@
                           </thead>
                           <tbody>
                            <tbody>
-					        <tr>
-					            <td><input type="checkbox" style="opacity: 1; -webkit-appearance: checkbox; -moz-appearance: checkbox; appearance: checkbox;"></td>
-					            <td>1</td>
-					            <td>100001</td>
-					            <td>상품A</td>
-					            <td>식품</td>
-					            <td>10,000원</td>
-					            <td>100개</td>
-					            <td>대한민국</td>
-					            <td>2023-11-15</td>
-					        </tr>
-					        <tr>
-					            <td><input type="checkbox" style="opacity: 1; -webkit-appearance: checkbox; -moz-appearance: checkbox; appearance: checkbox;"></td>
-					            <td>2</td>
-					            <td>100002</td>
-					            <td>상품B</td>
-					            <td>가구</td>
-					            <td>20,000원</td>
-					            <td>50개</td>
-					            <td>대한민국</td>
-					            <td>2023-11-15</td>
-					        </tr>
+                           	<%if(productions!=null&&!productions.isEmpty()){ %>
+					        	<%for(Production p : productions){%>      
+					        		<tr>
+							            <td><input type="checkbox" style="opacity: 1; -webkit-appearance: checkbox; -moz-appearance: checkbox; appearance: checkbox;"></td>
+							            <td><%=p.getProduction_no()%></td>
+							            <td><%=p.getProduction_name()%></td>
+							            <td><%=p.getEnvironment()%></td>
+							            <td><%=p.getPrice()%></td>
+							            <td><%=p.getStock()%></td>
+							            <td><%=p.getPrice()%></td>
+							            <td><%=p.getProduction_date()%></td>
+							        </tr>
+					       			<% }
+					       			 }
+					        
+					       			 %>
+					        
 					        
 					    </tbody>        
                         
@@ -231,16 +235,8 @@
                         </table>
                                         </div>
 									</div>
-                                    <ul class="pagination justify-content-center" >
-                                        <li><span class="button disabled">Prev</span></li>
-                                        <li><a href="#" class="page active">1</a></li>
-                                        <li><a href="#" class="page">2</a></li>
-                                        <li><a href="#" class="page">3</a></li>
-                                        <li><span>&hellip;</span></li>
-                                        <li><a href="#" class="page">8</a></li>
-                                        <li><a href="#" class="page">9</a></li>
-                                        <li><a href="#" class="page">10</a></li>
-                                        <li><a href="#" class="button">Next</a></li>
+									<ul style="display: flex; justify-content: center;">
+                                    <%=request.getAttribute("pageBar") %>
                                     </ul>
 								</section>
 						</div>

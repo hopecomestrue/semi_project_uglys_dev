@@ -94,7 +94,7 @@ public class RegisterProductionServlet extends HttpServlet {
 			
 			
 			int result = new ProductionService().insertProduction(p,pc);
-
+			
 		}
 		
 		response.sendRedirect(request.getContextPath()+"/views/admin/adminproduct/productfront.jsp");

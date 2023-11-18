@@ -1,11 +1,11 @@
 package com.veg.pdw.production.service;
 
 import static com.veg.common.JDBCTemplate.close;
-import static com.veg.common.JDBCTemplate.commit;
 import static com.veg.common.JDBCTemplate.getConnection;
 import static com.veg.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.veg.pdw.production.dao.ProductionDao;
 import com.veg.pdw.production.model.dto.Production;
@@ -26,5 +26,17 @@ public class ProductionService {
 		close(conn);
 		return result;
 	}
-	
+	public List<Production>selectProductions(int cPage,int numPerpage){
+		Connection conn =getConnection();
+		List<Production> result = new ProductionDao().selectProductions(conn,cPage,numPerpage);
+		close(conn);
+		return result;
+		
+	}
+	public int selectProductionsCount() {
+		Connection conn =getConnection();
+		int result = new ProductionDao().selectProductionsCount(conn);
+		close(conn);
+		return result;
+	}
 }
