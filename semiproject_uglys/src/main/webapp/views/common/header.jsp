@@ -1,6 +1,6 @@
-<%@page import="com.veg.ksj.admin.controller.AdminLogout"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.veg.ksj.admin.controller.AdminLogout"%>
 <%@ page import="com.veg.hjj.member.dto.Member" %>
 <%
 	Member loginMember=(Member)session.getAttribute("loginMember");
@@ -65,7 +65,7 @@
 	         		</tr>
 	         		<tr>
 	         			<td><button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-	         				onclick="location.replace('<%=request.getContextPath()%>/member/mypage/myinfo.do')">마이페이지</button></td>
+	         				onclick="location.replace('<%=request.getContextPath()%>/myInfo.do')">마이페이지</button></td>
 	         			<td><button type="button" class="btn btn-outline-dark" onclick="location.replace('<%=request.getContextPath()%>/loginout.do');">로그아웃</button></td>
 	         		</tr>
 	         		

@@ -33,7 +33,7 @@
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
 		<style>
 			#sidebar {
-				padding-top: 70px; 
+				padding-top: 70px;
 			}
             .contact-box {
                 border: 1px solid #ccc; 
@@ -83,31 +83,21 @@
                 cursor: pointer;
                 margin-top:0px;
             }
-			/* .form-group.row.justify-content-center { */
-    			/* display: flex;
+			.form-group.row.justify-content-center { 
+    			display: flex;
     			justify-content: center;
 			}
 			#query.address-input {
     			width: 100%; 
     			padding: 15px; 
     			box-sizing: border-box;
-			} */
-			#wrapper {
-            display: flex;
-        }
-
-        #main {
-            flex: 2;
-        }
-
-        #sidebar {
-            padding-top: 70px;
-            flex: 1;
-        }
+			} 
+	
+		</style>
 			
 		</style>
 	  </head>
-	<body class="is-preload">
+	  <body class="is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -130,8 +120,8 @@
 										  <li class="nav-item"><a href="#" class="nav-link">채소농장</a></li>
 										  <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
 										  <li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
-										  <li class="nav-item"><a href="mypage.html" class="nav-link">마이페이지</a></li>
-										  <li class="nav-item cta cta-colored"><a href="cart1.html" class="nav-link"><span href=""></span>[0]</a></li>
+										  <li class="nav-item"><a href="/mypage.html" class="nav-link">마이페이지</a></li>
+										  <li class="nav-item cta cta-colored"><a href="/cart1.html" class="nav-link"><span href=""></span>[0]</a></li>
 							
 										</ul>
 									  </div>
@@ -147,12 +137,13 @@
 										</header>
 									</div>
 								</section>
+
 							<!-- Section -->
-							 <section>
-                                 <header class="major">
-                                    <h2>배송지 정보</h2>
-                                </header>
-                                    <p style="font-size: 23px;">기본 배송지</p>
+								<section>
+									<header class="major">
+										<h2>배송지 정보</h2>
+									</header>
+									<div class="address">
                                         <div class="contact-box">
                                             <ul class="contact">
                                                 <li class="icon solid fa-home" style="font-size: 20px;">경기도 안양시 oooooooooooooooooooooooo</li>
@@ -178,16 +169,18 @@
 												<div class="form-group row">
 													<label for="demo-address" class="col-md-4 col-form-label">상세 주소</label>
 														<div class="col-md-8">
-															<input type="text" name="demo-address" class="form-control" id="demo-address" placeholder="건물명, 상세주소">
+															<input type="text" name="demo-address" class="form-control" id="demo-address" placeholder="건물명, 상세주소" >
 														</div>
 												</div>
 												<div class="col-12 d-flex justify-content-center">
 													<ul class="actions">
 														<li><input type="button" value="등록하기" class="primary2" onclick="saveNewAddress()" /></li>
 													</ul>
-												</div>
-                            </section>
-					
+								</section>
+
+						</div>
+					</div>
+
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
@@ -226,7 +219,6 @@
 
 						</div>
 					</div>
-
 			</div>
 			<script src="/js/jyjs/js/jquery.min.js"></script>
 			<script src="/js/jyjs/js/browser.min.js"></script>

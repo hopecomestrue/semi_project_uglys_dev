@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% ArrayList<Member> memberList = new ArrayList<>();
+   memberList = m.selectMember();
+%>
 <!DOCTYPE html>
 
 <!--
@@ -49,7 +52,30 @@
                 word-break: break-all;
                 padding: 15px; 
             }
+               .sort-btn {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .sort-btn:after {
+            content: '';
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+
+        .asc:after {
+            border-bottom: 5px solid #000;
+        }
+
+        .desc:after {
+            border-top: 5px solid #000;
+        }
 		</style>
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	  </head>
 	<body class="is-preload">
 
@@ -113,19 +139,19 @@
                                         <div class="table-wrapper">
                                             <table>
                                                 <thead>
-                                                    <tr>
-                                                        <th>아이디</th>
-                                                        <th>이름</th>
-                                                        <th>연령대</th>
-                                                        <th>휴대폰번호</th>
-                                                        <th>이메일</th>
-                                                        <th>주소</th>
-                                                        <th>수정/삭제</th>
-                                                    </tr>
+                                                 <tr>
+        											<th><a href="#" class="sort-btn" data-sort="id">아이디</a></th>
+        											<th><a href="#" class="sort-btn" data-sort="name">이름</a></th>
+       												<th><a href="#" class="sort-btn" data-sort="age">연령대</a></th>
+        											<th><a href="#" class="sort-btn" data-sort="phone">휴대폰번호</a></th>
+        											<th><a href="#" class="sort-btn" data-sort="email">이메일</a></th>
+        											<th><a href="#" class="sort-btn" data-sort="address">주소</a></th>
+        											<th>수정/삭제</th>
+    											</tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>qwer</td>
+                                                    <!-- <tr> -->
+                                                <!--         <td>qwer</td>
                                                         <td>김유저</td>
                                                         <td>10</td>
                                                         <td>01012345678</td>
@@ -142,12 +168,12 @@
                                                        
                                                     </tr>
                                                     <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
+                                                        <td>wwer</td>
+                                                        <td>이유저</td>
+                                                        <td>20</td>
                                                         <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
+                                                        <td>2이메일입니당</td>
+                                                        <td>경기도</td>
                                                         <td>
                                                             <a class="subBtn" href="#">
                                                                 수정
@@ -159,12 +185,12 @@
                                                        
                                                     </tr>
                                                     <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
+                                                        <td>ewer</td>
+                                                        <td>박유저</td>
+                                                        <td>40</td>
                                                         <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
+                                                        <td>5이메일입니당</td>
+                                                        <td>경상도</td>
                                                         <td>
                                                             <a class="subBtn" href="#">
                                                                 수정
@@ -176,12 +202,12 @@
                                                        
                                                     </tr>
                                                     <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
+                                                        <td>yqwer</td>
+                                                        <td>최유저</td>
+                                                        <td>30</td>
                                                         <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
+                                                        <td>7이메일입니당</td>
+                                                        <td>강원도</td>
                                                         <td>
                                                             <a class="subBtn" href="#">
                                                                 수정
@@ -193,12 +219,12 @@
                                                        
                                                     </tr>
                                                     <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
+                                                        <td>quuwer</td>
+                                                        <td>이유저</td>
+                                                        <td>60</td>
                                                         <td>01012345678</td>
                                                         <td>이메일입니당</td>
-                                                        <td>서울시</td>
+                                                        <td>전라도</td>
                                                         <td>
                                                             <a class="subBtn" href="#">
                                                                 수정
@@ -210,14 +236,36 @@
                                                        
                                                     </tr>
                                                     <tr>
-                                                        <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
+                                                        <td>oer</td>
+                                                        <td>한유저</td>
+                                                        <td>50</td>
                                                         <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
+                                                        <td>9이메일입니당</td>
+                                                        <td>서울시</td> -->
+                                                     <%
+														for(Member m : MemberList){
+													%>
+											<tr>
+												<td>
+													<%=m.getMemberId()%>
+												</td>
+												<td>
+													<%=m.getMemberName()%>
+												</td>
+												<td>
+													<%=m.getMemberAge()%>
+												</td>
+												<td>
+													<%=m.getMemberPhone()%>
+												</td>
+												<td>
+													<%=m.getMemberEmail()%>
+												</td>
+												<td>
+													<%=m.getAddress()%>
+												</td>
+													<td>
+                                                            <a class="subBtn" href="<%=request.getContextPath()%>/views/admin/memberManagement/memberModify.jsp?memberId=<%=m.getMemberId()%>">
                                                                 수정
                                                             </a>
                                                             <a class="subBtn" href="#">
@@ -306,5 +354,57 @@
 					}
 				}
 			</script>
+			<script>
+    $(document).ready(function () {
+        $('.sort-btn').on('click', function () {
+            var sortBy = $(this).data('sort');
+            sortTable(sortBy);
+        });
+
+        function sortTable(sortBy) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.querySelector('table');
+            switching = true;
+
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+
+                    x = rows[i].querySelector('td[data-sort="' + sortBy + '"]');
+                    y = rows[i + 1].querySelector('td[data-sort="' + sortBy + '"]');
+
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+
+            toggleArrow(sortBy);
+        }
+
+        function toggleArrow(sortBy) {
+            var currentArrow = $('th[data-sort="' + sortBy + '"]');
+
+            if (currentArrow.hasClass('asc')) {
+                currentArrow.removeClass('asc').addClass('desc');
+            } else {
+                currentArrow.removeClass('desc').addClass('asc');
+            }
+
+            // 다른 열의 화살표를 초기화
+            $('th[data-sort]').not(currentArrow).removeClass('asc desc');
+        }
+    });
+</script>
+
 	</body>
-</html>
+</html> --%>
