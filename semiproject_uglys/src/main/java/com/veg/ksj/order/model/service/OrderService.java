@@ -36,9 +36,9 @@ public class OrderService {
 		return orders;
 	}
 	//송장번호 입력+주문상태 변경(결제완료->배송준비중,배송중,배송완료) -관리자
-	public int updateOrderDetails(int trackingNo,int orderNo,String status) {
+	public int updateOrderDetails(String status,long trackingNo,long orderNo) {
 		Connection conn=getConnection();
-		int result=dao.updateOrderDetails(conn,trackingNo,orderNo,status);
+		int result=dao.updateOrderDetails(conn,status,trackingNo,orderNo);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);

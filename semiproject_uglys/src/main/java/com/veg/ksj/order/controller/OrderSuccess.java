@@ -93,12 +93,18 @@ public class OrderSuccess extends HttpServlet {
 						.build();
 		
 		int result=new OrderService().insertOrderDetails(order,m);
+		String msg,loc;
+		if(result>0) {
+			msg="결제성공";
+//			loc="/" //결제완료 페이지
+		}else {
+			msg="결제실패";
+//			loc="/" //결제페이지로
+		}
+		request.setAttribute("msg", msg);
+//		request.setAttribute("loc", loc);
 		
-		if(result>0) System.out.println("DB저장 성공");
-		else System.out.println("DB저장 실패");
-		
-		
-		request.getRequestDispatcher("/index.jsp").forward(request, response); //마이페이지로
+		request.getRequestDispatcher("/views/admin/common/msg.jsp").forward(request, response); //마이페이지로
 		
 		
 	}

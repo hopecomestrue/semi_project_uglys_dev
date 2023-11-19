@@ -28,6 +28,7 @@ public class OrderDao {
 		}
 	}
 	
+	//주문 고유번호로 해당 주문row 가져오기
 	public Order selectOrderDetailsByOrderNo(Connection conn,long orderNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -45,7 +46,7 @@ public class OrderDao {
 		}
 		return o;
 	}
-	
+	//주문 테이블에 등록(주문/결제 등록)
 	public int insertOrderDetails(Connection conn,Order o,Member m) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -72,7 +73,7 @@ public class OrderDao {
 		return result;
 		
 	}
-	
+	//주문현황 모든 row 가져오기
 	public List<Order> selectAllOrderDetails(Connection conn){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -91,14 +92,15 @@ public class OrderDao {
 		}
 		return orders;
 	}
-	
-	public int updateOrderDetails(Connection conn,int trackingNo,int orderNo,String status) {
+	//송장번호 입력+주문상태 변경(결제완료->배송준비중,배송중,배송완료) -관리자
+	public int updateOrderDetails(Connection conn,String status,long trackingNo,long orderNo) {
 		PreparedStatement pstmt=null;
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("updateOrderDetails"));
 			pstmt.setString(1, status);
-			pstmt.setLong(2, orderNo);
+			pstmt.setLong(2, trackingNo);
+			pstmt.setLong(3, orderNo);
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -121,7 +123,7 @@ public class OrderDao {
 					.deliveryPay(rs.getInt("DELIVERY_PAY"))
 					.payment(rs.getString("PAYMENT"))
 					.orderStatus(rs.getString("ORDER_STATUS"))
-					.trakingNumber(rs.getInt("TRAKING_NUMBER"))
+					.trackingNumber(rs.getLong("TRAKING_NUMBER"))
 					.orderDate(rs.getDate("ORDER_DATE"))
 					.build();
 	}

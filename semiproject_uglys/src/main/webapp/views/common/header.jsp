@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 <%@ page import="com.veg.ksj.admin.controller.AdminLogout"%>
->>>>>>> branch 'dev' of https://github.com/hopecomestrue/semi_project_uglys_dev.git
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.veg.ksj.admin.controller.AdminLogout"%>

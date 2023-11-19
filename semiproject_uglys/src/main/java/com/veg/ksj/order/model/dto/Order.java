@@ -19,6 +19,6 @@ public class Order {
 	private int deliveryPay;
 	private String payment;
 	private String orderStatus;
-	private int trakingNumber;
+	private long trackingNumber;
 	private Date orderDate;
 }
