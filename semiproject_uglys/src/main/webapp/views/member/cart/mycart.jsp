@@ -6,15 +6,10 @@
 
 <title></title>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
 	rel="stylesheet">
@@ -112,7 +107,7 @@
 											countries</p>
 									</td>
 
-									<td class="price">29,900원</td>
+									<td class="price">39,900원</td>
 
 									<td class="qua-col first-row">
 										<div class="pro-qty">
@@ -121,9 +116,7 @@
 												style="width: 100px;"> <span class="inc qtybtn">+</span>
 										</div>
 									</td>
-
-
-									<td class="total">29,900원</td>
+									<td class="total">39,900원</td>
 								</tr>
 
 								<tr class="text-center">
@@ -163,9 +156,9 @@
 						<p class="d-flex total-price">
 							<span>상품금액</span> <span>0원</span>
 						</p>
-						<p class="d-flex">
+						<!-- <p class="d-flex">
 							<span>배송비</span> <span>0원</span>
-						</p>
+						</p> -->
 						<p class="d-flex">
 							<span>할인금액</span> <span>0원</span>
 						</p>
@@ -193,56 +186,21 @@
 
 
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.min.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/jquery-migrate-3.0.1.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery-migrate-3.0.1.min.js"></script>
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/popper.min.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/bootstrap.min.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.easing.1.3.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.waypoints.min.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.stellar.min.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/owl.carousel.min.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.magnific-popup.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.easing.1.3.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.waypoints.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.stellar.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/owl.carousel.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.magnific-popup.min.js"></script>
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/aos.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.animateNumber.min.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/bootstrap-datepicker.js"></script>
-	<script
-		src="<%=request.getContextPath() %>/js/jyjs/js2/scrollax.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/jquery.animateNumber.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/bootstrap-datepicker.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js2/scrollax.min.js"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/google-map.js"></script>
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/main.js"></script>
-
-	<script>
-		$(document).ready(function(){
-
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        e.preventDefault();
-		    
-		        var quantity = parseInt($('#quantity').val());
-		        
-		            $('#quantity').val(quantity + 1);
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        e.preventDefault();
-		        var quantity = parseInt($('#quantity').val());
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	</script>
 	<script>
     $(document).ready(function(){
         $('.qtybtn').click(function(e){

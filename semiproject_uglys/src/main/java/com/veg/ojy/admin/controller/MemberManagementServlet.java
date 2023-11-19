@@ -1,4 +1,4 @@
-package com.veg.ojy.cart.controller;
+package com.veg.ojy.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class cartServlet
+ * Servlet implementation class MemberManagementServlet
  */
-@WebServlet("/cartServlet")
-public class cartServlet extends HttpServlet {
+@WebServlet("/MemberManagementServlet")
+public class MemberManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cartServlet() {
+    public MemberManagementServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
