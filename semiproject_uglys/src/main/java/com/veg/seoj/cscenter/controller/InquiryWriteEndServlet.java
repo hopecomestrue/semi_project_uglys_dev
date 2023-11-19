@@ -3,16 +3,18 @@ package com.veg.seoj.cscenter.controller;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.internal.Streams;
 import com.veg.seoj.common.exception.BadAccessException;
 import com.veg.seoj.cscenter.model.dto.Inquiry;
 import com.veg.seoj.cscenter.model.service.InquiryService;
@@ -75,17 +77,64 @@ public class InquiryWriteEndServlet extends HttpServlet {
                 re = mr.getFilesystemName(name);
                 ori = mr.getOriginalFileName(name);
             }
-            // 배송정보, 작성자 정보 없음
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            String refundDateString = mr.getParameter("refundDate");
+            Date refundDate = null;
+            try {
+                refundDate = (refundDateString != null && !refundDateString.isEmpty()) ? new Date(dateFormat
+                                                                                                          .parse(refundDateString)
+                                                                                                          .getTime()) : null;
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+
+            System.out.println("??????????????????????category???????" + mr.getParameter("category"));
+            System.out.println("????????????????????title?????????" + mr.getParameter("title"));
+            System.out.println("????????????????????content?????????" + mr.getParameter("content"));
+            System.out.println("????????????????????memberNo?????????" + mr.getParameter("memberNo"));
+            System.out.println("????????????????????orderNo?????????" + mr.getParameter("orderNo"));
+            System.out.println("????????????????????inquiryRenameFilename?????????" + re);
+            System.out.println("????????????????????inquiryOriginalFilename?????????" + ori);
+            System.out.println("????????????????????productNo?????????" + mr.getParameter("productNo"));
+            System.out.println("????????????????????memberName?????????" + mr.getParameter("memberName"));
+            System.out.println("????????????????????totalPrice?????????" + mr.getParameter("totalPrice"));
+            System.out.println("????????????????????orderStatus?????????" + mr.getParameter("orderStatus"));
+            System.out.println("????????????????????productionName?????????" + mr.getParameter("productionName"));
+            System.out.println("????????????????????productImg?????????" + mr.getParameter("productImg"));
+            System.out.println("????????????????????refundNo?????????" + mr.getParameter("refundNo"));
+            System.out.println("????????????????????refundDate?????????" + refundDate);
+
+
             Inquiry I = Inquiry
                     .builder()
                     .inquiryType(mr.getParameter("category"))
                     .inquiryTitle(mr.getParameter("title"))
                     .inquiryContent(mr.getParameter("content"))
-                    .fkMemberNo(1)
-                    .fkOrderNo(2)
+                    .fkMemberNo(((mr.getParameter("memberNo") != null && !mr
+                            .getParameter("memberNo")
+                            .equals(""))) ? Integer.parseInt(mr.getParameter("memberNo")) : -1)
+                    .fkOrderNo(((mr.getParameter("orderNo") != null && !mr
+                            .getParameter("orderNo")
+                            .equals(""))) ? Integer.parseInt(mr.getParameter("orderNo")) : -1)
                     .inquiryRenameFilename(re)
                     .inquiryOriginalFilename(ori)
-                    .fkProductNo(3)
+                    .fkProductNo(((mr.getParameter("productNo") != null && !mr
+                            .getParameter("productNo")
+                            .equals(""))) ? Integer.parseInt(mr.getParameter("productNo")) : -1)
+                    .memberName(mr.getParameter("memberName"))
+                    .totalPrice(((mr.getParameter("totalPrice") != null && !mr
+                            .getParameter("totalPrice")
+                            .equals(""))) ? Integer.parseInt(mr.getParameter("totalPrice")) : -1)
+                    .orderStatus(mr.getParameter("orderStatus"))
+                    .productionName(mr.getParameter("productionName"))
+                    .productImg(mr.getParameter("productImg"))
+                    .refundNo(((mr.getParameter("refundNo") != null && !mr
+                            .getParameter("refundNo")
+                            .equals(""))) ? Integer.parseInt(mr.getParameter("refundNo")) : -1)
+                    .refundDate(refundDate)
+                    .inquiryComments(new ArrayList<>())
                     .build();
 
             int result = new InquiryService().insertInquiry(I);
@@ -95,7 +144,7 @@ public class InquiryWriteEndServlet extends HttpServlet {
                 loc = "/inquiry/inquiryList.do";
             } else {
                 msg = "게시글 등록실패";
-                loc = "History.back()";
+                loc = "javascript:history.back();";
                 File delFile = new File(path + I.getInquiryRenameFilename());
                 if (delFile.exists()) {
                     delFile.delete();
@@ -107,10 +156,7 @@ public class InquiryWriteEndServlet extends HttpServlet {
             request
                     .getRequestDispatcher("/views/cscenter/msg.jsp")
                     .forward(request, response);
-
         }
-
-
     }
 
     /**

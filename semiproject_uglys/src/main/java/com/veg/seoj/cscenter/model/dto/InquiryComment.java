@@ -31,7 +31,7 @@ public class InquiryComment implements ResultSetMapper<InquiryComment> {
     private int fkMemberNo = 0;
 
 
-    public InquiryComment fromResultSet(ResultSet rs) throws SQLException {
+    public InquiryComment fromResultSet(ResultSet rs,String type) throws SQLException {
         return InquiryComment
                 .builder()
                 .inquiryCommentNo(rs.getInt("INQUIRY_COMMENT_NO"))

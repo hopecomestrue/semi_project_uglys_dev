@@ -1,5 +1,7 @@
 package com.veg.seoj.cscenter.model.dao;
 
+import com.veg.seoj.cscenter.model.dto.Inquiry;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -11,11 +13,11 @@ import java.sql.SQLException;
  */
 
 public interface ResultSetMapper <T> {
-    T fromResultSet(ResultSet rs) throws SQLException;
+    T fromResultSet(ResultSet rs, String type) throws SQLException;
 
     class MapperUtil {
-        public static <T> T mapResultSet(ResultSet rs, ResultSetMapper<T> mapper) throws SQLException {
-            return mapper.fromResultSet(rs);
+        public static <T> T mapResultSet(ResultSet rs, ResultSetMapper<T> mapper, String type) throws SQLException {
+            return mapper.fromResultSet(rs, type);
         }
     }
 }

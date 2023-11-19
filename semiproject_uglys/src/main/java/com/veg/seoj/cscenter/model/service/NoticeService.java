@@ -23,7 +23,7 @@ public class NoticeService {
                 .build();
         int a = (cPage - 1) * numPerpage + 1;
         int b = cPage * numPerpage;
-        List<Notice> result = noticeDAO.getTo(conn, Some, "sql.notice.select", a, b);
+        List<Notice> result = noticeDAO.getTo(conn, Some, "sql.notice.select","getTo", a, b);
 
         close(conn);
         return result;
@@ -46,7 +46,7 @@ public class NoticeService {
 //		Notice n=dao.selectNoticeByNo(conn, noticeNo);
         Notice n = noticeDAO.getById(conn, (Notice)Notice
                 .builder()
-                .build(), "sql.notice.getByNo", noticeNo);
+                .build(), "sql.notice.getByNo","getById", noticeNo);
         close(conn);
         return n;
     }
