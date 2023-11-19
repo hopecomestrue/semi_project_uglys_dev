@@ -27,12 +27,12 @@ public class OrderDao {
 		}
 	}
 	
-	public Order selectOrderDetails(Connection conn,int orderNo) {
+	public Order selectOrderDetailsByOrderNo(Connection conn,int orderNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Order o=null;
 		try {
-			pstmt=conn.prepareStatement(sql.getProperty("selectOrderDetails"));
+			pstmt=conn.prepareStatement(sql.getProperty("selectOrderDetailsByOrderNo"));
 			pstmt.setInt(1, orderNo);
 			rs=pstmt.executeQuery();
 			if(rs.next()) o=getOrder(rs);
@@ -52,12 +52,16 @@ public class OrderDao {
 			pstmt=conn.prepareStatement(sql.getProperty("insertOrderDetails"));
 			pstmt.setLong(1, o.getOrderNo());
 			pstmt.setInt(2, m.getMemberNo());
-			
-			
-			
-			
-			
-			
+			pstmt.setString(3, o.getOrderName());
+			pstmt.setString(4, o.getOrderPhone());
+			pstmt.setString(5, o.getOrderAddress());
+			pstmt.setString(6, o.getOrderComment());
+			pstmt.setInt(7, o.getOrderCount());
+			pstmt.setInt(8, o.getTotalPrice());
+			pstmt.setInt(9, o.getDeliveryPay());
+			pstmt.setString(10, o.getPayment());
+			pstmt.setString(11, o.getOrderStatus());
+			result=pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,8 +96,8 @@ public class OrderDao {
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("updateOrderDetails"));
-			pstmt.setInt(1, orderNo);
-			pstmt.setString(2, status);
+			pstmt.setString(1, status);
+			pstmt.setInt(2, orderNo);
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,18 +109,19 @@ public class OrderDao {
 	
 	public static Order getOrder(ResultSet rs) throws SQLException{
 		return Order.builder()
-					.orderNo(rs.getLong("orderNo"))
-					.orderName(rs.getString("orderName"))
-					.orderPhone(rs.getString("orderPhone"))
-					.orderAddress(rs.getString("orderAddress"))
-					.orderComment(rs.getString("orderComment"))
-					.orderCount(rs.getInt("orderCount"))
-					.totalPrice(rs.getInt("totalPrice"))
-					.deliveryPay(rs.getInt("deliveryPay"))
-					.payment(rs.getString("payment"))
-					.orderStatus(rs.getString("orderStatus"))
-					.trakingNumber(rs.getInt("trakingNumber"))
-					.orderDate(rs.getDate("orderDate"))
+					.orderNo(rs.getLong("ORDER_NO"))
+					.memberNo(rs.getInt("MEMBER_NO"))
+					.orderName(rs.getString("ORDER_NAME"))
+					.orderPhone(rs.getString("ORDER_PHONE"))
+					.orderAddress(rs.getString("ORDER_ADDRESS"))
+					.orderComment(rs.getString("ORDER_COMMENT"))
+					.orderCount(rs.getInt("ORDER_COUNT"))
+					.totalPrice(rs.getInt("TOTAL_PRICE"))
+					.deliveryPay(rs.getInt("DELIVERY_PAY"))
+					.payment(rs.getString("PAYMENT"))
+					.orderStatus(rs.getString("ORDER_STATUS"))
+					.trakingNumber(rs.getInt("TRAKING_NUMBER"))
+					.orderDate(rs.getDate("ORDER_DATE"))
 					.build();
 	}
 	
