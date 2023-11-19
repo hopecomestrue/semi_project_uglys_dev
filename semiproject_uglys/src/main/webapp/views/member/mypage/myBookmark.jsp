@@ -32,17 +32,10 @@
 		<style>
 			#sidebar {
 				padding-top: 70px;
+				position: sticky;
+  				top: 0;
 			}
-            .table-wrapper table {
-                width: 100%;
-                margin: 0 auto;
-                table-layout: fixed;
-            }
 
-            .table-wrapper table td {
-                word-break: break-all;
-                padding: 15px; 
-            }
 		</style>
 	  </head>
 	<body class="is-preload">
@@ -56,7 +49,7 @@
 							<header>
 								<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 									<div class="container">
-									  <a class="navbar-brand" href="index.html">채소랑</a>
+									  <a class="navbar-brand" href="/index.html">채소랑</a>
 									  <!-- 메인화면으로 이동 // 주소바꾸기 -->
 									  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 										<span class="oi oi-menu"></span> Menu
@@ -68,8 +61,8 @@
 										  <li class="nav-item"><a href="#" class="nav-link">채소농장</a></li>
 										  <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
 										  <li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
-										  <li class="nav-item"><a href="mypage.html" class="nav-link">마이페이지</a></li>
-										  <li class="nav-item cta cta-colored"><a href="cart1.html" class="nav-link"><span href=""></span>[0]</a></li>
+										  <li class="nav-item"><a href="/mypage.html" class="nav-link">마이페이지</a></li>
+										  <li class="nav-item cta cta-colored"><a href="/cart1.jsp" class="nav-link"><span href=""></span>[0]</a></li>
 							
 										</ul>
 									  </div>
@@ -85,70 +78,60 @@
 										</header>
 									</div>
 								</section>
-
 							<!-- Section -->
 								<section>
 									<header class="major">
-										<h2>주문 조회</h2>
+										<h2>북마크</h2>
 									</header>
-									<div class="features">
-                                        <div class="table-wrapper">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>상품명</th>
-                                                        <th>상세 설명</th>
-                                                        <th>수량</th>
-                                                        <th>가격</th>
-                                                        <th>배송상태</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
-                                                        <td>친환경 절임배추</td>
-                                                        <td>1개</td>
-                                                        <td>29,900원</td>
-                                                        <td>배송상</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
-                                                        <td>친환경 절임배추</td>
-                                                        <td>1개</td>
-                                                        <td>29,900원</td>
-                                                        <td>배송상태</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
-                                                        <td>친환경 절임배추</td>
-                                                        <td>1개</td>
-                                                        <td>29,900원</td>
-                                                        <td>배송상태</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
-                                                        <td>친환경 절임배추</td>
-                                                        <td>1개</td>
-                                                        <td>29,900원</td>
-                                                        <td>배송상태</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="/images2/product-5.jpg" style="width: 200px; height: 200px;"></td>
-                                                        <td>친환경 절임배추입니다아아아아앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아앙아아앙ㅇ</td>
-                                                        <td>1개</td>
-                                                        <td>29,900원</td>
-                                                        <td>배송상태</td>
-                                                    </tr>
-                                                </tbody>
-                                                <!-- <tfoot>
-                                                    <tr>
-                                                        <td colspan="2"></td>
-                                                        <td>100.00</td>
-                                                    </tr>
-                                                </tfoot> -->
-                                            </table>
-                                        </div>
+									<div class="posts">
+										<article>
+											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
 									</div>
                                     <ul class="pagination justify-content-center" >
                                         <li><span class="button disabled">Prev</span></li>
@@ -178,24 +161,24 @@
 										<li>
 											<span class="opener">나의 주문</span>
 											<ul>
-												<li><a href="myorders.html">주문 조회</a></li>
-												<li><a href="myreturn.html">반품 조회</a></li>
-												<li><a href="cart1.html">장바구니</a></li>
+												<li><a href="/myorders.html">주문 조회</a></li>
+												<li><a href="/myreturn.html">반품 조회</a></li>
+												<li><a href="/cart1.html">장바구니</a></li>
 											</ul>
 										</li>
 										<li>
 											<span class="opener">나의 활동</span>
 											<ul>
-												<li><a href="myreview.html">나의 리뷰</a></li>
-												<li><a href="bookmark.html">북마크</a></li>
+												<li><a href="#">나의 리뷰</a></li>
+												<li><a href="#">북마크</a></li>
 												<li><a href="#">1:1문의</a></li>
 											</ul>
 										</li>
 										<li>
 											<span class="opener">내 정보</span>
 											<ul>
-					 s							<li><a href="myinfo.html">내 정보 수정</a></li>
-												<li><a href="myaddress.html">배송지 관리</a></li>
+												<li><a href="#">내 정보 수정</a></li>
+												<li><a href="#">배송지 관리</a></li>
 											</ul>
 										</li>
 										<li><a onclick="confirmLogout()">로그아웃</a></li>
@@ -204,8 +187,11 @@
 
 						</div>
 					</div>
+
 			</div>
-				<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
+
+		<!-- Scripts -->
+			<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/browser.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>
@@ -220,6 +206,4 @@
 					}
 				}
 			</script>
-			
-	</body>
-</html>
+<%@ include file="/views/common/footer.jsp" %>

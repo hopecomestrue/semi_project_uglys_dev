@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.veg.hjj.member.dao.MemberDao;
 import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dto.Order;
 import static com.veg.common.JDBCTemplate.*;
@@ -27,13 +28,13 @@ public class OrderDao {
 		}
 	}
 	
-	public Order selectOrderDetailsByOrderNo(Connection conn,int orderNo) {
+	public Order selectOrderDetailsByOrderNo(Connection conn,long orderNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Order o=null;
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("selectOrderDetailsByOrderNo"));
-			pstmt.setInt(1, orderNo);
+			pstmt.setLong(1, orderNo);
 			rs=pstmt.executeQuery();
 			if(rs.next()) o=getOrder(rs);
 		} catch (SQLException e) {
@@ -97,7 +98,7 @@ public class OrderDao {
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("updateOrderDetails"));
 			pstmt.setString(1, status);
-			pstmt.setInt(2, orderNo);
+			pstmt.setLong(2, orderNo);
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,6 +125,65 @@ public class OrderDao {
 					.orderDate(rs.getDate("ORDER_DATE"))
 					.build();
 	}
+	
+	
+	
+	
+	
+	
+	
+	private Properties sql2=new Properties();
+	{
+		String path=MemberDao.class.getResource("/member/login/login.properties").getPath();
+		
+		try(FileReader fr=new FileReader(path);){
+			sql2.load(fr);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public Member selectMemberByNo(Connection conn, int memberNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		try {
+			pstmt=conn.prepareStatement(sql2.getProperty("selectMemberByNo"));
+			pstmt.setInt(1,memberNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) m=getMember(rs);
+		
+		}catch(SQLException e) {
+				e.printStackTrace();
+		}finally {
+				close(rs);
+				close(pstmt);
+		}return m;
+	}
+	
+	private static Member getMember(ResultSet rs) throws SQLException{
+		return Member.builder()
+				.memberNo(rs.getInt("member_No"))
+				.memberId(rs.getString("member_id"))
+				.memberPw(rs.getString("member_pw"))
+				.memberName(rs.getString("member_name"))
+				.memberAge(rs.getString("member_age"))
+				.memberEmail(rs.getString("member_email"))
+				.memberPhone(rs.getString("member_phone"))
+				.acceptAgree(rs.getString("accept_agree"))
+				.adminCheck(rs.getString("admin_check"))
+				.serviceAgree(rs.getString("service_agree"))
+				.marketingAgree(rs.getString("marketing_agree"))
+				.enrollDate(rs.getDate("enroll_date"))
+				.photoRegist(rs.getString("photo_Regist"))
+				.build();
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
