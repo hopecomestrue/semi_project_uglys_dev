@@ -77,7 +77,7 @@ public class ProductionIndexJSPServlet extends HttpServlet {
 		request.setAttribute("productions", productions);
 		request.setAttribute("cPage", cPage);
 		
-		System.out.println(productions);
+		
 		
 		request.getRequestDispatcher("/views/admin/adminproduct/productfront.jsp")
 		.forward(request, response);

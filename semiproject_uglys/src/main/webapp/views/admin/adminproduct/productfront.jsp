@@ -199,13 +199,12 @@
                           <thead>
                               <tr>
                                   <th></th>
-                                  <th>번호</th>
-                                  <th>상품고유번호</th>
+                                  <th>상품번호</th>
                                   <th>상품명</th>
-                                  <th>상품종류</th>
+                                  <th>재배환경</th>
+                                  <th>생산지</th>
                                   <th>가격</th>
                                   <th>재고</th>
-                                  <th>생산지</th>
                                   <th>등록일</th>
                               </tr>
                           </thead>
