@@ -73,7 +73,7 @@
 		                  	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
 		                  <select name="" id="deli-memo-choice" class="form-control" onchange="deliInputOn()">
 		                    <option value>배송메모를 선택해주세요.</option>
-		                    <option value="-">요청사항을 직접 입력합니다.</option>
+		                    <option value="요청사항을 직접 입력합니다.">요청사항을 직접 입력합니다.</option>
 		                  	<option value="배송 전에 미리 연락바랍니다.">배송 전에 미리 연락바랍니다.</option>
 		                    <option value="부재시 경비실에 맡겨 주세요.">부재시 경비실에 맡겨 주세요.</option>
 		                    <option value="부재시 전화 주시거나 문자 남겨 주세요.">부재시 전화 주시거나 문자 남겨 주세요.</option>
@@ -91,7 +91,7 @@
 		            <div class="col-md-6">
 		            	<div class="form-group">
 	                	<label for="streetaddress">우편번호</label>
-	                  <input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호">
+	                  <input type="text" class="form-control" id="sample4_postcode" readonly>
 	                </div>
 		            </div>
 		            <div class="col-md-6">
@@ -103,7 +103,7 @@
 		            <div class="col-md-6">
 		            	<div class="form-group">
 	                	<label for="towncity">도로명주소</label>
-	                  <input type="text" class="form-control" id="sample4_roadAddress">
+	                  <input type="text" class="form-control" id="sample4_roadAddress" readonly>
 	                </div>
 		            </div>
 		            <div class="col-md-6">
@@ -124,7 +124,7 @@
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="emailaddress">이메일</label>
-	                  <input type="email" class="form-control" id="buyer-email" value="<%=loginMember.getMemberEmail()%>">
+	                  <input type="email" class="form-control" id="buyer-email" value="<%=loginMember.getMemberEmail()%>" readonly>
 	                </div>
                 </div>
                 <div class="w-100"></div>
@@ -262,18 +262,6 @@
           
       });
    
-   <!-- 배달요청 직접입력 체크박스 -->
-      function deliInputOn(){
-         var select=document.getElementById("deli-memo-choice");
-         var input=document.getElementById("deli-input");
-         if(select.value==='-'){
-            input.value = '';
-            input.disabled=false;
-         }else{
-            input.value = '';
-            input.disabled=true;
-         }
-      }
    
       <!-- 결제 분기점 -->
       function paymentOrder_btn(){
@@ -289,22 +277,41 @@
          }
       }
       
+   <!-- 배달요청 직접입력 체크박스 -->
+       function deliInputOn(){
+         var select=document.getElementById("deli-memo-choice");
+         var input=document.getElementById("deli-input");
+         if(select.value==='요청사항을 직접 입력합니다.'){
+            input.value = '';
+            input.disabled=false;
+         }else{
+            input.value = '';
+            input.disabled=true;
+         }
+      }
    <!-- 카드 결제 함수 -->
-   
-   
    /* 카카오결제 */
    function cacao_payment(){
        var IMP = window.IMP;
        IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
         var msg; //결제 성공,실패시 출력할 msg
-        var memberNo=<%=loginMember.getMemberNo()%>;
         var buyerName=$('#buyer-name').val(); //구매자 이름
         var name='상품명';//상품명
         var amount=parseInt($('#total-price').text(),10);//총가격
         var buyerEmail=$('#buyer-email').val();//구매자 이메일
         var buyerTel=$('#buyer-phone').val();//구매자 폰번호
         var buyerAddr=$('#sample4_roadAddress').val()+' '+$('#sample4_detailAddress').val();//구매자 주소
-        var delrequest='배송 요청사항';//배송요청사항
+        var delrequest='';//배송요청사항
+        //배송요청사항 분기처리
+        var select=document.getElementById("deli-memo-choice");
+        var input=document.getElementById("deli-input");
+        
+        if(select.value==='요청사항을 직접 입력합니다.'){
+        	delrequest=input.value;
+        }else{
+        	delrequest=select.value;
+        }
+        
 
         IMP.request_pay({
             pg : 'kakaopay',
@@ -316,7 +323,7 @@
             buyer_email : buyerEmail,
             buyer_tel : buyerTel,
             buyer_addr : buyerAddr,
-            buyer_postcode : '123-456',
+            /* buyer_postcode : '123-456', //우편번호*/
         }, function(rsp){
            if (rsp.success) {
            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -335,10 +342,9 @@
                     buyer_tel : rsp.buyer_tel, // 주문자 연락처
                     buyer_addr : rsp.buyer_addr, //주문자 주소
                     order_status : rsp.status, //결제상태(결제완료,한도초과,결제실패)
+                    delrequest : delrequest //배송요청사항
                     /* paid_at : rsp.paid_at, // 결제승인시각 */
-                    delrequest : delrequest,
-                    memberNo : memberNo
-                    //필요한 데이터가 있으면 추가
+                    //필요한 데이터 있으면 추가
                 }
             })
             } else {
@@ -354,39 +360,49 @@
    function kcp_payment(){
        var IMP = window.IMP;
        IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
-        var msg;
-        
+        var msg; //결제 성공,실패시 출력할 msg
+        var buyerName=$('#buyer-name').val(); //구매자 이름
+        var name='상품명';//상품명
+        var amount=parseInt($('#total-price').text(),10);//총가격
+        var buyerEmail=$('#buyer-email').val();//구매자 이메일
+        var buyerTel=$('#buyer-phone').val();//구매자 폰번호
+        var buyerAddr=$('#sample4_roadAddress').val()+' '+$('#sample4_detailAddress').val();//구매자 주소
+        var delrequest='배송 요청사항';//배송요청사항
+
         IMP.request_pay({
             pg : 'kcp.{AO09C}',
             pay_method : 'card',
             merchant_uid : new Date().getTime(),
-            name : '고구마',
-            amount : '300',
-            buyer_email : 'email@email',
-            buyer_name : '구매자이름',
-            buyer_tel : '010-5335',
-            buyer_addr : '서울 금천구',
-            buyer_postcode : '123-456',
+            name : name,
+            amount : amount,
+            buyer_name : buyerName,
+            buyer_email : buyerEmail,
+            buyer_tel : buyerTel,
+            buyer_addr : buyerAddr,
+            /* buyer_postcode : '123-456', //우편번호*/
         }, function(rsp){
-            if (rsp.success) {
-               //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-                jQuery.ajax({
-                    url: "<%=request.getContextPath()%>/order/ordersuccess.do", //cross-domain error가 발생하지 않도록 주의해주세요
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
-                        merchant_uid : rsp.merchant_uid, //주문번호
-                       imp_uid : rsp.imp_uid,         //결제 고유번호
-                        paid_amount : rsp.paid_amount, //결제된 금액
-                        buyer_name : rsp.buyer_name, //주문자 이름
-                        buyer_email : rsp.buyer_email, // 주문자 email
-                        buyer_tel : rsp.buyer_tel, // 주문자 연락처
-                        buyer_addr : rsp.buyer_addr, //주문자 주소
-                        /* paid_at : rsp.paid_at, // 결제승인시각 */
-                        delrequest : "배송요청 사항"
-                    }
-                })
+           if (rsp.success) {
+           //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            jQuery.ajax({
+                url: "<%=request.getContextPath()%>/order/ordersuccess.do", //cross-domain error가 발생하지 않도록 주의해주세요
+                type: 'POST',
+                dataType: 'json',
+                data: {	
+                    pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
+                    merchant_uid : rsp.merchant_uid, //주문번호
+                    order_name : rsp.name, //주문명
+                    imp_uid : rsp.imp_uid,         //결제 고유번호
+                    paid_amount : rsp.paid_amount, //결제된 금액
+                    buyer_name : rsp.buyer_name, //주문자 이름
+                    buyer_email : rsp.buyer_email, // 주문자 email
+                    buyer_tel : rsp.buyer_tel, // 주문자 연락처
+                    buyer_addr : rsp.buyer_addr, //주문자 주소
+                    order_status : rsp.status, //결제상태(결제완료,한도초과,결제실패)
+                    delrequest : delrequest //배송요청사항
+                    /* paid_at : rsp.paid_at, // 결제승인시각 */
+                    //필요한 데이터 있으면 추가
+                }
+            })
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;

@@ -134,12 +134,6 @@
                                                         <td>29,900원</td>
                                                     </tr>
                                                 </tbody>
-                                                <!-- <tfoot>
-                                                    <tr>
-                                                        <td colspan="2"></td>
-                                                        <td>100.00</td>
-                                                    </tr>
-                                                </tfoot> -->
                                             </table>
                                         </div>
 									</div>

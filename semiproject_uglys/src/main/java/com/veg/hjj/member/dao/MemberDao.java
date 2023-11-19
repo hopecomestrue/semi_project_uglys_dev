@@ -44,6 +44,7 @@ public class MemberDao {
 	
 	public static Member getMember(ResultSet rs) throws SQLException{
 		return Member.builder()
+				.memberNo(rs.getInt("member_No"))
 				.memberId(rs.getString("member_id"))
 				.memberPw(rs.getString("member_pw"))
 				.memberName(rs.getString("member_name"))

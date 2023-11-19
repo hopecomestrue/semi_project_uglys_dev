@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.veg.hjj.member.dao.MemberDao;
 import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dto.Order;
 import static com.veg.common.JDBCTemplate.*;
@@ -27,13 +28,13 @@ public class OrderDao {
 		}
 	}
 	
-	public Order selectOrderDetails(Connection conn,int orderNo) {
+	public Order selectOrderDetailsByOrderNo(Connection conn,long orderNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Order o=null;
 		try {
-			pstmt=conn.prepareStatement(sql.getProperty("selectOrderDetails"));
-			pstmt.setInt(1, orderNo);
+			pstmt=conn.prepareStatement(sql.getProperty("selectOrderDetailsByOrderNo"));
+			pstmt.setLong(1, orderNo);
 			rs=pstmt.executeQuery();
 			if(rs.next()) o=getOrder(rs);
 		} catch (SQLException e) {
@@ -52,12 +53,16 @@ public class OrderDao {
 			pstmt=conn.prepareStatement(sql.getProperty("insertOrderDetails"));
 			pstmt.setLong(1, o.getOrderNo());
 			pstmt.setInt(2, m.getMemberNo());
-			
-			
-			
-			
-			
-			
+			pstmt.setString(3, o.getOrderName());
+			pstmt.setString(4, o.getOrderPhone());
+			pstmt.setString(5, o.getOrderAddress());
+			pstmt.setString(6, o.getOrderComment());
+			pstmt.setInt(7, o.getOrderCount());
+			pstmt.setInt(8, o.getTotalPrice());
+			pstmt.setInt(9, o.getDeliveryPay());
+			pstmt.setString(10, o.getPayment());
+			pstmt.setString(11, o.getOrderStatus());
+			result=pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,8 +97,8 @@ public class OrderDao {
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("updateOrderDetails"));
-			pstmt.setInt(1, orderNo);
-			pstmt.setString(2, status);
+			pstmt.setString(1, status);
+			pstmt.setLong(2, orderNo);
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,20 +110,80 @@ public class OrderDao {
 	
 	public static Order getOrder(ResultSet rs) throws SQLException{
 		return Order.builder()
-					.orderNo(rs.getLong("orderNo"))
-					.orderName(rs.getString("orderName"))
-					.orderPhone(rs.getString("orderPhone"))
-					.orderAddress(rs.getString("orderAddress"))
-					.orderComment(rs.getString("orderComment"))
-					.orderCount(rs.getInt("orderCount"))
-					.totalPrice(rs.getInt("totalPrice"))
-					.deliveryPay(rs.getInt("deliveryPay"))
-					.payment(rs.getString("payment"))
-					.orderStatus(rs.getString("orderStatus"))
-					.trakingNumber(rs.getInt("trakingNumber"))
-					.orderDate(rs.getDate("orderDate"))
+					.orderNo(rs.getLong("ORDER_NO"))
+					.memberNo(rs.getInt("MEMBER_NO"))
+					.orderName(rs.getString("ORDER_NAME"))
+					.orderPhone(rs.getString("ORDER_PHONE"))
+					.orderAddress(rs.getString("ORDER_ADDRESS"))
+					.orderComment(rs.getString("ORDER_COMMENT"))
+					.orderCount(rs.getInt("ORDER_COUNT"))
+					.totalPrice(rs.getInt("TOTAL_PRICE"))
+					.deliveryPay(rs.getInt("DELIVERY_PAY"))
+					.payment(rs.getString("PAYMENT"))
+					.orderStatus(rs.getString("ORDER_STATUS"))
+					.trakingNumber(rs.getInt("TRAKING_NUMBER"))
+					.orderDate(rs.getDate("ORDER_DATE"))
 					.build();
 	}
+	
+	
+	
+	
+	
+	
+	
+	private Properties sql2=new Properties();
+	{
+		String path=MemberDao.class.getResource("/member/login/login.properties").getPath();
+		
+		try(FileReader fr=new FileReader(path);){
+			sql2.load(fr);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public Member selectMemberByNo(Connection conn, int memberNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		try {
+			pstmt=conn.prepareStatement(sql2.getProperty("selectMemberByNo"));
+			pstmt.setInt(1,memberNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) m=getMember(rs);
+		
+		}catch(SQLException e) {
+				e.printStackTrace();
+		}finally {
+				close(rs);
+				close(pstmt);
+		}return m;
+	}
+	
+	private static Member getMember(ResultSet rs) throws SQLException{
+		return Member.builder()
+				.memberNo(rs.getInt("member_No"))
+				.memberId(rs.getString("member_id"))
+				.memberPw(rs.getString("member_pw"))
+				.memberName(rs.getString("member_name"))
+				.memberAge(rs.getString("member_age"))
+				.memberEmail(rs.getString("member_email"))
+				.memberPhone(rs.getString("member_phone"))
+				.acceptAgree(rs.getString("accept_agree"))
+				.adminCheck(rs.getString("admin_check"))
+				.serviceAgree(rs.getString("service_agree"))
+				.marketingAgree(rs.getString("marketing_agree"))
+				.enrollDate(rs.getDate("enroll_date"))
+				.photoRegist(rs.getString("photo_Regist"))
+				.build();
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

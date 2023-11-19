@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class RefundSelectCheck
  */
 @WebServlet("/admin/refundList.do")
-public class RefundSelectCheck extends HttpServlet {
+public class AdminRefundList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RefundSelectCheck() {
+    public AdminRefundList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,10 +26,8 @@ public class RefundSelectCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String choice=request.getParameter("refundCheck");
-		System.out.println(choice);
 		
-		request.getRequestDispatcher("/views/admin/refundDetail.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/admin/refundList.jsp").forward(request, response);
 		
 	}
 

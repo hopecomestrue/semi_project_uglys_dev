@@ -209,9 +209,10 @@
              </div>
          <br>
          <!-- 상품장바구니 , 바로구매하기-->
-         
-             <span style="display: flex; gap: 10px;"><p><a href="cart.html" class="btn btn-black py-3 px-5">장바구니</a></p>
-            
+         	<%-- <form name="addForm" action="${request.getContextPath()}/mycart.do" method="post"> --%>
+            <%--  <span style="display: flex; gap: 10px;"><p><a href="<%=request.getContextPath() %>/mycart.do" class="btn btn-black py-3 px-5" <!-- onclick="document.addForm.submit();" --> >장바구니</a></p> --%>
+			<!-- </form> -->
+			<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">장바구니</a></p>
             <p><a href="cart.html" class="btn btn-black py-3 px-5">바로구매</a></p></span>
              </div>
           </div>
@@ -487,7 +488,13 @@ $(document).ready(function(){
     });
 });
 </script>
-
+<!-- <script>
+  function addToCart() {
+    document.addForm.submit();
+    alert('장바구니에 추가되었습니다.');
+  }
+</script>
+ -->
   </body>
 
  

@@ -12,9 +12,9 @@ public class OrderService {
 
 	private OrderDao dao=new OrderDao();
 	
-	public Order selectOrderDetails(int orderNo) {
+	public Order selectOrderDetailsByOrderNo(long orderNo) {
 		Connection conn=getConnection();
-		Order o=dao.selectOrderDetails(conn,orderNo);
+		Order o=dao.selectOrderDetailsByOrderNo(conn,orderNo);
 		close(conn);
 		return o;
 	}
@@ -43,5 +43,21 @@ public class OrderService {
 		close(conn);
 		return result;
 	}
+	
+	
+	
+	
+	
+	
+	
+	public Member selectMemberByNo(int memNo) {
+		Connection conn=getConnection();
+		Member m=dao.selectMemberByNo(conn, memNo);
+		close(conn);
+		return m;
+	}
+	
+	
+	
 	
 }
