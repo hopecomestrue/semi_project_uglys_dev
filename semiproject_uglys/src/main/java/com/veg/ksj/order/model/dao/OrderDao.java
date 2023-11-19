@@ -92,7 +92,7 @@ public class OrderDao {
 		return orders;
 	}
 	
-	public int updateOrderDetails(Connection conn,int orderNo,String status) {
+	public int updateOrderDetails(Connection conn,int trackingNo,int orderNo,String status) {
 		PreparedStatement pstmt=null;
 		int result=0;
 		try {
@@ -134,7 +134,7 @@ public class OrderDao {
 	
 	private Properties sql2=new Properties();
 	{
-		String path=MemberDao.class.getResource("/member/login/login.properties").getPath();
+		String path=MemberDao.class.getResource("/sql/order/order_sql.properties").getPath();
 		
 		try(FileReader fr=new FileReader(path);){
 			sql2.load(fr);
