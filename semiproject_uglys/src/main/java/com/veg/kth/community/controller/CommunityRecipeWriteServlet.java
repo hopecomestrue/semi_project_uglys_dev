@@ -1,23 +1,29 @@
-package com.veg.ksj.admin.controller;
+package com.veg.kth.community.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veg.kth.community.model.dto.Category;
+import com.veg.kth.community.model.dto.Hashtag;
+import com.veg.kth.community.service.CommunityService;
+
 /**
- * Servlet implementation class RefundSelectCheck
+ * Servlet implementation class CommunityRecipeWriteServlet
  */
-@WebServlet("/admin/refundList.do")
-public class RefundSelectCheck extends HttpServlet {
+@WebServlet("/community/recipewrite.do")
+public class CommunityRecipeWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RefundSelectCheck() {
+    public CommunityRecipeWriteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,10 +32,15 @@ public class RefundSelectCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String choice=request.getParameter("refundCheck");
-		System.out.println(choice);
 		
-		request.getRequestDispatcher("/views/admin/refundDetail.jsp").forward(request, response);
+		List<Hashtag> hashtags = new CommunityService().selectHashtagAll();
+		List<Category> category = new CommunityService().selectCategoryAll();
+		
+		request.setAttribute("hashtags", hashtags);
+		request.setAttribute("category", category);
+		
+		request.getRequestDispatcher("/views/community/write_recipe.jsp")
+		.forward(request, response);
 		
 	}
 

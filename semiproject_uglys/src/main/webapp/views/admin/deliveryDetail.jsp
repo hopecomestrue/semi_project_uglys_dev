@@ -1,6 +1,12 @@
+<%@page import="com.veg.ksj.order.model.dto.Order"%>
+<%@page import="com.veg.hjj.member.dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/header.jsp" %>
+<%
+	Member mem=(Member)request.getAttribute("mem");
+	Order order=(Order)request.getAttribute("order");
+%>
 	<style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -95,29 +101,33 @@
     </style>
 
 <body>
-	<form>
+	<%-- <form action="<%request.getContextPath()%>/admin/delchange.do" method="post"> --%>
 <h1 style="text-align: center; margin-top: 5%;">배송 상세현황</h1>
 <div class="delivery-detail-user">
 <table class="table table-bordered">
     <tr>
         <th>주문 상세 번호</th>
-        <td>123456789</td>
+        <td id="orderNo"><%=order.getOrderNo()%></td>
     </tr>
     <tr>
       <th>송장 번호</th>
-      <td><input type="text" name="delivery-no" placeholder="송장번호 입력란"></td>
+      <td><input type="text" id="delNo" name="delivery-no" placeholder="송장번호 입력란">
+      <%if(order.getTrakingNumber()!=0){ %>
+      <%=order.getTrakingNumber() %>
+    <%} %>
+    </td>
     </tr>
     <tr>
       <th>주문 아이디</th>
-      <td>admin123</td>
+      <td><%=mem.getMemberId() %></td>
     </tr>
     <tr>
       <th>이름</th>
-      <td>홍길동</td>
+      <td><%=order.getOrderName() %></td>
     </tr>
     <tr>
       <th>전화번호</th>
-      <td>010-1234-1234</td>
+      <td><%=order.getOrderPhone() %></td>
     </tr>
     <tr>
       <th>상품 내용</th>
@@ -125,36 +135,65 @@
     </tr>
     <tr>
         <th>주소</th>
-        <td>서울시 금천구</td>
+        <td><%=order.getOrderAddress() %></td>
     </tr>
     <tr>
       <th>주문 날짜</th>
-      <td>2023-11-10</td>
+      <td><%=order.getOrderDate() %></td>
     </tr>
     <tr>
       <th>배송현황</th>
       <td>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-            <option selected>배송준비중</option>
-            <option value="1">배송중</option>
-            <option value="2">배송완료</option>
+        <select class="form-select form-select-lg mb-3" id="del-check" aria-label=".form-select-lg example">
+            <option selected value="배송준비중">배송준비중</option>
+            <option value="배송중">배송중</option>
+            <option value="배송완료">배송완료</option>
           </select>
       </td>
     </tr>
     <tr>
       <th>결제 수단</th>
-      <td>카카오 페이</td>
+      <td><%=order.getPayment() %></td>
     </tr>    
     <tr>
       <th>총 금액</th>
-      <td>￦ 83,000</td>
+      <td><%=order.getTotalPrice() %>원</td>
     </tr>    
   </table>
 </div>
   <button type="submit" class="btn btn-primary" id="btn_submit">수정완료</button>
-</form>
+<!-- </form> -->
 
-</main>
+<script>
+	//수정완료 누르면 table에 있는 값들을 ajax로 값 전송
+	document.getElementById('btn_submit').addEventListener('click',function(){
+		var orderNo=document.getElementById('orderNo').innerText;
+		var delNo=document.getElementById('delNo').value;
+		var delCheck=document.getElementById('del-check').value;
+		console.log(orderNo);
+		console.log(delNo);
+		console.log(delCheck);
+		
+		$.ajax({
+			url : '<%=request.getContextPath()%>/admin/deliveryDetailEnd.do',
+			type : 'POST',
+			dataType: 'json',
+			data : {
+				orderNo : orderNo, //주문번호
+				delNo : delNo, //송장번호
+				delCheck : delCheck //배송상태 : 배송준비중,배송중,배송완료
+			},
+			success : function(res){
+				alert('배송상태 수정완료');
+			},
+			error : function(req,status,error){
+				alert('배송상태 수정실패');
+			}
+		});
+	});
+</script>
+
+
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 

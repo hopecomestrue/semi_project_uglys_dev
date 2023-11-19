@@ -1,10 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ include file="/views/common/header.jsp" %>
 
+
+  <!-- <form class="pay-form" id="pay-form" action="" method="post"> -->
+	<section class="ftco-section ftco-cart">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 ftco-animate">
+				<h3 class="mb-4 billing-heading">장바구니</h3>
+					<div class="cart-list">
+						<table class="table">
+							<thead class="thead-primary">
+								<tr class="text-center">
+									<th>상품이미지</th>
+									<th>&nbsp;</th>
+									<th>상품명</th>
+									<th>가격</th>
+									<th>수량</th>
+									<th>총금액</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center">
+									<td class="product-remove"><a href="#"><span
+											class="ion-ios-close"></span></a></td>
+
+									<td class="image-prod"><div class="img"
+											style="background-image: url(images2/product-3.jpg);"></div></td>
+
+									<td class="product-name">
+										<h3>상품명</h3>
+										<p>상품 설명</p>
+									</td>
+
+									<td class="price">29,900원</td>
+
+									<td class="qua-col first-row">
+										<div class="pro-qty">
+											<input type="text" name="cartCnt" class="cartQty" id="cartQty" value="1" 
+												style="width: 100px;" disabled>
+										</div>
+									</td>
+
+
+									<td class="total">29,900원</td>
+									</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			</div>
+			</section>
 <section class="ftco-section">
- <form class="pay-form" id="pay-form" action="/order/ordersuccess.do" method="post">
 	<div class="container">
 		<div class="row justify-content-center">
           <div class="col-xl-7 ftco-animate">
@@ -13,7 +62,7 @@
 		          		<div class="col-md-6">
 		                	<div class="form-group">
 	                			<label for="주문자명">주문자명</label>
-	                  			<input type="text" class="form-control" placeholder="">
+	                  			<input type="text" class="form-control" placeholder="" id="buyer-name" value="<%=loginMember.getMemberName()%>">
 	                		</div>
 	              		</div>
            <div class="w-100"></div>
@@ -24,7 +73,7 @@
 		                  	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
 		                  <select name="" id="deli-memo-choice" class="form-control" onchange="deliInputOn()">
 		                    <option value>배송메모를 선택해주세요.</option>
-		                    <option value="-">요청사항을 직접 입력합니다.</option>
+		                    <option value="요청사항을 직접 입력합니다.">요청사항을 직접 입력합니다.</option>
 		                  	<option value="배송 전에 미리 연락바랍니다.">배송 전에 미리 연락바랍니다.</option>
 		                    <option value="부재시 경비실에 맡겨 주세요.">부재시 경비실에 맡겨 주세요.</option>
 		                    <option value="부재시 전화 주시거나 문자 남겨 주세요.">부재시 전화 주시거나 문자 남겨 주세요.</option>
@@ -42,25 +91,25 @@
 		            <div class="col-md-6">
 		            	<div class="form-group">
 	                	<label for="streetaddress">우편번호</label>
-	                  <input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호">
+	                  <input type="text" class="form-control" id="sample4_postcode" readonly>
 	                </div>
 		            </div>
 		            <div class="col-md-6">
 		            	<div class="form-group">
-	                  <button type="button" class="btn btn-outline-secondary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+	                  <input type="button" class="btn btn-outline-secondary" onclick="sample4_execDaumPostcode();" value="우편번호 찾기">
 	                </div>
 		            </div>
 		            <div class="w-100"></div>
 		            <div class="col-md-6">
 		            	<div class="form-group">
 	                	<label for="towncity">도로명주소</label>
-	                  <input type="text" class="form-control" id="sample4_roadAddress" placeholder="도로명주소">
+	                  <input type="text" class="form-control" id="sample4_roadAddress" readonly>
 	                </div>
 		            </div>
 		            <div class="col-md-6">
 		            	<div class="form-group">
 		            		<label for="postcodezip">상세주소</label>
-	                  <input type="text" class="form-control" id="sample4_detailAddress" placeholder="상세주소">
+	                  <input type="text" class="form-control" id="sample4_detailAddress">
 	                </div>
 	                <input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
 	                <input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
@@ -69,13 +118,13 @@
 		            <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="phone">전화번호</label>
-	                  <input type="text" class="form-control" placeholder="" value="<%=loginMember.getMemberPhone()%>">
+	                  <input type="text" class="form-control" id="buyer-phone" value="<%=loginMember.getMemberPhone()%>">
 	                </div>
 	              </div>
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="emailaddress">이메일</label>
-	                  <input type="email" class="form-control" placeholder="" value="<%=loginMember.getMemberEmail()%>">
+	                  <input type="email" class="form-control" id="buyer-email" value="<%=loginMember.getMemberEmail()%>" readonly>
 	                </div>
                 </div>
                 <div class="w-100"></div>
@@ -88,20 +137,20 @@
 	          			<h3 class="billing-heading mb-4">장바구니 합계</h3>
 	          			<p class="d-flex">
 		    						<span>총가격</span>
-		    						<span>$20.60</span>
+		    						<span>23000</span>
 		    					</p>
 		    					<p class="d-flex">
 		    						<span>배송비</span>
-		    						<span>$0.00</span>
+		    						<span id="del-pay">0</span>
 		    					</p>
 		    					<p class="d-flex">
 		    						<span>할인</span>
-		    						<span>$3.00</span>
+		    						<span id="sale-per">0</span>
 		    					</p>
 		    					<hr>
 		    					<p class="d-flex total-price">
 		    						<span>총합계</span>
-		    						<span>$17.60</span>
+		    						<span id="total-price">23000</span>
 		    					</p>
 								</div>
 	          	</div>
@@ -122,14 +171,14 @@
 											</div>
 										</div>
 									</div>
-									<button class="btn btn-primary py-3 px-4" value="결제하기" onclick="paymentOrder_btn()">
+									<button class="btn btn-primary py-3 px-4" onclick="paymentOrder_btn()">결제하기</button>
 								</div>
 	          	</div>
 	          </div>
           </div> <!-- .col-md-8 -->
         </div>
       </div>
-      </form> 
+     <!-- </form> -->
     </section> <!-- .section -->
 
 
@@ -142,9 +191,9 @@
 	<script>
 	/* 택배 api 함수 */
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-    function sample4_execDaumPostcode() {
+    function sample4_execDaumPostcode(){
         new daum.Postcode({
-            oncomplete: function(data) {
+            oncomplete: function(data){
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                 // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
@@ -176,108 +225,126 @@
         }).open();
     }
 
-	
-		/* 템플릿 함수 */
-		$(document).ready(function(){
+   
+      /* 템플릿 함수 */
+      $(document).ready(function(){
 
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
+      var quantitiy=0;
+         $('.quantity-right-plus').click(function(e){
+              
+              // Stop acting like a button
+              e.preventDefault();
+              // Get the field name
+              var quantity = parseInt($('#quantity').val());
+              
+              // If is not undefined
+                  
+                  $('#quantity').val(quantity + 1);
 
-		          
-		            // Increment
-		        
-		    });
+                
+                  // Increment
+              
+          });
 
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	
-	<!-- 배달요청 직접입력 체크박스 -->
-		function deliInputOn(){
-			var select=document.getElementById("deli-memo-choice");
-			var input=document.getElementById("deli-input");
-			if(select.value==='-'){
-				input.value = '';
-				input.disabled=false;
-			}else{
-				input.value = '';
-				input.disabled=true;
-			}
-		}
-	
-		<!-- 결제 분기점 -->
-		function paymentOrder_btn(){
-			var kcp=document.querySelector('input[name="payment"][value="kcp"]');
-			var cacao=document.querySelector('input[name="payment"][value="cacao"]');
-			
-			if(kcp.checked){
-				kcp_payment();
-			}else if(cacao.checked){
-				cacao_payment();
-			}else{
-				alert('결제수단을 선택하세요.');
-			}
-		}
-		
-	<!-- 카드 결제 함수 -->
-	
-	
-	/* 카카오결제 */
-	function cacao_payment(){
-    	var IMP = window.IMP;
-    	IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
-        var msg;
+           $('.quantity-left-minus').click(function(e){
+              // Stop acting like a button
+              e.preventDefault();
+              // Get the field name
+              var quantity = parseInt($('#quantity').val());
+              
+              // If is not undefined
+            
+                  // Increment
+                  if(quantity>0){
+                  $('#quantity').val(quantity - 1);
+                  }
+          });
+          
+      });
+   
+   
+      <!-- 결제 분기점 -->
+      function paymentOrder_btn(){
+         var kcp=document.querySelector('input[name="payment"][value="kcp"]');
+         var cacao=document.querySelector('input[name="payment"][value="cacao"]');
+         
+         if(kcp.checked){
+            kcp_payment();
+         }else if(cacao.checked){
+            cacao_payment();
+         }else{
+            alert('결제수단을 선택하세요.');
+         }
+      }
+      
+   <!-- 배달요청 직접입력 체크박스 -->
+       function deliInputOn(){
+         var select=document.getElementById("deli-memo-choice");
+         var input=document.getElementById("deli-input");
+         if(select.value==='요청사항을 직접 입력합니다.'){
+            input.value = '';
+            input.disabled=false;
+         }else{
+            input.value = '';
+            input.disabled=true;
+         }
+      }
+   <!-- 카드 결제 함수 -->
+   /* 카카오결제 */
+   function cacao_payment(){
+       var IMP = window.IMP;
+       IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
+        var msg; //결제 성공,실패시 출력할 msg
+        var buyerName=$('#buyer-name').val(); //구매자 이름
+        var name='상품명';//상품명
+        var amount=parseInt($('#total-price').text(),10);//총가격
+        var buyerEmail=$('#buyer-email').val();//구매자 이메일
+        var buyerTel=$('#buyer-phone').val();//구매자 폰번호
+        var buyerAddr=$('#sample4_roadAddress').val()+' '+$('#sample4_detailAddress').val();//구매자 주소
+        var delrequest='';//배송요청사항
+        //배송요청사항 분기처리
+        var select=document.getElementById("deli-memo-choice");
+        var input=document.getElementById("deli-input");
         
+        if(select.value==='요청사항을 직접 입력합니다.'){
+        	delrequest=input.value;
+        }else{
+        	delrequest=select.value;
+        }
+        
+
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : new Date().getTime(),
-            name : '고구마',
-            amount : '300',
-            buyer_email : 'email@email',
-            buyer_name : '구매자이름',
-            buyer_tel : '010-5335',
-            buyer_addr : '서울 금천구',
-            buyer_postcode : '123-456',
-        }, function(rsp) {
-        	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            name : name,
+            amount : amount,
+            buyer_name : buyerName,
+            buyer_email : buyerEmail,
+            buyer_tel : buyerTel,
+            buyer_addr : buyerAddr,
+            /* buyer_postcode : '123-456', //우편번호*/
+        }, function(rsp){
+           if (rsp.success) {
+           //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
             jQuery.ajax({
-                url: "<%=request.getContextPath()%>/payments/complete.do", //cross-domain error가 발생하지 않도록 주의해주세요
+                url: "<%=request.getContextPath()%>/order/ordersuccess.do", //cross-domain error가 발생하지 않도록 주의해주세요
                 type: 'POST',
                 dataType: 'json',
-                data: {
-                    imp_uid : rsp.imp_uid,         //결제 고유번호
+                data: {	
+                    pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
                     merchant_uid : rsp.merchant_uid, //주문번호
+                    order_name : rsp.name, //주문명
+                    imp_uid : rsp.imp_uid,         //결제 고유번호
                     paid_amount : rsp.paid_amount, //결제된 금액
                     buyer_name : rsp.buyer_name, //주문자 이름
-                    pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
                     buyer_email : rsp.buyer_email, // 주문자 email
                     buyer_tel : rsp.buyer_tel, // 주문자 연락처
                     buyer_addr : rsp.buyer_addr, //주문자 주소
-                    paid_at : rsp.paid_at // 결제승인시각
-                    
-                    //필요한 데이터가 있으면 추가
+                    order_status : rsp.status, //결제상태(결제완료,한도초과,결제실패)
+                    delrequest : delrequest //배송요청사항
+                    /* paid_at : rsp.paid_at, // 결제승인시각 */
+                    //필요한 데이터 있으면 추가
                 }
             })
             } else {
@@ -289,47 +356,58 @@
             }
         });
     }
-	/* kcp결제 */
-	function kcp_payment(){
-    	var IMP = window.IMP;
-    	IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
-        var msg;
-        
+   /* kcp결제 */
+   function kcp_payment(){
+       var IMP = window.IMP;
+       IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
+        var msg; //결제 성공,실패시 출력할 msg
+        var buyerName=$('#buyer-name').val(); //구매자 이름
+        var name='상품명';//상품명
+        var amount=parseInt($('#total-price').text(),10);//총가격
+        var buyerEmail=$('#buyer-email').val();//구매자 이메일
+        var buyerTel=$('#buyer-phone').val();//구매자 폰번호
+        var buyerAddr=$('#sample4_roadAddress').val()+' '+$('#sample4_detailAddress').val();//구매자 주소
+        var delrequest='배송 요청사항';//배송요청사항
+
         IMP.request_pay({
             pg : 'kcp.{AO09C}',
             pay_method : 'card',
             merchant_uid : new Date().getTime(),
-            name : '고구마',
-            amount : '300',
-            buyer_email : 'email@email',
-            buyer_name : '구매자이름',
-            buyer_tel : '010-5335',
-            buyer_addr : '서울 금천구',
-            buyer_postcode : '123-456',
-        }, function(rsp) {
-            if (rsp.success) {
-            	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-                jQuery.ajax({
-                    url: "<%=request.getContextPath()%>/payments/complete.do", //cross-domain error가 발생하지 않도록 주의해주세요
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                    	imp_uid : rsp.imp_uid,         //결제 고유번호
-                        merchant_uid : rsp.merchant_uid, //주문번호
-                        paid_amount : rsp.paid_amount, //결제된 금액
-                        buyer_name : rsp.buyer_name, //주문자 이름
-                        pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
-                        buyer_email : rsp.buyer_email, // 주문자 email
-                        buyer_tel : rsp.buyer_tel, // 주문자 연락처
-                        buyer_addr : rsp.buyer_addr, //주문자 주소
-                        paid_at : rsp.paid_at // 결제승인시각
-                    }
-                })
+            name : name,
+            amount : amount,
+            buyer_name : buyerName,
+            buyer_email : buyerEmail,
+            buyer_tel : buyerTel,
+            buyer_addr : buyerAddr,
+            /* buyer_postcode : '123-456', //우편번호*/
+        }, function(rsp){
+           if (rsp.success) {
+           //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            jQuery.ajax({
+                url: "<%=request.getContextPath()%>/order/ordersuccess.do", //cross-domain error가 발생하지 않도록 주의해주세요
+                type: 'POST',
+                dataType: 'json',
+                data: {	
+                    pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
+                    merchant_uid : rsp.merchant_uid, //주문번호
+                    order_name : rsp.name, //주문명
+                    imp_uid : rsp.imp_uid,         //결제 고유번호
+                    paid_amount : rsp.paid_amount, //결제된 금액
+                    buyer_name : rsp.buyer_name, //주문자 이름
+                    buyer_email : rsp.buyer_email, // 주문자 email
+                    buyer_tel : rsp.buyer_tel, // 주문자 연락처
+                    buyer_addr : rsp.buyer_addr, //주문자 주소
+                    order_status : rsp.status, //결제상태(결제완료,한도초과,결제실패)
+                    delrequest : delrequest //배송요청사항
+                    /* paid_at : rsp.paid_at, // 결제승인시각 */
+                    //필요한 데이터 있으면 추가
+                }
+            })
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/fail.do";
+                location.href="<%=request.getContextPath()%>/order/orderfail.do";
                 alert(msg);
             }
         });

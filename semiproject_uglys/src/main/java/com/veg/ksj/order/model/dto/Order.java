@@ -8,11 +8,11 @@ import lombok.Data;
 @Data
 @Builder
 public class Order {
-	private int orderNo;
+	private long orderNo;
+	private int memberNo;
 	private String orderName;
 	private String orderPhone;
 	private String orderAddress;
-	private String orderAddressDetail;
 	private String orderComment;
 	private int orderCount;
 	private int totalPrice;

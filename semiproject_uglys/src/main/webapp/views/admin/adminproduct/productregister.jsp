@@ -239,7 +239,7 @@
                     <div style="display: flex;">
                         <img id="preview" style="width: 360px; height: 360px;">
 
-                    <form action="<%=request.getContextPath()%>/production/register.do" method="post">
+                    <form action="<%=request.getContextPath()%>/production/register.do" method="post" enctype="multipart/form-data">
                         <table>
                             <tr>
                                 <td>상품명:</td>
@@ -260,7 +260,7 @@
                         </table>
                     </div>
                     <div style="display: block;">
-                        <input type="file" id="file-input1" multiple name="production_img">
+                        <input type="file" id="file-input1" accept="image/*" multiple name="production_img1">
                     </div>
                     </section>
                         <div>
@@ -276,7 +276,7 @@
                                 <div id="slideShow" style="width: 360px; height: 360px;">
                                     <!-- 이미지는 JavaScript로 동적으로 추가 -->
                                 </div>
-                                <input type="file" id="file-input2" multiple name="production_img">
+                                <input type="file" id="file-input2" accept="image/*" multiple name="production_img2">
                             </div>
                             <div id="display-area" style="font-size: 20px;">
                                 <!-- 값출력란 -->
@@ -292,7 +292,7 @@
                             <input type="text" id="farming-environment" name="production_environment">
                             <label for="production-area" >생산지:</label>
                             <input type="text" id="production-area" name="production_place">
-                            <label for="production-stock" >생산지:</label>
+                            <label for="production-stock" >재고:</label>
                             <input type="number" id="production-stock" name="production_stock">
                         </div>
 

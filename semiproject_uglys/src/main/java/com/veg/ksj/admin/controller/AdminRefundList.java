@@ -1,4 +1,4 @@
-package com.veg.ksj.order.controller;
+package com.veg.ksj.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OrderFail
+ * Servlet implementation class RefundSelectCheck
  */
-@WebServlet("/order/orderfail.do")
-public class OrderFail extends HttpServlet {
+@WebServlet("/admin/refundList.do")
+public class AdminRefundList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderFail() {
+    public AdminRefundList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,8 @@ public class OrderFail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//장바구니 페이지로 전송
 		
+		request.getRequestDispatcher("/views/admin/refundList.jsp").forward(request, response);
 		
 	}
 

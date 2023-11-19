@@ -1,11 +1,16 @@
 package com.veg.ksj.admin.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.veg.ksj.order.model.dto.Order;
+import com.veg.ksj.order.model.service.OrderService;
 
 /**
  * Servlet implementation class AdminDeliveryList
@@ -27,9 +32,10 @@ public class AdminDeliveryList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//주문내역 리스트 가져오기
+		List<Order> orderList=new OrderService().selectAllOrderDetails();
 		
 		//주문내역 리스트를 setAttribute로 저장
-//		request.setAttribute("deliveryList", deliverylist);
+		request.setAttribute("orderList", orderList);
 		
 		//주문내역 리스트로 dispatcher
 		request.getRequestDispatcher("/views/admin/deliveryList.jsp").forward(request, response);
