@@ -36,7 +36,7 @@ public class Notice implements ResultSetMapper<Notice> {
     private String noticeOriginalFilename = "";
 
 
-    public Notice fromResultSet(ResultSet rs) throws SQLException {
+    public Notice fromResultSet(ResultSet rs, String type) throws SQLException {
         return Notice
                 .builder()
                 .noticeNo(rs.getInt("notice_no"))

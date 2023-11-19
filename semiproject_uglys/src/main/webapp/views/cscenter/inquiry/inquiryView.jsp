@@ -109,10 +109,16 @@
 
 
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px; padding-bottom: 10px;">
-                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">`
+                        <style>
+                            /* 호버 시에 녹색으로 변경 */
+                            .important-button:hover {
+                                color: #28a745;
+                            }
+                        </style>
                         <button type="button" class="btn btn-primary btn-sm important-button"
                                 onclick="location.replace('<%=request.getContextPath()%>/myInfo.do')"
-                                style="padding: .6rem !important; font-size: .72rem !important; margin: 0 !important;">
+                                style="padding: .6rem !important; font-size: .72rem !important; margin: 0 !important; ">
                             마이페이지
                         </button>&nbsp;&nbsp;
 
@@ -123,7 +129,7 @@
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 3px;">
         <span style="font-weight: bolder; margin-left: 10%; font-size: .88rem !important;">
-            <%=loginMember.getMemberName() %><%=loginMember.getMemberNo() %>님 환영합니다.
+            <%=loginMember.getMemberName() %>님 환영합니다.
         </span>
                     </div>
                 </div>
@@ -134,6 +140,9 @@
         </div>
     </div>
 </nav>
+
+
+<%--===============================================================================================================--%>
 
 <style>
     #Smallchat .Messages, #Smallchat .Messages_list {
@@ -556,191 +565,486 @@
 <%--===============================================================================================================--%>
 
 
-<%@ page import="java.util.List,com.veg.seoj.cscenter.model.dto.Notice,java.sql.Timestamp,java.text.SimpleDateFormat" %>
+<%@ page
+        import="java.util.List,com.veg.seoj.cscenter.model.dto.Inquiry,java.sql.Timestamp,java.text.SimpleDateFormat" %>
+<%@ page import="com.veg.seoj.cscenter.model.dto.InquiryComment" %>
 <%@ page import="com.veg.hjj.member.dto.Member" %>
-
-    <%
-    List<Notice> notices = (List<Notice>)request.getAttribute("notices");
+<%@ page import="java.util.ArrayList" %>
+<%
+    Inquiry inquiry = (Inquiry)request.getAttribute("inquiry");
+    System.out.println("뷰어 페이지 " + (Inquiry)request.getAttribute("inquiry"));
+    List<InquiryComment> inquiryComments = (List<InquiryComment>)request.getAttribute("inquryComments");
+    if (inquiryComments == null) {
+        inquiryComments = new ArrayList<>();
+    }
+    System.out.println("뷰어 페이지 코멘트 " + (List<InquiryComment>)request.getAttribute("inquryComments"));
 %>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<%-- <%
-	// Oracle에서 Timestamp 값을 가져온다고 가정
-	Timestamp oracleTimestamp = (Timestamp) request.getAttribute("oracleTimestamp");
-
-// SimpleDateFormat을 사용하여 날짜 및 시간 형식을 지정
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-// 변환된 날짜 문자열을 얻음
-	String formattedDate = dateFormat.format(oracleTimestamp);
-%> --%>
-
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css/main.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css/main.css"/>
 <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/animate.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/animate.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/owl.carousel.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/magnific-popup.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/magnific-popup.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/aos.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/aos.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/ionicons.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/ionicons.min.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/jquery.timepicker.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/jquery.timepicker.css">
 
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/flaticon.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/icomoon.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/style.css">
-
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/flaticon.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/css/icomoon.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sjcss/css2/style.css">
 <style>
     #sidebar {
         padding-top: 70px;
+        flex: 1; /* 사이드바가 남은 공간을 모두 차지하도록 설정 */
+        margin-right: 20px; /* 사이드바와 board-container 사이에 20px 간격 추가 */
+    }
+
+    #container-wrapper {
+        display: flex;
+    }
+
+    #sidebar {
+        padding-top: 70px;
+        flex: 1; /* 사이드바가 남은 공간을 모두 차지하도록 설정 */
+    }
+
+    #board-container {
+        margin: 0 auto;
+        margin-top: 50px;
+        padding: 50px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        flex: 1.5; /* board-container가 사이드바의 2배의 너비를 차지하도록 설정 */
     }
 </style>
-<!-- 큰 div를 만들어서 같은곳에 넣어줌 -->
+
+<script>
+    내용입력여부
+    확인
+    후
+    전송
+</script>
 <div class="container">
     <div class="row">
-        <!-- Sidebar -->
-        <div id="sidebar" class="col-md-3">
-            <div class="inner">
-                <!-- Menu -->
-                <nav id="menu">
-                    <header class="major">
-                        <h2>공지사항</h2>
-                    </header>
-                    <ul>
-                        <li>
+        <div id="container-wrapper">
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+                    <!-- Menu -->
+                    <nav id="menu">
+                        <header class="major">
+                            <h2>1:1 문의</h2>
+                        </header>
+                        <ul>
+                            <li>
 
-                        <li class="opner" style="list-style-type: none;"><a
-                                href="<%=request.getContextPath() %>/notice/noticeList.do" class="nav-link">공지사항</a>
-                        </li>
-                        <!-- 											<ul>
-                                                                        <li><a href="myorders.html">주문 조회</a></li>
-                                                                        <li><a href="myreturn.html">반품 조회</a></li>
-                                                                        <li><a href="cart1.html">장바구니</a></li>
-                                                                    </ul> -->
-                        </li>
-                        <li>
-                            <span class="opener">자주 묻는 질문</span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myreview.html">나의 리뷰</a></li>
-                                                                            <li><a href="bookmark.html">북마크</a></li>
-                                                                            <li><a href="#">1:1문의</a></li>
-                                                                        </ul> -->
-                        </li>
-                        <li>
-                            <span><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do"
-                                     class="opener">1:1 문의</a></span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myinfo.html">내 정보 수정</a></li>
-                                                                            <li><a href="myaddress.html">배송지 관리</a></li>
-                                                                        </ul> -->
-                        </li>
-                        <!-- 										<li><a onclick="confirmLogout()">로그아웃</a></li> -->
-                        <li>
-                            <span class="opener">고객의 소리(x)</span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myinfo.html">내 정보 수정</a></li>
-                                                                            <li><a href="myaddress.html">배송지 관리</a></li>
-                                                                        </ul> -->
-                        </li>
-                    </ul>
-                </nav>
+                            <li class="opner" style="list-style-type: none;"><a
+                                    href="<%=request.getContextPath() %>/notice/noticeList.do" class="nav-link">공지사항</a>
+                            </li>
 
+                            </li>
+                            <li>
+                                <span class="opener">자주 묻는 질문</span>
+                                <%--               <ul>
+                                                   <li><a href="myreview.html">나의 리뷰 </a></li>
+                                                   <li><a href="bookmark.html">북마크</a></li>
+                                                   <li><a href="#">1:1문의</a></li>
+                                               </ul>--%>
+                            </li>
+                            <li>
+
+                                <a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link"
+                                   class="opener">1:1 문의</a>
+                                <!-- 											<ul>
+                                                                                <li><a href="myinfo.html">내 정보 수정</a></li>
+                                                                                <li><a href="myaddress.html">배송지 관리</a></li>
+                                                                            </ul> -->
+                            </li>
+                            <!-- 										<li><a onclick="confirmLogout()">로그아웃</a></li> -->
+                            <li>
+                                <span class="opener">고객의 소리(x)</span>
+                                <!-- 											<ul>
+                                                                                <li><a href="myinfo.html">내 정보 수정</a></li>
+                                                                                <li><a href="myaddress.html">배송지 관리</a></li>
+                                                                            </ul> -->
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
             </div>
-        </div>
-        <style>
-            .board-title {
-                overflow: hidden;
-                white-space: normal;
-                text-overflow: ellipsis;
-                word-wrap: break-word;
-            }
-        </style>
-        <section id="board-container" style="margin-top: 130px; margin-bottom: 100px;">
-            <% int noticeCount = notices.size(); %>
-            <h7 style="margin-right: 600px;">전체 글 수 <%=noticeCount%>
-            </h7>
-            <table id="tbl-board">
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>첨부파일</th>
-                    <th>조회수</th>
-                </tr>
-                <tr>
-                    <% if (!notices.isEmpty()) {
-                        for (Notice n : notices) { %>
-                    <td><%= n.getNoticeNo() %>
-                    </td>
-                    <td class="board-title">
-                        <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=n.getNoticeNo()%>">
-                            <%= getTruncatedTitle(n.getNoticeTitle()) %>
-                        </a>
-                    </td>
-                    <td>관리자</td>
-                    <td><%= new SimpleDateFormat("yyyy-MM-dd HH:mm").format(n.getNoticeDate()) %>
-                    </td>
-                    <td>
-                        <% if (n.getNoticeOriginalFilename() != null) { %>
-                        <img src="<%=request.getContextPath()%>/images/file.png" width="25">
-                        <% } %>
-                    </td>
-                    <td><%= n.getNoticeView() %>
-                    </td>
-                </tr>
-                <% }
-                } %>
-            </table>
-        </section>
-
-        <%!
-            // 서버 측에서 글자 수 제한 함수
-            public String getTruncatedTitle(String originalTitle) {
-                int maxLength = 20;
-
-                if (originalTitle.length() > maxLength) {
-                    return originalTitle.substring(0, maxLength) + "...";
-                } else {
-                    return originalTitle;
+            <%--        <% if (inquiry != null) {%>--%>
+            <style>
+                #board-container {
+                    margin: 0 auto;
+                    margin-top: 50px;
+                    padding: 50px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    border-radius: 10px;
                 }
-            }
-        %>
-        </tbody>
-        </table>
 
-        <div id="pageBar"><a>
+                .board-header h2 {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
 
-                <%=request.getAttribute("pageBar") %>
+                .board-content {
+                    border: none; /* 안쪽 테두리 없애기 */
+                    border-radius: 5px;
+                }
 
+                /*         .board-details {
+                             margin-bottom: 20px;
+                         }*/
+
+                .board-detail-row {
+                    display: flex;
+
+                    margin-bottom: 10px;
+                    /*                align-items: flex-start;*/
+                }
+
+                .board-top-padding {
+                    margin-top: 30px;
+                }
+
+                /*           .board-detail-row:first-child {
+                               margin-top: 30px; !* 여백 값 조정 *!
+                           }*/
+
+                .board-detail-label {
+                    flex: 0 0 120px;
+                    font-weight: bold;
+                    margin-left: 20px;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .board-detail-label-title {
+                    flex: 0 0 120px;
+                    font-weight: bold;
+                    margin-left: 20px;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 50px;
+                }
+
+                .board-detail-value {
+                    flex: 1;
+                }
+
+                .board-file img {
+                    margin-right: 5px;
+                }
+
+                .board-content-text {
+                    margin-top: 50px;
+                    margin-top: 50px;
+                    white-space: pre-wrap;
+                    /*height: 300px;*/
+                    display: flex;
+                    /*                align-items: center;
+                                    justify-content: center;*/
+                }
+
+                .board-actions {
+                    margin-top: 20px;
+                    display: flex;
+                    justify-content: center; /* 수정하기 및 삭제하기 버튼 오른쪽 정렬 */
+                }
+
+                .comment-actions {
+                    margin-top: 20px;
+                    display: flex;
+                    justify-content: flex-end; /* 수정하기 및 삭제하기 버튼 오른쪽 정렬 */
+                }
+
+                .comment-container {
+                    margin-top: 20px;
+                }
+
+                .comment-editor {
+                    margin-bottom: 20px;
+                }
+
+                .comment-list {
+                    padding-top: 20px;
+                }
+
+
+                #comment-container {
+                    margin-top: 20px;
+
+                    padding: 20px;
+                    border-radius: 10px;
+                }
+
+                .comment-editor {
+                    margin-bottom: 20px;
+                }
+
+                #tbl-comment {
+                    width: 80%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+
+                #tbl-comment th,
+                #tbl-comment td {
+
+                    padding: 10px;
+                    text-align: left;
+                }
+
+                #tbl-comment .level1 td {
+
+                }
+
+                .comment-writer,
+                .comment-date {
+                    display: inline-block;
+                    font-size: 12px;
+                    margin-bottom: 5px;
+                }
+
+                .comment-content {
+                    white-space: pre-wrap;
+                }
+
+                .btn-reply,
+                .btn-delete,
+                .btn-insert,
+                .btn-insert2 {
+
+                    border: none;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    margin-right: 5px;
+                }
+
+            </style>
+
+            <section id="board-container">
+                <div class="board-top-padding">h
+                </div>
+                <form action='<%=request.getContextPath()%>/inquiry/inquiryWriteEnd.do'
+                      enctype="multipart/form-data" method="post">
+
+                    <input type="hidden" name="memberNo"
+                           value="<%= (loginMember != null) ? loginMember.getMemberNo() : -1 %>">
+                    <input type="hidden" name="orderNo">
+                    <input type="hidden" name="productNo">
+                    <input type="hidden" name="memberName"
+                           value="<%= (loginMember != null) ? loginMember.getMemberName() : "" %>">
+                    <input type="hidden" name="totalPrice">
+                    <input type="hidden" name="orderStatus">
+                    <input type="hidden" name="productionName">
+                    <input type="hidden" name="productImg">
+                    <input type="hidden" name="refundNo">
+                    <input type="date" name="refundDate" style="display: none;">
+                    <div class="board-detail-row">
+                        <span class="board-detail-label">문의 분류</span>
+                        <span class="board-detail-value" name="category"><%=inquiry.getInquiryType() %></span>
+                    </div>
+                    <hr style="border-top: 1px solid rgba(0, 0, 0, 0.1) !important;">
+                    <div class="board-detail-row">
+                        <span class="board-detail-label" name="title">제목</span>
+                        <span class="board-detail-value"><%=inquiry.getInquiryTitle() %></span>
+                    </div>
+                    <div class="board-content">
+                        <div class="board-details">
+                            <div class="board-detail-row">
+                                <span class="board-detail-label" name="writer">작성자</span>
+                                <span class="board-detail-value"
+                                      style="font-weight: bolder"><%=inquiry.getMemberName() %></span>
+                            </div>
+                            <div class="board-detail-row">
+                                <%
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                    String sdfResult = sdf.format(inquiry.getInquiryDate());
+                                %>
+                                <span class="board-detail-label">작성일</span>
+                                <span class="board-detail-value"><%=sdfResult %></span>
+                            </div>
+                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.1) !important;">
+                            <div class="board-detail-row">
+                                <span class="board-detail-label" name="orderNo">주문 번호</span>
+                                <span class="board-detail-value"><%=inquiry.getFkOrderNo() %></span>
+                            </div>
+                            <div class="board-detail-row">
+                                <span class="board-detail-label" name="productNo">상품명 </span>
+                                <span class="board-detail-value"><%=inquiry.getProductionName() %></span>
+                            </div>
+                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.1) !important;">
+                            <div class="board-detail-row">
+                                <span class="board-detail-label" name="refundNo">환불신청 번호 </span>
+                                <span class="board-detail-value"><%=inquiry.getRefundNo() %></span>
+                            </div>
+                            <div class="board-detail-row">
+                                <span class="board-detail-label">환불신청 일자 </span>
+                                <span class="board-detail-value"><%=inquiry.getRefundDate() %></span>
+                            </div>
+                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.1) !important;">
+                            <div class="board-detail-row">
+                                <span class="board-detail-label" name="upfile2">첨부파일</span>
+                                <div class="board-file">
+                                    <% if (inquiry.getInquiryOriginalFilename() != null) { %>
+                                    <img src="<%=request.getContextPath()%>/images/file.png" width="25">
+                                    <span><%=inquiry.getInquiryOriginalFilename() %></span>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.1) !important;">
+                            <div class="board-detail-row">
+                                <span class="board-detail-label-title">내용</span>
+                                <div class="board-content-text"><%=inquiry.getInquiryContent() %>
+                                </div>
+                            </div>
+                        </div>
+                        <%-- 글작성자/관리자인 경우 수정삭제 가능 --%>
+                        <div class="board-actions">
+                            <button class="btn btn-primary btn-sm">수정하기</button>
+                            &nbsp;&nbsp;
+                            <button class="btn btn-primary btn-sm">삭제하기</button>
+                        </div>
+
+                </form>
+
+                <form action="<%=request.getContextPath() %>/board/insertComment.do" method="post">
+                    <div id="comment-container" style="margin-top: 50px;">
+                            <%if (!inquiryComments.isEmpty()) { %>
+                        <div class="comment-wrapper">
+                            <%
+                                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                String sdfResult2 = "";
+                            %>
+                            <% for (InquiryComment inquiryComment : inquiryComments) {
+                                if (inquiryComment.getFkInquiryNo() != 0) {%>
+
+
+                            <div class="comment" style="margin: 0 30px;">
+                                <div class="comment-writer"
+                                     style="font-weight: bolder"><%=inquiryComment.getInquiryCommentWriter() %>
+                                </div>
+                                <%
+                                    sdfResult2 = sdf2.format(inquiryComment.getInquiryCommentDate());
+                                %>
+                                <div class="comment-date">
+                                    <span class="comment-date-value"><%=sdfResult2 %></span>
+                                </div>
+                                <div class="comment-content"><%=inquiryComment.getInquiryCommentContent() %>
+                                </div>
+                                <div class="comment-actions">
+                                    <%--                <button class="btn-reply" value="<%=inquiryComment.getInquiryCommentNo()%>">답글
+                                                    </button>--%>
+                                    <%
+                                        if (loginMember != null && loginMember
+                                                .getMemberId()
+                                                .equals("admin")) {
+                                    %>
+
+                                    <button type="submit" class="btn btn-primary btn-sm"
+                                    >삭제
+                                    </button>
+                                    <%--               <button class="btn-delete" class="btn btn-primary btn-sm">삭제</button>--%>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <% }%>
+                            <% } %>
+                        </div>
+
+                            <%} %>
+                </form>
+                <div class="comment-editor">
+                    <%--
+                                        <script>
+                                            var xhr = new XMLHttpRequest();
+
+                                            // HTTP 요청 헤더에 사용자 인증 정보를 추가합니다.
+                                            var username = "your_username";
+                                            var password = "your_password";
+                                            var authHeader = "Basic " + btoa(username + ":" + password); // 사용자명과 암호를 Base64로 인코딩
+                                            xhr.setRequestHeader("Authorization", authHeader); // "Authorization" 헤더에 사용자 인증 정보 추가
+
+                                            // HTTP 요청을 열고 보냅니다.
+                                            xhr.open("GET", "https://example.com/api/resource", true);
+                                            xhr.send();
+
+                                        </script>
+                    --%>
+
+
+                    <form action="<%=request.getContextPath() %>/board/insertComment.do" method="post">
+                        <input type="hidden" name="boardRef" value="<%=inquiry.getInquiryNo()%>">
+                        <input type="hidden" name="level" value="1">
+                        <input type="hidden" name="writer"
+                               value="<%=loginMember!=null?loginMember.getMemberName():"" %>">
+                        <input type="hidden" name="boardCommentRef" value="0">
+                        <textarea name="content" cols="55" rows="3"
+                                  style="margin-top: 30px; border: 1px;!important; border: 1px solid #E0EDA2 !important;">
+
+                                </textarea>
+                        <div class="comment-actions">
+                            <button type="submit" id="btn-insert" class="btn btn-primary btn-sm"
+                            >등록
+                            </button>
+                            &nbsp;
+                            <button type="button" id="btn-insert2" class="btn btn-primary btn-sm"
+                                    style="margin-right: 20px;"
+                            >삭제
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
         </div>
-        <div class="col-md-4">
-
-            <%--
-<%if(loginMember!=null){ %>
---%>
-            <span class="">
-					<button onclick="location.assign('<%=request.getContextPath() %>/board/boardWrite.do')"
-                            style="margin-left: 600px;" class="btn btn-sm btn-primary">
-				글쓰기
-			</button>
-					</span>
-
-            <%--	<%} %>--%>
-        </div>
-
-        </section>
     </div>
-</div>
 
+
+</div>
+<script>
+    $(".comment-editor>form>textarea[name=content]").focus(e => {
+        if (<%=loginMember==null%>) {
+            alert("로그인 후 이용할 수 있는 서비스입니다.");
+            $("#userId").focus();
+        }
+    });
+    $(".btn-reply").click(e => {
+
+        const $tr = $("<tr>");
+        const $td = $("<td>").attr("colspan", "2");
+        const $form = $(".comment-editor>form").clone();
+        console.log($form);
+        $form.find("input[name=level]").val("2");
+        $form.find("textarea").attr("rows", "1");
+        $form.find("button").removeAttr("id").addClass("btn-insert2");
+        $form.find("input[name=boardCommentRef]").val($(e.target).val());
+
+        $td.append($form);
+        $tr.append($td);
+
+        $(e.target).parents("tr")
+            .after($tr);
+    });
+</script>
+
+
+</div>
+</body>
 <%@ include file="/views/common/footer.jsp" %>

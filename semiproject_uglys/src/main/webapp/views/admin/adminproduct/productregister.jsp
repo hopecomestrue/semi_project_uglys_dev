@@ -235,11 +235,13 @@
                     <header class="major">
                         <h2>상품개별페이지</h2>
                     </header>
-
+                    
+                    
+                  
                     <div style="display: flex;">
                         <img id="preview" style="width: 360px; height: 360px;">
 
-                    <form action="<%=request.getContextPath()%>/production/register.do" method="post" enctype="multipart/form-data">
+                       <form action="<%=request.getContextPath()%>/production/register.do" method="post" id="upload-form" enctype="multipart/form-data">  
                         <table>
                             <tr>
                                 <td>상품명:</td>
@@ -260,7 +262,7 @@
                         </table>
                     </div>
                     <div style="display: block;">
-                        <input type="file" id="file-input1" accept="image/*" multiple name="production_img1">
+                        <input type="file" id="file-input1" accept="image/*" multiple name="production_thumnail">
                     </div>
                     </section>
                         <div>
@@ -299,8 +301,8 @@
                         <h2>상품상세설명</h2>
                         <div id="editor"></div>
                         <div style="display: block;">
-                            <button onclick="upload();" style="margin-top: 100px;" id="upload">등록</button>
-                            <input type="hidden" value="" name="content" id="upload">
+                            <button type="submit" style="margin-top: 100px;" id="upload">등록</button>
+                            <input type="hidden" value="" name="content" id="content-input">
                  	</form>
                    </div>
             </div>
@@ -442,14 +444,30 @@
                 console.error(error);
             });
 
-        function upload() {
-            const editorData = editor.getData();
-            /* console.log(editorData); */
-            $("#upload").attr("value", editorData);
-            $("#upload").submit();
-
-        }
+       
     </script>
+    
+    
+    <script>
+    
+    window.onload = function() {
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const editorData = editor.getData();
+            $("#content-input").val(editorData);
+
+            if (confirm('등록하시겠습니까?')) {
+                console.log("upload function is called");
+                console.log($("#content-input").val()); 
+                $("#upload-form").submit();
+            } else {
+                console.log('폼 제출이 취소되었습니다.');
+            }
+        });
+    };	
+    </script>
+    
 </body>
 
 </html>
