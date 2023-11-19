@@ -132,7 +132,7 @@
       <th><input class="form-check-input" type="checkbox" id="checkboxAll" value="" aria-label="..." ></th>
       <th>주문 상세 번호</th>
       <th>주문 아이디 고유번호</th>
-      <th>이름</th>
+      <th>주문자 이름</th>
       <th>전화번호</th>
       <th>주소</th>
       <th>주문 날짜</th>
@@ -142,8 +142,8 @@
 	  for(Order o : orderList){%>
   <tr>
       <td><input class="form-check-input" type="checkbox" id="checkboxNo" 
-      				name="<%-- <%=deli.getNo %> --%>" aria-label="..."></td>
-      <td><a href="<%=request.getContextPath()%>/admin/deliveryDetail.do"><%=o.getOrderNo() %></a></td>
+      				name="<%=o.getOrderNo() %>" aria-label="..."></td>
+      <td><a href="<%=request.getContextPath()%>/admin/deliveryDetail.do?orderNo=<%=o.getOrderNo() %>"><%=o.getOrderNo() %></a></td>
       <td><%=o.getOrderNo()%></td>
       <td><%=o.getOrderName() %></td>
       <td><%=o.getOrderPhone() %></td>
@@ -193,6 +193,11 @@
 	  for (var checkbox of checkboxes) {
 	    checkbox.checked = this.checked;
 	  }
+	});
+	
+	document.getElementById('checkboxNo').addEventListener('click',function(){
+		var checkAll=document.getElementById('checkboxAll');
+		checkAll.checked=false;
 	});
 	
 </script>
