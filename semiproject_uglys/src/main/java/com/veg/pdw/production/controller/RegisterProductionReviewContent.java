@@ -17,12 +17,12 @@ import javax.servlet.http.Part;
 /**
  * Servlet implementation class RegisterProductionCont
  */
-@WebServlet("/production/upload")
+@WebServlet("/upload/production/review")
 @MultipartConfig
-public class RegisterProductionContent extends HttpServlet {
+public class RegisterProductionReviewContent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public RegisterProductionContent() {
+    public RegisterProductionReviewContent() {
         super();
     }
 
@@ -37,9 +37,9 @@ public class RegisterProductionContent extends HttpServlet {
         String newFileName = UUID.randomUUID().toString() + ext;
 
         // 저장 경로를 "/upload/production/content"로 변경하였습니다.
-        String realPath = request.getServletContext().getRealPath("/upload/production/content"); 
+        String realPath = request.getServletContext().getRealPath("/upload/production/review"); 
         String savePath = realPath + "/" + newFileName;
-        String uploadPath = request.getContextPath() + "/upload/production/content/" + newFileName;
+        String uploadPath = request.getContextPath() + "/upload/production/review/" + newFileName;
  
         // 디렉토리를 생성하는 부분도 "/upload/production/content"로 변경하였습니다.
         File fileSaveDir = new File(realPath);

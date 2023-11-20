@@ -38,18 +38,6 @@ public class RegisterProductionServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		
-		
-		
-	}
-		 
-		
-
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			System.out.println("잘못된 접근입니다");
 		}else {
@@ -63,7 +51,7 @@ public class RegisterProductionServlet extends HttpServlet {
 			MultipartRequest mr = new MultipartRequest(request,path,maxSize,encoding,dfr);
 			
 			
-		        
+			
 			String productionName=mr.getParameter("production_name");
 			int productionPrice=Integer.parseInt(mr.getParameter("production_price"));
 			int productionDiscount=Integer.parseInt(mr.getParameter("production_discount"));
@@ -88,9 +76,9 @@ public class RegisterProductionServlet extends HttpServlet {
 			String content = mr.getParameter("content");
 			
 			ProductionContent pc = ProductionContent.builder()
-													.productionImg(thumnail)	
-													.productionContent(content)
-													.build();
+					.productionImg(thumnail)	
+					.productionContent(content)
+					.build();
 			
 			
 			int result = new ProductionService().insertProduction(p,pc);
@@ -101,4 +89,17 @@ public class RegisterProductionServlet extends HttpServlet {
 		
 	}
 
+		
+		
+	
+		 
+		
+
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 }
