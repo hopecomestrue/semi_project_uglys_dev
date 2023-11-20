@@ -102,8 +102,8 @@ public class OrderSuccess extends HttpServlet {
 			System.out.println("DB저장실패");
 		}
 		
+		request.getSession().setAttribute("order", order);
 		 response.setContentType("application/json;charset=utf-8");
-		 request.setAttribute("order", order);
 		 gson.toJson(order,response.getWriter());
 
 		
