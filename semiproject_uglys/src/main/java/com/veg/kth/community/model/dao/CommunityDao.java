@@ -135,8 +135,14 @@ public class CommunityDao {
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement("insertRecipe");
-			
-			
+			pstmt.setString(1, r.getRecipeOriginalFileName());
+			pstmt.setString(2, r.getRecipeRenamedFileName());
+			pstmt.setString(3, r.getRecipeTitle());
+			pstmt.setString(4, r.getRecipeComment());
+			pstmt.setInt(5, r.getRecipeLeadTime());
+			pstmt.setInt(6, r.getRecipeCapa());
+			pstmt.setInt(7, r.getMember_no());
+			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -144,6 +150,120 @@ public class CommunityDao {
 		}return result;
 		
 	}
+	
+	
+	public int checkRecipeNo(Connection conn, Recipe r) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement("checkRecipeNo");
+			pstmt.setInt(1, r.getMember_no());
+			pstmt.setInt(2, r.getRecipeCapa());
+			pstmt.setString(3, r.getRecipeRenamedFileName());
+			rs = pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt(1);
+		}catch(SQLException e) {
+			
+		}finally {
+			close(pstmt);
+		}return result;
+		
+	}
+	
+	
+	
+	public int insertMaterial(Connection conn, Recipe r, int recipeNo) {
+		int result = 0;
+		List<Material> m = r.getMaterial();
+		
+		for(int i=0;i<m.size();i++) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement("insertMaterial");
+			pstmt.setString(1, m.get(i).getMaterialType());
+			pstmt.setString(2, m.get(i).getMaterialName());
+			pstmt.setString(3, m.get(i).getMaterialCapa());
+			pstmt.setInt(4, recipeNo);
+			result+=pstmt.executeUpdate();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		}
+		return result;
+		
+	}
+	
+	public int insertProcedure(Connection conn, Recipe r, int recipeNo) {
+		int result = 0;
+		List<Procedure> m = r.getProcedure();
+		
+		for(int i=0;i<m.size();i++) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement("insertProcedure");
+			pstmt.setLong(1, m.get(i).getProcedureOrder());
+			pstmt.setString(2, m.get(i).getProcedureComment());
+			pstmt.setString(3, m.get(i).getProcedureOriginalFileName());
+			pstmt.setString(4, m.get(i).getProcedureRenamedFileName());
+			pstmt.setInt(5, recipeNo);
+			result+=pstmt.executeUpdate();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		}
+		return result;
+		
+	}
+	
+	public int insertHashtag(Connection conn, Recipe r, int recipeNo) {
+		int result = 0;
+		List<Hashtag> m = r.getHashtag();
+		
+		for(int i=0;i<m.size();i++) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement("insertHashtag");
+			pstmt.setString(1, m.get(i).getHashtagValue());
+			pstmt.setInt(5, recipeNo);
+			result+=pstmt.executeUpdate();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		}
+		return result;
+		
+	}
+	
+	
+	public int insertCategory(Connection conn, Recipe r, int recipeNo) {
+		int result = 0;
+		Category m = r.getCategory();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement("insertHashtag");
+			pstmt.setString(1, m.getCategoryDept1());
+			pstmt.setInt(5, recipeNo);
+			result+=pstmt.executeUpdate();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
 	
 	
 	
