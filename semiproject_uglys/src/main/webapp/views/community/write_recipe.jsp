@@ -137,13 +137,16 @@ function categoryChange(e) {
          function toggleButton(button) {
 				
         	 let $rdTag = $('.rdtag');
-        	 if($rdTag.value==button.value){
+        	 
+        	 console.log($rdTag.value);
+        	 
+        	 if($rdTag.value.includes(button.value)){
         	 $rdTag.value = "";
         	 alert("값 지움")
 					        		 
         	 }else{
         	alert("값 넣음")
-        	 $rdTag.value += button.value;
+        	 $rdTag.value = button.value;
         		 
         	 }
 	    	 

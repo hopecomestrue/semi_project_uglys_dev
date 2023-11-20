@@ -16,10 +16,10 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.veg.kth.community.model.dto.Category;
-import com.veg.kth.community.model.dto.Hashtag;
 import com.veg.kth.community.model.dto.Material;
 import com.veg.kth.community.model.dto.Procedure;
 import com.veg.kth.community.model.dto.Recipe;
+import com.veg.kth.community.service.CommunityService;
 
 /**
  * Servlet implementation class CommunityRecipeWriteEndServlet
@@ -141,8 +141,30 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 					.recipeDate(null)
 					.build();
 			
-		System.out.println(r);
+			System.out.println(r);
 			
+			int result = new CommunityService().insertRecipe(r);
+			
+			String msg, loc;
+			
+			if(result>0) {
+				//입력성공
+				msg = "레시피 등록 성공";
+				loc = "/community/communitymain.do";
+			}else {
+				//입력실패
+				msg="공지사항 등록실패";
+				loc="/notice/noticewrite.do";
+				File delFile = new File(path+"/"+renameMainFile);
+				if(delFile.exists()) delFile.delete();
+				
+			}
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", loc);
+			request.getRequestDispatcher("/views/common/msg.jsp")
+			.forward(request, response);
+		
+		
 		}
 		
 		

@@ -144,8 +144,8 @@
       
     </style>
 <body>
-  <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+  <div class="container">
       <div class="col-md-3 mb-2 mb-md-0">
         <a href="<%=request.getContextPath()%>/admin/main.do" class="d-inline-flex link-body-emphasis text-decoration-none">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3YIR4yyeQgs9tgIWXuAH7AmYGRNHCQ8ZJ-Q&usqp=CAU" width="40" height="32">
