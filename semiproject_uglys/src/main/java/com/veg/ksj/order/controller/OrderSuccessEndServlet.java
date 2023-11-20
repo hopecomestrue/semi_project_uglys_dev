@@ -32,12 +32,12 @@ public class OrderSuccessEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		Gson gson=new Gson();
 	
-		long orderNo=Long.parseLong(request.getParameter("orderNo"));
-		System.out.println("마지막에 받은 주문번호"+orderNo);
-		Order order=new OrderService().selectOrderDetailsByOrderNo(orderNo);
-		System.out.println(order.getOrderAddress());
+//		long orderNo=Long.parseLong(request.getParameter("orderNo"));
+//		System.out.println("마지막에 받은 주문번호"+orderNo);
+//		long orderNo=(Long)request.getAttribute("orderNo");
+//		Order order=new OrderService().selectOrderDetailsByOrderNo(orderNo);
+//		System.out.println(order.getOrderAddress());
 		
-		request.setAttribute("order", order);
 		
 		request.getRequestDispatcher("/views/order/orderSuccess.jsp").forward(request, response);
 	}

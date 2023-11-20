@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 <%
-	Order order=(Order)request.getAttribute("order");
+	Order order=(Order)request.getSession().getAttribute("order");
 %>
 
 

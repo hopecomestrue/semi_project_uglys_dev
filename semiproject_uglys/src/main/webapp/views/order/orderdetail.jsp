@@ -3,7 +3,7 @@
 <%@ include file="/views/common/header.jsp" %>
 
 
-  <!-- <form class="pay-form" id="pay-form" action="" method="post"> -->
+   <form class="pay-form" id="pay-form" action="<%=request.getContextPath() %>/order/ordersuccessEnd.do" method="post">
 	<section class="ftco-section ftco-cart">
 		<div class="container">
 			<div class="row">
@@ -171,15 +171,16 @@
 											</div>
 										</div>
 									</div>
-									<button class="btn btn-primary py-3 px-4" onclick="paymentOrder_btn()">결제하기</button>
+									<button type="button" class="btn btn-primary py-3 px-4" onclick="paymentOrder_btn()">결제하기</button>
 								</div>
+								<input type="hidden" name="" id="orderNoHidden">
 	          	</div>
 	          </div>
           </div> <!-- .col-md-8 -->
         </div>
       </div>
-     <!-- </form> -->
     </section> <!-- .section -->
+   </form>
 
 
 	<!-- 택배 api -->
@@ -326,7 +327,6 @@
             /* buyer_postcode : '123-456', //우편번호*/
         }, function(rsp){
            if (rsp.success) {
-           //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
             jQuery.ajax({
                 url: "<%=request.getContextPath()%>/order/ordersuccess.do", //cross-domain error가 발생하지 않도록 주의해주세요
                 type: 'POST',
@@ -345,20 +345,29 @@
                     delrequest : delrequest //배송요청사항
                     /* paid_at : rsp.paid_at, // 결제승인시각 */
                     //필요한 데이터 있으면 추가
-                }
-            }).done(function(data)){
-        	   alert('결제 성공');
-          		 }
-            	window.location.replace('<%=request.getContextPath()%>/order/ordersuccessEnd.do?orderNo='+rsp.merchant_uid);
-            }) else {
-                msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-                //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/order/orderfail.do";
-                alert(msg);
-            }
-        });
-    }
+                },
+			success:function(res){
+				/* console.log('테스트'+res); */
+				/* var orderNo=document.getElementById('orderNoHidden');
+				orderNo.name='1'; */
+				document.getElementById('pay-form').submit();
+			},
+			error:function(err){
+				console.log('결제 실패 이유 : ' +err);
+			}
+            });
+           }else{
+        	   msg = '결제에 실패하였습니다.';
+               msg += '에러내용 : ' + rsp.error_msg;
+               //실패시 이동할 페이지
+               alert(msg);
+           }
+			alert("결제완료");
+		});
+	}
+            
+            
+            
    /* kcp결제 */
    function kcp_payment(){
        var IMP = window.IMP;
@@ -370,7 +379,17 @@
         var buyerEmail=$('#buyer-email').val();//구매자 이메일
         var buyerTel=$('#buyer-phone').val();//구매자 폰번호
         var buyerAddr=$('#sample4_roadAddress').val()+' '+$('#sample4_detailAddress').val();//구매자 주소
-        var delrequest='배송 요청사항';//배송요청사항
+        var delrequest='';//배송요청사항
+        //배송요청사항 분기처리
+        var select=document.getElementById("deli-memo-choice");
+        var input=document.getElementById("deli-input");
+        
+        if(select.value==='요청사항을 직접 입력합니다.'){
+        	delrequest=input.value;
+        }else{
+        	delrequest=select.value;
+        }
+        
 
         IMP.request_pay({
             pg : 'kcp.{AO09C}',
@@ -385,7 +404,6 @@
             /* buyer_postcode : '123-456', //우편번호*/
         }, function(rsp){
            if (rsp.success) {
-           //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
             jQuery.ajax({
                 url: "<%=request.getContextPath()%>/order/ordersuccess.do", //cross-domain error가 발생하지 않도록 주의해주세요
                 type: 'POST',
@@ -404,17 +422,26 @@
                     delrequest : delrequest //배송요청사항
                     /* paid_at : rsp.paid_at, // 결제승인시각 */
                     //필요한 데이터 있으면 추가
-                }
-            })
-            } else {
-                msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-                //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/order/orderfail.do";
-                alert(msg);
-            }
-        });
-    }
+                },
+			success:function(res){
+				/* console.log('테스트'+res); */
+				/* var orderNo=document.getElementById('orderNoHidden');
+				orderNo.name='1'; */
+				document.getElementById('pay-form').submit();
+			},
+			error:function(err){
+				console.log('결제 실패 이유 : ' +err);
+			}
+            });
+           }else{
+        	   msg = '결제에 실패하였습니다.';
+               msg += '에러내용 : ' + rsp.error_msg;
+               //실패시 이동할 페이지
+               alert(msg);
+           }
+			alert("결제완료");
+		});
+	}
 	
 	</script>
 	

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.veg.ksj.order.model.service.OrderService;
 
 
@@ -29,6 +30,7 @@ public class AdminDeliveryDetailEnd extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Gson gson=new Gson();
 		//주문번호, 송장번호,배송상태 값 받아오기
 		long orderNo=Long.parseLong(request.getParameter("orderNo")); //주문번호
 		long delNo=Long.parseLong(request.getParameter("delNo")); //송장번호
@@ -41,10 +43,10 @@ public class AdminDeliveryDetailEnd extends HttpServlet {
 		//주문번호로 조회해서 송장번호,배송상태 변경
 		int result=new OrderService().updateOrderDetails(delCheck, delNo, orderNo);
 		
-		if(result>0) System.out.println("DB 배송상태 변경 성공");
-		else  System.out.println("DB 배송상태 변경 실패");
+//		if(result>0) System.out.println("DB 배송상태 변경 성공");
+//		else  System.out.println("DB 배송상태 변경 실패");
 		
-		response.sendRedirect(request.getContextPath()+"/admin/deliveryDetail.do?orderNo="+orderNo);
+		gson.toJson("",response.getWriter());
 	}
 
 	/**
