@@ -26,7 +26,6 @@ public class OrderFail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//장바구니 페이지로 전송
 		
 		
 	}

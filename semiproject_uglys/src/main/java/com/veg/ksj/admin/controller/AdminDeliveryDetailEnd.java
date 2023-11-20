@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veg.ksj.order.model.service.OrderService;
+
+
 /**
  * Servlet implementation class AdminDeliveryDetailEnd
  */
@@ -26,13 +29,22 @@ public class AdminDeliveryDetailEnd extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//주문번호, 송장번호,배송상태 값 받아오기
 		long orderNo=Long.parseLong(request.getParameter("orderNo")); //주문번호
-		int delNo=Integer.parseInt(request.getParameter("delNo")); //송장번호
+		long delNo=Long.parseLong(request.getParameter("delNo")); //송장번호
 		String delCheck=request.getParameter("delCheck"); //배송상태 : 배송준비중,배송중,배송완료
 		
-		System.out.println(orderNo);
-		System.out.println(delNo);
 		System.out.println(delCheck);
+		System.out.println(delNo);
+		System.out.println(orderNo);
+		
+		//주문번호로 조회해서 송장번호,배송상태 변경
+		int result=new OrderService().updateOrderDetails(delCheck, delNo, orderNo);
+		
+		if(result>0) System.out.println("DB 배송상태 변경 성공");
+		else  System.out.println("DB 배송상태 변경 실패");
+		
+		response.sendRedirect(request.getContextPath()+"/admin/deliveryDetail.do?orderNo="+orderNo);
 	}
 
 	/**

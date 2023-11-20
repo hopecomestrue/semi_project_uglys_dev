@@ -28,7 +28,7 @@ public class InquiryWriteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	                     HttpServletResponse response) throws ServletException, IOException {
 		request
-				.getRequestDispatcher("/views/inquiry/inquiryWrite.jsp")
+				.getRequestDispatcher("/views/cscenter/inquiry/inquiryWrite.jsp")
 				.forward(request, response);
 	}
 

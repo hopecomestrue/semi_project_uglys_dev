@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dto.Order;
 import com.veg.ksj.order.model.service.OrderService;
@@ -33,6 +34,8 @@ public class OrderSuccess extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 Gson gson = new Gson();
+		
 		Member m=(Member)request.getSession().getAttribute("loginMember");
 		
 		long orderNo=Long.parseLong(request.getParameter("merchant_uid")); //주문번호
@@ -93,13 +96,16 @@ public class OrderSuccess extends HttpServlet {
 						.build();
 		
 		int result=new OrderService().insertOrderDetails(order,m);
+		if(result>0) {
+			System.out.println("DB저장성공");
+		}else {
+			System.out.println("DB저장실패");
+		}
 		
-		if(result>0) System.out.println("DB저장 성공");
-		else System.out.println("DB저장 실패");
-		
-		
-		request.getRequestDispatcher("/index.jsp").forward(request, response); //마이페이지로
-		
+		 response.setContentType("application/json;charset=utf-8");
+		 request.setAttribute("order", order);
+		 gson.toJson(order,response.getWriter());
+
 		
 	}
 

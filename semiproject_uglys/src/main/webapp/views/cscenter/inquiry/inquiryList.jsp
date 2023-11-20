@@ -1,12 +1,158 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+
+<%@ page import="com.veg.ksj.admin.controller.AdminLogout" %>
+<%@ page import="com.veg.hjj.member.dto.Member" %>
+<%
+    Member loginMember = (Member)session.getAttribute("loginMember");
+    if (loginMember != null) {
+        System.out.println(loginMember.getMemberNo());
+    }
+%>
+<!DOCTYPE html>
+<head>
+    <title>채소랑</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/animate.css">
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/aos.css">
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/flaticon.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/icomoon.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
+    <script src="<%=request.getContextPath() %>/js/jquery-3.7.0.min.js"></script>
+</head>
+
+<body class="goto-here">
+<style>
+    /* 여백 조절 스타일 */
+    .navbar-nav {
+        margin-top: 20px; /* 네비게이션 바 전체의 위쪽 여백 */
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px; /* 각 네비게이션 아이템의 아래쪽 여백 */
+    }
+
+    .navbar-nav .cta-colored {
+        margin-top: 20px; /* [0] 아이템의 위쪽 여백 */
+    }
+
+    .navbar-nav .btn-primary,
+    .navbar-nav .btn-outline-secondary {
+        margin-top: 10px; /* 버튼 위쪽 여백 */
+        margin-bottom: 3px; /* 버튼 아래쪽 여백 */
+    }
+
+    .navbar-nav .important-button {
+        margin-top: 3px; /* 중요 버튼 위쪽 여백 */
+    }
+
+    .navbar-nav span {
+        margin-top: 3px; /* 환영 메세지 위쪽 여백 */
+    }
+
+
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">
+            <img src="<%=request.getContextPath() %>/images/brand_image (4).png" alt="브랜드 로고" style="max-width:70%">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <style>
+            /* 추가된 스타일 */
+            .navbar-nav {
+                margin-top: 20px; /* 위쪽 여백 조정 */
+            }
+        </style>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="index.html" class="nav-link">정기배송</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html">채소농장</a></li>
+
+                <li class="nav-item" style="list-style-type: none;"><a
+                        href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
+
+                <li class="nav-item" style="list-style-type: none;"><a
+                        href="<%=request.getContextPath() %>/notice/noticeList.do" class="nav-link">고객센터</a></li>
+
+                <li class="nav-item" style="list-style-type: none;"><a href="cart.html"
+                                                                       class="nav-link"><span
+                        class="icon-shopping_cart"></span>[0]</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <%if (loginMember == null) { %>
+                <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a>
+                </li>
+                <%} else {%>
+
+
+                <div style="display: flex; flex-direction: column; margin-bottom: 10px; padding-bottom: 10px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <style>
+                            /* 호버 시에 녹색으로 변경 */
+                            .important-button:hover {
+                                color: #28a745;
+                            !important;
+                            }
+                        </style>
+                        <button type="button" class="btn btn-primary btn-sm important-button"
+                                onclick="location.replace('<%=request.getContextPath()%>/myInfo.do')"
+                                style="padding: .6rem !important; font-size: .72rem !important; margin: 0 !important; color: white; !important;">
+                            마이페이지
+                        </button>&nbsp;&nbsp;
+
+                        <button type="button" class="btn btn-outline-secondary btn-sm important-button"
+                                style="margin-left: 10px !important; padding: .6rem !important; font-size: .72rem !important; margin: 0 !important;">
+                            로그아웃
+                        </button>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 3px;">
+        <span style="font-weight: bolder; margin-left: 10%; font-size: .88rem !important;">
+            <%=loginMember.getMemberName() %>님 환영합니다.
+        </span>
+                    </div>
+                </div>
+                <%} %>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<%--===============================================================================================================--%>
+
+
 <%@ page
         import="java.util.List,com.veg.seoj.cscenter.model.dto.Inquiry,java.sql.Timestamp,java.text.SimpleDateFormat" %>
+<%@ page import="com.veg.hjj.member.dto.Member" %>
 
-<%
+    <%
     List<Inquiry> inquiryList = (List<Inquiry>)request.getAttribute("inquiryList");
 %>
-<%@ include file="/views/common/header.jsp" %>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <%-- <%
 	// Oracle에서 Timestamp 값을 가져온다고 가정
@@ -21,29 +167,31 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css/main.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css/main.css"/>
 <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/animate.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/animate.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.carousel.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/magnific-popup.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/magnific-popup.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/aos.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/aos.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/ionicons.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/ionicons.min.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/jquery.timepicker.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/jquery.timepicker.css">
 
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/flaticon.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/icomoon.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/flaticon.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/css/icomoon.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sjcss/css2/style.css">
+
+
 <style>
     #sidebar {
         padding-top: 70px;
@@ -62,60 +210,34 @@
                     </header>
                     <ul>
                         <li>
-                            <span class="opener">공지사항</span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myorders.html">주문 조회</a></li>
-                                                                            <li><a href="myreturn.html">반품 조회</a></li>
-                                                                            <li><a href="cart1.html">장바구니</a></li>
-                                                                        </ul> -->
+
+                        <li class="opner" style="list-style-type: none;"><a
+                                href="<%=request.getContextPath() %>/notice/noticeList.do" class="nav-link">공지사항</a>
+                        </li>
+
                         </li>
                         <li>
                             <span class="opener">자주 묻는 질문</span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myreview.html">나의 리뷰</a></li>
-                                                                            <li><a href="bookmark.html">북마크</a></li>
-                                                                            <li><a href="#">1:1문의</a></li>
-                                                                        </ul> -->
+
                         </li>
                         <li>
-
-                            <a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link"
+                            <a href="<%=request.getContextPath()%>/inquiry/inquiryList.do" class="nav-link"
                                class="opener">1:1 문의</a>
-                            <!-- 											<ul>
-                                                                            <li><a href="myinfo.html">내 정보 수정</a></li>
-                                                                            <li><a href="myaddress.html">배송지 관리</a></li>
-                                                                        </ul> -->
                         </li>
-                        <!-- 										<li><a onclick="confirmLogout()">로그아웃</a></li> -->
                         <li>
                             <span class="opener">고객의 소리(x)</span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myinfo.html">내 정보 수정</a></li>
-                                                                            <li><a href="myaddress.html">배송지 관리</a></li>
-                                                                        </ul> -->
                         </li>
                     </ul>
                 </nav>
-
             </div>
         </div>
-        <section id="board-container">
-            <style>
-                #board-container {
-                    padding-top: 100px; /* 위쪽 여백 설정 */
-                    padding-bottom: 100px; /* 아래쪽 여백 설정 */
-                    text-align: center;
-                }
-            </style>
+
+        <section id="board-container" style="margin-top: 130px; margin-bottom: 100px;">
             <%
                 int inquiryCount = inquiryList.size();
             %>
             <h7 style="margin-right: 600px;">전체 글 수      <%=inquiryCount%>
 
-                <%--			<% int noticeCount=
-                        <%=int noticeCount=notices.size()%>
-
-                        <%}%>--%>
             </h7>
 
             <table id="tbl-board">
@@ -125,24 +247,25 @@
                     <th>작성자</th>
                     <th>작성일</th>
                     <th>첨부파일</th>
-                    <%--                 <th>조회수</th>--%>
+                    <%-- <th>조회수</th>--%>
                 </tr>
                 <tr>
                     <%
+
                         if (!inquiryList.isEmpty()) {
                             /*바꿔야함*/
                             for (Inquiry n : inquiryList) {
                     %>
-                    <td><%=n.getInquiryNo() %>
+                    <td><%=n.getInquiryNo()%>
                     </td>
                     <td>
                         <a href="<%=request.getContextPath()%>/inquiry/inquiryView.do?no=<%=n.getInquiryNo()%>">
-                            <%=n.getInquiryTitle() %>
+                            <%=n.getInquiryTitle()%>
                         </a>
                     </td>
                     <td>
                         <%-- <%=n.getNoticeDate() %> --%>
-                        관리자
+                        <%=n.getMemberName()%>
                     </td>
                     <td>
                         <%
@@ -157,8 +280,8 @@
                              width="25">
                         <%} %>
                     </td>
-                    <%--                    <td><%=n.getNoticeView() %>
-                                        </td>--%>
+                    <%-- <td><%=n.getNoticeView() %>
+                         </td>--%>
                 </tr>
                 <%
                         }
@@ -166,26 +289,24 @@
                 %>
             </table>
 
-            <div id="pageBar"><a>
+            <div id="pageBar" style="margin-left: 300px;"><a>
 
-                    <%=request.getAttribute("pageBar") %>
+                    <%=request.getAttribute("pageBar")%>
 
             </div>
             <div class="col-md-4">
 
-                <%--
-<%if(loginMember!=null){ %>
---%>
-                <span class="">
-							<button onclick="location.assign('<%=request.getContextPath() %>/inquiry/inquiryWrite.do')"
-                                    style="margin-left: 600px;">
+                <%if (loginMember != null) {%>
+                <span>
+							<button onclick="location.assign('<%=request.getContextPath()%>/inquiry/inquiryWrite.do')"
+                                    style="margin-left: 600px;" class="btn btn-primary">
 				글쓰기
 			</button>
 					</span>
+                <%}%>
 
                 <%--	<%} %>--%>
             </div>
-
         </section>
     </div>
 </div>

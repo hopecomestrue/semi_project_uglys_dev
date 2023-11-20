@@ -10,9 +10,9 @@ import java.util.List;
  * @version 2023-11-14
  */
 public interface GenericDAO <T, PK> {
-    T getById(Connection conn, T entity, String k, PK id);
+    T getById(Connection conn, T entity, String k,String type, PK id);
 
-    List<T> getTo(Connection conn, T entity, String k, Object... params);
+    List<T> getTo(Connection conn, T entity, String k,String type, Object... params);
 
     int addUpdateDelete(Connection conn, T entity, String k, Object... params);
 

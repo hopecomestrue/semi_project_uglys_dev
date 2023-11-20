@@ -19,13 +19,13 @@ import javax.servlet.http.Part;
  */
 @WebServlet("/image/upload")
 @MultipartConfig
-public class RegisterProductionCont extends HttpServlet {
+public class RegisterProductionContent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterProductionCont() {
+    public RegisterProductionContent() {
         super();
         // TODO Auto-generated constructor stub
     }

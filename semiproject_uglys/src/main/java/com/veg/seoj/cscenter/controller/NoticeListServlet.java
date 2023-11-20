@@ -35,7 +35,8 @@ public class NoticeListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
         //DB에 저장된 전체 notice데이터 가져오기
-        int cPage, numPerpage = 5;
+        int cPage;
+        int numPerpage = 10;
 
 //		if(request.getParameter("cPage")!=null) cPage=request;
         try {

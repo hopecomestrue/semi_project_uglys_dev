@@ -34,7 +34,7 @@ public class GenericDAOImpl <T extends ResultSetMapper, PK> implements GenericDA
         this.conn = conn;
     }
 
-    public T getEntity(ResultSet rs,
+/*    public T getEntity(ResultSet rs,
                        Class<T> clazz) throws SQLException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         T entity = clazz
                 .getDeclaredConstructor()
@@ -44,7 +44,7 @@ public class GenericDAOImpl <T extends ResultSetMapper, PK> implements GenericDA
                 .getClass()
                 .getMethod("fromResultSet", ResultSet.class)
                 .invoke(entity, rs);
-    }
+    }*/
 
     /*    이건 특정 필드 단일값에 대한 작업을 할 수 있는 메소드임*/
 /*    private String capitalize(String s) {
@@ -73,7 +73,7 @@ public class GenericDAOImpl <T extends ResultSetMapper, PK> implements GenericDA
         return null; // 실제 반환 문으로 교체
     }*/
     @Override
-    public T getById(Connection conn, T entity, String k, PK id) {
+    public T getById(Connection conn, T entity, String k, String type, PK id) {
 
         PreparedStatement statement = null;
         ResultSet rs = null;
@@ -88,11 +88,12 @@ public class GenericDAOImpl <T extends ResultSetMapper, PK> implements GenericDA
             // dao의 getdto내에 제네릭 타입에 따라 유동적으로 빌더 하는 패턴이 존재해야 함////////////////
 /* 인터페이스를 상속받은 객체들로 해야 해서,
 인터페이스를 하나 더 만들어서 프롬 리절트가 들어가야함 */
+
             if (rs.next()) {
                 someDTO = (T)entity
                         .getClass()
-                        .getMethod("fromResultSet", ResultSet.class)
-                        .invoke(entity, rs);
+                        .getMethod("fromResultSet", ResultSet.class, String.class)
+                        .invoke(entity, rs, type);
             }
         } catch (SQLException e) {
             printExceptionStack((SQLException)e);
@@ -130,7 +131,7 @@ public class GenericDAOImpl <T extends ResultSetMapper, PK> implements GenericDA
     }*/
 
     @Override
-    public List<T> getTo(Connection conn, T entity, String k, Object... params) {
+    public List<T> getTo(Connection conn, T entity, String k, String type, Object... params) {
 
         List<T> entities = new ArrayList<>();
         PreparedStatement pstmt = null;
@@ -147,12 +148,10 @@ public class GenericDAOImpl <T extends ResultSetMapper, PK> implements GenericDA
             }
             rs = pstmt.executeQuery();
             while (rs.next()) {
-
-
                 someDTO = (T)entity
                         .getClass()
-                        .getMethod("fromResultSet", ResultSet.class)
-                        .invoke(entity, rs);
+                        .getMethod("fromResultSet", ResultSet.class, String.class)
+                        .invoke(entity, rs, type);
 
                 entities.add(someDTO);
             }

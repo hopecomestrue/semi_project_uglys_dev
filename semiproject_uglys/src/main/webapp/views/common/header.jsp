@@ -1,6 +1,7 @@
 <%@ page import="com.veg.ksj.admin.controller.AdminLogout"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.veg.ksj.admin.controller.AdminLogout"%>
 <%@ page import="com.veg.hjj.member.dto.Member" %>
 <%
 	Member loginMember=(Member)session.getAttribute("loginMember");
@@ -8,7 +9,7 @@
 <!DOCTYPE html>
  <head>
     <title>채소랑</title>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
@@ -32,8 +33,8 @@
     
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/flaticon.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/icomoon.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/testcss/style.css">
-    <script src="<%=request.getContextPath() %>/testcss/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
+    <script src="<%=request.getContextPath() %>/js/jquery-3.7.0.min.js"></script>
   </head>
   <body class="goto-here">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">

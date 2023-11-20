@@ -111,10 +111,12 @@
     </tr>
     <tr>
       <th>송장 번호</th>
-      <td><input type="text" id="delNo" name="delivery-no" placeholder="송장번호 입력란">
-      <%if(order.getTrakingNumber()!=0){ %>
-      <%=order.getTrakingNumber() %>
+      <td><input type="number" id="delNo" name="delivery-no" placeholder="송장번호 입력란" <%=order.getTrackingNumber()>0?"disabled":""%>
+      <%if(order.getTrackingNumber()>0){ %>
+      value="<%=order.getTrackingNumber()%>"
     <%} %>
+      >
+    <button type='button' id="del-update">수정하기</button>
     </td>
     </tr>
     <tr>
@@ -166,7 +168,7 @@
 
 <script>
 	//수정완료 누르면 table에 있는 값들을 ajax로 값 전송
-	document.getElementById('btn_submit').addEventListener('click',function(){
+	 document.getElementById('btn_submit').addEventListener('click',function(){
 		var orderNo=document.getElementById('orderNo').innerText;
 		var delNo=document.getElementById('delNo').value;
 		var delCheck=document.getElementById('del-check').value;
@@ -183,14 +185,30 @@
 				delNo : delNo, //송장번호
 				delCheck : delCheck //배송상태 : 배송준비중,배송중,배송완료
 			},
-			success : function(res){
+			success:function(res){
 				alert('배송상태 수정완료');
 			},
-			error : function(req,status,error){
-				alert('배송상태 수정실패');
+			error:function(){
+				/* alert('배송상태 수정실패'); */
 			}
 		});
 	});
+	
+	
+	//송장 번호 수정하기 버튼 활성화
+	document.getElementById('del-update').addEventListener('click',function(){
+			var delNo=document.getElementById('delNo');
+			var btn=document.getElementById('del-update');
+			if(delNo.disabled){
+				delNo.disabled=false;
+				btn.innerHTML="수정하기";
+			}else{
+				delNo.disabled=true;
+				btn.innerHTML="수정완료";
+				alert('수정완료');
+			}
+		});
+	
 </script>
 
 

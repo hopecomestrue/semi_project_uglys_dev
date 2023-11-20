@@ -346,8 +346,11 @@
                     /* paid_at : rsp.paid_at, // 결제승인시각 */
                     //필요한 데이터 있으면 추가
                 }
-            })
-            } else {
+            }).done(function(data)){
+        	   alert('결제 성공');
+          		 }
+            	window.location.replace('<%=request.getContextPath()%>/order/ordersuccessEnd.do?orderNo='+rsp.merchant_uid);
+            }) else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지

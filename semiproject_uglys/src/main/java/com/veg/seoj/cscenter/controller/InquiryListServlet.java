@@ -1,6 +1,7 @@
 package com.veg.seoj.cscenter.controller;
 
 import com.veg.seoj.cscenter.model.dto.Inquiry;
+import com.veg.seoj.cscenter.model.dto.InquiryMember;
 import com.veg.seoj.cscenter.model.dto.Notice;
 import com.veg.seoj.cscenter.model.service.InquiryService;
 import com.veg.seoj.cscenter.model.service.NoticeService;
@@ -36,7 +37,8 @@ public class InquiryListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
         //DB에 저장된 전체 inquiry데이터 가져오기
-        int cPage, numPerpage = 5;
+        int cPage;
+        int numPerpage = 10;
 
 //		if(request.getParameter("cPage")!=null) cPage=request;
         try {
@@ -47,6 +49,7 @@ public class InquiryListServlet extends HttpServlet {
 
         List<Inquiry> inquiryList = new InquiryService().selectInquiry(cPage, numPerpage);
         int totalData = new InquiryService().selectInquiryCount();
+//        InquiryMember member=new InquiryMemberService().selectMemberById(member)
         int totalPage = (int)Math.ceil((double)totalData / numPerpage);
         int pageBarSize = 5;
         int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
