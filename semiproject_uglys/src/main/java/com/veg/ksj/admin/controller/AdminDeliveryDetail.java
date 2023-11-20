@@ -38,7 +38,7 @@ public class AdminDeliveryDetail extends HttpServlet {
 		//해당 주문 회원,주문상세 객체 request에 담기
 		request.setAttribute("order", order);
 		request.setAttribute("mem", m);
-		//주문상세 페이지로 이동
+		//주문상세 페이지로 이동l
 		request.getRequestDispatcher("/views/admin/deliveryDetail.jsp").forward(request, response);
 	}
 
