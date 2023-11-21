@@ -155,7 +155,7 @@
 <section>
 	<div class="container_recipe_search">
 	<h1>레시피 관리</h1>
-		<form action="<%=request.getContextPath()%>/admin/recipeSearch.do" id="myForm" method="post" enctype="multipart/form-data">
+		<form action="<%=request.getContextPath()%>/admin/recipeSearch.do" id="myForm" method="post">
 		<ul class="list-group">
 		<li>
 		<label for="search_date">등록일</label>
@@ -164,11 +164,11 @@
 		<li>
 		<label for="searchType">검색 구분</label>
 		<select name="searchType">
-			<option value="recipeTitle">레시피 이름</option>
-			<option value="category">카테고리</option>
-			<option value="hashtag">해시태그</option>
-			<option value="userId">아이디</option>
-			<option value="material_main">메인 재료</option>
+			<option value="recipe_title">레시피 이름</option>
+			<option value="category_dept1">카테고리</option>
+			<option value="hashtag_value">해시태그</option>
+			<option value="member_no">아이디</option>
+			<option value="material_type">메인 재료</option>
 		</select>
 		<label for="searchContent"></label>
 		<input type="text" name="searchContent">

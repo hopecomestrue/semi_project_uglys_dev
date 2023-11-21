@@ -55,6 +55,8 @@ private Properties sql = new Properties();
 		ResultSet rs = null;
 		
 		String query = sql.getProperty("searchRecipeByAnything");
+		System.out.println(searchType);
+		System.out.println(searchContent);
 		query = query.replace("#COL", searchType);
 		List<Recipe> result = new ArrayList<>();
 		try {

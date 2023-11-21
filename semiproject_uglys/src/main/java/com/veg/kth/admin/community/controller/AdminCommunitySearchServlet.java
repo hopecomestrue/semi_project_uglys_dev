@@ -35,12 +35,15 @@ public class AdminCommunitySearchServlet extends HttpServlet {
 		
 		String dateStart=request.getParameter("search_date_start");
 		String dateEnd=request.getParameter("search_date_end");
-		String searchType=request.getParameter("searchType");
+		String searchType=request.getParameter("searchType").toUpperCase();
 		String searchContent=request.getParameter("searchContent");
+		
+		System.out.println(searchType);
+		System.out.println(searchContent);
 		
 		List<Recipe> recipe = new AdminCommunityService().searchRecipeByAnything(searchType,searchContent);
 		
-		request.setAttribute("recipe", recipe);
+		request.setAttribute("recipes", recipe);
 		
 		
 		request.getRequestDispatcher("/views/admin/admincommunity/communityRecipe.jsp")
