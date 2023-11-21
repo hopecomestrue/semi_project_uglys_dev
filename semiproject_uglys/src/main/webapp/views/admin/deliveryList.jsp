@@ -132,7 +132,7 @@
   </select>
 </div>
 <div class="delivery-tb">
-<form action="<%=request.getContextPath()%>/admin/searchDelCheck" method="post">
+<form action="<%=request.getContextPath()%>/admin/searchDelCheck.do" method="post">
 <div class="search_3">
   <div class="del-Search">
 <select class="form-select form-select-lm" aria-label="Small select example" name="searchType">
