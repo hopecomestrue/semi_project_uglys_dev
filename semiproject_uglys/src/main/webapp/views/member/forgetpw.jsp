@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title>
+<title>비밀번호 찾기</title>
 <style>
 body {
     display: flex;
@@ -46,14 +46,7 @@ table td {
     padding: 10px;
 }
 
-input[type="text"],
-input[type="email"] {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
+
 
 input[type="submit"] {
     width: 100%;
@@ -73,8 +66,8 @@ input[type="submit"]:hover {
 </head>
 <body>
     <div class="login-container">
-        <h2>패스워드 찾기</h2>
-        <form action="" method="post">
+        <h2>비밀번호 찾기</h2>
+       <form action="<%=request.getContextPath()%>/forgetfindpw.do" method="post">
             <table>
                 <tr>
                     <th>이름</th>
@@ -96,7 +89,7 @@ input[type="submit"]:hover {
                 </tr>
                 <tr>
                     <td colspan="2">
-                    <button type="button" onclick="location.replace('<%=request.getContextPath()%>/forgetfindpw.do');">패스워드 찾기</button>
+                      <input type="submit" value="비밀번호찾기">
                     </td>
                 </tr>
             </table>

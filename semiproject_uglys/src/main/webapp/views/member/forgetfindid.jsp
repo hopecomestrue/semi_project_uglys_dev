@@ -3,13 +3,14 @@
 <%@ include file="/views/common/header.jsp" %>
 <%@ page import="com.veg.hjj.member.dto.Member" %>
  <%
-	Member member = (Member)request.getAttribute("members");    
+
+Member member = (Member)request.getAttribute("members");    
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호찾기완료</title>
+<title>아이디찾기완료</title>
 </head>
 <style>
 body {
@@ -30,7 +31,7 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,.1);
     text-align: center;
 }
-#userPw {
+#userId {
     margin-bottom: 20px; 
 	}
 button  {
@@ -51,7 +52,7 @@ button:hover {
 <body>
 		<div class="wrap">
 		<div id="userName">[<%=member.getMemberName()%>]님의 아이디</div><br>
-		<div id="userPw">[<%=member.getMemberPw() %>] 입니다.</div>
+		<div id="userId">[<%=member.getMemberId() %>] 입니다.</div>
 		<button  onclick="location.assign('<%=request.getContextPath()%>/views/member/login.jsp')">로그인 하러가기</button>
 		</div>
 
