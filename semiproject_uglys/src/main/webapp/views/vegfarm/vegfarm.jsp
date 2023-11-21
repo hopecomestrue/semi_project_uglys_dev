@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-<%@ page import="com.veg.pdw.production.model.dto.Production,com.veg.pdw.production.model.dto.ProductionContent,java.util.Map,java.util.List,com.veg.pdw.production.model.dto.*" %>
+<%@ page import="com.veg.pdw.production.model.dto.Production,com.veg.pdw.production.model.dto.ProductionContent,java.util.Map,java.util.List,com.veg.pdw.production.model.dto.*,com.veg.hjj.member.dto.Member" %>
 <%
 	Production p = (Production)request.getAttribute("production");
 	ProductionContent pc = (ProductionContent)request.getAttribute("productionContent");
 	Map<Integer,Integer> reviewCount =(Map<Integer,Integer>)request.getAttribute("reviewCount");
 	Map<Integer,Double> reviewRating =(Map<Integer,Double>)request.getAttribute("reviewRating");
 	List<ProductionReview> ProductionReviews=(List<ProductionReview>)request.getAttribute("ProductionReviews");
+	Member m = (Member)request.getAttribute("member");
+	
 %>
 
 <!DOCTYPE html>
@@ -346,6 +348,7 @@
                      <div>
                         
      <h2>후기남기기</h2>         
+ 	 <%if(m!=null){ %>		
     <div class="rating"> <p>별점주기</p>
 	    <i class="rating__star far fa-star"></i>
 	    <i class="rating__star far fa-star"></i>
@@ -360,9 +363,14 @@
  	 <input type="hidden" id="ratingInput" name="rating">
  	 <input type="hidden" name="content" value="" id="content-input">
  	 <input type="hidden" name="productionNo" value="<%=p.getProduction_no()%>">
+ 	 <input type="hidden" name="member" value="<%=m.getMemberNo()%>" id="content-input">			
   	<button type="submit" style="margin-top: 100px;" id="upload">등록</button>
 	</form>
                         
+ 	 <%}else{%>
+ 		 <h2>로그인후 이용해주세요</h2>
+ 		 
+ 	<%} %> 
                         
                         
                         

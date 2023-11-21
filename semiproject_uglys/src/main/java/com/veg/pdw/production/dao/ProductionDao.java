@@ -292,6 +292,7 @@ public class ProductionDao {
 			pstmt.setString(1, pr.getReviewContent());
 			pstmt.setInt(2, pr.getRating());
 			pstmt.setInt(3, pr.getProductionNo());
+			pstmt.setInt(4, pr.getMemberNo());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
