@@ -322,7 +322,7 @@ public class CommunityDao {
 			close(pstmt);
 			close(rs);
 		}
-		return (Recipe)result;
+		return result.get(0);
 		
 		
 	}

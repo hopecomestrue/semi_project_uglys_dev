@@ -37,6 +37,7 @@ public class CommunityDetailServlet extends HttpServlet {
 		
 		Recipe r = new CommunityService().selectRecipeByNo(recipeNo);
 		
+		request.setAttribute("recipe", r);
 		
 		request.getRequestDispatcher("/views/community/detail_recipe.jsp")
 		.forward(request, response);
