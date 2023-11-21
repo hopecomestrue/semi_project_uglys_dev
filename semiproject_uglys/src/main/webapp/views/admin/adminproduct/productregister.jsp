@@ -433,7 +433,7 @@
         ClassicEditor
             .create(document.querySelector('#editor'), {
                 ckfinder: {
-                    uploadUrl: '<%=request.getContextPath()%>/image/upload'
+                    uploadUrl: '<%=request.getContextPath()%>/production/upload'
                 }
             })
             .then(e => {

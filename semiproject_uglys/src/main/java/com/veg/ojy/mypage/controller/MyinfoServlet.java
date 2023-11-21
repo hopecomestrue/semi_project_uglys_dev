@@ -36,15 +36,14 @@ public class MyinfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String memberId = request.getParameter("memberId");
-		Member m = new MyinfoService().selectMemberById(memberId);
-		String memberNo = request.getParameter("memberNo");
 		
-//		String address=request.getParameter("address");
-//		List<Address> a = new MyinfoService().selectAddress(address);
+		Member m = (Member)session.getAttribute("loginMember");
+		int memberNo = m.getMemberNo();
 		
+		//String address=request.getParameter("address");
+		List<Address> a = new MyinfoService().selectAddress(memberNo);
 		request.setAttribute("member", m);
-//		request.setAttribute("address", a);
+		request.setAttribute("address", a);
 		request.getRequestDispatcher("/views/member/mypage/myInfo.jsp").forward(request, response);
 	}
 	/**

@@ -1,6 +1,7 @@
 package com.veg.ojy.mypage.dao;
 
 import static com.veg.common.JDBCTemplate.close;
+import static com.veg.common.JDBCTemplate.getConnection;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,24 +33,26 @@ public class MypageDao {
 		}
 	}
 		
-	public Member selectMemberByIdAndPw(Connection conn,String memberid, String memberpw) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		Member m=null;
-		try {
-			pstmt=conn.prepareStatement(sql.getProperty("selectMemberByIdAndPw"));
-			pstmt.setString(1, memberid);
-			pstmt.setString(2, memberpw);
-			rs=pstmt.executeQuery();
-			if(rs.next()) m=getMember(rs);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}return m;
+	public Member selectMemberByIdAndPw(Connection conn, String memberId, String memberPw) {
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    Member m = null;
+
+	    try {
+	        pstmt = conn.prepareStatement(sql.getProperty("selectMemberByIdAndPw"));
+	        pstmt.setString(1, memberId);
+	        pstmt.setString(2, memberPw);
+
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) m = getMember(rs);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(rs);
+	        close(pstmt);
+	    }
+	    return m;
 	}
-	
 	public int insertMember(Connection conn, Member m) {
 		PreparedStatement pstmt=null;
 		int result = 0;
@@ -80,7 +83,26 @@ public class MypageDao {
 	
 	
 	
-	public Member selectMemberById(Connection conn, String memberId) {
+	public Member selectMemberById(Connection conn, String memberId, String memberPw) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("selectMemberById"));
+			pstmt.setString(1,memberId);
+			pstmt.setString(2, memberPw);
+			rs=pstmt.executeQuery();
+			if(rs.next()) m=getMember(rs);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return m;
+	}
+
+	
+	public Member selectMemberById(Connection conn,String memberId) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Member m=null;
@@ -97,45 +119,103 @@ public class MypageDao {
 		}return m;
 	}
 	
-	public Member selectMemberById(String memberId) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		Member m=null;
+//	public int updatePassword(Connection conn, String memberId, String memberpw) {
+//		PreparedStatement pstmt =null;
+//		int result=0;
+//		try {
+//			pstmt=conn.prepareStatement(sql.getProperty("updatePassword"));
+//			pstmt.setString(1, memberpw);
+//			pstmt.setString(2, memberId);
+//			result=pstmt.executeUpdate();
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(pstmt);
+//		}return result;
+//	}
+	
+	public int updatePassword(Connection conn, String memberId, String memberPw) {
+		PreparedStatement pstmt = null;
+		int result = 0;
 		try {
-			pstmt.setString(1,memberId);
-			rs=pstmt.executeQuery();
-			if(rs.next()) m=getMember(rs);
-		}catch(SQLException e) {
+			pstmt = conn.prepareStatement(sql.getProperty("updatePassword"));
+			pstmt.setString(1, memberPw);
+			pstmt.setString(2, memberId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			close(rs);
+		} finally {
 			close(pstmt);
-		}return m;
+		}
+		
+		return result;
+		
 	}
 	
-	public int updatePassword(Connection conn, String memberId, String memberpw) {
-		PreparedStatement pstmt =null;
-		int result=0;
+//	public int deleteMember(Connection conn, String memberId) {
+//		PreparedStatement pstmt = null;
+//		int result = 0;
+//		try {
+//			pstmt = conn.prepareStatement(sql.getProperty("deleteMember"));
+//			pstmt.setString(1, memberId);
+//			result = pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		return result;
+//	}
+	
+//	public int deleteMember(String memberId, String memberPw) {
+//	Connection conn = null;
+//	PreparedStatement pstmt = null;
+//	ResultSet rs = null;
+//	String dbPass = ""; 
+//	int result = -1;
+//	try {
+//		conn = getConnection();
+//		pstmt = conn.prepareStatement(sql.getProperty("selectMemberById"));
+//		pstmt.setString(1, memberId);
+//		rs = pstmt.executeQuery();
+//		if(rs.next()) {
+//			dbPass = rs.getString("memberPw");
+//			if(dbPass.equals(memberPw)) {
+//				pstmt = conn.prepareStatement(sql.getProperty("deleteMember"));
+//				pstmt.setString(1, memberId);
+//				pstmt.executeUpdate();
+//				result = 1; // 회원탈퇴 성공
+//			}else {
+//			result = 0;
+//			}
+//		}
+//	}catch(Exception e) {
+//		e.printStackTrace();
+//	}finally {
+//		if(rs!= null)try {rs.close();}catch(SQLException e) {}
+//		if(pstmt!= null)try {pstmt.close();}catch(SQLException e) {}
+//		if(conn!= null)try {conn.close();}catch(SQLException e) {}
+//	}
+//	return result;
+//}
+	
+	public int deleteMember(Connection conn, String memberId) {
+		PreparedStatement pstmt= null;
+		int result = 0;
 		try {
-			pstmt=conn.prepareStatement(sql.getProperty("updatePassword"));
-			pstmt.setString(1, memberpw);
-			pstmt.setString(2, memberId);
-			result=pstmt.executeUpdate();
-		}catch(SQLException e) {
+			pstmt=conn.prepareStatement(sql.getProperty("deleteMember"));
+			pstmt.setString(1, memberId);
+//			result=pstmt.executeUpdate();
+			result=1;
+			} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
-		}return result;
-	}
-	public int deleteMember(Connection conn, String memberId) throws Exception {
-		PreparedStatement pstmt=null;
-		int row =0;
-		Member m=null;
-		pstmt=conn.prepareStatement(sql.getProperty("delecteMember"));
-		pstmt.setString(1,memberId);
-		row=pstmt.executeUpdate();
-		return row;
-	}
+		}
+		return result;	}
+
 	
 	public Member getMember(ResultSet rs) throws SQLException{
 		        return Member.builder()
@@ -146,63 +226,64 @@ public class MypageDao {
 		                .memberAge(rs.getString("member_age"))
 		                .memberEmail(rs.getString("member_email"))
 		                .memberPhone(rs.getInt("member_phone"))
+		                .acceptAgree(rs.getString("accept_agree"))
 		                .acceptAgree(rs.getString("accpet_agree"))
 		                .adminCheck(rs.getString("admin_check"))
 		                .serviceAgree(rs.getString("service_agree"))
-		                .marketingAgree(rs.getString("marketingAgree"))
-		                .enrollDate(rs.getDate("enrollDate"))
-		                .photoRegist(rs.getString("photoRegist"))
+		                .marketingAgree(rs.getString("marketing_Agree"))
+		                .enrollDate(rs.getDate("enroll_Date"))
+		                .photoRegist(rs.getString("photo_Regist"))
 		                .memberQuit(rs.getString("member_quit"))
 		                .build();
 		    }
 	
-//	public List<Address> selectAddress(Connection conn, String address){
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		List<Address> result = new ArrayList<>();
-//		try {
-//			pstmt=conn.prepareStatement(sql.getProperty("selectAddress"));
-//			pstmt.setString(1, address);
-//			rs=pstmt.executeQuery();
-//			while(rs.next()) {
-//				result.add(getAddress(rs));
-//			}
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//		return result;
-//	}
-//	
-//	public int insertAddress(Connection conn, Address a) {
-//		PreparedStatement pstmt = null;
-//		int result = 0;
-//		try {
-//			pstmt = conn.prepareStatement(sql.getProperty("insertAddress"));
-//			pstmt.setInt(1, a.getAddressNo());
-//			pstmt.setInt(2, a.getMemberNo());
-//			pstmt.setString(3, a.getAddress());
-//			pstmt.setString(4, a.getDefaultAddress());
-//			result = pstmt.executeUpdate();
-//			}catch(SQLException e) {
-//				e.printStackTrace();
-//			}finally {
-//				close(pstmt);
-//			}
-//		return result;
-//		}
-//	
-//	public Address getAddress(ResultSet rs) throws SQLException{
-//		return Address.builder()
-//				.addressNo(rs.getInt("address_no"))
-//				.memberNo(rs.getInt("member_no"))
-//				.address(rs.getString("address"))
-//				.defaultAddress(rs.getString("default_address"))
-//				.build();
-//	}
-//	
+	public List<Address> selectAddress(Connection conn, int memberNo){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Address> result = new ArrayList<>();
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("selectAddress"));
+			pstmt.setInt(1, memberNo);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				result.add(getAddress(rs));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertAddress(Connection conn, Address a) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("insertAddress"));
+			pstmt.setInt(1, a.getAddressNo());
+			pstmt.setInt(2, a.getMemberNo());
+			pstmt.setString(3, a.getAddress());
+			pstmt.setString(4, a.getDefaultAddress());
+			result = pstmt.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+		return result;
+		}
+	
+	public Address getAddress(ResultSet rs) throws SQLException{
+		return Address.builder()
+				.addressNo(rs.getInt("address_no"))
+				.memberNo(rs.getInt("member_no"))
+				.address(rs.getString("address"))
+				.defaultAddress(rs.getString("default_address"))
+				.build();
+	}
+	
 //	private void addMemberAndAddress(List<Member> members, ResultSet rs) throws SQLException {
 //		String pk = rs.getString("member_no");
 //		if (members.stream().anyMatch(e -> pk.equals(e.getMemberNo()))) {
@@ -222,5 +303,30 @@ public class MypageDao {
 //			members.add(m);
 //		}
 //	}
-		    
+	public int insertAddress(Connection conn, String address) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
+	
+	public int updateAddress(Connection conn, String memberId, String Address) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("updateAddress"));
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, Address);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+		    
+}

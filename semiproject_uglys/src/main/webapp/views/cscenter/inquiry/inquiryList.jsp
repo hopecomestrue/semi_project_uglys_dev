@@ -148,9 +148,18 @@
 <%@ page
         import="java.util.List,com.veg.seoj.cscenter.model.dto.Inquiry,java.sql.Timestamp,java.text.SimpleDateFormat" %>
 <%@ page import="com.veg.hjj.member.dto.Member" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.io.*" %>
+<%@ page import="com.veg.seoj.cscenter.model.service.InquiryService" %>
+
 
     <%
     List<Inquiry> inquiryList = (List<Inquiry>)request.getAttribute("inquiryList");
+    List<Inquiry> inquiryListAndComments = (List<Inquiry>)request.getAttribute("inquiryListAndComments");
 %>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -233,6 +242,136 @@
         </div>
 
         <section id="board-container" style="margin-top: 130px; margin-bottom: 100px;">
+<%--            <button id="kakaoButton">Message 버튼</button>
+            <script>
+                document.getElementById('kakaoButton').addEventListener('click', function() {
+
+                });
+            </script>--%>
+<%--     <button id="kakaoButton">Message 버튼</button>
+            <script>
+                document.getElementById('kakaoButton').addEventListener('click', function() {
+                    // jQuery를 사용하는 경우 아래 코드로 대체 가능
+                    // $.post('http://localhost:3000/kakao2.do', {}, function(response) {
+                    //   console.log(response);
+                    // });
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('POST', 'https://988f6a70deb1.ngrok.app/semiproject_uglys/kakao2.do', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            console.log(xhr.responseText);
+                        }
+                    };
+                    xhr.send(JSON.stringify({}));
+                });
+            </script>--%>
+
+
+<%--            <button id="messageButton" onclick="getJSON()">Message 버튼</button>
+            <button id="webLinkButton">WebLink 버튼</button>
+            <form action="/kakao2.do" method="post">
+
+
+                <div id="response"></div>
+
+                <script>
+                    const fastify = require('fastify')({ logger: true });
+
+                    fastify.post('/kakao2.do', async (request, reply) => {
+                        const body = request.body;
+                        console.log(JSON.stringify(body, null, 4));
+
+                        const userID = body.userRequest.user.id;
+
+                        return {
+                            version: '2.0',
+                            template: {
+                                outputs: [
+                                    {
+                                        carousel: {
+                                            type: 'basicCard',
+                                            items: [
+                                                {
+                                                    title: '보물상자',
+                                                    description: '보물상자 안에는 뭐가 있을까',
+                                                    thumbnail: {
+                                                        imageUrl: 'https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg',
+                                                    },
+                                                    buttons: [
+                                                        {
+                                                            action: 'message',
+                                                            label: '열어보기',
+                                                            messageText: '짜잔! 우리가 찾던 보물입니다',
+                                                        },
+                                                        {
+                                                            action: 'webLink',
+                                                            label: '구경하기',
+                                                            webLinkUrl: 'https://e.kakao.com/t/hello-ryan',
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    title: '보물상자2',
+                                                    description: '보물상자2 안에는 뭐가 있을까',
+                                                    thumbnail: {
+                                                        imageUrl: 'https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg',
+                                                    },
+                                                    buttons: [
+                                                        {
+                                                            action: 'message',
+                                                            label: '열어보기',
+                                                            messageText: '짜잔! 우리가 찾던 보물입니다',
+                                                        },
+                                                        {
+                                                            action: 'webLink',
+                                                            label: '구경하기',
+                                                            webLinkUrl: 'https://e.kakao.com/t/hello-ryan',
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    title: '보물상자3',
+                                                    description: '보물상자3 안에는 뭐가 있을까',
+                                                    thumbnail: {
+                                                        imageUrl: 'https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg',
+                                                    },
+                                                    buttons: [
+                                                        {
+                                                            action: 'message',
+                                                            label: '열어보기',
+                                                            messageText: '짜잔! 우리가 찾던 보물입니다',
+                                                        },
+                                                        {
+                                                            action: 'webLink',
+                                                            label: '구경하기',
+                                                            webLinkUrl: 'https://e.kakao.com/t/hello-ryan',
+                                                        },
+                                                    ],
+                                                },
+                                            ],
+                                        },
+                                    },
+                                ],
+                            },
+                        };
+                    });
+
+                    fastify.listen(3000, (err, address) => {
+                        if (err) {
+                            fastify.log.error(err);
+                            process.exit(1);
+                        }
+                        fastify.log.info(`Server listening on ${address}`);
+                    });
+function getJSON() {
+
+}
+                </script>
+            </form>--%>
+
             <%
                 int inquiryCount = inquiryList.size();
             %>
@@ -243,10 +382,11 @@
             <table id="tbl-board">
                 <tr>
                     <th>번호</th>
+                    <th>문의 타입</th>
                     <th>제목</th>
                     <th>작성자</th>
                     <th>작성일</th>
-                    <th>첨부파일</th>
+
                     <%-- <th>조회수</th>--%>
                 </tr>
                 <tr>
@@ -257,6 +397,10 @@
                             for (Inquiry n : inquiryList) {
                     %>
                     <td><%=n.getInquiryNo()%>
+                    </td>
+                    <td>
+                        <%=n.getInquiryType()%>
+
                     </td>
                     <td>
                         <a href="<%=request.getContextPath()%>/inquiry/inquiryView.do?no=<%=n.getInquiryNo()%>">
@@ -274,12 +418,12 @@
                         %>
                         <%=sdfResult%>
                     </td>
-                    <td>
+         <%--           <td>
                         <%if (n.getInquiryOriginalFilename() != null) { %>
                         <img src="<%=request.getContextPath()%>/images/file.png"
                              width="25">
                         <%} %>
-                    </td>
+                    </td>--%>
                     <%-- <td><%=n.getNoticeView() %>
                          </td>--%>
                 </tr>

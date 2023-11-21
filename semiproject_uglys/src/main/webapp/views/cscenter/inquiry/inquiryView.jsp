@@ -8,6 +8,7 @@
     if (loginMember != null) {
         System.out.println(loginMember.getMemberNo());
     }
+
 %>
 <!DOCTYPE html>
 <head>

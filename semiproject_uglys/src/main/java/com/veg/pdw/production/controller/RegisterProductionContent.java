@@ -17,20 +17,15 @@ import javax.servlet.http.Part;
 /**
  * Servlet implementation class RegisterProductionCont
  */
-@WebServlet("/image/upload")
+@WebServlet("/production/upload")
 @MultipartConfig
 public class RegisterProductionContent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public RegisterProductionContent() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -41,15 +36,15 @@ public class RegisterProductionContent extends HttpServlet {
         String ext = originalFileName.substring(originalFileName.indexOf("."));
         String newFileName = UUID.randomUUID().toString() + ext;
 
-        String realPath = request.getServletContext().getRealPath("/upload"); 
+        // 저장 경로를 "/upload/production/content"로 변경하였습니다.
+        String realPath = request.getServletContext().getRealPath("/upload/production/content"); 
         String savePath = realPath + "/" + newFileName;
-        String uploadPath = request.getContextPath() + "/upload/" + newFileName;
+        String uploadPath = request.getContextPath() + "/upload/production/content/" + newFileName;
  
-        
-
-        File fileSaveDir = new File(realPath + "upload/");
+        // 디렉토리를 생성하는 부분도 "/upload/production/content"로 변경하였습니다.
+        File fileSaveDir = new File(realPath);
         if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
+            fileSaveDir.mkdirs();  // 여러 단계의 디렉토리를 한 번에 생성하려면 mkdirs()를 사용합니다.
         }
 
         File file = new File(savePath);
@@ -62,5 +57,6 @@ public class RegisterProductionContent extends HttpServlet {
         out.println("}");
     }
 }
+
 
 

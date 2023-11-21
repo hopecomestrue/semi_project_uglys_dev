@@ -45,11 +45,52 @@ public class OrderService {
 		return result;
 	}
 	
+	//주문현황 리스트 페이징처리
+	public List<Order> searchDelList(int cPage,int numPerpage){
+		Connection conn=getConnection();
+		List<Order> result=dao.searchDelList(conn,cPage,numPerpage);
+		close(conn);
+		return result;
+	}
+	
+	public List<Order> searchDelByKeyword(String type,String keyword,int cPage,int numPerpage){
+		Connection conn=getConnection();
+		List<Order> result=dao.searchDelByKeyword(conn,type,keyword,cPage,numPerpage);
+		close(conn);
+		return result;
+	}
+	
+	public int selectDelByKeywordCount(String type,String keyword) {
+		Connection conn=getConnection();
+		int result=dao.selectDelByKeywordCount(conn,type,keyword);
+		close(conn);
+		return result;
+	}
+	
+	public int selectDelCount() {
+		Connection conn=getConnection();
+		int count=dao.selectDelCount(conn);
+		close(conn);
+		return count;
+	}
 	
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	public Member selectMemberByIdAndPw(String memberId,String memberPw) {
+		Connection conn=getConnection();
+		Member m=dao.selectMemberByIdAndPw(conn,memberId,memberPw);
+		close(conn);
+		return m;
+	}
 	
 	public Member selectMemberByNo(int memNo) {
 		Connection conn=getConnection();

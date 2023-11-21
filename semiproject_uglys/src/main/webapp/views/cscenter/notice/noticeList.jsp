@@ -123,6 +123,7 @@
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 3px;">
         <span style="font-weight: bolder; margin-left: 10%; font-size: .88rem !important;">
+
             <%=loginMember.getMemberName() %><%=loginMember.getMemberNo() %>님 환영합니다.
         </span>
                     </div>
@@ -672,10 +673,11 @@
             <table id="tbl-board">
                 <tr>
                     <th>번호</th>
+                    <th>유형</th>
                     <th>제목</th>
                     <th>작성자</th>
                     <th>작성일</th>
-                    <th>첨부파일</th>
+ <%--                   <th>첨부파일</th>--%>
                     <th>조회수</th>
                 </tr>
                 <tr>
@@ -683,25 +685,33 @@
                         for (Notice n : notices) { %>
                     <td><%= n.getNoticeNo() %>
                     </td>
+                    <td><%=n.getNoticeType()%></td>
                     <td class="board-title">
                         <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=n.getNoticeNo()%>">
                             <%= getTruncatedTitle(n.getNoticeTitle()) %>
                         </a>
                     </td>
+
                     <td>관리자</td>
                     <td><%= new SimpleDateFormat("yyyy-MM-dd HH:mm").format(n.getNoticeDate()) %>
                     </td>
-                    <td>
+      <%--              <td>
                         <% if (n.getNoticeOriginalFilename() != null) { %>
                         <img src="<%=request.getContextPath()%>/images/file.png" width="25">
                         <% } %>
-                    </td>
+                    </td>--%>
                     <td><%= n.getNoticeView() %>
                     </td>
                 </tr>
                 <% }
                 } %>
             </table>
+
+            <div id="pageBar" style="margin-left: 300px;"><a>
+
+                    <%=request.getAttribute("pageBar")%>
+
+            </div>
         </section>
 
         <%!
@@ -716,14 +726,9 @@
                 }
             }
         %>
-        </tbody>
-        </table>
 
-        <div id="pageBar"><a>
 
-                <%=request.getAttribute("pageBar") %>
 
-        </div>
         <div class="col-md-4">
 
             <%--

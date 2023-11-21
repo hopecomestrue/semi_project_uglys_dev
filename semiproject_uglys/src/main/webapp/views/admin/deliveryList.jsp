@@ -96,13 +96,12 @@
         align-items: center;
         display: flex;
         justify-content: right;
-        margin-right: 10%;
+        margin-right: 2%;
+        margin-bottom: 1%;
       }
 
-      #delivery-check{
-        width: 18%;
-        margin-left: 70%;
-        margin-bottom: 3%;
+      .delivery-check{
+      
       }
 
       .delivery-tb{
@@ -114,6 +113,8 @@
         margin: 5%;
       }
       
+
+      
     </style>
 <body>
 	<div>
@@ -121,17 +122,32 @@
 	</div>
 <div class="delivery-check">
   <select class="form-select form-select-lg" aria-label=".form-select-lg example" id="delivery-check">
-    <option selected>배송준비중</option>
-    <option value="1">배송중</option>
-    <option value="2">배송완료</option>
+    <option selected>결제완료</option>
+    <option value="1">배송준비중</option>
   </select>
 </div>
 <div class="delivery-tb">
+<form action="<%=request.getContextPath()%>/admin/searchDelCheck" method="post">
+<div class="search_3">
+  <div class="del-Search">
+<select class="form-select form-select-lm" aria-label="Small select example" name="searchType">
+    <option value="ORDER_NAME" >이름으로 조회하기</option>
+    <option value="ORDER_NO" >주문번호로 조회하기</option>
+    <option value="ORDER_ADDRESS" >주소로 조회하기</option>
+  </select>
+</div>
+<div>
+  <input type="text" class="form-control" name="searchKeyword" placeholder="내용을 적어주세요.">
+</div>
+<div>
+  <button type="submit" class="btn btn-primary">검색</button>
+</div>
+</div>
+</form>
 <table class="table table-bordered">
     <tr>
       <th><input class="form-check-input" type="checkbox" id="checkboxAll" value="" aria-label="..." ></th>
       <th>주문 상세 번호</th>
-      <th>주문 아이디 고유번호</th>
       <th>주문자 이름</th>
       <th>전화번호</th>
       <th>주소</th>
@@ -144,7 +160,6 @@
       <td><input class="form-check-input" type="checkbox" id="checkboxNo" 
       				name="<%=o.getOrderNo() %>" aria-label="..."></td>
       <td><a href="<%=request.getContextPath()%>/admin/deliveryDetail.do?orderNo=<%=o.getOrderNo() %>"><%=o.getOrderNo() %></a></td>
-      <td><%=o.getOrderNo()%></td>
       <td><%=o.getOrderName() %></td>
       <td><%=o.getOrderPhone() %></td>
       <td><%=o.getOrderAddress() %></td>
@@ -155,37 +170,10 @@
 	  }%>
   </table>
 </div>
-<div class="search_3">
-  <div>
-<select class="form-select form-select-lm" aria-label="Small select example">
-    <option value="1">주문아이디로 조회하기</option>
-    <option value="2">주문번호로 조회하기</option>
-    <option value="3">주소로 조회하기</option>
-  </select>
-</div>
-<div>
-  <input type="text" class="form-control" placeholder="내용을 적어주세요.">
-</div>
-<div>
-  <button type="button" class="btn btn-primary">검색</button>
-</div>
-</div>
+	<div id="pageBar" class="container">
+		<%=request.getAttribute("pageBar") %>
+	</div>
 
-<nav aria-label="Page navigation example" class="delivery-paging">
-    <ul class="pagination justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">4</a></li>
-      <li class="page-item"><a class="page-link" href="#">5</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">다음</a>
-      </li>
-    </ul>
-  </nav>
 <script>
 	//체크박스 All 체크
 	document.getElementById('checkboxAll').addEventListener('click', function() {
@@ -200,9 +188,11 @@
 		checkAll.checked=false;
 	});
 	
+
+	
+	
 </script>
 
-</main>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
