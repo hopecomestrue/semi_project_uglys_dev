@@ -77,6 +77,21 @@ public class OrderService {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Member selectMemberByIdAndPw(String memberId,String memberPw) {
+		Connection conn=getConnection();
+		Member m=dao.selectMemberByIdAndPw(conn,memberId,memberPw);
+		close(conn);
+		return m;
+	}
+	
 	public Member selectMemberByNo(int memNo) {
 		Connection conn=getConnection();
 		Member m=dao.selectMemberByNo(conn, memNo);

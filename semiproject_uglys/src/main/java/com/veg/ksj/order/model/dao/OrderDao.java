@@ -249,6 +249,25 @@ public class OrderDao {
 		}return m;
 	}
 	
+	public Member selectMemberByIdAndPw(Connection conn, String memberId, String memberPw) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("selectMemberByIdAndPw"));
+			pstmt.setString(1,memberId);
+			pstmt.setString(2, memberPw);
+			rs=pstmt.executeQuery();
+			if(rs.next()) m=getMember(rs);
+		
+		}catch(SQLException e) {
+				e.printStackTrace();
+		}finally {
+				close(rs);
+				close(pstmt);
+		}return m;
+	}
+	
 	private static Member getMember(ResultSet rs) throws SQLException{
 		return Member.builder()
 				.memberNo(rs.getInt("member_No"))

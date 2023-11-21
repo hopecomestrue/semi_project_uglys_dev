@@ -138,6 +138,7 @@ public class MemberDao {
 	
 	public static Member getMember(ResultSet rs) throws SQLException{
 		return Member.builder()
+				.memberNo(rs.getInt("MEMBER_NO"))
 				.memberId(rs.getString("MEMBER_ID"))
 				.memberPw(rs.getString("MEMBER_PW"))
 				.memberName(rs.getString("MEMBER_NAME"))
@@ -145,10 +146,13 @@ public class MemberDao {
 				.memberEmail(rs.getString("MEMBER_EMAIL"))
 				.memberPhone(rs.getInt("MEMBER_PHONE"))
 				.acceptAgree(rs.getString("ACCEPT_AGREE"))
+				.adminCheck(rs.getString("ADMIN_CHECK"))
 				.serviceAgree(rs.getString("SERVICE_AGREE"))
 				.marketingAgree(rs.getString("MARKETING_AGREE"))
+				.enrollDate(rs.getDate("ENROLL_DATE"))
 				.photoRegist(rs.getString("PHOTO_REGIST"))
 				.address(new ArrayList<>())
+				.memberQuit(rs.getString("MEMBER_QUIT"))
 				.build();
 		
 	}
