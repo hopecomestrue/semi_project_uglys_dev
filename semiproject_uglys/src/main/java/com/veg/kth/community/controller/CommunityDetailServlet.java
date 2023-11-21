@@ -45,6 +45,7 @@ public class CommunityDetailServlet extends HttpServlet {
 		
 		
 		request.setAttribute("recipe", r);
+		request.setAttribute("comments", comments);
 		
 		request.getRequestDispatcher("/views/community/detail_recipe.jsp")
 		.forward(request, response);

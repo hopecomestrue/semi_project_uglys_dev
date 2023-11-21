@@ -7,6 +7,7 @@
 	Recipe recipe = (Recipe)request.getAttribute("recipe");
 	List<Procedure> procedure = recipe.getProcedure();
 	List<Hashtag> hashtag = recipe.getHashtag();
+	List<RecipeComment> comments = (List<RecipeComment>)request.getAttribute("comments");
 	
 %>
 
@@ -173,8 +174,7 @@ section {
                     	<% 
                     	List<Material> material = recipe.getMaterial();
                     	if(!material.isEmpty()){
-                    		for(Material m : material){
-                    		System.out.println(m);%>
+                    		for(Material m : material){%>
                     	<tr>
                     		<%if(m.getMaterialType().equals("MAIN")) {%>
                     		<td> <%=m.getMaterialName()%> main</td>
@@ -218,26 +218,20 @@ section {
                 </div>
             </div>
             <div>
+            <%if(!comments.isEmpty()){ %>
             <table id="tbl-comment">
+            <%for(RecipeComment r : comments){ %>
             	<tr class="level1">
             			<td>
-							<sub class="comment-writer"></sub>
-							<sub class="comment-date"></sub>
+							<sub class="comment-writer"><%=r.getCommentWriter() %></sub>
+							<sub class="comment-date"><%=r.getCommentDate() %></sub>
 							<br>
-							
+							<%=r.getCommentContent() %>
 						</td>
 					</tr>
-					<tr class="level2">
-						<td>
-							<sub></sub>
-							<sub></sub>
-							<br>
-						</td>
-						<td>
-						
-						</td>
-					</tr>	
+			<%} %>
 			</table>
+		<%} %>
             
             </div>
         </div>
