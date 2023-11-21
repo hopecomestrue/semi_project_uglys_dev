@@ -2,6 +2,10 @@
 <%@page import="com.veg.hjj.member.dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% 
+    	Member loginAdmin=(Member)session.getAttribute("loginMember");
+    %>
+    <%if(loginAdmin!=null&&loginAdmin.getAdminCheck().equals("Y")){ %>
 <%@ include file="/views/admin/common/header.jsp" %>
 <%
 	Member mem=(Member)request.getAttribute("mem");
@@ -216,3 +220,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <%@ include file="/views/admin/common/footer.jsp" %>
+<%}%>

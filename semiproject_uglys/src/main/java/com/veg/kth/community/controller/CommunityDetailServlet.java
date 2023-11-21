@@ -1,6 +1,7 @@
 package com.veg.kth.community.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.veg.kth.community.model.dto.Recipe;
+import com.veg.kth.community.model.dto.RecipeComment;
 import com.veg.kth.community.service.CommunityService;
 
 /**
@@ -37,6 +39,13 @@ public class CommunityDetailServlet extends HttpServlet {
 		
 		Recipe r = new CommunityService().selectRecipeByNo(recipeNo);
 		
+		r.getMember_no();// 나중에 멤버 고유번호만으로도 고객 정보 찾기
+		
+		List<RecipeComment> comments = new CommunityService().selectRecipeComment(recipeNo);
+		
+		
+		request.setAttribute("recipe", r);
+		request.setAttribute("comments", comments);
 		
 		request.getRequestDispatcher("/views/community/detail_recipe.jsp")
 		.forward(request, response);

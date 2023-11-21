@@ -1,5 +1,13 @@
+<%@page import="com.veg.ksj.order.model.dto.Order"%>
+<%@page import="com.veg.hjj.member.dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% 
+    	Member loginAdmin=(Member)session.getAttribute("loginMember");
+    	Member mem=(Member)request.getAttribute("mem");
+		Order refund=(Order)request.getAttribute("refund");
+    %>
+    <%if(loginAdmin!=null&&loginAdmin.getAdminCheck().equals("Y")){ %>
 <%@ include file="/views/admin/common/header.jsp" %>
 	<style>
       .bd-placeholder-img {
@@ -96,26 +104,26 @@
     </style>
 
 <body>
-<form>
+<!-- <form> -->
 <h1 style="text-align: center; margin-top: 5%;">주문 환불 상세 현황</h1>
 
 <div class="refund-detail-user">
 <table class="table table-bordered">
     <tr>
         <th>주문 상세 번호</th>
-        <td>123456789</td>
+        <td id="refundNo"><%=refund.getOrderNo() %></td>
     </tr>
     <tr>
       <th>주문 아이디</th>
-      <td>admin123</td>
+      <td><%=mem.getMemberId() %></td>
     </tr>
     <tr>
       <th>이름</th>
-      <td>홍길동</td>
+      <td><%=refund.getOrderName() %></td>
     </tr>
     <tr>
       <th>전화번호</th>
-      <td>010-1234-1234</td>
+      <td><%=refund.getOrderPhone() %></td>
     </tr>
     <tr>
       <th>상품 내용</th>
@@ -123,41 +131,103 @@
     </tr>
     <tr>
         <th>주소</th>
-        <td>서울시 금천구</td>
+        <td><%=refund.getOrderAddress() %></td>
     </tr>
     <tr>
       <th>주문 날짜</th>
-      <td>2023-11-10</td>
+      <td><%=refund.getOrderDate() %></td>
     </tr>
     <tr>
         <th>결제 수단</th>
-        <td>카카오 페이</td>
+        <td><%=refund.getPayment() %></td>
     </tr>    
     <tr>
         <th>총 금액</th>
-        <td>￦ 83,000</td>
+        <td><%=refund.getTotalPrice() %></td>
     </tr>    
     <tr>
         <th>환불 사유</th>
-        <td>고객 단순 변심</td>
+        <td id="refund-reason">(테이블 컬럼 추가시 변경)</td>
     </tr>    
     <tr>
-      <th>주문 체크</th>
+      <th>환불 응답</th>
       <td>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-            <option selected>대기중</option>
-            <option value="1">승인</option>
-            <option value="2">거부</option>
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="refund-check">
+            <option value="환불승인대기" <%=refund.getOrderStatus().equals("환불승인대기")?"selected":"" %>>환불승인대기</option>
+            <option value="환불승인완료" <%=refund.getOrderStatus().equals("환불승인완료")?"selected":"" %>>환불승인완료</option>
+            <option value="환불승인반려" <%=refund.getOrderStatus().equals("환불승인반려")?"selected":"" %>>환불승인반려</option>
           </select>
       </td>
+    </tr>
+    <tr>
+        <th>토큰값 가져오기</th>
+        <td><button id="getToken-btn">토큰값 생성</button></td>
     </tr>
   </table>
 </div>
   <button type="submit" class="btn btn-primary" id="btn_submit">등록</button>
-</form>
+<!-- </form> -->
+<script>
+	//등록완료 하면 ajax로 환불상태 DB변경
+	document.getElementById('btn_submit').addEventListener('click',function(){
+		/* console.log('버튼은 눌림'); */
+		
+		var refundNo=document.getElementById('refundNo').innerText;
+		var refundCheck=document.getElementById('refund-check').value;
+		var refundReason=document.getElementById('refund-reason').innerText;
+		
+		console.log(refundNo);
+		console.log(refundCheck);
+		console.log(refundReason);
+		
+		$.ajax({
+			url : '<%=request.getContextPath()%>/admin/refundDetailEnd.do',
+			type : 'post',
+			dataType : 'json',
+			data : {
+				refundNo : refundNo, //환불주문번호
+				refundCheck : refundCheck, //환불상태 : 환불승인대기,환불승인완료,환불승인반려
+				refundReason : refundReason //환불사유
+			},
+			success:function(res){
+				alert('환불완료');
+			},
+			error:function(){
+				alert('환불 수정실패');
+			}
+		});
+	});
+	
+	//토큰값 가져오는 메소드
+	document.getElementById('getToken-btn').addEventListener('click',function(){
+		var apiKey="1351426225816408";
+		var secretKey="cfHurcVtJYllMUeKbWmEhhvu9CQmFEAutcrNomOiB0xv3OFhJnONYdPPjHSmLKiorN4fDHTIAyEuNReb";
+		console.log(apiKey);
+		console.log(secretKey);
+		
+		$.ajax({
+			url : '<%=request.getContextPath()%>/admin/tokenget.do',
+			type : 'post',
+			dataType : 'json',
+			data : {
+				apiKey : apiKey, //api 키
+				secretKey : secretKey //시크릿 키
+			},
+			success:function(data){
+				alert('토큰 불러오기 성공');
+				console.log(data);
+			},
+			error:function(){
+				alert('토큰 불러오기 실패');
+			}
+		});
+	});
+	
+</script>
 
-</main>
+
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <%@ include file="/views/admin/common/footer.jsp" %>
+<%}%>

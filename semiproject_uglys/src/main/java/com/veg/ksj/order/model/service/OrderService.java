@@ -44,6 +44,15 @@ public class OrderService {
 		close(conn);
 		return result;
 	}
+	//환불현황 변경(환불승인완료) -관리자
+	public int updateRefundDetails(String refundCheck,long refundNo) {
+		Connection conn=getConnection();
+		int result=dao.updateRefundDetails(conn,refundCheck,refundNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 	
 	//주문현황 리스트 페이징처리
 	public List<Order> searchDelList(int cPage,int numPerpage){
@@ -75,15 +84,42 @@ public class OrderService {
 	}
 	
 	
+	//환불현황 리스트 페이징처리
+	public List<Order> searchRefundList(int cPage,int numPerpage){
+		Connection conn=getConnection();
+		List<Order> result=dao.searchRefundList(conn,cPage,numPerpage);
+		close(conn);
+		return result;
+	}
+	
+	public List<Order> searchRefundByKeyword(String type,String keyword,int cPage,int numPerpage){
+		Connection conn=getConnection();
+		List<Order> result=dao.searchRefundByKeyword(conn,type,keyword,cPage,numPerpage);
+		close(conn);
+		return result;
+	}
+	
+	public int selectRefundByKeywordCount(String type,String keyword) {
+		Connection conn=getConnection();
+		int result=dao.selectRefundByKeywordCount(conn,type,keyword);
+		close(conn);
+		return result;
+	}
+	
+	public int selectRefundCount() {
+		Connection conn=getConnection();
+		int count=dao.selectRefundCount(conn);
+		close(conn);
+		return count;
+	}
+		
+		
+		
+		
 	
 	
 	
-	
-	
-	
-	
-	
-	
+	/* 멤버 임시 메소드 */
 	
 	public Member selectMemberByIdAndPw(String memberId,String memberPw) {
 		Connection conn=getConnection();
