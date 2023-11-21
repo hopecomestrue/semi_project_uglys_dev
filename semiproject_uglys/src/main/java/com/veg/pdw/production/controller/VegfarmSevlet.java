@@ -1,6 +1,8 @@
 package com.veg.pdw.production.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.veg.pdw.production.model.dto.Production;
 import com.veg.pdw.production.model.dto.ProductionContent;
+import com.veg.pdw.production.model.dto.ProductionReview;
 import com.veg.pdw.production.service.ProductionService;
 
 /**
@@ -37,6 +40,15 @@ public class VegfarmSevlet extends HttpServlet {
 		ProductionContent pc = new ProductionService().selectProductionContentByNo(productionNo);
 		request.setAttribute("production", p);
 		request.setAttribute("productionContent", pc);
+		Map<Integer,Integer> ReviewCount=new ProductionService().selectProductionReviewList();
+		Map<Integer,Double> reviewRating=new ProductionService().selectreviewRating();
+		List<ProductionReview>pr= new ProductionService().selectProductionReviewByNo(productionNo);
+		
+		request.setAttribute("reviewCount", ReviewCount);
+		request.setAttribute("reviewRating", reviewRating);
+		request.setAttribute("ProductionReviews", pr);
+		
+		
 		
 		request.getRequestDispatcher("/views/vegfarm/vegfarm.jsp")
 		.forward(request, response);

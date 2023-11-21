@@ -1,6 +1,8 @@
 package com.veg.pdw.production.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.veg.pdw.production.model.dto.ProductionReview;
+import com.veg.pdw.production.model.dto.Production;
+import com.veg.pdw.production.model.dto.ProductionContent;
 import com.veg.pdw.production.service.ProductionService;
 
 /**
- * Servlet implementation class RegisterReviewServlet
+ * Servlet implementation class SoldoutProductionJSPServlet
  */
-@WebServlet("/production/review.do")
-public class RegisterReviewServlet extends HttpServlet {
+@WebServlet("/production/soldout.do")
+public class SoldoutProductionJSPServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterReviewServlet() {
+    public SoldoutProductionJSPServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +33,24 @@ public class RegisterReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
 		
-		int productionNo = (Integer.parseInt(request.getParameter("productionNo")));
-		int rating = (Integer.parseInt(request.getParameter("rating")));
-		String content = request.getParameter("content");
-		
-		ProductionReview pr =ProductionReview.builder()
-											.reviewContent(content)
-											.productionNo(productionNo)
-											.rating(rating)
-											.build();
-		int result = new ProductionService().insertProductionReview(pr);
-		
-		request.getRequestDispatcher("/vegfarm/vegfarm.do?no="+productionNo).forward(request, response);
+		List<Production> soldout= 
+					new ProductionService().selectProductionList()
+						.stream().filter(e-> e.getStock()<0).toList();
+		List<ProductionContent>productinContents= new ProductionService().selectProductionContentList();
+		Map<Integer,Integer> ReviewCount=new ProductionService().selectProductionReviewList();
+		Map<Integer,Double> reviewRating=new ProductionService().selectreviewRating();
 		
 		
+		
+		request.setAttribute("soldouts", soldout);
+		request.setAttribute("productionContents", productinContents);
+		request.setAttribute("reviewCount", ReviewCount);
+		request.setAttribute("reviewRating", reviewRating);
+		
+		request.getRequestDispatcher("/views/vegfarm/vegfarmsoldout.jsp")
+		.forward(request, response);
+	
 	}
 
 	/**

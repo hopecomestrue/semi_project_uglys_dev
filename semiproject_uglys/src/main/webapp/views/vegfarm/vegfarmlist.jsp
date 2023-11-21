@@ -61,10 +61,6 @@
                             	<%=reviewCount.get(p.getProduction_no())%>
                             	)
                             </span>
-                           	
-                           	
-                            
-                            
                             <% 
                             }%>
                          </div>
@@ -76,7 +72,7 @@
              }
              %>
              </div>
-             <a style="display: block; margin: auto; text-align: center; padding: 72px 0;"href="http://localhost:9090/semiproject_uglys/views/vegfarm/vegfarmsoldout.jsp"><p>돌아올 품목 확인하기</p></a>
+             <a style="display: block; margin: auto; text-align: center; padding: 72px 0;"href="<%=request.getContextPath() %>/production/soldout.do"><p>돌아올 품목 확인하기</p></a>
              
 </section>
 <%@ include file="/views/common/footer.jsp" %>

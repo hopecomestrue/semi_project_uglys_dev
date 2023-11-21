@@ -113,7 +113,7 @@
 			<tr>
 				<th>아이디</th>
 				<td>
-					<input type="text" placeholder="4글자이상" name="memberId" id="memberId" value="<%=%>" >
+					<input type="text" placeholder="4글자이상" name="memberId" id="memberId" value="" >
 					<input type="button" value="중복 확인" name="memberId" onclick="fn_idduplicate();">
 				</td>
 			</tr>
