@@ -181,5 +181,8 @@
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="#">후기관리</a>
 	      </div>
+	      <div class="col">
+	        <a class="dropdown-item rounded-2" href="#">레시피관리</a>
+	      </div>
 	    </div>
   </div>

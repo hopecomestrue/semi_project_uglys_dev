@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.veg.ksj.order.model.dto.Order;
+import com.veg.ojy.cart.dto.Cart;
 import com.veg.ojy.mypage.dto.Address;
 
 import lombok.Builder;
@@ -31,5 +33,6 @@ public class Member {
 	private String memberQuit;
 	
 	private List<String> address;
-	
+	private List<Cart> cart;
+	private List<Order> order;
 }
