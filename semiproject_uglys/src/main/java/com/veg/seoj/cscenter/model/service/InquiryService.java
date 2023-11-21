@@ -8,7 +8,10 @@ import static com.veg.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.veg.ksj.order.model.dto.Order;
 import com.veg.seoj.cscenter.model.dao.GenericDAOImpl;
+import com.veg.seoj.cscenter.model.dto.DAOImplOrder;
+import com.veg.seoj.cscenter.model.dto.DAOImplRefund;
 import com.veg.seoj.cscenter.model.dto.Inquiry;
 import com.veg.seoj.cscenter.model.dto.InquiryComment;
 
@@ -120,6 +123,45 @@ public class InquiryService {
                 .build();
         List<InquiryComment> result = inquiryDAO.getTo(conn, Some, "sql.inquirycomment.select", "getTo", no);
         close(conn);
+        return result;
+    }
+    public List<DAOImplOrder> selectOrderByMemberNo(int no) {
+        Connection conn = getConnection();
+        GenericDAOImpl<DAOImplOrder, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "SHOP_ORDER");
+        DAOImplOrder Some = (DAOImplOrder)DAOImplOrder
+                .builder()
+                .build();
+        List<DAOImplOrder> result = inquiryDAO.getTo(conn, Some, "sql.refund.select", "getTo", no);
+        close(conn);
+        return result;
+    }
+    public List<DAOImplRefund> selectRefundByMemberNo(int no) {
+        Connection conn = getConnection();
+        GenericDAOImpl<DAOImplRefund, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "SHOP_ORDER");
+        DAOImplRefund Some = (DAOImplRefund)DAOImplRefund
+                .builder()
+                .build();
+        List<DAOImplRefund> result = inquiryDAO.getTo(conn, Some, "sql.refund.select", "getTo", no);
+        close(conn);
+        return result;
+    }
+
+
+    public String generateJson(String ProductionName,
+                               String OrderStatus,
+                               String ProductionName2,
+                               String OrderStatus2,
+                               String ProductionName3,
+                               String OrderStatus3) {
+
+        String jsonTemplate = "'{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"carousel\":{\"type\":\"basicCard" +
+                "\"," + "\"items\":[{\"title\":\"%s\",\"description\":\"%s\"," + "\"thumbnail\":{\"imageUrl\":\"https://www.ibabynews" + ".com/news/photo/202012" + "/90908_40356_4011.jpg\"},\"buttons\":[{\"action\":\"message\"," + "\"label\":\"이 주문 " + "선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"}," + "{\"action\":\"webLink\"," + "\"label\":\"구경하기\"," + "\"webLinkUrl\":\"해당 문의로 가는 " + "SERVLET주소\"}]},{\"title\":\"%s\"," + "\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://pds" + ".joongang.co.kr/svcimg/newsletter/content/202206/29/d5508b55-8e0a-43f4-a677-392ca1be8728" + ".jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\"," + "\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\"," + "\"webLinkUrl\":\"해당 문의로 가는 SERVLET주소\"}]},{\"title\":\"%s\"," + "\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://www.costco.co.kr/medias/sys_master/images/hab/he3/103890527649822.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET주소\"}]}]}}]}}'";
+
+
+        String result = String.format(jsonTemplate, ProductionName, OrderStatus, ProductionName2, OrderStatus2,
+                                      ProductionName3, OrderStatus3);
+        System.out.println(result);
+
         return result;
     }
 

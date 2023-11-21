@@ -55,6 +55,8 @@ public class Inquiry implements ResultSetMapper<Inquiry> {
     @Builder.Default
     private Date refundDate = null;
 
+
+
     @Override
     public Inquiry fromResultSet(ResultSet rs, String type) throws SQLException {
         // 어차피 조회할때는 null 들어가도됨
@@ -153,5 +155,8 @@ public class Inquiry implements ResultSetMapper<Inquiry> {
 	     }
 	
 	 }*/
+
+
+
 
 }

@@ -662,14 +662,14 @@
 
             <script>
                 $(document).ready(function () {
-                    // 이미지가 선택될 때마다 실행되는 이벤트 핸들러
+
                     $("#upfile2").change(function (e) {
                         $("#prevImg").empty();
-                        // 선택된 파일들을 미리보기에 출력
+
                         previewImages(e.target.files);
                     });
 
-                    // 이미지 미리보기 함수
+
                     function previewImages(files) {
                         $.each(files, function (i, file) {
                             const filereader = new FileReader();
@@ -690,31 +690,31 @@
             </script>
             <style>
                 #tbl-board {
-                    width: 100%; /* 테이블을 100% 너비로 설정 */
+                    width: 100%;
                 }
 
                 #tbl-board th,
                 #tbl-board td {
-                    padding: 8px; /* 각 셀의 패딩 설정 */
+                    padding: 8px;
                 }
 
                 #tbl-board td[name="category_value"] {
-                    width: 100%; /* 카테고리 값 셀을 100% 너비로 설정 */
+                    width: 100%;
                 }
 
                 #tbl-board th:first-child,
                 #tbl-board td:first-child {
-                    text-align: right; /* 첫 번째 열의 텍스트를 오른쪽 정렬 */
-                    width: 20%; /* 첫 번째 열의 너비 설정 */
+                    text-align: right;
+                    width: 20%;
                 }
 
                 #tbl-board th:last-child,
                 #tbl-board td:last-child {
-                    text-align: left; /* 마지막 열의 텍스트를 왼쪽 정렬 */
+                    text-align: left;
                 }
 
                 #tbl-board th[colspan="2"] {
-                    text-align: center; /* 병합된 두 열의 텍스트를 가운데 정렬 */
+                    text-align: center;
                 }
 
                 button,
@@ -766,8 +766,7 @@
 
                     <tr>
                         <th></th>
-                        <%-- 주문정보 선택 > 리스트 화면에서 주문정보 10개 받아오기 --%>
-                        <%-- 환불 선택 -> 환불 정보 10개 받아오기 --%>
+
                         <td name="category_value">미설정</td>
                     </tr>
                     <tr>
@@ -813,7 +812,7 @@
                         var selectedCategory = selectElement.value;
                         var categoryValueTd = document.querySelector('td[name="category_value"]');
 
-                        // 선택한 카테고리에 따라 값을 설정
+
                         if (selectedCategory == '배송' || selectedCategory == '주문') {
                             categoryValueTd.innerHTML = '주문/배송목록 db';
                         } else if (selectedCategory == '상품') {
