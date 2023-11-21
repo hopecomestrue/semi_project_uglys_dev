@@ -15,12 +15,13 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.veg.hjj.member.dto.Member;
+import com.veg.hjj.member.security.PasswordEncoder;
 import com.veg.hjj.member.service.MemberService;
 
 /**
  * Servlet implementation class EnrollMemberEndServlet
  */
-@WebServlet("/member/enrollMemberEnd.do")
+@WebServlet(name="enrollMemberEnd",urlPatterns="/member/enrollMemberEnd.do")
 public class EnrollMemberEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,9 +51,9 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		
 		
 		request.setCharacterEncoding("UTF-8");
-		String memberId = mr.getParameter("userId");
-		String memberPw = mr.getParameter("password");
-		String memberName = mr.getParameter("userName");
+		String memberId = mr.getParameter("memberId");
+		String memberPw = mr.getParameter("memberPw");
+		String memberName = mr.getParameter("memberName");
 		String memberAge = mr.getParameter("ageRange");
 		String memberEmail = mr.getParameter("email");
 		int memberPhone = Integer.parseInt(mr.getParameter("phone")); // 수정된 부분
@@ -63,8 +64,9 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		String serviceAgree = mr.getParameter("ckbox2");
 		String marketingAgree = mr.getParameter("ckbox3");
 		String photoRegist = mr.getFilesystemName("photoRegist");
-
-	
+		
+		//PasswordEncoder pe=new PasswordEncoder();
+		//System.out.println(pe.getSHA512(memberPw));
 		
 		List<String> addressList = new ArrayList<>();
 		addressList.add(address);
