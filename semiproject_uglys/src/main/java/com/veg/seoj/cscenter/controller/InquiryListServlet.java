@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 /**
  * Servlet implementation class NoticeListServlet
@@ -21,7 +21,12 @@ import java.util.List;
 public class InquiryListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+    String ProductionName = "하이1";
+    String OrderStatus = "하이2";
+    String ProductionName2 = "하이3";
+    String OrderStatus2 = "하이4";
+    String ProductionName3 = "하이5";
+    String OrderStatus3 = "하이6";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -47,7 +52,12 @@ public class InquiryListServlet extends HttpServlet {
             cPage = 1;
         }
 
-        List<Inquiry> inquiryList = new InquiryService().selectInquiry(cPage, numPerpage);
+        List<Inquiry> inquiryListAndComments = new InquiryService().selectInquiry(cPage, numPerpage);
+        List<Inquiry> inquiryList = removeDuplicateInquiries(inquiryListAndComments);
+        String a = new InquiryService().generateJson(ProductionName, OrderStatus, ProductionName2, OrderStatus2, ProductionName3, OrderStatus3);
+
+
+        System.out.println(a);
         int totalData = new InquiryService().selectInquiryCount();
 //        InquiryMember member=new InquiryMemberService().selectMemberById(member)
         int totalPage = (int)Math.ceil((double)totalData / numPerpage);
@@ -80,6 +90,7 @@ public class InquiryListServlet extends HttpServlet {
         }
 
         request.setAttribute("inquiryList", inquiryList);
+        request.setAttribute("inquiryListAndComments", inquiryListAndComments);
         request.setAttribute("pageBar", pageBar);
 
         request
@@ -98,4 +109,32 @@ public class InquiryListServlet extends HttpServlet {
         doGet(request, response);
     }
 
+    private static List<Inquiry> removeDuplicateInquiries(List<Inquiry> inquiryListandComments) {
+        List<Inquiry> filteredList = new ArrayList<>();
+        Set<Integer> addedInquiryNos = new HashSet<>();
+
+        for (Inquiry inquiry : inquiryListandComments) {
+            int inquiryNo = inquiry.getInquiryNo();
+
+            if (!addedInquiryNos.contains(inquiryNo)) {
+                filteredList.add(inquiry);
+                addedInquiryNos.add(inquiryNo);
+            }
+        }
+/*        sortListByInquiryDateDesc(filteredList);*/
+/*        Collections.sort(filteredList, Comparator.comparing(Inquiry::getInquiryDate).reversed());*/
+        return filteredList;
+    }
+   /* private static void sortListByInquiryDateDesc(List<Inquiry> list) {
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i + 1; j < list.size(); j++) {
+                if (list.get(i).getInquiryDate().before(list.get(j).getInquiryDate())) {
+                    // Swap the elements if they are not in the desired order
+                    Inquiry temp = list.get(i);
+                    list.set(i, list.get(j));
+                    list.set(j, temp);
+                }
+            }
+        }
+    }*/
 }
