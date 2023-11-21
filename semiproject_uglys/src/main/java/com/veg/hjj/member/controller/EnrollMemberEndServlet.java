@@ -21,7 +21,7 @@ import com.veg.hjj.member.service.MemberService;
 /**
  * Servlet implementation class EnrollMemberEndServlet
  */
-@WebServlet(name="enrollMemberEnd",urlPatterns="/member/enrollMemberEnd.do")
+@WebServlet(name="EnrollMemberEndServlet",urlPatterns="/member/enrollMemberEnd.do")
 public class EnrollMemberEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -65,9 +65,12 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		String marketingAgree = mr.getParameter("ckbox3");
 		String photoRegist = mr.getFilesystemName("photoRegist");
 		
+		PasswordEncoder pe=new PasswordEncoder((HttpServletRequest)request);
+		
+		
 		//PasswordEncoder pe=new PasswordEncoder();
 		//System.out.println(pe.getSHA512(memberPw));
-		
+	
 		List<String> addressList = new ArrayList<>();
 		addressList.add(address);
 		//String addressString = addressList.stream()
@@ -75,7 +78,7 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		      //  .collect(Collectors.joining(","));
 		Member m = Member.builder()
 		        .memberId(memberId)
-		        .memberPw(memberPw)
+		        .memberPw(pe.getSHA512(memberPw))
 		        .memberName(memberName)
 		        .memberAge(memberAge)
 		        .memberEmail(memberEmail)
@@ -87,6 +90,8 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		        .photoRegist(photoRegist)
 		  
 		        .build();
+		
+		
 		int result=new MemberService().insertMember(m);
 		System.out.println(m);
 		String msg,loc;

@@ -14,11 +14,11 @@ public class PasswordEncoder extends HttpServletRequestWrapper{
 	
 	@Override
 	public String getParameter(String memberName) {
-		if(memberName.equals("memberPw")) {
+		if(memberName.contains("memberPw")) {
 			String ori=super.getParameter(memberName);
-			System.out.println("password 원본 :" +ori);
+			System.out.println("memberPw 원본 :" +ori);
 			String change=getSHA512(ori);
-			System.out.println("password 변경 :" +change);
+			System.out.println("memberPw 변경 :" +change);
 			return change;
 		}
 		return super.getParameter(memberName);
@@ -28,7 +28,6 @@ public class PasswordEncoder extends HttpServletRequestWrapper{
 	
 	
 	public  String getSHA512(String oriVal) {
-		//java.security.MessageDigest클래스를 이용
 		MessageDigest md=null;
 		try {
 			md=MessageDigest.getInstance("SHA-512");
@@ -36,11 +35,9 @@ public class PasswordEncoder extends HttpServletRequestWrapper{
 			e.printStackTrace();
 		}
 		byte[] oridatabyte=oriVal.getBytes();
-		md.update(oridatabyte);//sha-512방식으로 암호화처리
+		md.update(oridatabyte);
 		byte[] encryptData=md.digest();
-		//문자열로 변환하기 위해서 Base64클래스가 제공하는 인코더를 이용
 		String encryptStr=Base64.getEncoder().encodeToString(encryptData);
-		
 		return encryptStr;
 		
 	}
