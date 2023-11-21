@@ -120,20 +120,20 @@
 			<tr>
 				<th>패스워드</th>
 				<td>
-					<input type="password" name="password" id="password" onchange="check_pw()"><br>
+					<input type="password" name="memberPw" id="memberPw" onchange="check_pw()"><br>
 					
 				</td>
 			</tr>
 			<tr>
 				<th>패스워드확인</th>
 				<td>	
-					<input type="password" id="password2" onchange="check_pw()"><span id="check"></span><br>
+					<input type="password" id="memberPw2" onchange="check_pw()"><span id="check"></span><br>
 				</td>
 			</tr>  
 			<tr>
 				<th>이름</th>
 				<td>	
-				<input type="text"  name="userName" id="userName" ><br>
+				<input type="text"  name="memberName" id="memberName" ><br>
 				</td>
 			</tr>
 			<tr>
@@ -176,8 +176,8 @@
 				<td>
 					<div>
 					<label for="id_a"><input type="checkbox" name="all" id="id_a" > 전체동의</label><br>
-		        	<label for="id_b"><input type="checkbox" name="ckbox1" id="id_b" value="N"> [필수]개인정보 사용 동의</label><br>
-		       		<label for="id_c"><input type="checkbox" name="ckbox2" id="id_c" value="N"> [필수]개인정보 수집 및 이용에 동의</label><br>
+		        	<label for="id_b"><input type="checkbox" name="ckbox1" id="id_b" value="N"> [필수]이용약관 동의</label><br>
+		       		<label for="id_c"><input type="checkbox" name="ckbox2" id="id_c" value="N"> [필수]개인정보 제3자 제공 동의</label><br>
 		        	<label for="id_d"><input type="checkbox" name="ckbox3" id="id_d" value="N"> [선택]정보·혜택 수신 동의</label><br>
 		       		</div>
 	       		</td>
@@ -273,7 +273,7 @@ window.onload = function(){
 }
 </script>
 <script>
-// 프로필 사진 미리보기 기능
+// 프로필 사진 
 document.getElementById("photoRegist").addEventListener("change", function(e){
     let reader = new FileReader();
     reader.onload = function(e){
@@ -287,22 +287,22 @@ document.getElementById("photoRegist").addEventListener("change", function(e){
  //비밀번호 관련
       function check_pw(){
     	 
-          var password = document.getElementById('password').value;
+          var password = document.getElementById('memberPw').value;
           var SC = ["!","@","#","$","%"];
           var check_SC = 0;
           var reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
   			
-          var password =$("#password").val();
+          var password =$("#memberPw").val();
   			if( !reg.test(password) ) {
   		    alert("비밀번호 영문자,특수기호,숫자를 반드시 포함해야합니다.!!");
-  		    $("#password").val("");
-  		    $("#password2").val("");
-  		    $("#password").focus();
+  		    $("#memberPw").val("");
+  		    $("#memberPw2").val("");
+  		    $("#memberPw").focus();
   		    return false;
           
           }
-          if(document.getElementById('password').value !='' && document.getElementById('password2').value!=''){
-              if(document.getElementById('password').value==document.getElementById('password2').value){
+          if(document.getElementById('memberPw').value !='' && document.getElementById('memberPw2').value!=''){
+              if(document.getElementById('memberPw').value==document.getElementById('memberPw2').value){
                   document.getElementById('check').innerHTML='일치.'
                   document.getElementById('check').style.color='blue';
               }
