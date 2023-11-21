@@ -18,6 +18,7 @@ import com.veg.kth.community.model.dto.Hashtag;
 import com.veg.kth.community.model.dto.Material;
 import com.veg.kth.community.model.dto.Procedure;
 import com.veg.kth.community.model.dto.Recipe;
+import com.veg.kth.community.model.dto.RecipeComment;
 
 public class CommunityDao {
 	
@@ -83,6 +84,28 @@ public class CommunityDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				result.add(getCategory(rs));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
+	
+	
+	public List<RecipeComment> selectRecipeComment(Connection conn, int recipeNo){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RecipeComment> result = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeComment"));
+			pstmt.setInt(1, recipeNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result.add(getRecipeComment(rs));
 			}
 			
 		}catch(SQLException e) {
@@ -386,6 +409,19 @@ public class CommunityDao {
 				.build();
 	}
 	
+	
+	public RecipeComment getRecipeComment(ResultSet rs)throws SQLException{
+		return RecipeComment.builder()
+				.commentNo(rs.getInt("comment_no"))
+				.commentWriter(rs.getString("comment_writer"))
+				.commentContent(rs.getString("comment_content"))
+				.commentOriginalFileName(rs.getString("comment_original_file_name"))
+				.commentRenamedFileName(rs.getString("comment_rename_file_name"))
+				.commentDate(rs.getDate("comment_date"))
+				.recipeNo(rs.getInt("recipe_no"))
+				.memberNo(rs.getInt("member_no"))
+				.build();
+	}
 	
 	
 }

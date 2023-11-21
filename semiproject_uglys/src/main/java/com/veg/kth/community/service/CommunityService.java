@@ -13,6 +13,7 @@ import com.veg.kth.community.model.dto.Category;
 import com.veg.kth.community.model.dto.Hashtag;
 import com.veg.kth.community.model.dto.Material;
 import com.veg.kth.community.model.dto.Recipe;
+import com.veg.kth.community.model.dto.RecipeComment;
 
 public class CommunityService {
 
@@ -82,6 +83,13 @@ public class CommunityService {
 	public Recipe selectRecipeByNo(int r) {
 		Connection conn = getConnection();
 		Recipe result = dao.selectRecipeByNo(conn,r);
+		close(conn);
+		return result;
+	}
+	
+	public List<RecipeComment> selectRecipeComment(int recipeNo){
+		Connection conn = getConnection();
+		List<RecipeComment> result = dao.selectRecipeComment(conn, recipeNo);
 		close(conn);
 		return result;
 	}
