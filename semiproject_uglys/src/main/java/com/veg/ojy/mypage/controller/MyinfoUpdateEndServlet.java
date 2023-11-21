@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.veg.hjj.member.dto.Member;
 import com.veg.ojy.mypage.service.MyinfoService;
 
+
 /**
  * Servlet implementation class MyinfoUpdateEndServlet
  */
@@ -38,17 +39,22 @@ public class MyinfoUpdateEndServlet extends HttpServlet {
 		if(m!=null) {
 		// 2. 일치하면 비밀번호를 변경
 			int result = new MyinfoService().updatePassword(memberId,passwordNew);
-			
+			System.out.println(result);
 			if(result>0) {
+		// -> 변경이 완료되면 변경완료 메세지 후 창 자동으로 닫기, 로그아웃 후 메인화면으로 이동.
 				msg="변경이 완료되었습니다. 다시 로그인해주세요.";
 				loc="/";
-				String script="opener.location.replace('"+request.getContextPath()+"/logout.do');"+"close();";
+				String script="opener.location.replace('"+request.getContextPath()+"/loginout.do');"+"close();";
 				request.setAttribute("script",script);
 			}
+		// -> 변경실패하면 변경 실패 메세지 출력 후 비밀번호 변경 화면으로 이동 
 		}else {
+		// 3. 일치하지 않으면 비밀번호 변경화면으로 전환.
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp")
+		.forward(request, response);
 	}
 
 	/**

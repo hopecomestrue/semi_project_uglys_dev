@@ -11,7 +11,7 @@
 	            <div class="col-md-12 ftco-animate text-center">
 	              <h2 class="mb-2" style="color: white;">함께 만들어가는 건강 식단, &amp; 채소랑</h2>
 	              <h3 class="subheading mb-4"> 매주 만나는 신선함  </h3>
-	              <p><a href="#" class="btn btn-primary">신선한 채소 보기</a></p>
+	              <p><a href="<%=request.getContextPath() %>/productionList/vegfarm.do" class="btn btn-primary">신선한 채소 보기</a></p>
 	            </div>
 	          </div>
 	        </div>
@@ -94,7 +94,7 @@
 									<div class="text text-center">
 										<h2>채소농장</h2>
 										<p>나와 가족 모두를 건강하게</p>
-										<p><a href="#" class="btn btn-primary">채소 보러 가기</a></p>
+										<p><a href="<%=request.getContextPath() %>/productionList/vegfarm.do" class="btn btn-primary">채소 보러 가기</a></p>
 									</div>
 								</div>
 							</div>
