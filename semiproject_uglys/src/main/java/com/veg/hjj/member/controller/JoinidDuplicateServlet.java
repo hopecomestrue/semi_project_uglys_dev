@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veg.hjj.member.dto.Member;
+import com.veg.hjj.member.service.MemberService;
+
 /**
  * Servlet implementation class JoinidDuplicateServlet
  */
@@ -26,7 +29,15 @@ public class JoinidDuplicateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//아이디 중복확인
+		String memberId=request.getParameter("memberId");
+		System.out.println(memberId);
+		Member m=new MemberService().selectMemberById(memberId);
+	
+		
+		request.setAttribute("result", m==null?true:false);
+		
+		System.out.println(m);
+		
 		
 		request.getRequestDispatcher("/views/member/idduplicate.jsp")
 		.forward(request, response);

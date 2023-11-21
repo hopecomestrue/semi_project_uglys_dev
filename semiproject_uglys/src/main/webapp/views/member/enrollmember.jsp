@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,15 +97,15 @@
 <body>
 	<section id=enroll-container>
         <h2>회원 가입</h2>
-        <form action="" method="post" onsubmit="" >
+        <form action="<%=request.getContextPath() %>/member/enrollMemberEnd.do" method="post" onsubmit="" enctype="multipart/form-data">
         <table>
        		<tr>
        			<td>
        			<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 					<img id="preview" src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMTgy/MDAxNjA0MjI4ODc1NDMw.Ex906Mv9nnPEZGCh4SREknadZvzMO8LyDzGOHMKPdwAg.ZAmE6pU5lhEdeOUsPdxg8-gOuZrq_ipJ5VhqaViubI4g.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?type=w800" width="100px" height="100px">
-					<label for="profilePic"></label>
-					<input type="file" id="profilePic" name="profilePic" style="display: none;">
-					<input type="button" value="이미지 수정" onclick="document.getElementById('profilePic').click();" />
+					<label for="photoRegist"></label>
+					<input type="file" id="photoRegist" name="photoRegist" style="display: none;">
+					<input type="button" value="프로필 선택" onclick="document.getElementById('photoRegist').click();" />
 					<br><br>
 				</div>
        			</td>
@@ -112,20 +113,21 @@
 			<tr>
 				<th>아이디</th>
 				<td>
-					<input type="text" placeholder="4글자이상" name="userId" id="userId_" >
-					<input type="button" value="중복 확인" onclick="fn_idduplicate();">
+					<input type="text" placeholder="4글자이상" name="memberId" id="memberId" value="<%=%>" >
+					<input type="button" value="중복 확인" name="memberId" onclick="fn_idduplicate();">
 				</td>
 			</tr>
 			<tr>
 				<th>패스워드</th>
 				<td>
-					<input type="password" name="password" id="password_" ><br>
+					<input type="password" name="password" id="password" onchange="check_pw()"><br>
+					
 				</td>
 			</tr>
 			<tr>
 				<th>패스워드확인</th>
 				<td>	
-					<input type="password" id="password_2" ><br>
+					<input type="password" id="password2" onchange="check_pw()"><span id="check"></span><br>
 				</td>
 			</tr>  
 			<tr>
@@ -137,13 +139,13 @@
 			<tr>
 				<th>연령대</th>
 				<td>
-					<select>
-						<option>선택 안함</option>
-						<option>10세 미만</option>
-						<option>10~19세</option>
-						<option>20~29세 미만</option>
-						<option>30~39세 미만</option>
-						<option>40대 이상</option>
+					<select name="ageRange">
+					
+						<option value="10세 이하">10세 이하</option>
+						<option value="10~19세">10~19세</option>
+						<option value="20~29세">20~29세</option>
+						<option value="30~39세">30~39세</option>
+						<option value="40대 이상">40대 이상</option>
 					</select>
 				</td>
 			</tr>
@@ -173,26 +175,33 @@
 			<tr>
 				<td>
 					<div>
-					<label for="id_a"><input type="checkbox" name="all" id="id_a"> 전체동의</label><br>
-		        	<label for="id_b"><input type="checkbox" name="ckbox" id="id_b"> [필수]개인정보 사용 동의</label><br>
-		       		<label for="id_c"><input type="checkbox" name="ckbox" id="id_c"> [필수]개인정보 수집 및 이용에 동의</label><br>
-		        	<label for="id_d"><input type="checkbox" name="ckbox" id="id_d"> [선택]정보·혜택 수신 동의</label><br>
+					<label for="id_a"><input type="checkbox" name="all" id="id_a" > 전체동의</label><br>
+		        	<label for="id_b"><input type="checkbox" name="ckbox1" id="id_b" value="N"> [필수]개인정보 사용 동의</label><br>
+		       		<label for="id_c"><input type="checkbox" name="ckbox2" id="id_c" value="N"> [필수]개인정보 수집 및 이용에 동의</label><br>
+		        	<label for="id_d"><input type="checkbox" name="ckbox3" id="id_d" value="N"> [선택]정보·혜택 수신 동의</label><br>
 		       		</div>
 	       		</td>
 			</tr>
 		</table>
 		<div class="button-group">
-			<input type="submit" value="가입">
+			<input type="submit" value="회원가입">
 			<input type="reset" value="취소">
 		</div>
         </form>
     </section>
-    <body>
+  
     
-</body>
+
 <script>
- //개인정보 전체선택
-   
+//개인정보 전체선택
+   window.onload = function(){
+	    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+	    for (var i=0; i<checkboxes.length; i++) {
+	        checkboxes[i].addEventListener('change', function() {
+	            this.value = this.checked ? 'Y' : 'N';
+	        });
+	    }
+    }
     document.addEventListener('DOMContentLoaded', () => {
         const ckTag = document.getElementById('id_a')
         const evtBtnTag1 = document.getElementById('id_b')
@@ -217,7 +226,7 @@
                 ckTag.checked = false;
             }
         })
-        evtBtnTag1.addEventListener('click', (event) => {
+        evtBtnTag2.addEventListener('click', (event) => {
             if(event.currentTarget.checked == false){
                 ckTag.checked = false;
             }
@@ -233,19 +242,22 @@
             }
         })
     })
-
+</script>
+<script>
  //아이디 중복확인
 	const fn_idduplicate=()=>{
-		const userId=$("#userId_").val().trim();
-		if(userId.length>=4){
-			const child=open("<%=request.getContextPath()%>/member/idduplicate.do?userId="+userId,
+		const memberId=$("#memberId").val().trim();
+		if(memberId.length>=4){
+			const child=open("<%=request.getContextPath()%>/member/idduplicate.do?memberId="+memberId,
 				"_blank","width=300,height=200");
 		}else{
 			alert("아이디는 4글자이상 입력하세요");
-			$("#userId_").focus();
+			$("#memberId").focus();
 		}
-	}
-	</script>
+	
+		
+		}
+</script>
 	
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -262,14 +274,44 @@ window.onload = function(){
 </script>
 <script>
 // 프로필 사진 미리보기 기능
-document.getElementById("profilePic").addEventListener("change", function(e){
+document.getElementById("photoRegist").addEventListener("change", function(e){
     let reader = new FileReader();
     reader.onload = function(e){
         document.getElementById("preview").setAttribute('src', e.target.result);
     }
     reader.readAsDataURL(e.target.files[0]);
 });
-
 </script>
+
+ <script>
+ //비밀번호 관련
+      function check_pw(){
+    	 
+          var password = document.getElementById('password').value;
+          var SC = ["!","@","#","$","%"];
+          var check_SC = 0;
+          var reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
+  			
+          var password =$("#password").val();
+  			if( !reg.test(password) ) {
+  		    alert("비밀번호 영문자,특수기호,숫자를 반드시 포함해야합니다.!!");
+  		    $("#password").val("");
+  		    $("#password2").val("");
+  		    $("#password").focus();
+  		    return false;
+          
+          }
+          if(document.getElementById('password').value !='' && document.getElementById('password2').value!=''){
+              if(document.getElementById('password').value==document.getElementById('password2').value){
+                  document.getElementById('check').innerHTML='일치.'
+                  document.getElementById('check').style.color='blue';
+              }
+              else{
+                  document.getElementById('check').innerHTML='불일치.';
+                  document.getElementById('check').style.color='red';
+              }
+          }
+        }
+    </script>
 </body>
 </html>

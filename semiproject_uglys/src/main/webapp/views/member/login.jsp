@@ -116,7 +116,72 @@
         <hr>
         </div>
     </div>
-   	 
+   	 <!--카카오 API  -->
+   	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js"
+  integrity="sha384-kYPsUbBPlktXsY6/oNHSUDZoTX6+YI51f63jCPEIPFP09ttByAdxd2mEjKuhdqn4" crossorigin="anonymous"></script>
+<script>
+  Kakao.init('88511cd73e5b8324cd21c703d8870f46'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
+
+<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
+    alt="카카오 로그인 버튼" />
+</a>
+<p id="token-result"></p>
+
+
+<script>
+Kakao.init('88511cd73e5b8324cd21c703d8870f46');
+
+  function loginWithKakao() {
+    Kakao.Auth.authorize({
+    	 redirectUri: 'http://localhost:9090/semiproject_uglys/member/enrollmember.do'
+    });
+  }
+
+  // 아래는 데모를 위한 UI 코드입니다.
+  displayToken()
+  function displayToken() {
+    var token = getCookie('authorize-access-token');
+
+    if(token) {
+      Kakao.Auth.setAccessToken(token);
+      Kakao.Auth.getStatusInfo()
+        .then(function(res) {
+          if (res.status === 'connected') {
+            document.getElementById('token-result').innerText
+              = 'login success, token: ' + Kakao.Auth.getAccessToken();
+          }
+        })
+        .catch(function(err) {
+          Kakao.Auth.setAccessToken(null);
+        });
+    }
+  }
+
+  function getCookie(memberName) {
+    var parts = document.cookie.split(memberName + '=');
+    if (parts.length === 2) { return parts[1].split(';')[0]; }
+  }
+  window.onload = function() {
+	  var token = getCookie('authorize-access-token');
+
+	  if(token) {
+	    Kakao.Auth.setAccessToken(token);
+
+	    // 사용자 정보 요청
+	    Kakao.API.request({
+	      url: '/v2/user/me',
+	      success: function(res) {
+	        // 회원가입 폼에 사용자 정보 입력
+	        document.getElementById('memberId').value = res.id;
+	        document.getElementById('email').value = res.kakao_account.email;
+	      }
+	     
+	    });
+	  }
+	}
+</script>
    
     
 
@@ -129,23 +194,6 @@
     </p>
     
     
-    
-    
-    
-    
-    
-    <script type="text/javascript">
-        const naverLogin = new naver.LoginWithNaverId(
-            {
-                clientId: "Y3ckks1s8Vmu5zOdIZ5R",
-                callbackUrl: "http://localhost:8080/logintest/member/idduplicate.do",
-                isPopup: false,
-                loginButton: {color: "green", type: 1, height: 40}
-            }
-        );
-        naverLogin.init();
-</script>
-
 <script>
 	 const msg = '<%= msg!=null? msg:"" %>';
 	    if (msg != '') {

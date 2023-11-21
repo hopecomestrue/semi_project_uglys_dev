@@ -74,7 +74,7 @@ input[type="submit"]:hover {
 <body>
     <div class="login-container">
         <h2>아이디 찾기</h2>
-        <form action="" method="post">
+        <form action="<%=request.getContextPath()%>/forgetfindid.do" method="post">
             <table>
                 <tr>
                     <th>이름</th>
@@ -91,13 +91,14 @@ input[type="submit"]:hover {
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <button >아이디 찾기</button>
+                       <input type="submit" value="아이디찾기">
                     </td>
                 </tr>
             </table>
         </form>
     </div>
-
+   
+    
     <!--footer부분  -->
      <hr>
         <p style="justify-content: center; display: flex;">
@@ -105,6 +106,18 @@ input[type="submit"]:hover {
           통신판매업 신고번호 : 2023-가산-1312 | 제휴 및 납품 문의 : biz@uglys.co.kr | 농산물 납품 및 긴급구출 제보 : farm@uglys.co.kr<br>
           
                 Copyright ⓒ 2023 주식회사 어글리즈 All rights reserved
-        </p>    
+        </p>  
+         
+<script>
+  function searchId(){
+     var name = document.getElementById("userName").value;
+     var email = document.getElementById("email").value;
+
+     if(name == "" || email == ""){
+        alert("모든 정보를 입력해주세요.");
+        return;
+     }
+     
+</script>  
 </body>
 </html>
