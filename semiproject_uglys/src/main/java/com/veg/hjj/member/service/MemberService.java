@@ -8,9 +8,13 @@ import java.sql.Connection;
 import com.veg.common.JDBCTemplate;
 import com.veg.hjj.member.dao.MemberDao;
 import com.veg.hjj.member.dto.Member;
+import com.veg.ksj.order.model.dto.Order;
 public class MemberService {
 	
 	private MemberDao dao=new MemberDao();
+	
+	
+	
 	
 	public Member selectMemberByIdAndPw(String memberId,String memberPw) {
 		Connection conn=getConnection();

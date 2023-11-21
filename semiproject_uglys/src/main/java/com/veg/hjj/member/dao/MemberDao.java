@@ -16,6 +16,7 @@ import java.util.Properties;
 import com.veg.common.JDBCTemplate;
 
 import com.veg.hjj.member.dto.Member;
+import com.veg.ksj.order.model.dto.Order;
 
 public class MemberDao {
 	
@@ -29,6 +30,12 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
+	
 	public Member selectMemberByIdAndPw(Connection conn, String memberId, String memberPw) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
