@@ -36,10 +36,8 @@ public class MyinfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
 		Member m = (Member)session.getAttribute("loginMember");
 		int memberNo = m.getMemberNo();
-		
 		//String address=request.getParameter("address");
 		List<Address> a = new MyinfoService().selectAddress(memberNo);
 		request.setAttribute("member", m);
