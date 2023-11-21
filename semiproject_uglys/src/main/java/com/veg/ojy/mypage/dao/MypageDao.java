@@ -226,11 +226,8 @@ public class MypageDao {
 		                .memberAge(rs.getString("member_age"))
 		                .memberEmail(rs.getString("member_email"))
 		                .memberPhone(rs.getInt("member_phone"))
-<<<<<<< HEAD
 		                .acceptAgree(rs.getString("accept_agree"))
-=======
 		                .acceptAgree(rs.getString("accpet_agree"))
->>>>>>> branch 'dev' of https://github.com/hopecomestrue/semi_project_uglys_dev.git
 		                .adminCheck(rs.getString("admin_check"))
 		                .serviceAgree(rs.getString("service_agree"))
 		                .marketingAgree(rs.getString("marketing_Agree"))
@@ -287,25 +284,25 @@ public class MypageDao {
 				.build();
 	}
 	
-	private void addMemberAndAddress(List<Member> members, ResultSet rs) throws SQLException {
-		String pk = rs.getString("member_no");
-		if (members.stream().anyMatch(e -> pk.equals(e.getMemberNo()))) {
-			members.stream().filter(e -> Objects.equals(e.getMemberNo(), pk)).forEach(e -> {
-				try {
-					if (rs.getString("address_no") != null) {
-						e.getAddress().add(getAddress(rs));
-					}
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			});
-		} else {
-			Member m = getMember(rs);
-			if (rs.getString("address_no") != null)
-				m.getAddress().add(getAddress(rs));
-			members.add(m);
-		}
-	}
+//	private void addMemberAndAddress(List<Member> members, ResultSet rs) throws SQLException {
+//		String pk = rs.getString("member_no");
+//		if (members.stream().anyMatch(e -> pk.equals(e.getMemberNo()))) {
+//			members.stream().filter(e -> Objects.equals(e.getMemberNo(), pk)).forEach(e -> {
+//				try {
+//					if (rs.getString("address_no") != null) {
+//						e.getAddress().add(getAddress(rs));
+//					}
+//				} catch (SQLException e1) {
+//					e1.printStackTrace();
+//				}
+//			});
+//		} else {
+//			Member m = getMember(rs);
+//			if (rs.getString("address_no") != null)
+//				m.getAddress().add(getAddress(rs));
+//			members.add(m);
+//		}
+//	}
 	public int insertAddress(Connection conn, String address) {
 		// TODO Auto-generated method stub
 		return 0;
