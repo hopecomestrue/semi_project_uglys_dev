@@ -33,7 +33,7 @@ public class AdminLogout extends HttpServlet {
 			session.invalidate();
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/views/admin/adminLogin.jsp");
+		response.sendRedirect(request.getContextPath());
 		
 	}
 

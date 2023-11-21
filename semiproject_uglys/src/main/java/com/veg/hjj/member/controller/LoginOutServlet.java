@@ -28,11 +28,11 @@ public class LoginOutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
-		if(session!=null) {
-			session.invalidate();
-		}
-		
-		
+        if(session!=null) {
+                session.invalidate();
+        }
+        
+        
 	response.sendRedirect(request.getContextPath());
 	}
 
