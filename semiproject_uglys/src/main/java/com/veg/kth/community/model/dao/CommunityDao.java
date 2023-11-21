@@ -134,12 +134,12 @@ public class CommunityDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
-			pstmt = conn.prepareStatement("insertRecipe");
+			pstmt = conn.prepareStatement(sql.getProperty("insertRecipe"));
 			pstmt.setString(1, r.getRecipeOriginalFileName());
 			pstmt.setString(2, r.getRecipeRenamedFileName());
 			pstmt.setString(3, r.getRecipeTitle());
 			pstmt.setString(4, r.getRecipeComment());
-			pstmt.setInt(5, r.getRecipeLeadTime());
+			pstmt.setString(5, r.getRecipeLeadTime());
 			pstmt.setInt(6, r.getRecipeCapa());
 			pstmt.setInt(7, r.getMember_no());
 			result=pstmt.executeUpdate();
@@ -157,12 +157,13 @@ public class CommunityDao {
 		ResultSet rs = null;
 		int result = 0;
 		try {
-			pstmt = conn.prepareStatement("checkRecipeNo");
+			
+			pstmt = conn.prepareStatement(sql.getProperty("checkRecipeNo"));
 			pstmt.setInt(1, r.getMember_no());
 			pstmt.setInt(2, r.getRecipeCapa());
-			pstmt.setString(3, r.getRecipeRenamedFileName());
+			pstmt.setString(3, r.getRecipeTitle());
 			rs = pstmt.executeQuery();
-			if(rs.next()) result=rs.getInt(1);
+			while(rs.next()) result=rs.getInt("recipe_no");
 		}catch(SQLException e) {
 			
 		}finally {
@@ -177,15 +178,19 @@ public class CommunityDao {
 		int result = 0;
 		List<Material> m = r.getMaterial();
 		
+		System.out.println("확인1"+m);
+		System.out.println(recipeNo);
 		for(int i=0;i<m.size();i++) {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement("insertMaterial");
+			
+			
+			pstmt = conn.prepareStatement(sql.getProperty("insertMaterial"));
 			pstmt.setString(1, m.get(i).getMaterialType());
 			pstmt.setString(2, m.get(i).getMaterialName());
 			pstmt.setString(3, m.get(i).getMaterialCapa());
 			pstmt.setInt(4, recipeNo);
-			result+=pstmt.executeUpdate();
+			result=pstmt.executeUpdate();
 
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -204,7 +209,7 @@ public class CommunityDao {
 		for(int i=0;i<m.size();i++) {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement("insertProcedure");
+			pstmt = conn.prepareStatement(sql.getProperty("insertProcedure"));
 			pstmt.setLong(1, m.get(i).getProcedureOrder());
 			pstmt.setString(2, m.get(i).getProcedureComment());
 			pstmt.setString(3, m.get(i).getProcedureOriginalFileName());
@@ -222,17 +227,48 @@ public class CommunityDao {
 		
 	}
 	
-	public int insertHashtag(Connection conn, Recipe r, int recipeNo) {
+	public int insertHashtag(Connection conn, Recipe r) {
 		int result = 0;
+		System.out.println("재료수량"+r.getMaterial().size());
 		List<Hashtag> m = r.getHashtag();
+		if(!m.isEmpty()&&m!=null) {
+			for(int i=0;i<m.size();i++) {
+				PreparedStatement pstmt = null;
+				try {
+					pstmt = conn.prepareStatement(sql.getProperty("insertHashtag"));
+					pstmt.setString(1, m.get(i).getHashtagValue());
+					result=pstmt.executeUpdate();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}finally {
+					close(pstmt);
+				}
+			}
+			
+		}
+		return result;
 		
-		for(int i=0;i<m.size();i++) {
+	}
+	
+	public int insertRecipeHashtag(Connection conn, Recipe r, int recipeNo, List<Hashtag> h) {
+		int result = 0;
+		List<Hashtag> recipe_hash = r.getHashtag();
 		PreparedStatement pstmt = null;
+		List<Integer> hashtagNo = new ArrayList<>();
+		for(int i=0;i<recipe_hash.size();i++) {
+			for(int j=0;j<h.size();j++) {
+				if(h.get(j).getHashtagValue().equals(recipe_hash.get(i).getHashtagValue())) {
+					hashtagNo.add(h.get(j).getHashtagNo());
+				}	
+			}
+		}
+		
+		for(int i=0;i<hashtagNo.size();i++) {
 		try {
-			pstmt = conn.prepareStatement("insertHashtag");
-			pstmt.setString(1, m.get(i).getHashtagValue());
-			pstmt.setInt(5, recipeNo);
-			result+=pstmt.executeUpdate();
+			pstmt = conn.prepareStatement(sql.getProperty("insertRecipeHashtag"));
+			pstmt.setInt(1, hashtagNo.get(i));
+			pstmt.setInt(2, recipeNo);
+			result=pstmt.executeUpdate();
 
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -248,12 +284,16 @@ public class CommunityDao {
 	public int insertCategory(Connection conn, Recipe r, int recipeNo) {
 		int result = 0;
 		Category m = r.getCategory();
+		System.out.println("카테고리1"+m.getCategoryDept1());
+		System.out.println("카테고리2"+m.getCategoryDept2());
+		System.out.println("레시피번호"+recipeNo);
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement("insertHashtag");
+			pstmt = conn.prepareStatement(sql.getProperty("insertCategory"));
 			pstmt.setString(1, m.getCategoryDept1());
-			pstmt.setInt(5, recipeNo);
-			result+=pstmt.executeUpdate();
+			pstmt.setString(2, m.getCategoryDept2());
+			pstmt.setInt(3, recipeNo);
+			result=pstmt.executeUpdate();
 
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -261,6 +301,29 @@ public class CommunityDao {
 			close(pstmt);
 		}
 		return result;
+		
+	}
+	
+	public Recipe selectRecipeByNo(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Recipe> result = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeByNo"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				addRecipeAll(result,rs);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return (Recipe)result;
+		
 		
 	}
 	
@@ -274,9 +337,9 @@ public class CommunityDao {
 				.recipeRenamedFileName(rs.getString("recipe_renamed_file_name"))
 				.recipeTitle(rs.getString("recipe_title"))
 				.recipeComment(rs.getString("recipe_comment"))
-				.recipeLeadTime(rs.getInt("recipe_leadtime"))
+				.recipeLeadTime(rs.getString("recipe_leadtime"))
 				.category(getCategory(rs))
-				.Hashtag(new ArrayList<>())
+				.hashtag(new ArrayList<>())
 				.material(new ArrayList<>())
 				.procedure(new ArrayList<>())
 				.recipeCapa(rs.getInt("recipe_capa"))

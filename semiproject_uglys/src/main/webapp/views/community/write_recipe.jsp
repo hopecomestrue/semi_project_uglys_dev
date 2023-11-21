@@ -122,9 +122,9 @@ function categoryChange(e) {
                 <input type="hidden" value="" name="tag" id="rdTag" />
             </div>
 				<%if(!hashtags.isEmpty()){ 
-            		for(Hashtag h : hashtags){%>
+            		for(int i=0;i<6;i++){%>
                   <button type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
-                		#<%=h.getHashtagValue()%>
+                		#<%=hashtags.get(i).getHashtagValue()%>
                 	</button>
                 	<%} 
                 	}%>
@@ -180,6 +180,7 @@ function categoryChange(e) {
 		<input type="file" id="procedure_file" name="procedure_file">
 		<input type="button" value="추가" onclick="addProcedure();">
 		</div>
+		<input type="hidden" name="member_no" value="52<%-- <%=loginMember.getMemberNo()%> --%>"> 
 		<div>
 		<input type="submit" id="lastBtn" value="완료">
 		</div>
