@@ -147,9 +147,9 @@
       <th>배송현황</th>
       <td>
         <select class="form-select form-select-lg mb-3" id="del-check" aria-label=".form-select-lg example">
-            <option selected value="배송준비중">배송준비중</option>
-            <option value="배송중">배송중</option>
-            <option value="배송완료">배송완료</option>
+            <option value="배송준비중" <%=order.getOrderStatus().equals("배송준비중")?"selected":"" %>>배송준비중</option>
+            <option value="배송중" <%=order.getOrderStatus().equals("배송중")?"selected":"" %>>배송중</option>
+            <option value="배송완료" <%=order.getOrderStatus().equals("배송완료")?"selected":"" %>>배송완료</option>
           </select>
       </td>
     </tr>
@@ -172,9 +172,9 @@
 		var orderNo=document.getElementById('orderNo').innerText;
 		var delNo=document.getElementById('delNo').value;
 		var delCheck=document.getElementById('del-check').value;
-		console.log(orderNo);
+		/* console.log(orderNo);
 		console.log(delNo);
-		console.log(delCheck);
+		console.log(delCheck); */
 		
 		$.ajax({
 			url : '<%=request.getContextPath()%>/admin/deliveryDetailEnd.do',
@@ -189,7 +189,7 @@
 				alert('배송상태 수정완료');
 			},
 			error:function(){
-				/* alert('배송상태 수정실패'); */
+				alert('배송상태 수정실패');
 			}
 		});
 	});

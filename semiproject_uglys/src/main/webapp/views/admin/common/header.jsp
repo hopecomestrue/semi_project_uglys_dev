@@ -157,6 +157,7 @@
         <span>관리자님, 환영합니다</span>
         <button type="button" class="btn btn-primary" onclick="location.assign('<%=request.getContextPath()%>/admin/logout.do')">로그아웃</button>
       </div>
+</header>
   </div>
 
 <!-- 상단 메뉴 -->
@@ -182,4 +183,3 @@
 	      </div>
 	    </div>
   </div>
-</header>
