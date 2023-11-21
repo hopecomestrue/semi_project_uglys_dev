@@ -158,7 +158,7 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 				loc = "/community/communitymain.do";
 			}else {
 				//입력실패
-				msg="공지사항 등록실패";
+				msg="레시피 등록 실패";
 				loc="/notice/noticewrite.do";
 				File delFile = new File(path+"/"+renameMainFile);
 				if(delFile.exists()) delFile.delete();
