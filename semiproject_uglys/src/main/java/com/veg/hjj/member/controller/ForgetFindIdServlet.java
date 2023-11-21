@@ -15,14 +15,14 @@ import com.veg.hjj.member.service.MemberService;
 /**
  * Servlet implementation class ForgetFindIdServlet
  */
-@WebServlet("/forgetfindpw.do")
-public class ForgetFindPwServlet extends HttpServlet {
+@WebServlet("/forgetfindid.do")
+public class ForgetFindIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ForgetFindPwServlet() {
+    public ForgetFindIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +32,22 @@ public class ForgetFindPwServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+
 		String memberName = request.getParameter("userName");
-		String memberId = request.getParameter("userId");
 		String memberEmail = request.getParameter("email");
 	
 		System.out.println(memberName);
-		System.out.println(memberId);
 		System.out.println(memberEmail);
 		
 		
 		MemberService service = new MemberService();
-		Member member = service.searchPw(memberName, memberId, memberEmail);
-	
+		Member member = service.searchId(memberName,memberEmail);
+		
 		System.out.println("member : " + member);
 
 	
 		if(member != null) {
-			RequestDispatcher rd = request.getRequestDispatcher("/views/member/forgetfindpw.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/views/member/forgetfindid.jsp");
 			request.setAttribute("members", member);
 			rd.forward(request, response);
 			
@@ -59,8 +58,11 @@ public class ForgetFindPwServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		
-		
 	}
+
+//	   request.getRequestDispatcher("/views/member/forgetfindid.jsp").forward(request, response);
+//		
+//	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -61,7 +61,7 @@ public class MypageDao {
 			pstmt.setString(4, m.getMemberName());
 			pstmt.setString(5, m.getMemberAge());
 			pstmt.setString(6, m.getMemberEmail());
-			pstmt.setString(7, m.getMemberPhone());
+			pstmt.setInt(7, m.getMemberPhone());
 			pstmt.setString(8, m.getAcceptAgree());
 			pstmt.setString(9, m.getAdminCheck());
 			pstmt.setString(10, m.getServiceAgree());
@@ -145,7 +145,7 @@ public class MypageDao {
 		                .memberName(rs.getString("member_name"))
 		                .memberAge(rs.getString("member_age"))
 		                .memberEmail(rs.getString("member_email"))
-		                .memberPhone(rs.getString("member_phone"))
+		                .memberPhone(rs.getInt("member_phone"))
 		                .acceptAgree(rs.getString("accpet_agree"))
 		                .adminCheck(rs.getString("admin_check"))
 		                .serviceAgree(rs.getString("service_agree"))

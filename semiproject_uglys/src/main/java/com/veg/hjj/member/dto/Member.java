@@ -1,6 +1,8 @@
 package com.veg.hjj.member.dto;
 
 import java.sql.Date;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Member {
 	private String memberName;
 	private String memberAge;
 	private String memberEmail;
-	private String memberPhone;
+	private int memberPhone;
 	private String acceptAgree;
 	private String adminCheck;
 	private String serviceAgree;
@@ -27,5 +29,7 @@ public class Member {
 	private Date enrollDate;
 	private String photoRegist;
 	private String memberQuit;
-	private List<Address> address = new ArrayList<>();
+	
+	private List<String> address;
+	
 }

@@ -257,7 +257,7 @@ public class OrderDao {
 				.memberName(rs.getString("member_name"))
 				.memberAge(rs.getString("member_age"))
 				.memberEmail(rs.getString("member_email"))
-				.memberPhone(rs.getString("member_phone"))
+				.memberPhone(rs.getInt("member_phone"))
 				.acceptAgree(rs.getString("accept_agree"))
 				.adminCheck(rs.getString("admin_check"))
 				.serviceAgree(rs.getString("service_agree"))
