@@ -207,8 +207,12 @@
          	<%-- <form name="addForm" action="${request.getContextPath()}/mycart.do" method="post"> --%>
             <%--  <span style="display: flex; gap: 10px;"><p><a href="<%=request.getContextPath() %>/mycart.do" class="btn btn-black py-3 px-5" <!-- onclick="document.addForm.submit();" --> >장바구니</a></p> --%>
 			<!-- </form> -->
+			<%if(p.getStock()>0) {%>
 			<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">장바구니</a></p>
             <p><a href="cart.html" class="btn btn-black py-3 px-5">바로구매</a></p></span>
+            <%} else{%> 
+             	<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">품절</a></p>
+             <%} %>
              </div>
           </div>
        </div>
@@ -251,8 +255,10 @@
                   <div style="display: flex; align-items: end; justify-content: space-between; ">
                      <div style="flex-direction: column;">
                         <!-- 후기갯수 디비에서 받아오기 -->
-                        <h2><%=reviewCount.get(p.getProduction_no())%>건의 후기가있어요!</h2>
+                        <%Integer reviewObj = reviewCount.get(p.getProduction_no());%>
+                        <h2><%=reviewObj != null ? reviewObj : 0 %>건의 후기가있어요!</h2>
                         <div style="height: 24px;"></div>
+                        
                      </div>
                   </div>
                   <div style="display: flex; margin-left: 16px; margin-right: 16px; flex-direction: column;">
@@ -261,7 +267,10 @@
                            <p style="font-weight: 600; font-size: 16px; line-height: 1; margin: 0;">평균평점</p>
                            <div style="gap: 4px; align-items: center; display: flex;">
                               <!-- 현재평점 -->
-                              <p style="font-weight: 700; font-size: 30px; line-height: 1; margin: 0;"><%=reviewRating.get(p.getProduction_no())%></p>
+                              <p style="font-weight: 700; font-size: 30px; line-height: 1; margin: 0;">
+                              	<%Double ratingObj = reviewRating.get(p.getProduction_no());%>
+                              	<%=ratingObj != null ? ratingObj : 0.0 %>
+                              	</p>
                               <!-- 총평점 -->
                               <p style="font-size: 16px; line-height: 1; margin: 0;">/5</p>
                            </div>
@@ -271,7 +280,8 @@
                            <!-- 비율평점 -->
                            <a href="#" class="mr-6">
 						    <% 
-						    double rating = (reviewRating.get(p.getProduction_no()));
+						    ratingObj = reviewRating.get(p.getProduction_no());
+						    double rating = (ratingObj != null) ? ratingObj : 0.0;
 						    int fullStars = (int)rating;
 						    boolean halfStar = (rating - fullStars) >= 0.5;
 						    for(int i = 0; i < fullStars; i++) { %>

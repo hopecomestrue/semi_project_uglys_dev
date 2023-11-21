@@ -38,6 +38,7 @@ public class VegfarmSevlet extends HttpServlet {
 		
 		Production p = new ProductionService().selectProductionByNo(productionNo);
 		ProductionContent pc = new ProductionService().selectProductionContentByNo(productionNo);
+		
 		request.setAttribute("production", p);
 		request.setAttribute("productionContent", pc);
 		Map<Integer,Integer> ReviewCount=new ProductionService().selectProductionReviewList();
