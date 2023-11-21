@@ -37,7 +37,7 @@ public class AdminLoginEnd extends HttpServlet {
 		
 		
 		//DB의 MEMBER테이블에 어드민의 모든 정보 가져오기
-		Member m=new OrderService().selectMemberByIdAndPw(adminId,adminPwd);
+		Member m=new MemberService().selectMemberByIdAndPw(adminId,adminPwd);
 		
 		if(m!=null&&m.getAdminCheck().equals("Y")) {
 			//어드민 로그인 성공

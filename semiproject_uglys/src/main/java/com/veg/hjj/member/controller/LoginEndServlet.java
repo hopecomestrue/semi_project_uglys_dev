@@ -17,7 +17,7 @@ import com.veg.hjj.member.service.MemberService;
 /**
  * Servlet implementation class LoginEndServlet
  */
-@WebServlet("/member/loginend.do")
+@WebServlet(name="login", urlPatterns ="/member/loginend.do")
 public class LoginEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,7 +39,7 @@ public class LoginEndServlet extends HttpServlet {
 			String memberPw=request.getParameter("memberPw");
 			String saveId=request.getParameter("saveId");
 			
-			System.out.println(memberId+memberPw+saveId);
+			
 			
 			if(saveId!=null) {
 				Cookie c=new Cookie("saveId",memberId);
@@ -51,7 +51,7 @@ public class LoginEndServlet extends HttpServlet {
 				response.addCookie(c);
 			}
 			Member m=new MemberService().selectMemberByIdAndPw(memberId,memberPw);
-			System.out.println(m);
+
 			
 	
 			if(m!=null) {
