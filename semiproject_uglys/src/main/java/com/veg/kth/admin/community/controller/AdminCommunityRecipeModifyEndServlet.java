@@ -58,6 +58,8 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 				recipeNo = 0;
 			}
 			String oriMainFile = mr.getOriginalFileName("recipe_main_file");
+			System.out.println(oriMainFile);
+			
 			String renameMainFile = mr.getFilesystemName("recipe_main_file");
 			String title = mr.getParameter("recipe_title");
 			String explain = mr.getParameter("recipe_explain");
@@ -123,10 +125,12 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 			}
 			System.out.println(procedures);
 			
+			
 				
 			Recipe r = Recipe.builder().build();
 			if(member_no!=0 && recipeNo!=0) {
 			r = Recipe.builder()
+					.recipeNo(recipeNo)
 					.recipeOriginalFileName(oriMainFile)
 					.recipeRenamedFileName(renameMainFile)
 					.recipeTitle(title)
@@ -143,8 +147,8 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 			
 			}
 			System.out.println(r);
-			
 			int result = new AdminCommunityService().updateRecipe(r);
+			System.out.println("DB성공값:"+result);
 			
 			String msg, loc;
 			
