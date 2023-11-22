@@ -41,7 +41,9 @@ public class ProductionIndexJSPServlet extends HttpServlet {
 		}
 		
 		
-		List<Production> productions = new ProductionService().selectProductions(cPage,numPerpage);
+		List<Production> productions = new ProductionService()
+								.selectProductions(cPage,numPerpage);
+								
 		int totalData=new ProductionService().selectProductionsCount();
 		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
 		int pageBarSize=5;

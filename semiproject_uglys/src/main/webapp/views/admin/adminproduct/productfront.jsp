@@ -181,9 +181,9 @@
     <a href="<%=request.getContextPath() %>/admin/productregi.do">
     <button style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품등록</button>
 	</a>
-	<a >
+	
     <button  onclick="sendValuesToServer(checkedValues);"style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품삭제</button>
-	</a>
+	
 </div>
 				            </div>
 				        </div>
@@ -242,6 +242,7 @@
                         	    .catch((error) => {
                         	        console.error('Error:', error);
                         	    });
+                        	    window.location.replace('<%=request.getContextPath()%>/admin/production.do');
                         	}
 						</script>
                            <tbody>
