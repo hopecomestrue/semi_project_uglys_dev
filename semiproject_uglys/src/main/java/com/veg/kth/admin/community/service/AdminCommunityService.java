@@ -26,4 +26,14 @@ public class AdminCommunityService {
 		close(conn);
 		return result;
 	}
+	
+
+	
+	public List<Recipe> searchRecipeByAnythingAndDate(String searchType, String searchContent, String dateStart, String dateEnd){
+		Connection conn = getConnection();
+		List<Recipe> result = dao.searchRecipeByAnythingAndDate(conn, searchType, searchContent, dateStart, dateEnd);
+		close(conn);
+		return result;
+	
+	}
 }

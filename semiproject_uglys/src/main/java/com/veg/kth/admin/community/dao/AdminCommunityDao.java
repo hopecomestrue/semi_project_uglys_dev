@@ -77,4 +77,40 @@ private Properties sql = new Properties();
 	}
 	
 	
+	public List<Recipe> searchRecipeByAnythingAndDate(Connection conn, String searchType, String searchContent, String dateStart, String dateEnd){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String query = sql.getProperty("searchRecipeByAnythingAndDate");
+		query = query.replace("#COL", searchType);
+		if(dateStart!=null) {
+			query+=" AND RECIPE_DATE > ?";
+		}
+		if(dateEnd!=null) {
+			query+=" AND RECIPE_DATE < ?";
+		}
+		
+		System.out.println(query);
+		List<Recipe> result = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+searchContent+"%");
+			pstmt.setString(2, dateStart);
+			pstmt.setString(3, dateEnd);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				addRecipeAll(result,rs);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		System.out.println(result);
+		return result;
+	}
+	
+	
 }

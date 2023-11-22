@@ -1,6 +1,7 @@
 package com.veg.kth.admin.community.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veg.hjj.member.dto.Member;
+import com.veg.ksj.order.model.service.OrderService;
 import com.veg.kth.admin.community.service.AdminCommunityService;
 import com.veg.kth.community.model.dto.Recipe;
 
@@ -40,10 +43,25 @@ public class AdminCommunitySearchServlet extends HttpServlet {
 		
 		System.out.println(searchType);
 		System.out.println(searchContent);
+		System.out.println(dateStart);
+		System.out.println(dateEnd);
 		
-		List<Recipe> recipe = new AdminCommunityService().searchRecipeByAnything(searchType,searchContent);
+		List<Recipe> recipe = new ArrayList<>();
+		if(dateStart!=null && dateEnd!=null) {
+			recipe = new AdminCommunityService().searchRecipeByAnythingAndDate(searchType,searchContent,dateStart,dateEnd);
+		}else {
+			recipe = new AdminCommunityService().searchRecipeByAnything(searchType,searchContent);			
+		}
+		List<Member> members = new ArrayList<>(); 
+		for(Recipe r : recipe) {
+			members.add(new OrderService().selectMemberByNo(r.getMember_no()));
+		}
+		
+		request.setAttribute("members", members);
+		System.out.println(members);
 		
 		request.setAttribute("recipes", recipe);
+		
 		
 		
 		request.getRequestDispatcher("/views/admin/admincommunity/communityRecipe.jsp")
