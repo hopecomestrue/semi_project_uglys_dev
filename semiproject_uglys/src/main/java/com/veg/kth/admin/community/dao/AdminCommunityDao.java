@@ -138,10 +138,12 @@ private Properties sql = new Properties();
 	
 	public int updateRecipe(Connection conn, Recipe r) {
 		PreparedStatement pstmt = null;
-
 		int result = 0;
+		
+		
 		try {
-			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeByNo"));
+			pstmt = conn.prepareStatement(sql.getProperty("updateRecipe"));
+			
 			result = pstmt.executeUpdate();
 			
 		}catch(SQLException e) {

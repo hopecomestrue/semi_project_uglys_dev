@@ -48,6 +48,12 @@ public class AdminCommunityService {
 	public int updateRecipe(Recipe r) {
 		Connection conn = getConnection();
 		int result = dao.updateRecipe(conn,r);
+		
+//		int resultM = dao.updateMaterial(conn, r);
+//		int resultP = dao.updateProcedure(conn, r);
+//		int resultC = dao.updateCategory(conn, r);
+		
+		
 		close(conn);
 		return result;
 	}
