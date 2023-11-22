@@ -1,3 +1,4 @@
+<%@page import="com.veg.ksj.order.model.dto.Order"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.veg.hjj.member.dto.*" %>
@@ -9,7 +10,7 @@
 <%
 	Member loginMember=(Member)session.getAttribute("loginMember");
 	List<Address> a = (List<Address>)request.getAttribute("address");
-	
+	List<Order> orders=(List<Order>)request.getAttribute("orders");
 %>
 <!DOCTYPE html>
 <html>
@@ -91,62 +92,37 @@
 										<h2>최근 주문 내역</h2>
 									</header>
 									<div class="features">
+									<%if(!orders.isEmpty()){
+										for(Order o : orders){%>
 										<article>
 											<span class=></span>
 											<div class="content">
 												<h3></h3>
 												<table>
 												<tr>
-													<td><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
-													<td>친환경 절임배추</td>
-													<td>1개</td>
-													<td>29,900원</td>
+													<th>주문날짜 : </th>
+													<td><%=o.getOrderDate() %></td>
 												</tr>
-												</table>
-											</div>
-										</article>
-										<article>
-											<span class=></span>
-											<div class="content">
-												<h3></h3>
-												<table>
 												<tr>
-													<td><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
-													<td>친환경 절임배추</td>
-													<td>1개</td>
-													<td>29,900원</td>
+													<th>주문번호 : </th>
+													<td><a href="<%=request.getContextPath()%>/myinfo/myOrderDetail.do?orderNo=<%=o.getOrderNo() %>"><%=o.getOrderNo() %></a></td>
 												</tr>
-												</table>
-											</div>
-										</article>
-										<article>
-											<span class=></span>
-											<div class="content">
-												<h3></h3>
-												<table>
 												<tr>
-													<td><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
-													<td>친환경 절임배추</td>
-													<td>1개</td>
-													<td>29,900원</td>
+													<th>주문금액 : </th>
+													<td><%=o.getTotalPrice() %></td>
 												</tr>
-												</table>
-											</div>
-										</article>
-										<article>
-											<span class=></span>
-											<div class="content">
-												<h3></h3>
-												<table>
 												<tr>
-													<td><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
-													<td>친환경 절임배추</td>
-													<td>1개</td>
-													<td>29,900원</td>
+													<td colspan="2"><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
+												</tr>
+												<tr>
+													<td>주문상태</td>
+													<td><%=o.getOrderStatus() %></td>
 												</tr>
 												</table>
 											</div>
 										</article>
+										<%}
+									}%>
 									</div>
 								</section>
 								

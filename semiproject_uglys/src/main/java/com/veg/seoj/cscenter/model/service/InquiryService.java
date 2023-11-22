@@ -16,7 +16,6 @@ import com.veg.seoj.cscenter.model.dto.Inquiry;
 import com.veg.seoj.cscenter.model.dto.InquiryComment;
 
 public class InquiryService {
-    /*private InquiryDao dao=new InquiryDao();*/
 
     public List<Inquiry> selectInquiry(int cPage, int numPerpage) {
         Connection conn = getConnection();
@@ -32,27 +31,12 @@ public class InquiryService {
         return result;
     }
 
-/*    public List<Inquiry> selectInquiry(int cPage, int numPerPage) {
-        List<Inquiry> inquiryList = // ... 조회하는 코드
-
-        // Inquiry 객체에 Member 정보 설정
-        for (Inquiry inquiry : inquiryList) {
-            int memberId = inquiry.getMember_id();
-            Member member = new MemberService().getMemberById(memberId); // 적절한 메소드 활용
-            inquiry.setMember(member);
-        }
-
-        return inquiryList;
-    }*/
-
     public int selectInquiryCount() {
         Connection conn = getConnection();
         GenericDAOImpl<Inquiry, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "INQUIRY");
-//		int result=InquiryDAO.selectInquiryCount(conn);
         int result = inquiryDAO.count(conn, (Inquiry)Inquiry
                 .builder()
                 .build(), "sql.inquiry.selectCount");
-        System.out.println("서비스 count");
         close(conn);
         return result;
     }
@@ -60,11 +44,9 @@ public class InquiryService {
     public Inquiry selectInquiryByNo(int inquiryNo) {
         Connection conn = getConnection();
         GenericDAOImpl<Inquiry, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "INQUIRY");
-//		Inquiry n=dao.selectInquiryByNo(conn, InquiryNo);
         Inquiry n = (Inquiry)inquiryDAO.getById(conn, (Inquiry)Inquiry
                 .builder()
                 .build(), "sql.inquiry.getByNo", "getById", inquiryNo);
-        System.out.println("서비스 getbyno" + n);
         close(conn);
         return n;
     }
@@ -73,16 +55,6 @@ public class InquiryService {
     public int insertInquiry(Inquiry n) {
         Connection conn = getConnection();
         GenericDAOImpl<Inquiry, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "INQUIRY");
-        /*		int result=dao.insertInquiry(conn, n);*/
-
-        System.out.println("getInquiryType : " + n.getInquiryType());
-        System.out.println("getInquiryTitle : " + n.getInquiryTitle());
-        System.out.println("getInquiryContent : " + n.getInquiryContent());
-        System.out.println("getFkMemberNo : " + n.getFkMemberNo());
-        System.out.println("getFkOrderNo : " + n.getFkOrderNo());
-        System.out.println("getInquiryRenameFilename : " + n.getInquiryRenameFilename());
-        System.out.println("getInquiryOriginalFilename : " + n.getInquiryOriginalFilename());
-        System.out.println("getFkProductNo : " + n.getFkProductNo());
 
         int result = inquiryDAO.addUpdateDelete(conn, n, "sql.inquiry.add", n.getInquiryType(), n.getInquiryTitle(),
                                                 n.getInquiryContent(),
@@ -160,7 +132,6 @@ public class InquiryService {
 
         String result = String.format(jsonTemplate, productionName, orderStatus, productionName2, orderStatus2,
                                       productionName3, orderStatus3);
-        System.out.println(result);
 
         return result;
     }

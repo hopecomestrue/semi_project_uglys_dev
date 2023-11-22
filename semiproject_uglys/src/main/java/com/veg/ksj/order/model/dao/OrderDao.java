@@ -110,6 +110,21 @@ public class OrderDao {
 		return result;
 	}
 	//환불현황 변경(환불승인완료) -관리자
+	public int OrderRefundRequest(Connection conn,long refundNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("OrderRefundRequest"));
+			pstmt.setLong(1, refundNo);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	//환불현황 변경(환불승인완료) -관리자
 	public int updateRefundDetails(Connection conn,String refundCheck,long refundNo) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -317,6 +332,29 @@ public class OrderDao {
 					.orderDate(rs.getDate("ORDER_DATE"))
 					.build();
 	}
+	
+	
+	//멤버 NO로 주문내역 전부 가져오기
+	//주문현황 모든 row 가져오기
+		public List<Order> selectAllOrderDetailsByMemNo(Connection conn,int memberNo){
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			List<Order> orders=new ArrayList<Order>();
+			try {
+				pstmt=conn.prepareStatement(sql.getProperty("selectAllOrderDetailsByMemNo"));
+				pstmt.setInt(1, memberNo);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					orders.add(getOrder(rs));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return orders;
+		}
 	
 	
 	
