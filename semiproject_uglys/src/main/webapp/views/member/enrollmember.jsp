@@ -11,7 +11,7 @@
          display: flex;
         justify-content: center;
         align-items: center;
-        height: 120vh;
+        height: 140vh;
         background-color: #f5f5f5;
     }
 
@@ -21,6 +21,7 @@
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        background-color: #ffffff;
     }
 
     #enroll-container h2 {
@@ -34,15 +35,15 @@
     }
 
     #enroll-container table th {
-       
         padding: 10px;
         padding-right: 0;
-        color: #555;
+        color: #82ae46;
     }
 
     #enroll-container table td {
-        padding: 10px;
-        padding-left: 1px;
+        
+        padding: 5px;
+   
     }
 
     #enroll-container table td input[type="text"],
@@ -71,7 +72,7 @@
     #enroll-container table td input[type="button"]:hover,
     #enroll-container input[type="submit"]:hover,
     #enroll-container input[type="reset"]:hover {
-        background: #5a8e2c;
+        background: #6c757d;
     }
 
    #enroll-container form {
@@ -85,10 +86,38 @@
         justify-content: space-evenly;
         width: 100%;
     }
-     #enroll-container form div {
-        width: 200%;
-      
+
+    .TandC {
+
+            border: 1px solid #82ae46;
+            padding:16px;
+           
+
     }
+
+    
+        .TandC > div{
+
+            padding:4px;
+     
+            justify-content: space-between;
+        }
+
+      
+        .TandC strong{
+
+            color:red;
+            
+        }
+
+      
+        .TandC button{
+
+            background-color: transparent;
+            border: transparent;
+            text-decoration : underline;
+        }
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -98,18 +127,16 @@
 	<section id=enroll-container>
         <h2>회원 가입</h2>
         <form action="<%=request.getContextPath() %>/member/enrollMemberEnd.do" method="post" onsubmit="" enctype="multipart/form-data">
+        
+				     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;  ">
+				        <img id="preview" src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMTgy/MDAxNjA0MjI4ODc1NDMw.Ex906Mv9nnPEZGCh4SREknadZvzMO8LyDzGOHMKPdwAg.ZAmE6pU5lhEdeOUsPdxg8-gOuZrq_ipJ5VhqaViubI4g.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?type=w800" width="100px" height="100px">
+				        <label for="photoRegist"></label>
+				        <input type="file" id="photoRegist" name="photoRegist" style="display: none; ">
+				        <input type="button" value="프로필 선택" onclick="document.getElementById('photoRegist').click();" style="background: #82ae46; color: #fff; padding: 3px 7px;  border: none; border-radius: 5px; cursor: pointer;" />
+				        <br>
+				    </div>
         <table>
-       		<tr>
-       			<td>
-       			<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-					<img id="preview" src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMTgy/MDAxNjA0MjI4ODc1NDMw.Ex906Mv9nnPEZGCh4SREknadZvzMO8LyDzGOHMKPdwAg.ZAmE6pU5lhEdeOUsPdxg8-gOuZrq_ipJ5VhqaViubI4g.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?type=w800" width="100px" height="100px">
-					<label for="photoRegist"></label>
-					<input type="file" id="photoRegist" name="photoRegist" style="display: none;">
-					<input type="button" value="프로필 선택" onclick="document.getElementById('photoRegist').click();" />
-					<br><br>
-				</div>
-       			</td>
-       		</tr>
+       		
 			<tr>
 				<th>아이디</th>
 				<td>
@@ -171,25 +198,44 @@
 			<tr>
     			<th></th>
     				<td><input type="text" name="address_detail"  placeholder="상세주소 입력"/></td>
-			</tr>  
-			<tr>
-				<td>
-					<div>
-					<label for="id_a"><input type="checkbox" name="all" id="id_a" > 전체동의</label><br>
-		        	<label for="id_b"><input type="checkbox" name="ckbox1" id="id_b" value="N"> [필수]이용약관 동의</label><br>
-		       		<label for="id_c"><input type="checkbox" name="ckbox2" id="id_c" value="N"> [필수]개인정보 제3자 제공 동의</label><br>
-		        	<label for="id_d"><input type="checkbox" name="ckbox3" id="id_d" value="N"> [선택]정보·혜택 수신 동의</label><br>
-		       		</div>
-	       		</td>
 			</tr>
-		</table>
-		<div class="button-group">
-			<input type="submit" value="회원가입">
-			<input type="reset" value="취소">
-		</div>
-        </form>
-    </section>
-  
+			
+			
+			</table>
+					
+		  <p >
+		    약관 동의
+		  </p>
+		   <div class="TandC">
+		  
+			  
+	          <div style="border-bottom: 1px solid #82ae46;">
+	              <input type="checkbox" name="all" id="id_a">
+	              <span>전체 동의</span>
+	          </div>
+	          <div class="terms-item">
+	              <input type="checkbox" name="ckbox1" id="id_b" value="Y">
+	              <span><strong>(필수)</strong> 개인회원 약관에 동의 <button>상세 보기</button></span>
+	          </div>
+	          <div class="terms-item">
+	              <input type="checkbox" name="ckbox2" id="id_c" value="Y">
+	              <span><strong>(필수)</strong> 개인정보 수집 및 이용에 동의 <button>상세 보기</button></span>
+	          </div>
+	          <div class="terms-item">
+	              <input type="checkbox" name="ckbox3" id="id_d" value="N">
+	              <span>(선택) 마케팅 정보 수신 동의<button>상세 보기</button></span>
+	            </div>
+	            </div>
+	            
+				<div class="button-group">
+					<input type="submit" value="회원가입">
+					<input type="reset" value="취소">
+				</div>
+				
+			
+	        </form>
+	    </section>
+ 
     
 
 <script>
