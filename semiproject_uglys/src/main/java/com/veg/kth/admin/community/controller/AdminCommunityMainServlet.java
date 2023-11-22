@@ -1,6 +1,7 @@
 package com.veg.kth.admin.community.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.service.OrderService;
 import com.veg.kth.admin.community.service.AdminCommunityService;
 import com.veg.kth.community.model.dto.Recipe;
@@ -44,6 +46,14 @@ public class AdminCommunityMainServlet extends HttpServlet {
 		//페이징 처리 제외
 		List<Recipe> recipes = new AdminCommunityService().selectRecipeAllByPage();
 
+		List<Member> members = new ArrayList<>(); 
+		for(Recipe r : recipes) {
+			members.add(new OrderService().selectMemberByNo(r.getMember_no()));
+		}
+		
+		request.setAttribute("members", members);
+		System.out.println(members);
+		
 		request.setAttribute("recipes", recipes);
         //pageBar만들기
         //1. 전체 데이터를 가져와 저장하기

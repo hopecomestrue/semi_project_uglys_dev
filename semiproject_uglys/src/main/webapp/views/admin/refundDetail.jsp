@@ -182,7 +182,7 @@
 			data : {
 				refundNo : refundNo, //환불주문번호
 				refundCheck : refundCheck, //환불상태 : 환불승인대기,환불승인완료,환불승인반려
-				refundReason : refundReason, //환불사유
+				refundReason : refundReason //환불사유
 			},
 			success:function(res){
 				alert('환불완료');

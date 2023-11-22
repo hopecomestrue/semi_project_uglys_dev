@@ -66,8 +66,6 @@ public class InquiryViewServlet extends HttpServlet {
             System.out.println("ffffffffffffffffffff" + inquryComments);
         }
 
-
-
 /*        request.setAttribute("board", b);
         request.setAttribute("comments", comments);*/
         request

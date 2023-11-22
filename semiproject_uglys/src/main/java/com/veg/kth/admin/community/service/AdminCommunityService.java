@@ -26,4 +26,30 @@ public class AdminCommunityService {
 		close(conn);
 		return result;
 	}
+	
+
+	
+	public List<Recipe> searchRecipeByAnythingAndDate(String searchType, String searchContent, String dateStart, String dateEnd){
+		Connection conn = getConnection();
+		List<Recipe> result = dao.searchRecipeByAnythingAndDate(conn, searchType, searchContent, dateStart, dateEnd);
+		close(conn);
+		return result;
+	
+	}
+	
+	public Recipe selectRecipeByNo(int r) {
+		Connection conn = getConnection();
+		Recipe result = dao.selectRecipeByNo(conn,r);
+		close(conn);
+		return result;
+	}
+	
+	
+	public int updateRecipe(Recipe r) {
+		Connection conn = getConnection();
+		int result = dao.updateRecipe(conn,r);
+		close(conn);
+		return result;
+	}
+	
 }

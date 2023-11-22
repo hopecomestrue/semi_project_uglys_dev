@@ -7,7 +7,7 @@
 String id = (String)session.getAttribute("loginMember");
 MemberDao m = new MemberDao();
 String memberId = request.getParameter("memberId");
-Member member = m.selectMemberById(memberId); 
+
 %>
 <!DOCTYPE html>
 <html>
@@ -104,4 +104,4 @@ Member member = m.selectMemberById(memberId);
                 </div>
             </main>
 </body>
-</html> --%>
+</html>  --%>

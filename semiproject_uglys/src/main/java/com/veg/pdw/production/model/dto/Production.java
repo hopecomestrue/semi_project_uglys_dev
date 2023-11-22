@@ -17,4 +17,5 @@ public class Production {
 	private String place;
 	private int stock;
 	private Date production_date;
+	
 }

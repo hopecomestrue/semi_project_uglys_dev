@@ -21,12 +21,12 @@ import java.util.*;
 public class InquiryListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    String ProductionName = "하이1";
-    String OrderStatus = "하이2";
-    String ProductionName2 = "하이3";
-    String OrderStatus2 = "하이4";
-    String ProductionName3 = "하이5";
-    String OrderStatus3 = "하이6";
+    String productionName = "하이1";
+    String orderStatus = "하이2";
+    String productionName2 = "하이3";
+    String orderStatus2 = "하이4";
+    String productionName3 = "하이5";
+    String orderStatus3 = "하이6";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -54,8 +54,8 @@ public class InquiryListServlet extends HttpServlet {
 
         List<Inquiry> inquiryListAndComments = new InquiryService().selectInquiry(cPage, numPerpage);
         List<Inquiry> inquiryList = removeDuplicateInquiries(inquiryListAndComments);
-        String a = new InquiryService().generateJson(ProductionName, OrderStatus, ProductionName2, OrderStatus2, ProductionName3, OrderStatus3);
-
+        String a = new InquiryService().generateJson(productionName, orderStatus, productionName2, orderStatus2,
+                                                     productionName3, orderStatus3);
 
         System.out.println(a);
         int totalData = new InquiryService().selectInquiryCount();

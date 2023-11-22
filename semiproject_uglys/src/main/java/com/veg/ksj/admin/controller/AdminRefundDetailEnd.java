@@ -40,11 +40,11 @@ public class AdminRefundDetailEnd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Gson gson=new Gson();
 		
-		String apiKey = request.getParameter("1351426225816408");
-        String secretKey = request.getParameter("cfHurcVtJYllMUeKbWmEhhvu9CQmFEAutcrNomOiB0xv3OFhJnONYdPPjHSmLKiorN4fDHTIAyEuNReb");
+		String apiKey ="1351426225816408";
+        String secretKey ="cfHurcVtJYllMUeKbWmEhhvu9CQmFEAutcrNomOiB0xv3OFhJnONYdPPjHSmLKiorN4fDHTIAyEuNReb";
         
-		//System.out.println(apiKey);
-		//System.out.println(secretKey);
+//		System.out.println(apiKey);
+//		System.out.println(secretKey);
         
         // API 키와 시크릿 키를 사용하여 액세스 토큰을 요청하는 메소드 호출
         String accessToken = getToken(apiKey,secretKey);
