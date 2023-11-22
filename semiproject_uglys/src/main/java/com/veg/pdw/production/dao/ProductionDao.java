@@ -333,7 +333,7 @@ public class ProductionDao {
 			
 		String lasql=resql.toString();
 		
-		System.out.println(lasql);
+		
 		try {
 			stmt=conn.createStatement();
 			rs=stmt.executeQuery(lasql);
@@ -351,6 +351,26 @@ public class ProductionDao {
 			
 		return result;
 		
+	}
+	public int deleteProductionByNo(Connection conn,List<String> nos) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String resql="UPDATE PRODUCTION SET PRODUCTION_QUIT = 'N' WHERE "
+						+"PRODUCT_NO IN "
+							+ "(here)";
+		String s = nos.stream().map(e-> "'"+e+"'")
+		.collect(Collectors.joining(","));
+		resql=resql.replace("here", s);
+
+		try {
+			pstmt=conn.prepareStatement(resql);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 	
 }
