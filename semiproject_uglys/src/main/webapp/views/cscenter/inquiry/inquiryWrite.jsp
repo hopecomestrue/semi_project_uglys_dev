@@ -111,13 +111,13 @@
 
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px; padding-bottom: 10px;">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <%--                        <style>
-                                                    /* 호버 시에 녹색으로 변경 */
-                                                    .btn btn-primary btn-sm important-button:hover {
-                                                        color: #28a745;
-                                                    !important;
-                                                    }
-                                                </style>--%>
+                        <%--    <style>
+                                /* 호버 시에 녹색으로 변경 */
+                                .btn btn-primary btn-sm important-button:hover {
+                                    color: #28a745;
+                                !important;
+                                }
+                            </style>--%>
                         <button type="button" class="btn btn-primary btn-sm important-button"
                                 onclick="location.replace('<%=request.getContextPath()%>/myInfo.do')"
                                 style="padding: .6rem !important; font-size: .72rem !important; margin: 0 !important; color: white; !important;">
@@ -739,7 +739,7 @@
                 <%
                     System.out.println("loginMember : " + loginMember.getMemberNo());
                 %>
-                <input type="hidden" name="memberNo" value="<%=loginMember.getMemberNo()%>">
+                <input type="hidden" name="memberNo" value="-1<%--<%=loginMember.getMemberNo()%>--%>">
                 <input type="hidden" name="orderNo">
                 <input type="hidden" name="productNo">
                 <input type="hidden" name="memberName" value="<%=loginMember.getMemberName()%>">

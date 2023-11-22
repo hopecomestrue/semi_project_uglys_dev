@@ -32,7 +32,7 @@
                    <%for(ProductionContent pc : productionContents) {
                    		if(p.getProduction_no()== pc.getProductionNo()){
                    													%>
-                   <a href="<%=request.getContextPath()%>/vegfarm/sold/vegfarm.do?no=<%=p.getProduction_no()%>" class="img-prod"><img class="img-fluid" 
+                   <a href="<%=request.getContextPath()%>/vegfarm/vegfarm.do?no=<%=p.getProduction_no()%>" class="img-prod"><img class="img-fluid" 
                    src="<%=request.getContextPath()%>/upload/production/thumnail/<%=pc.getProductionImg()%>" alt="외안대">
                       <%} 
                      }%>
