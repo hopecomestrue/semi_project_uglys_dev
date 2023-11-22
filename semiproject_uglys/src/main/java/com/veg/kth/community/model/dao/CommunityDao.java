@@ -54,6 +54,28 @@ public class CommunityDao {
 		return result;
 	}
 	
+	public List<Recipe> selectRecipeAllByPage(Connection conn,int cPage,int numPerpage){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Recipe> result = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeAllByPage"));
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				addRecipeAll(result,rs);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
+	
 	
 	public List<Hashtag> selectHashtagAll(Connection conn){
 		PreparedStatement pstmt = null;
@@ -117,7 +139,7 @@ public class CommunityDao {
 		return result;
 	}
 	
-	public void addRecipeAll(List<Recipe> recipe, ResultSet rs) throws SQLException {
+	public static void addRecipeAll(List<Recipe> recipe, ResultSet rs) throws SQLException {
 		int pk = rs.getInt("recipe_no");
 		if(recipe.stream().anyMatch(e->pk==(e.getRecipeNo()))) {
 			recipe.stream().filter(e->Objects.equals(e.getRecipeNo(),pk))
@@ -353,7 +375,7 @@ public class CommunityDao {
 	
 	
 	
-	public Recipe getRecipe(ResultSet rs) throws SQLException {
+	public static Recipe getRecipe(ResultSet rs) throws SQLException {
 		return Recipe.builder()
 				.recipeNo(rs.getInt("recipe_no"))
 				.recipeOriginalFileName(rs.getString("recipe_original_file_name"))
@@ -372,7 +394,7 @@ public class CommunityDao {
 	}
 
 	
-	public Category getCategory(ResultSet rs) throws SQLException{
+	public static Category getCategory(ResultSet rs) throws SQLException{
 		return Category.builder()
 				.categoryNo(rs.getInt("category_no"))
 				.categoryDept1(rs.getString("category_dept1"))
@@ -381,14 +403,14 @@ public class CommunityDao {
 				.build();
 	}
 	
-	public Hashtag getHashtag(ResultSet rs) throws SQLException{
+	public static Hashtag getHashtag(ResultSet rs) throws SQLException{
 		return Hashtag.builder()
 				.hashtagNo(rs.getInt("hashtag_no"))
 				.hashtagValue(rs.getString("hashtag_value"))
 				.build();
 	}
 	
-	public Procedure getProcedure(ResultSet rs) throws SQLException{
+	public static Procedure getProcedure(ResultSet rs) throws SQLException{
 		return Procedure.builder()
 				.procedureNo(rs.getInt("procedure_no"))
 				.procedureOrder(rs.getLong("procedure_order"))
@@ -399,7 +421,7 @@ public class CommunityDao {
 				.build();
 	}
 	
-	public Material getMaterial(ResultSet rs)throws SQLException{
+	public static Material getMaterial(ResultSet rs)throws SQLException{
 		return Material.builder()
 				.materialNo(rs.getInt("material_no"))
 				.materialType(rs.getString("material_type"))
@@ -410,7 +432,7 @@ public class CommunityDao {
 	}
 	
 	
-	public RecipeComment getRecipeComment(ResultSet rs)throws SQLException{
+	public static RecipeComment getRecipeComment(ResultSet rs)throws SQLException{
 		return RecipeComment.builder()
 				.commentNo(rs.getInt("comment_no"))
 				.commentWriter(rs.getString("comment_writer"))
