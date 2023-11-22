@@ -1,7 +1,12 @@
+<%@page import="com.veg.hjj.member.dto.Member"%>
 <%@page import="com.veg.ksj.order.model.dto.Order"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% 
+    	Member loginAdmin=(Member)session.getAttribute("loginMember");
+    %>
+    <%if(loginAdmin!=null&&loginAdmin.getAdminCheck().equals("Y")){ %>
 <%@ include file="/views/admin/common/header.jsp" %>
 
 <%
@@ -127,7 +132,7 @@
   </select>
 </div>
 <div class="delivery-tb">
-<form action="<%=request.getContextPath()%>/admin/searchDelCheck" method="post">
+<form action="<%=request.getContextPath()%>/admin/searchDelCheck.do" method="post">
 <div class="search_3">
   <div class="del-Search">
 <select class="form-select form-select-lm" aria-label="Small select example" name="searchType">
@@ -197,3 +202,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <%@ include file="/views/admin/common/footer.jsp" %>
+<%}%>

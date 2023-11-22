@@ -155,7 +155,7 @@
 
       <div class="col-md-3 text-end">
         <span>관리자님, 환영합니다</span>
-        <button type="button" class="btn btn-primary" onclick="location.assign('<%=request.getContextPath()%>/admin/logout.do')">로그아웃</button>
+        <button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/admin/logout.do')">로그아웃</button>
       </div>
 </header>
   </div>
@@ -176,10 +176,13 @@
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/refundList.do">환불관리</a>
 	      </div>
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">고객센터</a>
+	        <a class="dropdown-item rounded-2" href="">고객센터</a>
 	      </div>
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="#">후기관리</a>
+	      </div>
+	      <div class="col">
+	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/recipeList.do">레시피관리</a>
 	      </div>
 	    </div>
   </div>

@@ -191,7 +191,7 @@
                 <%if(!recipes.isEmpty()){ 
             		for(Recipe r : recipes){%>
                   <% for(Hashtag h : r.getHashtag()){ %>
-                  <a href="#" class="tag-cloud-link">
+                  <a href="" class="tag-cloud-link">
                 		#<%=h.getHashtagValue()%>
                 	</a>
                 	<%} %>
@@ -214,6 +214,7 @@
             <ul class="review-items">
             <%if(!recipes.isEmpty()){ 
             for(Recipe r : recipes){%>
+            <a href="<%=request.getContextPath()%>/community/recipedetail.do?recipeNo=<%=r.getRecipeNo() %>">
               <li class="item">
                 <div class="img-area">
                   <img src="<%=request.getContextPath() %>/images/<%=r.getRecipeOriginalFileName() %>" alt="" />
@@ -235,9 +236,10 @@
 
                 <div class="info-area">
                   <div class="line"></div>
-                  <h5>아이디 가져오기</h5>
+                  <h5><%=r.getMember_no() %></h5>
                 </div>
               </li>
+              </a>
               <%
             	}
             }

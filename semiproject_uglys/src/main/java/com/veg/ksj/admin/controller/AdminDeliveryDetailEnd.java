@@ -36,9 +36,9 @@ public class AdminDeliveryDetailEnd extends HttpServlet {
 		long delNo=Long.parseLong(request.getParameter("delNo")); //송장번호
 		String delCheck=request.getParameter("delCheck"); //배송상태 : 배송준비중,배송중,배송완료
 		
-		System.out.println(delCheck);
-		System.out.println(delNo);
-		System.out.println(orderNo);
+//		System.out.println(delCheck);
+//		System.out.println(delNo);
+//		System.out.println(orderNo);
 		
 		//주문번호로 조회해서 송장번호,배송상태 변경
 		int result=new OrderService().updateOrderDetails(delCheck, delNo, orderNo);

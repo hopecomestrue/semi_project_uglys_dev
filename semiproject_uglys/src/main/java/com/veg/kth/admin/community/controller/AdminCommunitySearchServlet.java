@@ -1,4 +1,4 @@
-package com.veg.kth.community.controller;
+package com.veg.kth.admin.community.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veg.kth.admin.community.service.AdminCommunityService;
 import com.veg.kth.community.model.dto.Recipe;
-import com.veg.kth.community.model.dto.RecipeComment;
-import com.veg.kth.community.service.CommunityService;
 
 /**
- * Servlet implementation class CommunityDetailServlet
+ * Servlet implementation class AdminCommunitySearchServlet
  */
-@WebServlet("/community/recipedetail.do")
-public class CommunityDetailServlet extends HttpServlet {
+@WebServlet("/admin/recipeSearch.do")
+public class AdminCommunitySearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityDetailServlet() {
+    public AdminCommunitySearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +31,22 @@ public class CommunityDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println(request.getParameter("recipeNo"));
-		
-		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
-		
-		Recipe r = new CommunityService().selectRecipeByNo(recipeNo);
-		
-		r.getMember_no();// 나중에 멤버 고유번호만으로도 고객 정보 찾기
-		
-		List<RecipeComment> comments = new CommunityService().selectRecipeComment(recipeNo);
 		
 		
-		request.setAttribute("recipe", r);
-		request.setAttribute("comments", comments);
+		String dateStart=request.getParameter("search_date_start");
+		String dateEnd=request.getParameter("search_date_end");
+		String searchType=request.getParameter("searchType").toUpperCase();
+		String searchContent=request.getParameter("searchContent");
 		
-		request.getRequestDispatcher("/views/community/detail_recipe.jsp")
+		System.out.println(searchType);
+		System.out.println(searchContent);
+		
+		List<Recipe> recipe = new AdminCommunityService().searchRecipeByAnything(searchType,searchContent);
+		
+		request.setAttribute("recipes", recipe);
+		
+		
+		request.getRequestDispatcher("/views/admin/admincommunity/communityRecipe.jsp")
 		.forward(request, response);
 	}
 

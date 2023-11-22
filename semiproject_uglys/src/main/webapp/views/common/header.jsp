@@ -69,8 +69,11 @@
 	         				onclick="location.replace('<%=request.getContextPath()%>/myInfo.do')">마이페이지</button></td>
 	         			<td><button type="button" class="btn btn-outline-dark" onclick="location.replace('<%=request.getContextPath()%>/loginout.do');">로그아웃</button></td>
 	         		</tr>
-	         		
 	         	</table>
+	         		<%if(loginMember.getAdminCheck().equals("Y")){%>
+	         		<button type="button" class="btn btn-info" 
+	         		onclick="location.replace('<%=request.getContextPath()%>/admin/login.do')">관리자페이지</button>
+	         		<%} %>
 	         <%} %>
 	        </ul>
 	    	</div>

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% 
-    	Member loginAdmin=(Member)session.getAttribute("loginAdmin");
+    	Member loginAdmin=(Member)session.getAttribute("loginMember");
     %>
     <%if(loginAdmin!=null&&loginAdmin.getAdminCheck().equals("Y")){ %>
 <%@ include file="/views/admin/common/header.jsp" %>
