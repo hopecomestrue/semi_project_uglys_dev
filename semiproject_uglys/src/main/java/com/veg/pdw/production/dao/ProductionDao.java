@@ -2,6 +2,7 @@ package com.veg.pdw.production.dao;
 
 import static com.veg.common.JDBCTemplate.close;
 
+import java.sql.Statement;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.veg.pdw.production.model.dto.Production;
 import com.veg.pdw.production.model.dto.ProductionContent;
@@ -300,6 +303,39 @@ public class ProductionDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	public List<Production>selectSearchbyKey(Connection conn,
+								Map<String,String>sql,Map<String,String>sql1){
+		Statement stmt =null;
+		ResultSet rs= null;
+		List<Production>result= new ArrayList<>();
+		String btsql=sql.entrySet().stream()
+			    .map(s -> s.getKey() +  s.getValue())
+			    .collect(Collectors.joining(" AND "));
+		
+		String nsql=sql1.entrySet().stream()
+			    .map(s -> s.getKey()+" = '"+s.getValue()+"'")
+			    .collect(Collectors.joining(" AND "));
+		String resql="SELECT * FROM PRODUCTION WHERE "+btsql+"  AND  "+nsql;
+		
+		System.out.println(resql);
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(resql);
+			
+			while(rs.next()) {
+				result.add(getProduction(rs));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+			
+		return result;
+		
 	}
 	
 }

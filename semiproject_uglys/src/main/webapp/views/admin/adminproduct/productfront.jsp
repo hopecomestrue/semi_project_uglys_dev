@@ -149,38 +149,34 @@
 				            <div class="datatable-dropdown">
 				                <div class="datatable-search">
 				                   <!-- 새로운 입력 필드 -->
-				                   <table>
-                        <tr>
-                            <td>등록일</td>
-                            <td><input class="datatable-input" type="date"></td>
-                            <td>~</td>
-                            <td><input class="datatable-input" type="date"></td>
-                        </tr>
-                        <tr>
-                            <td>상품번호:</td>
-                            <td><input class="datatable-input" type="text"></td>
-                            <td>상품명:</td>
-                            <td><input class="datatable-input" type="text"></td>
-                        </tr>
-                        <tr>
-                            <td>가격:</td>
-                            <td><input class="datatable-input" type="number"></td>
-                            <td>~</td>
-                            <td><input class="datatable-input" type="number"></td>
-                        </tr>
-                        <tr>
-                            <td>재고:</td>
-                            <td><input class="datatable-input" type="text"></td>
-                            <td>~</td>
-                            <td><input class="datatable-input" type="number"></td>
-                        </tr>
-                        <tr>
-                            <td>생산지:</td>
-                            <td><input class="datatable-input" type="text"></td>
-                        </tr>
-                        
-                    	</table>
-				         <div><button type="submit" style="margin-bottom: 30px; margin-top: 30px;">검색</button></div>
+				         <form action="<%=request.getContextPath()%>/searchProduction.do" method="post">
+   <table>
+      <tr>
+         <td>상품번호:</td>
+         <td><input class="datatable-input" type="text" name="product_no"></td>
+         <td>상품명:</td>
+         <td><input class="datatable-input" type="text" name="product_name"></td>
+      </tr>
+      <tr>
+         <td>가격:</td>
+         <td><input class="datatable-input" type="number" name="price_start"></td>
+         <td>~</td>
+         <td><input class="datatable-input" type="number" name="price_end"></td>
+      </tr>
+      <tr>
+         <td>재고:</td>
+         <td><input class="datatable-input" type="number" name="stock_start"></td>
+         <td>~</td>
+         <td><input class="datatable-input" type="number" name="stock_end"></td>
+      </tr>
+      <tr>
+         <td>생산지:</td>
+         <td><input class="datatable-input" type="text" name="production_place"></td>
+      </tr>
+   </table>
+   <div><button type="submit" style="margin-bottom: 30px; margin-top: 30px;">검색</button></div>
+</form>
+
     <div style="display: flex; justify-content: flex-end; align-items: center;">
     <a href="<%=request.getContextPath() %>/admin/productregi.do">
     <button style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품등록</button>
@@ -235,7 +231,9 @@
                                         </div>
 									</div>
 									<ul style="display: flex; justify-content: center;">
+                                    <%if(request.getAttribute("pageBar")!=null){ %>
                                     <%=request.getAttribute("pageBar") %>
+                                    <%} %>
                                     </ul>
 								</section>
 						</div>
