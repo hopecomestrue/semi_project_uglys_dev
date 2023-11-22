@@ -27,8 +27,6 @@ public class ProductCartDao {
 			e.printStackTrace();
 		}
 	}
-	
-
 	public void setConnection(Connection conn) {
 		this.conn = conn;
 	}
