@@ -112,5 +112,27 @@ private Properties sql = new Properties();
 		return result;
 	}
 	
+	public Recipe selectRecipeByNo(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Recipe> result = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeByNo"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				addRecipeAll(result,rs);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result.get(0);
+		
+		
+	}
 	
 }

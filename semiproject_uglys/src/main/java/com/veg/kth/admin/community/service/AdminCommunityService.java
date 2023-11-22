@@ -36,4 +36,12 @@ public class AdminCommunityService {
 		return result;
 	
 	}
+	
+	public Recipe selectRecipeByNo(int r) {
+		Connection conn = getConnection();
+		Recipe result = dao.selectRecipeByNo(conn,r);
+		close(conn);
+		return result;
+	}
+	
 }
