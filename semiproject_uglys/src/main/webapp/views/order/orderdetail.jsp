@@ -72,7 +72,7 @@
 		    			<div class="select-wrap">
 		                  	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
 		                  <select name="" id="deli-memo-choice" class="form-control" onchange="deliInputOn()">
-		                    <option value>배송메모를 선택해주세요.</option>
+		                    <option value="배송메모를 선택해주세요.">배송메모를 선택해주세요.</option>
 		                    <option value="요청사항을 직접 입력합니다.">요청사항을 직접 입력합니다.</option>
 		                  	<option value="배송 전에 미리 연락바랍니다.">배송 전에 미리 연락바랍니다.</option>
 		                    <option value="부재시 경비실에 맡겨 주세요.">부재시 경비실에 맡겨 주세요.</option>
@@ -293,6 +293,11 @@
    <!-- 카드 결제 함수 -->
    /* 카카오결제 */
    function cacao_payment(){
+	   
+	   
+	   
+	   
+	   //아임포트에 결제 데이터 전송
        var IMP = window.IMP;
        IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
         var msg; //결제 성공,실패시 출력할 msg
@@ -306,6 +311,24 @@
         //배송요청사항 분기처리
         var select=document.getElementById("deli-memo-choice");
         var input=document.getElementById("deli-input");
+        
+        if(buyerName.length<1){
+        	alert('구매자 이름을 입력하세요.');
+        	return;
+        }
+        else if(buyerTel.length<1){
+        	alert('전화번호를 입력하세요.');
+        	return;
+        }
+        else if($('#sample4_detailAddress').val().length<1){
+        	alert('주소를 입력하세요.');
+        	return;
+        }
+        else if(select.value==='배송메모를 선택해주세요.'){
+        	alert('배송요청사항을 선택하세요.');
+        	return;
+        }
+        
         
         if(select.value==='요청사항을 직접 입력합니다.'){
         	delrequest=input.value;
