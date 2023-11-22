@@ -309,6 +309,7 @@ public class ProductionDao {
 		Statement stmt =null;
 		ResultSet rs= null;
 		List<Production>result= new ArrayList<>();
+		
 		String btsql=sql.entrySet().stream()
 			    .map(s -> s.getKey() +  s.getValue())
 			    .collect(Collectors.joining(" AND "));
@@ -316,12 +317,26 @@ public class ProductionDao {
 		String nsql=sql1.entrySet().stream()
 			    .map(s -> s.getKey()+" = '"+s.getValue()+"'")
 			    .collect(Collectors.joining(" AND "));
-		String resql="SELECT * FROM PRODUCTION WHERE "+btsql+"  AND  "+nsql;
+
 		
-		System.out.println(resql);
+		StringBuffer resql=new StringBuffer();
+		
+		if(btsql.isBlank()) {
+			resql.append("SELECT * FROM PRODUCTION WHERE PRODUCTION_QUIT = 'Y'");
+		}else {
+			resql.append("SELECT * FROM PRODUCTION WHERE PRODUCTION_QUIT = 'Y' AND "+btsql);
+		}
+		
+		if(!nsql.isBlank()) {
+			resql.append(" AND "+nsql);
+		}
+			
+		String lasql=resql.toString();
+		
+		System.out.println(lasql);
 		try {
 			stmt=conn.createStatement();
-			rs=stmt.executeQuery(resql);
+			rs=stmt.executeQuery(lasql);
 			
 			while(rs.next()) {
 				result.add(getProduction(rs));

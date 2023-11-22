@@ -63,10 +63,10 @@ public class SearchProductionServlet extends HttpServlet {
 		sql1.put("PRODUCTION_NAME", productName);
 		sql1.put("PLACE", productionPlace);
         
-		sql.put(priceStart," < PRICE");
-		sql.put("PRICE < ",priceEnd);
-		sql.put(stockStart," < STOCK");
-		sql.put("STOCK < ",stockEnd);
+		sql.put(priceStart," <= PRICE");
+		sql.put("PRICE <= ",priceEnd);
+		sql.put(stockStart," <= STOCK");
+		sql.put("STOCK <= ",stockEnd);
         
 		
         Iterator<Map.Entry<String, String>> iter = sql.entrySet().iterator();

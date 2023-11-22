@@ -204,7 +204,20 @@
                                   <th>등록일</th>
                               </tr>
                           </thead>
-                          <tbody>
+                          <script>
+								window.onload = function() {
+								    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+								    checkboxes.forEach(function(checkbox) {
+								        checkbox.addEventListener('click', function() {
+								            if(this.checked) {
+								                var production_no = this.parentNode.nextElementSibling.textContent;
+								                console.log(production_no);
+								                // 이곳에서 서블릿에 production_no 값을 보내는 코드를 작성하시면 됩니다.
+								            }
+								        });
+								    });
+								};
+						</script>
                            <tbody>
                            	<%if(productions!=null&&!productions.isEmpty()){ %>
 					        	<%for(Production p : productions){%>      
