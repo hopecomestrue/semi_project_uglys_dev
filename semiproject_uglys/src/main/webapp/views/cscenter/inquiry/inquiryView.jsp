@@ -575,7 +575,8 @@
     Inquiry inquiry = (Inquiry)request.getAttribute("inquiry");
     System.out.println("뷰어 페이지 " + (Inquiry)request.getAttribute("inquiry"));
     List<InquiryComment> inquiryComments = (List<InquiryComment>)request.getAttribute("inquryComments");
-    if (inquiryComments == null) {
+    if (inquiryComments == null || inquiryComments.get(0).getInquiryCommentNo() == 0) {
+        System.out.println("코멘트 없음");
         inquiryComments = new ArrayList<>();
     }
     System.out.println("뷰어 페이지 코멘트 " + (List<InquiryComment>)request.getAttribute("inquryComments"));
@@ -841,7 +842,7 @@
             </style>
 
             <section id="board-container">
-                <div class="board-top-padding">h
+                <div class="board-top-padding">
                 </div>
                 <form action='<%=request.getContextPath()%>/inquiry/inquiryWriteEnd.do'
                       enctype="multipart/form-data" method="post">
