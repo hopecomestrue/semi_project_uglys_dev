@@ -37,12 +37,8 @@ public class NoticeViewServlet extends HttpServlet {
         try {
             Notice n = new NoticeService().selectNoticeByNo(no);
 
-            System.out.println("Notice 객체가 성공적으로 받아졌습니다.");
-            System.out.println("Notice 정보: " + n.toString());
             request.setAttribute("notice", n);
         } catch (Exception e) {
-
-            System.out.println("Notice 객체를 받아오지 못했습니다. 예외 발생: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -50,26 +46,6 @@ public class NoticeViewServlet extends HttpServlet {
         request
                 .getRequestDispatcher("/views/notice/noticeView.jsp")
                 .forward(request, response);
-
-/*      Inquiry(inquiryNo=65,
-              inquiryType=상품,
-              inquiryTitle=카카오 챗봇 문의,
-              inquiryContent=감자가 너무 셔요,
-              answerStatus=N,
-              inquiryDate=2023-11-22 04:05:35.098044,
-              fkMemberNo=-1,
-              fkOrderNo=-1,
-              inquiryRenameFilename=2023-11-22 04:05:36.272.txt,
-              inquiryOriginalFilename=2023-11-22 04:05:36.272re.txt,
-              fkProductNo=-1,
-              memberName=Sing21letary,
-              totalPrice=47404,
-              orderStatus=배송완료,
-              productionName=Crwafts,
-              productImg=null,
-              inquiryComments=[],
-              refundNo=0,
-              refundDate=null)*/
 
     }
 

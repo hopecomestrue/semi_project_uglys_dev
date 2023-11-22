@@ -41,11 +41,9 @@ public class InquiryListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
-        //DB에 저장된 전체 inquiry데이터 가져오기
         int cPage;
         int numPerpage = 10;
 
-//		if(request.getParameter("cPage")!=null) cPage=request;
         try {
             cPage = Integer.parseInt(request.getParameter("cPage"));
         } catch (NumberFormatException e) {
@@ -57,9 +55,8 @@ public class InquiryListServlet extends HttpServlet {
         String a = new InquiryService().generateJson(productionName, orderStatus, productionName2, orderStatus2,
                                                      productionName3, orderStatus3);
 
-        System.out.println(a);
         int totalData = new InquiryService().selectInquiryCount();
-//        InquiryMember member=new InquiryMemberService().selectMemberById(member)
+
         int totalPage = (int)Math.ceil((double)totalData / numPerpage);
         int pageBarSize = 5;
         int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
@@ -88,7 +85,7 @@ public class InquiryListServlet extends HttpServlet {
         } else {
             pageBar += "<a href='" + request.getRequestURI() + "?cPage=" + pageNo + "'>  다음</a>";
         }
-
+        request.setAttribute("inquiryTotalData",totalData);
         request.setAttribute("inquiryList", inquiryList);
         request.setAttribute("inquiryListAndComments", inquiryListAndComments);
         request.setAttribute("pageBar", pageBar);
@@ -121,20 +118,8 @@ public class InquiryListServlet extends HttpServlet {
                 addedInquiryNos.add(inquiryNo);
             }
         }
-/*        sortListByInquiryDateDesc(filteredList);*/
-/*        Collections.sort(filteredList, Comparator.comparing(Inquiry::getInquiryDate).reversed());*/
+
         return filteredList;
     }
-   /* private static void sortListByInquiryDateDesc(List<Inquiry> list) {
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(i).getInquiryDate().before(list.get(j).getInquiryDate())) {
-                    // Swap the elements if they are not in the desired order
-                    Inquiry temp = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, temp);
-                }
-            }
-        }
-    }*/
+
 }

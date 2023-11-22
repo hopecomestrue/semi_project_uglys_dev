@@ -15,7 +15,6 @@ public class InquiryComment implements ResultSetMapper<InquiryComment> {
     @Builder.Default
     private int inquiryCommentNo = 0;
 
-    ///////////////////작성자 두번 들어감 ㅜㅜ////////////////////
     @Builder.Default
     private String inquiryCommentWriter = "";
 
@@ -26,7 +25,6 @@ public class InquiryComment implements ResultSetMapper<InquiryComment> {
     @Builder.Default
     private int fkInquiryNo = 0;
 
-    ///////////////////작성자 두번 들어감 ㅜㅜ////////////////////
     @Builder.Default
     private int fkMemberNo = 0;
 
