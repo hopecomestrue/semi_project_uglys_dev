@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 /**
  * Servlet implementation class BoardWriteServlet
  */
-@WebServlet("/openAI.do")
+@WebServlet("/inquiry/openAI.do")
 public class OpenAIServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

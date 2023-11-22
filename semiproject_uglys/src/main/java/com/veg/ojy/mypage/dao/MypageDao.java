@@ -119,20 +119,6 @@ public class MypageDao {
 		}return m;
 	}
 	
-//	public int updatePassword(Connection conn, String memberId, String memberpw) {
-//		PreparedStatement pstmt =null;
-//		int result=0;
-//		try {
-//			pstmt=conn.prepareStatement(sql.getProperty("updatePassword"));
-//			pstmt.setString(1, memberpw);
-//			pstmt.setString(2, memberId);
-//			result=pstmt.executeUpdate();
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(pstmt);
-//		}return result;
-//	}
 	
 	public int updatePassword(Connection conn, String memberId, String memberPw) {
 		PreparedStatement pstmt = null;
@@ -154,52 +140,6 @@ public class MypageDao {
 		
 	}
 	
-//	public int deleteMember(Connection conn, String memberId) {
-//		PreparedStatement pstmt = null;
-//		int result = 0;
-//		try {
-//			pstmt = conn.prepareStatement(sql.getProperty("deleteMember"));
-//			pstmt.setString(1, memberId);
-//			result = pstmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//		}
-//		return result;
-//	}
-	
-//	public int deleteMember(String memberId, String memberPw) {
-//	Connection conn = null;
-//	PreparedStatement pstmt = null;
-//	ResultSet rs = null;
-//	String dbPass = ""; 
-//	int result = -1;
-//	try {
-//		conn = getConnection();
-//		pstmt = conn.prepareStatement(sql.getProperty("selectMemberById"));
-//		pstmt.setString(1, memberId);
-//		rs = pstmt.executeQuery();
-//		if(rs.next()) {
-//			dbPass = rs.getString("memberPw");
-//			if(dbPass.equals(memberPw)) {
-//				pstmt = conn.prepareStatement(sql.getProperty("deleteMember"));
-//				pstmt.setString(1, memberId);
-//				pstmt.executeUpdate();
-//				result = 1; // 회원탈퇴 성공
-//			}else {
-//			result = 0;
-//			}
-//		}
-//	}catch(Exception e) {
-//		e.printStackTrace();
-//	}finally {
-//		if(rs!= null)try {rs.close();}catch(SQLException e) {}
-//		if(pstmt!= null)try {pstmt.close();}catch(SQLException e) {}
-//		if(conn!= null)try {conn.close();}catch(SQLException e) {}
-//	}
-//	return result;
-//}
 	
 	public int deleteMember(Connection conn, String memberId) {
 		PreparedStatement pstmt= null;
@@ -227,7 +167,7 @@ public class MypageDao {
 		                .memberEmail(rs.getString("member_email"))
 		                .memberPhone(rs.getInt("member_phone"))
 		                .acceptAgree(rs.getString("accept_agree"))
-		                .acceptAgree(rs.getString("accpet_agree"))
+		                .acceptAgree(rs.getString("accept_agree"))
 		                .adminCheck(rs.getString("admin_check"))
 		                .serviceAgree(rs.getString("service_agree"))
 		                .marketingAgree(rs.getString("marketing_Agree"))
@@ -284,27 +224,7 @@ public class MypageDao {
 				.build();
 	}
 	
-//	private void addMemberAndAddress(List<Member> members, ResultSet rs) throws SQLException {
-//		String pk = rs.getString("member_no");
-//		if (members.stream().anyMatch(e -> pk.equals(e.getMemberNo()))) {
-//			members.stream().filter(e -> Objects.equals(e.getMemberNo(), pk)).forEach(e -> {
-//				try {
-//					if (rs.getString("address_no") != null) {
-//						e.getAddress().add(getAddress(rs));
-//					}
-//				} catch (SQLException e1) {
-//					e1.printStackTrace();
-//				}
-//			});
-//		} else {
-//			Member m = getMember(rs);
-//			if (rs.getString("address_no") != null)
-//				m.getAddress().add(getAddress(rs));
-//			members.add(m);
-//		}
-//	}
 	public int insertAddress(Connection conn, String address) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	

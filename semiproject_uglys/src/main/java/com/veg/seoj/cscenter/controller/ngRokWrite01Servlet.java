@@ -1,10 +1,15 @@
 package com.veg.seoj.cscenter.controller;
 
+import com.google.gson.Gson;
+import com.veg.seoj.common.exception.BadAccessException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -22,15 +27,48 @@ public class ngRokWrite01Servlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    public void init() throws ServletException {
 
+
+    }
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
+
+/*        if((request.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual) !=null)){
+            System.out.println("json 있음");
+            String jsonBody = request.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
+        }else{
+            System.out.println("json 없음");
+            response.sendRedirect(request.getContextPath() + "/error/errortest.do");
+            return;
+        }*/
+        // Gson 객체 생성
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-        extracted(request);
+        Gson gson = new Gson();
+
+        try {
+
+            if(        gson.fromJson(request.getReader(), Object.class)==null){
+                throw new BadAccessException("잘못된 접근입니다. 관리자에게 문의하세요!");
+    /*            response.sendRedirect(request.getContextPath() + "/views/cscenter/error/badaccess.jsp");*/
+            }else{
+                System.out.println("json 있음");
+                extracted(request);
+            }
+
+
+        } catch (Exception e) {
+
+            throw new BadAccessException("잘못된 접근입니다. 관리자에게 문의하세요!");
+     /*       response.sendRedirect(request.getContextPath() + "/views/cscenter/error/badaccess.jsp");*/
+        }
+
+
+
 
         // 요청에서 JSON 데이터 추출
       /*  String jsonBody = request
@@ -59,13 +97,18 @@ public class ngRokWrite01Servlet extends HttpServlet {
         }*/
     }
 
-    private static void extracted(HttpServletRequest request) {
+    private void extracted(HttpServletRequest request) {
+/*        ServletContext context=getServletContext();*/
+        HttpSession session = request.getSession();
         int no=0;
         try {
 
-            String noParam = request.getParameter("no");
-            if (noParam != null) {
-                no = Integer.parseInt(noParam);
+
+            int noAttr= (int)session.getAttribute("no");
+/*             String noAttr= (String)context.getAttribute("no");*/
+            if (noAttr != 0) {
+                no = noAttr;
+/*                no = Integer.parseInt(noAttr);*/
                 System.out.println("형변환: " + no);
             } else {
                 System.out.println("'no' 파라미터 없음");
@@ -73,19 +116,17 @@ public class ngRokWrite01Servlet extends HttpServlet {
         } catch (NumberFormatException e) {
             // 숫자로 변환할 수 없는 경우 예외 처리
             System.out.println("예외 발생. 숫자로 변환 불가");
-        }
-        if (no == 1) {
+        } if (no == 1) {
             System.out.println("여기 55");
-            request.setAttribute("selectedProduct", 1);
+            session.setAttribute("selectedProduct", 1);
             System.out.println("여기 56");
         } else if (no == 2) {
             System.out.println("여기 57");
-            request.setAttribute("selectedProduct", 2);
+            session.setAttribute("selectedProduct", 2);
             System.out.println("여기 58");
-
         } else if (no == 3) {
             System.out.println("여기 59");
-            request.setAttribute("selectedProduct", 3);
+            session.setAttribute("selectedProduct", 3);
             System.out.println("여기 60");
         }
     }
@@ -200,6 +241,9 @@ public class ngRokWrite01Servlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         System.out.println(request);
         doGet(request, response);
     }
