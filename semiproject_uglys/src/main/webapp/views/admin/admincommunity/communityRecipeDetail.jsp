@@ -72,6 +72,8 @@ input::-webkit-inner-spin-button {
 		<input type="text" value="<%=member.getMemberId() %>" readonly="readonly"><br><br>
 		
 		<h5>첨부파일</h5>
+		<img src="<%=request.getContextPath()%>/images/<%=recipe.getRecipeRenamedFileName() %>" width="25">
+		<span><%=recipe.getRecipeOriginalFileName() %></span>
 		<input type="file" name="recipe_main_file"><br>
 		<input type="text" name="recipe_title" maxlength="20" value="<%=recipe.getRecipeTitle() %>"><br>
 		<input type="text" name="recipe_explain" maxlength="240" value="<%=recipe.getRecipeComment() %>">
@@ -192,6 +194,7 @@ function categoryChange(e) {
 		<input type="button" value="추가" onclick="addMaterial();">
 		</div>
 		<div class="procedure_part">
+		<br>
 		<h5>만드는 방법</h5>
 		<%if(!recipe.getProcedure().isEmpty()){
 		for(int i=0; i<4/* <recipe.getProcedure().size() */;i++){ %>
