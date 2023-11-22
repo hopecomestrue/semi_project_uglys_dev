@@ -171,14 +171,12 @@
 											<ul>
 												<li><a href="#">나의 리뷰</a></li>
 												<li><a href="#">북마크</a></li>
-												<li><a href="#">1:1문의</a></li>
 											</ul>
 										</li>
 										<li>
 											<span class="opener">내 정보</span>
 											<ul>
 												<li><a href="#">내 정보 수정</a></li>
-												<li><a href="#">배송지 관리</a></li>
 											</ul>
 										</li>
 										<li><a onclick="confirmLogout()">로그아웃</a></li>

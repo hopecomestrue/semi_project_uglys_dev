@@ -64,7 +64,7 @@
 	         				<span style="font-weight: bolder; margin-left: 10%;"><%=loginMember.getMemberName() %></span>님 환영합니다.
 	         			</td>
 	         		</tr>
-	         		<tr>i
+	         		<tr>
 	         			<td><button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
 	         				onclick="location.replace('<%=request.getContextPath()%>/myInfo.do')">마이페이지</button></td>
 	         			<td><button type="button" class="btn btn-outline-dark" onclick="location.replace('<%=request.getContextPath()%>/loginout.do');">로그아웃</button></td>

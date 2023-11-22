@@ -50,12 +50,12 @@
 	<div class="py-1 bg-primary">
 		<div class="container"></div>
 	</div>
-	<nav
+<!-- 	<nav
 		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
 			<a class="navbar-brand" href="index.html">채소랑</a>
-			<!-- 메인화면으로 이동 // 주소바꾸기 -->
+			메인화면으로 이동 // 주소바꾸기
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
 
 	<section class="ftco-section ftco-cart">
 		<div class="container">
@@ -94,6 +94,11 @@
 								</tr>
 							</thead>
 							<tbody>
+<%-- 							<% int sum =0;
+							ArrayList<Cart> cartlist =(ArrayList<Cart>) session.getAttribute("cartList");
+							for(int i = 0; i < cartlist.size(); i++){
+										Cart cart = cartlist.get(i);
+										sum += cart.getTotalPrice();}%> --%>
 								<tr class="text-center">
 									<td class="product-remove"><a href="#"><span
 											class="ion-ios-close"></span></a></td>

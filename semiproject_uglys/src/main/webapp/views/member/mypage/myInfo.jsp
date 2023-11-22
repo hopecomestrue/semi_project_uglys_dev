@@ -4,10 +4,12 @@
  <%@ page import="com.veg.ojy.mypage.dto.Address"%>
 <%-- <%@ page import="com.veg.ojy.mypage.dto.*" %> --%>
 <%@ page import= "java.util.List,java.util.Arrays" %>
+<%-- <%@ include file="/views/common/header.jsp" %> --%>
 
 <%
 	Member loginMember=(Member)session.getAttribute("loginMember");
 	List<Address> a = (List<Address>)request.getAttribute("address");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -41,6 +43,7 @@
 		<style>
 			#sidebar {
 				padding-top: 70px;
+				/* top: 80px; */
 			}
 		</style>
 	  </head>
@@ -52,38 +55,101 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<header>
-								<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+							 <header>
+							 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 									<div class="container">
-									  <a class="navbar-brand" href="index.html">채소랑</a>
+									  <a class="navbar-brand" href="index.html"></a>
 									  <!-- 메인화면으로 이동 // 주소바꾸기 -->
 									  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 										<span class="oi oi-menu"></span> Menu
 									  </button>
-							
 									 <div class="collapse navbar-collapse" id="ftco-nav">
 										<ul class="navbar-nav ml-auto">
-										  <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">채소농장</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
-										  <li class="nav-item"><a href="mypage.html" class="nav-link">마이페이지</a></li>
-										  <li class="nav-item cta cta-colored"><a href="cart1.html" class="nav-link"><span href=""></span>[0]</a></li>
-							
+										  <li class="nav-item"><a href="<%=request.getContextPath()%>/main.do" class="nav-link">Home</a></li>
+										  <li class="nav-item"><a href="<%=request.getContextPath()%>/productionList/vegfarm.do" class="nav-link">채소농장</a></li>
+										  <li class="nav-item"><a href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
+										  <li class="nav-item"><a href="<%=request.getContextPath() %>/notice/noticeList.do"" class="nav-link">고객센터</a></li>
+										  <li class="nav-item"><a href="<%=request.getContextPath() %>/myInfo.do" class="nav-link">마이페이지</a></li>
+										 <!--  <li class="nav-item cta cta-colored"><a href="cart1.html" class="nav-link"><span href=""></span>[0]</a></li> -->
 										</ul>
 									  </div>
 									</div>
 								  </nav>
-								</header>
+								</header>  
 							<!-- Banner -->
 								<section id="banner">
 									<div class="content">
 										<header>
-											<h2>마이페이지<br />
+											<h2>마이페이지<br/>
 											</h2>
 										</header>
 									</div>
 								</section>
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>최근 주문 내역</h2>
+									</header>
+									<div class="features">
+										<article>
+											<span class=></span>
+											<div class="content">
+												<h3></h3>
+												<table>
+												<tr>
+													<td><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
+													<td>친환경 절임배추</td>
+													<td>1개</td>
+													<td>29,900원</td>
+												</tr>
+												</table>
+											</div>
+										</article>
+										<article>
+											<span class=></span>
+											<div class="content">
+												<h3></h3>
+												<table>
+												<tr>
+													<td><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
+													<td>친환경 절임배추</td>
+													<td>1개</td>
+													<td>29,900원</td>
+												</tr>
+												</table>
+											</div>
+										</article>
+										<article>
+											<span class=></span>
+											<div class="content">
+												<h3></h3>
+												<table>
+												<tr>
+													<td><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
+													<td>친환경 절임배추</td>
+													<td>1개</td>
+													<td>29,900원</td>
+												</tr>
+												</table>
+											</div>
+										</article>
+										<article>
+											<span class=></span>
+											<div class="content">
+												<h3></h3>
+												<table>
+												<tr>
+													<td><img src="/images2/product-5.jpg" style="width: 100px; height: 100px;"></td>
+													<td>친환경 절임배추</td>
+													<td>1개</td>
+													<td>29,900원</td>
+												</tr>
+												</table>
+											</div>
+										</article>
+									</div>
+								</section>
+								
 							<!-- Section -->
 								<section>
 									<header class="major">
@@ -182,10 +248,86 @@
 										</div>
 									
 								</section>
-
+								<section>
+									<header class="major">
+										<h2>북마크</h2>
+									</header>
+									<div class="posts">
+										<article>
+											<a href="#" class="image"><img src="<%=request.getContextPath() %>/images/images2/pic04.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="<%=request.getContextPath() %>/images/images2/pic04.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="<%=request.getContextPath() %>/images/images2/pic04.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="<%=request.getContextPath() %>/images/images2/pic04.jpg" alt="" /></a>
+											<h3>북마크</h3>
+											<p>북마크임당</p>
+											<ul class="actions">
+												<li><a href="#" class="button">더보기</a></li>
+											</ul>
+										</article>
+										</div>
+										</section>
+										<section>
+										<header class="major">
+											<h2>리뷰</h2>
+										</header>
+										<div class="posts">
+											<article>
+												<a href="#" class="image"><img src="<%=request.getContextPath() %>/images/images2/pic06.jpg" alt="" /></a>
+												<h3>리뷰</h3>
+												<p>리뷰임당</p>
+												<ul class="actions">
+													<li><a href="#" class="button">더보기</a></li>
+												</ul>
+											</article>
+											<article>
+												<a href="#" class="image"><img src="<%=request.getContextPath() %>/images/images2/pic06.jpg" alt="" /></a>
+												<h3>나의리뷰</h3>
+												<p>리뷰임당</p>
+												<ul class="actions">
+													<li><a href="#" class="button">더보기</a></li>
+												</ul>
+											</article>
+											<article>
+												<a href="#" class="image"><img src="<%=request.getContextPath() %>/images/images2/pic06.jpg" alt="" /></a>
+												<h3>리뷰</h3>
+												<p>리뷰임당</p>
+												<ul class="actions">
+													<li><a href="#" class="button">더보기</a></li>
+												</ul>
+											</article>
+											<article>
+												<a href="#" class="image"><img src="<%=request.getContextPath() %>/images/images2/pic06.jpg" alt="" /></a>
+												<h3>리뷰</h3>
+												<p>리뷰임당</p>
+												<ul class="actions">
+													<li><a href="#" class="button">더보기</a></li>
+												</ul>
+											</article>
+									</div>
+								</section>
 						</div>
 					</div>
-
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
@@ -214,7 +356,6 @@
 											<span class="opener">내 정보</span>
 											<ul>
 												<li><a href="#">내 정보 수정</a></li>
-												<li><a href="#">배송지 관리</a></li>
 											</ul>
 										</li>
 										<li><a onclick="confirmLogout()">로그아웃</a></li>

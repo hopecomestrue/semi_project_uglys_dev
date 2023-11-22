@@ -30,7 +30,6 @@ public class MyAddressEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberId=request.getParameter("memberId");
-	
 		String addressNew=request.getParameter("address_New");
 //		int result = new MyinfoService().insertAddress(memberId,addressNew);
 		

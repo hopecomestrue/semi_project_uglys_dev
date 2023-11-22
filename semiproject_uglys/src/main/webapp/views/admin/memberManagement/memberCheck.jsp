@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <% ArrayList<Member> memberList = new ArrayList<>();
    memberList = m.selectMember();
-%>
+%> 
 <!DOCTYPE html>
 
 <!--
@@ -265,7 +265,7 @@
 													<%=m.getAddress()%>
 												</td>
 													<td>
-                                                            <a class="subBtn" href="<%=request.getContextPath()%>/views/admin/memberManagement/memberModify.jsp?memberId=<%=m.getMemberId()%>">
+                                                            <a class="subBtn" href="<%=request.getContextPath()%>/views/admin/memberManagement/memberModify.jsp?memberId=<%=m.getMemberId()%>'>
                                                                 수정
                                                             </a>
                                                             <a class="subBtn" href="#">
@@ -275,12 +275,6 @@
                                                        
                                                     </tr>
                                                 </tbody>
-                                                <!-- <tfoot>
-                                                    <tr>
-                                                        <td colspan="2"></td>
-                                                        <td>100.00</td>
-                                                    </tr>
-                                                </tfoot> -->
                                             </table>
                                         </div>
 									</div>
@@ -339,7 +333,7 @@
 						</div>
 					</div>
 			</div>
-				<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
+			<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/browser.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>
@@ -354,7 +348,7 @@
 					}
 				}
 			</script>
-			<script>
+<!-- 			<script>
     $(document).ready(function () {
         $('.sort-btn').on('click', function () {
             var sortBy = $(this).data('sort');
@@ -404,7 +398,7 @@
             $('th[data-sort]').not(currentArrow).removeClass('asc desc');
         }
     });
-</script>
+</script> -->
 
 	</body>
-</html> --%>
+</html>  --%>

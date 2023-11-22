@@ -147,8 +147,8 @@ public class MypageDao {
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("deleteMember"));
 			pstmt.setString(1, memberId);
-//			result=pstmt.executeUpdate();
-			result=1;
+			result=pstmt.executeUpdate();
+//			result=1;
 			} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
