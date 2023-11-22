@@ -19,6 +19,13 @@ public class OrderService {
 		close(conn);
 		return o;
 	}
+	//멤버 고유번호로 해당 주문row 가져오기
+	public List<Order> selectAllOrderDetailsByMemNo(int memberNo){
+		Connection conn=getConnection();
+		List<Order>orders=dao.selectAllOrderDetailsByMemNo(conn, memberNo);
+		close(conn);
+		return orders;
+	}
 	//주문 테이블에 등록(주문/결제 등록)
 	public int insertOrderDetails(Order order,Member m) {
 		Connection conn=getConnection();
@@ -35,6 +42,15 @@ public class OrderService {
 		close(conn);
 		return orders;
 	}
+	//환불현황 변경(환불승인완료) -관리자
+	public int updateRefundDetails(String refundCheck,long refundNo) {
+		Connection conn=getConnection();
+		int result=dao.updateRefundDetails(conn,refundCheck,refundNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 	//송장번호 입력+주문상태 변경(결제완료->배송준비중,배송중,배송완료) -관리자
 	public int updateOrderDetails(String status,long trackingNo,long orderNo) {
 		Connection conn=getConnection();
@@ -44,10 +60,10 @@ public class OrderService {
 		close(conn);
 		return result;
 	}
-	//환불현황 변경(환불승인완료) -관리자
-	public int updateRefundDetails(String refundCheck,long refundNo) {
+	//주문 환불 요청 -유저
+	public int OrderRefundRequest(long refundNo) {
 		Connection conn=getConnection();
-		int result=dao.updateRefundDetails(conn,refundCheck,refundNo);
+		int result=dao.OrderRefundRequest(conn,refundNo);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);

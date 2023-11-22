@@ -1,34 +1,26 @@
 package com.veg.ojy.mypage.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.veg.hjj.member.dto.Member;
-import com.veg.hjj.member.service.MemberService;
-import com.veg.ksj.order.model.dto.Order;
+import com.google.gson.Gson;
 import com.veg.ksj.order.model.service.OrderService;
-import com.veg.ojy.mypage.dto.Address;
-import com.veg.ojy.mypage.service.MyinfoService;
-
 
 /**
- * Servlet implementation class MypageServlet
+ * Servlet implementation class MyinfoRefundRequest
  */
-@WebServlet("/myInfo.do")
-public class MyinfoServlet extends HttpServlet {
+@WebServlet("/myinfo/refund.do")
+public class MyinfoRefundRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyinfoServlet() {
+    public MyinfoRefundRequest() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,20 +29,19 @@ public class MyinfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Member m = (Member)session.getAttribute("loginMember");
-		int memberNo = m.getMemberNo();
-		//String address=request.getParameter("address");
-		List<Address> a = new MyinfoService().selectAddress(memberNo);
-		request.setAttribute("member", m);
-		request.setAttribute("address", a);
+		Gson gson=new Gson();
+		Long orderNo=Long.parseLong(request.getParameter("orderNo"));
 		
-		//회원번호로 주문내역 row 전부 가져오기
-		List<Order>orders=new OrderService().selectAllOrderDetailsByMemNo(memberNo);
-		request.setAttribute("orders", orders);
+		int result=new OrderService().OrderRefundRequest(orderNo);
 		
-		request.getRequestDispatcher("/views/member/mypage/myInfo.jsp").forward(request, response);
+		if(result>0) System.out.println("환불요청성공");
+		else System.out.println("환불요청실패");
+		
+		gson.toJson("",response.getWriter());
+		
+		
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
