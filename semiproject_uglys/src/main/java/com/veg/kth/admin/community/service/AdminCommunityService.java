@@ -44,4 +44,12 @@ public class AdminCommunityService {
 		return result;
 	}
 	
+	
+	public int updateRecipe(Recipe r) {
+		Connection conn = getConnection();
+		int result = dao.updateRecipe(conn,r);
+		close(conn);
+		return result;
+	}
+	
 }

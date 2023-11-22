@@ -1,7 +1,6 @@
 package com.veg.kth.admin.community.dao;
 
 import static com.veg.common.JDBCTemplate.close;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -131,6 +130,26 @@ private Properties sql = new Properties();
 			close(rs);
 		}
 		return result.get(0);
+		
+		
+	}
+	
+	
+	
+	public int updateRecipe(Connection conn, Recipe r) {
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeByNo"));
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 		
 		
 	}

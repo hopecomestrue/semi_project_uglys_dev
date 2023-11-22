@@ -66,10 +66,11 @@ input::-webkit-inner-spin-button {
 	<h4>레시피 수정</h4>
 	<form action='<%=request.getContextPath()%>/admin/recipewriteend' method="post" enctype="multipart/form-data">
 		<h5>레시피 고유 번호</h5>
-		<input type="text" value="<%=recipe.getRecipeNo() %>" readonly="readonly" style="background:grey;"><br><br>
+		<input type="text" name="recipe_no" value="<%=recipe.getRecipeNo() %>" readonly="readonly" style="background:grey;"><br><br>
 		
 		<h5>작성자 아이디</h5>
-		<input type="text" value="<%=member.getMemberId() %>" readonly="readonly"><br><br>
+		<input type="hidden" name="member_no"  value="<%=member.getMemberNo() %>" readonly="readonly" style="background:grey;">
+		<input type="text" name="writer"  value="<%=member.getMemberId() %>" readonly="readonly" style="background:grey;"><br><br>
 		
 		<h5>첨부파일</h5>
 		<img src="<%=request.getContextPath()%>/images/<%=recipe.getRecipeRenamedFileName() %>" width="25">

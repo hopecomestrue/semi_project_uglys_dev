@@ -1,4 +1,4 @@
-package com.veg.kth.community.controller;
+package com.veg.kth.admin.community.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,23 +15,23 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.veg.kth.admin.community.service.AdminCommunityService;
 import com.veg.kth.community.model.dto.Category;
 import com.veg.kth.community.model.dto.Material;
 import com.veg.kth.community.model.dto.Procedure;
 import com.veg.kth.community.model.dto.Recipe;
-import com.veg.kth.community.service.CommunityService;
 
 /**
- * Servlet implementation class CommunityRecipeWriteEndServlet
+ * Servlet implementation class AdminCommunityRecipeModifyEndServlet
  */
-@WebServlet("/community/recipewriteend.do")
-public class CommunityRecipeWriteEndServlet extends HttpServlet {
+@WebServlet("/admin/recipewriteend")
+public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityRecipeWriteEndServlet() {
+    public AdminCommunityRecipeModifyEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,13 +50,13 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			if(!dir.exists()) dir.mkdir();
 			MultipartRequest mr = new MultipartRequest(request,path,1024*1024*100,"UTF-8",
 					new DefaultFileRenamePolicy());
+			
+			int recipeNo=0;
 			if(mr.getParameter("recipe_no")!=null) {
-				int recipeNo = Integer.parseInt(mr.getParameter("recipe_no"));				
+				recipeNo = Integer.parseInt(mr.getParameter("recipe_no"));				
 			}else {
-				int recipeNo = 0;
+				recipeNo = 0;
 			}
-			
-			
 			String oriMainFile = mr.getOriginalFileName("recipe_main_file");
 			String renameMainFile = mr.getFilesystemName("recipe_main_file");
 			String title = mr.getParameter("recipe_title");
@@ -71,7 +71,7 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 								.categoryDept2(category_dept2)
 								.build();
 			String[] hashtags = mr.getParameterValues("hashtag");
-			System.out.println(hashtags);
+			
 			
 //			for(int i=0; i<hashtags.length;i++) {
 //				System.out.println(hashtags[i]);
@@ -104,14 +104,8 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			    		.build();
 			    materials.add(m);
 			}
-			System.out.println(materials);
 			
-			
-			/*
-			 * String[] pOrder = mr.getParameterValues("procedure_no"); List<Long>
-			 * ProcedureOrder = new ArrayList<>(); for(int i=0; i<pOrder.length;i++) { Long
-			 * p = (long)Integer.parseInt(pOrder[i]); ProcedureOrder.add(p); }
-			 */
+
 			
 			
 			String[] procedureComment = mr.getParameterValues("procedure_comment");
@@ -129,9 +123,10 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			}
 			System.out.println(procedures);
 			
-			
-			
-			Recipe r = Recipe.builder()
+				
+			Recipe r = Recipe.builder().build();
+			if(member_no!=0 && recipeNo!=0) {
+			r = Recipe.builder()
 					.recipeOriginalFileName(oriMainFile)
 					.recipeRenamedFileName(renameMainFile)
 					.recipeTitle(title)
@@ -146,33 +141,30 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 					.member_no(member_no)
 					.build();
 			
+			}
 			System.out.println(r);
 			
-			int result = new CommunityService().insertRecipe(r);
+			int result = new AdminCommunityService().updateRecipe(r);
 			
 			String msg, loc;
 			
 			if(result>0) {
 				//입력성공
-				msg = "레시피 등록 성공";
-				loc = "/community/communitymain.do";
+				msg = "레시피 수정 성공";
+				loc = "/admin/recipeList.do";
 			}else {
 				//입력실패
-				msg="레시피 등록 실패";
-				loc="/community/communitymain.do";
+				msg="레시피 수정 실패";
+				loc="/admin/recipeList.do";
 				File delFile = new File(path+"/"+renameMainFile);
 				if(delFile.exists()) delFile.delete();
 				
 			}
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
-			request.getRequestDispatcher("/views/common/msg.jsp")
+			request.getRequestDispatcher("/views/common//msg.jsp")
 			.forward(request, response);
-		
-		
 		}
-
-		
 	}
 
 	/**
