@@ -15,7 +15,7 @@ import com.veg.ksj.order.model.service.OrderService;
 /**
  * Servlet implementation class AdminSearchDelCheck
  */
-@WebServlet("/admin/searchDelCheck")
+@WebServlet("/admin/searchDelCheck.do")
 public class AdminSearchDelCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

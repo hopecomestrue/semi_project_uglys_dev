@@ -1,4 +1,4 @@
-package com.veg.ksj.admin.controller;
+package com.veg.kth.admin.community.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.veg.ksj.order.model.dto.Order;
 import com.veg.ksj.order.model.service.OrderService;
+import com.veg.kth.admin.community.service.AdminCommunityService;
+import com.veg.kth.community.model.dto.Recipe;
 
 /**
- * Servlet implementation class RefundSelectCheck
+ * Servlet implementation class AdminCommunityMainServlet
  */
-@WebServlet("/admin/refundList.do")
-public class AdminRefundList extends HttpServlet {
+@WebServlet("/admin/recipeList.do")
+public class AdminCommunityMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminRefundList() {
+    public AdminCommunityMainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +32,7 @@ public class AdminRefundList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//환불 페이지 페이징 처리 리스트 출력
+		//주문 페이지 페이징 처리 리스트 출력
 		int cPage;
         try {
                 cPage=Integer.parseInt(request.getParameter("cPage"));
@@ -39,14 +40,14 @@ public class AdminRefundList extends HttpServlet {
                 cPage=1;
         }
         int numPerpage=10;
-        //주문결제 페이지 전부 가져오기
-        List<Order> refundList=new OrderService().searchRefundList(cPage,numPerpage);
-        
-        request.setAttribute("refundList",refundList);
-        
+		
+		//페이징 처리 제외
+		List<Recipe> recipes = new AdminCommunityService().selectRecipeAllByPage();
+
+		request.setAttribute("recipes", recipes);
         //pageBar만들기
         //1. 전체 데이터를 가져와 저장하기
-        int totalData=new OrderService().selectRefundCount();
+        int totalData=new OrderService().selectDelCount();
         //2. 전체 페이지수를 저장하기
         int totalPage=(int)Math.ceil((double)totalData/numPerpage);
         //3. 페이지바에 출력될 번호의 갯수 설정
@@ -81,10 +82,11 @@ public class AdminRefundList extends HttpServlet {
                                 +"?cPage="+pageNo+"'>다음</a></li>";
         }
         pageBar+="</ul>";        
-        request.setAttribute("pageBar", pageBar);
+        request.setAttribute("pageBar", pageBar);		
 		
-		//환불내역 리스트로 dispatcher
-		request.getRequestDispatcher("/views/admin/refundList.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("/views/admin/admincommunity/communityRecipe.jsp")
+		.forward(request, response);
 		
 	}
 

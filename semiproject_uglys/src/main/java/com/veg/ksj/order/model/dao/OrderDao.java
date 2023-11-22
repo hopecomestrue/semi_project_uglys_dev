@@ -109,6 +109,24 @@ public class OrderDao {
 		}
 		return result;
 	}
+	//환불현황 변경(환불승인완료) -관리자
+	public int updateRefundDetails(Connection conn,String refundCheck,long refundNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("updateRefundDetails"));
+			pstmt.setString(1, refundCheck);
+			pstmt.setLong(2, refundNo);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
 	//주문현황 페이지 페이징처리
 	//1.주문 리스트 전부 가져오기
 	public List<Order> searchDelList(Connection conn,int cPage,int numPerpage){
@@ -194,9 +212,94 @@ public class OrderDao {
 	
 	
 	
+	//환불현황 페이지 페이징처리
+	//1.환불 리스트 전부 가져오기
+	public List<Order> searchRefundList(Connection conn,int cPage,int numPerpage){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Order> result=new ArrayList<Order>();
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("searchRefundList"));
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				result.add(getOrder(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	//주문리스트에서 키워드로 찾기
+	public List<Order> searchRefundByKeyword(Connection conn,String type,String keyword,int cPage,int numPerpage){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Order> result=new ArrayList<Order>();
+		String query=sql.getProperty("searchRefundByKeyword");
+		query=query.replace("#COL", type);
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, (cPage-1)*numPerpage+1);
+			pstmt.setInt(3, cPage*numPerpage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) result.add(getOrder(rs));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	//주문 키워드 수
+	public int selectRefundByKeywordCount(Connection conn,String type,String keyword) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String query=sql.getProperty("selectRefundByKeywordCount").replace("#COL", type);
+		
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			rs=pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt("count");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+				
+	}
+	//모든 주문 리스트 총량 가져오기
+	public int selectRefundCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("selectRefundCount"));
+			rs=pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}	
 	
 	
 	
+	
+	
+	//주문DTO 빌더패턴
 	public static Order getOrder(ResultSet rs) throws SQLException{
 		return Order.builder()
 					.orderNo(rs.getLong("ORDER_NO"))
@@ -220,7 +323,7 @@ public class OrderDao {
 	
 	
 	
-	
+	//MEMBER 임시 메소드
 	private Properties sql2=new Properties();
 	{
 		String path=MemberDao.class.getResource("/sql/order/order_sql.properties").getPath();

@@ -61,10 +61,10 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			String renameMainFile = mr.getFilesystemName("recipe_main_file");
 			String title = mr.getParameter("recipe_title");
 			String explain = mr.getParameter("recipe_explain");
-			int leadtime = Integer.parseInt(mr.getParameter("leadtime"));
+			String leadtime = mr.getParameter("leadtime");
 			String category_dept1 = mr.getParameter("category_dept1");
 			String category_dept2 = mr.getParameter("category_dept2");
-
+			int member_no = Integer.parseInt(mr.getParameter("member_no"));
 			
 			Category category = Category.builder()
 								.categoryDept1(category_dept1)
@@ -73,9 +73,9 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			String[] hashtags = mr.getParameterValues("hashtag");
 			System.out.println(hashtags);
 			
-			for(int i=0; i<hashtags.length;i++) {
-				System.out.println(hashtags[i]);
-			}
+//			for(int i=0; i<hashtags.length;i++) {
+//				System.out.println(hashtags[i]);
+//			}
 			
 			
 //			List<Hashtag> hashtag = (List<Hashtag>)Hashtag.builder()
@@ -86,6 +86,10 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			int capacity = Integer.parseInt(mr.getParameter("capacity"));
 			
 			String[] materialType = mr.getParameterValues("material_type");
+			for(int i=0; i<materialType.length;i++) {
+				materialType[i]=materialType[i].toUpperCase();
+			}
+			
 			String[] materialName = mr.getParameterValues("material_name");
 			String[] materialCapa = mr.getParameterValues("material_capa");
 			
@@ -139,6 +143,7 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 					.material(materials)
 					.procedure(procedures)
 					.recipeDate(null)
+					.member_no(member_no)
 					.build();
 			
 			System.out.println(r);
@@ -153,7 +158,7 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 				loc = "/community/communitymain.do";
 			}else {
 				//입력실패
-				msg="공지사항 등록실패";
+				msg="레시피 등록 실패";
 				loc="/notice/noticewrite.do";
 				File delFile = new File(path+"/"+renameMainFile);
 				if(delFile.exists()) delFile.delete();
@@ -166,10 +171,7 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 		
 		
 		}
-		
-		
 
-		
 		
 	}
 

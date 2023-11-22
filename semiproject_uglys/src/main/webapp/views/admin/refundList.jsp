@@ -1,13 +1,20 @@
+<%@page import="com.veg.hjj.member.dto.Member"%>
+<%@page import="com.veg.ksj.order.model.dto.Order"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% 
+    	Member loginAdmin=(Member)session.getAttribute("loginMember");
+    %>
+    <%if(loginAdmin!=null&&loginAdmin.getAdminCheck().equals("Y")){ %>
 <%@ include file="/views/admin/common/header.jsp" %>
 
 <%
-	//환불신청 리스트를 getAttribute로 받기
-	// Refund refu=(Refund)request.getAttribute("refundList");
+	//주문내역 리스트를 getAttribute로 받기
+	List<Order> refundList=(List<Order>)request.getAttribute("refundList");
 %>
 
- <style>
+<style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -94,115 +101,108 @@
         align-items: center;
         display: flex;
         justify-content: right;
-        margin-right: 10%;
+        margin-right: 2%;
+        margin-bottom: 1%;
       }
 
-      #refund-check{
-        width: 18%;
-        margin-left: 70%;
-        margin-bottom: 3%;
+      .delivery-check{
+      
       }
 
-      .refund-tb{
+      .delivery-tb{
         width: 80%;
         margin: 0 auto;
       }
 
-      .refund-paging{
+      .delivery-paging{
         margin: 5%;
       }
       
-    </style>
 
+      
+    </style>
 <body>
-<div>
-  <h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">환불 현황</h1>
-</div>
-<form id="refundselectFrm" action="<%=request.getContextPath() %>/admin/refundselect.do" method="post">
-<div class="refund-check">
-  <select class="form-select form-select-lg" aria-label=".form-select-lg example" 
-  			id="refund-check" onchange="refund-check()">
-    <option value="1" name="refundCheck">대기중</option>
-    <option value="2" name="refundCheck">승인</option>
-    <option value="3" name="refundCheck">거부</option>
+	<div>
+		<h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">환불 현황</h1>
+	</div>
+<div class="delivery-check">
+  <select class="form-select form-select-lg" aria-label=".form-select-lg example" id="delivery-check">
+    <option selected>환불승인대기</option>
+    <option value="1">환불완료</option>
   </select>
 </div>
-<div class="refund-tb">
+<div class="delivery-tb">
+<form action="<%=request.getContextPath()%>/admin/searchRefundCheck.do" method="post">
+<div class="search_3">
+  <div class="del-Search">
+<select class="form-select form-select-lm" aria-label="Small select example" name="searchType">
+    <option value="ORDER_NAME" >이름으로 조회하기</option>
+    <option value="ORDER_NO" >주문번호로 조회하기</option>
+    <option value="ORDER_ADDRESS" >주소로 조회하기</option>
+  </select>
+</div>
+<div>
+  <input type="text" class="form-control" name="searchKeyword" placeholder="내용을 적어주세요.">
+</div>
+<div>
+  <button type="submit" class="btn btn-primary">검색</button>
+</div>
+</div>
+</form>
 <table class="table table-bordered">
     <tr>
       <th><input class="form-check-input" type="checkbox" id="checkboxAll" value="" aria-label="..."></th>
       <th>주문 상세 번호</th>
-      <th>주문 아이디</th>
       <th>이름</th>
       <th>전화번호</th>
       <th>주소</th>
       <th>주문 날짜</th>
-      <th>환불 사유</th>
       <th>승인 여부</th>
+      <th>환불 사유</th>
   </tr>
+  <%if(!refundList.isEmpty()){
+	  for(Order r : refundList){%>
   <tr>
-      <td><input class="form-check-input" type="checkbox" id="checkboxNo" value="" aria-label="..."
-      			name="<%-- <%=refu.getNo %> --%>"></td>
-      <td><a href="">123456789</a></td>
-      <td>admin123</td>
-      <td>홍길동</td>
-      <td>010-1234-1234</td>
-      <td>서울시 금천구</td>
-      <td>2023-11-10</td>
-      <td>고객 단순 변심</td>
-      <td>대기중</td>
-  </tr>    
+      <td><input class="form-check-input" type="checkbox" id="checkboxNo" 
+      				name="<%=r.getOrderNo() %>" aria-label="..."></td>
+      <td><a href="<%=request.getContextPath()%>/admin/refundDetail.do?orderNo=<%=r.getOrderNo() %>"><%=r.getOrderNo() %></a></td>
+      <td><%=r.getOrderName() %></td>
+      <td><%=r.getOrderPhone() %></td>
+      <td><%=r.getOrderAddress() %></td>
+      <td><%=r.getOrderDate() %></td>
+      <td><%=r.getOrderStatus() %></td>
+      <td>추가예정</td>
+  </tr>
+  <%}
+	  }%>   
   </table>
 </div>
-</form>
-<div class="search_3">
-  <div>
-<select class="form-select form-select-lm" aria-label="Small select example">
-    <option value="1">주문아이디로 조회하기</option>
-    <option value="2">주문번호로 조회하기</option>
-    <option value="3">주소로 조회하기</option>
-  </select>
-</div>
-<div>
-  <input type="text" class="form-control" placeholder="내용을 적어주세요.">
-</div>
-<div>
-  <button type="button" class="btn btn-primary">검색</button>
-</div>
-</div>
+	<div id="pageBar" class="container">
+		<%=request.getAttribute("pageBar") %>
+	</div>
 
-<nav aria-label="Page navigation example" class="refund-paging">
-    <ul class="pagination justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">4</a></li>
-      <li class="page-item"><a class="page-link" href="#">5</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">다음</a>
-      </li>
-    </ul>
-  </nav>
 
 <script>
-	document.getElementById("checkboxAll").addEventListener('click',function(){
-		var checkboxes=document.querySelectorAll('#checkboxNo');
-		for(var checkbox of checkboxes){
-			checkbox.checked=this.checked;
-		}
+	//체크박스 All 체크
+	document.getElementById('checkboxAll').addEventListener('click', function() {
+	  var checkboxes = document.querySelectorAll('#checkboxNo');
+	  for (var checkbox of checkboxes) {
+	    checkbox.checked = this.checked;
+	  }
 	});
 	
-	const refund-check=()=>{
-		
-	}
+	document.getElementById('checkboxNo').addEventListener('click',function(){
+		var checkAll=document.getElementById('checkboxAll');
+		checkAll.checked=false;
+	});
+	
+
+	
 	
 </script>
 
-</main>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  
+
 <%@ include file="/views/admin/common/footer.jsp" %>
+<%}%>
