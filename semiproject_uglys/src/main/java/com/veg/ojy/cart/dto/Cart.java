@@ -14,7 +14,6 @@ public class Cart {
 	
 	private int cartNo;
 	private int memberNo;
-	private String production_name;
+	private int productNo;
 	private int count;
-	private List<Production> prodution = new ArrayList<>();
 }

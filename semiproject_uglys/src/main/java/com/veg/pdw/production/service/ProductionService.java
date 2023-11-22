@@ -98,5 +98,24 @@ public class ProductionService {
 		close(conn);
 		return result;
 	}
+	public List<Production>selectSearchbyKey(Map<String,String>sql,Map<String,String>sql1){
+		Connection conn=getConnection();
+		List<Production>result=new ProductionDao().selectSearchbyKey(conn,sql,sql1);
+		close(conn);
+		return result;
+	}
+	public int deleteProductionByNo(List<String> nos) {
+		Connection conn =getConnection();
+		int result=new ProductionDao().deleteProductionByNo(conn,nos);
+						
+		if(result>0){
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 }

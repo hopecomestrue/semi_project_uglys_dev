@@ -1,9 +1,12 @@
+<%@page import="com.veg.ojy.cart.dto.Cart"%>
+<%@page import="java.util.List"%>
+<%@page import="com.veg.hjj.member.dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-
+<%@ include file="/views/common/header.jsp" %>
+<%
+	List<Cart> carts=(List<Cart>)request.getSession().getAttribute("carts");
+%>
 <title></title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -50,33 +53,6 @@
 	<div class="py-1 bg-primary">
 		<div class="container"></div>
 	</div>
-	<nav
-		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-		id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index.html">채소랑</a>
-			<!-- 메인화면으로 이동 // 주소바꾸기 -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#ftco-nav" aria-controls="ftco-nav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
-
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">채소농장</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
-					<li class="nav-item"><a href="mypage.html" class="nav-link">마이페이지</a></li>
-					<li class="nav-item cta cta-colored"><a href="cart1.html"
-						class="nav-link"><span href=""></span>[0]</a></li>
-
-				</ul>
-			</div>
-		</div>
-	</nav>
-
 	<section class="ftco-section ftco-cart">
 		<div class="container">
 			<div class="row">
@@ -93,6 +69,8 @@
 									<th>총금액</th>
 								</tr>
 							</thead>
+							<%if(!carts.isEmpty()){
+								for(Cart c : carts){%>
 							<tbody>
 								<tr class="text-center">
 									<td class="product-remove"><a href="#"><span
@@ -102,7 +80,7 @@
 											style="background-image: url(images2/product-3.jpg);"></div></td>
 
 									<td class="product-name">
-										<h3>친환경배추10kg</h3>
+										<h3><%-- <%=c.get %> --%></h3>
 										<p>Far far away, behind the word mountains, far from the
 											countries</p>
 									</td>
@@ -145,6 +123,8 @@
 									<td class="total">29,900원</td>
 								</tr>
 							</tbody>
+							<%}
+								}%>
 						</table>
 					</div>
 				</div>
@@ -245,5 +225,3 @@
         }
     });
 </script>
-</body>
-</html>

@@ -53,7 +53,7 @@
 	          
 	          <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/notice/noticeList.do" class="nav-link">고객센터</a></li>
 
-	          <li class="nav-item cta cta-colored" style="list-style-type: none;"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          <li class="nav-item cta cta-colored" style="list-style-type: none;"><a href="<%=request.getContextPath()%>/cart/cartList.do" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 	          
 	          <%if(loginMember==null){ %>
 	          <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a></li>
@@ -71,8 +71,10 @@
 	         		</tr>
 	         	</table>
 	         		<%if(loginMember.getAdminCheck().equals("Y")){%>
+	         		<div style="margin-top:4%;">
 	         		<button type="button" class="btn btn-info" 
 	         		onclick="location.replace('<%=request.getContextPath()%>/admin/login.do')">관리자페이지</button>
+	         		</div>
 	         		<%} %>
 	         <%} %>
 	        </ul>

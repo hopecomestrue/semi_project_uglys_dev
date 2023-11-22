@@ -159,10 +159,6 @@
           </select>
       </td>
     </tr>
-    <tr>
-        <th>토큰값 가져오기</th>
-        <td><button id="getToken-btn">토큰값 생성</button></td>
-    </tr>
   </table>
 </div>
   <button type="submit" class="btn btn-primary" id="btn_submit">등록</button>
@@ -171,14 +167,13 @@
 	//등록완료 하면 ajax로 환불상태 DB변경
 	document.getElementById('btn_submit').addEventListener('click',function(){
 		/* console.log('버튼은 눌림'); */
-		
 		var refundNo=document.getElementById('refundNo').innerText;
 		var refundCheck=document.getElementById('refund-check').value;
 		var refundReason=document.getElementById('refund-reason').innerText;
 		
-		console.log(refundNo);
+		/* console.log(refundNo);
 		console.log(refundCheck);
-		console.log(refundReason);
+		console.log(refundReason); */
 		
 		$.ajax({
 			url : '<%=request.getContextPath()%>/admin/refundDetailEnd.do',
@@ -187,23 +182,26 @@
 			data : {
 				refundNo : refundNo, //환불주문번호
 				refundCheck : refundCheck, //환불상태 : 환불승인대기,환불승인완료,환불승인반려
-				refundReason : refundReason //환불사유
+				refundReason : refundReason, //환불사유
 			},
 			success:function(res){
 				alert('환불완료');
 			},
-			error:function(){
+			error:function(err){
 				alert('환불 수정실패');
+				alert(err)
 			}
 		});
 	});
 	
 	//토큰값 가져오는 메소드
-	document.getElementById('getToken-btn').addEventListener('click',function(){
+	<%-- document.getElementById('getToken-btn').addEventListener('click',function(){
 		var apiKey="1351426225816408";
 		var secretKey="cfHurcVtJYllMUeKbWmEhhvu9CQmFEAutcrNomOiB0xv3OFhJnONYdPPjHSmLKiorN4fDHTIAyEuNReb";
-		console.log(apiKey);
-		console.log(secretKey);
+		/* var token=document.getElementById('tokenValue').innerText; */
+		
+		/* console.log(apiKey);
+		console.log(secretKey); */
 		
 		$.ajax({
 			url : '<%=request.getContextPath()%>/admin/tokenget.do',
@@ -214,14 +212,15 @@
 				secretKey : secretKey //시크릿 키
 			},
 			success:function(data){
-				alert('토큰 불러오기 성공');
 				console.log(data);
+				alert('토큰 불러오기 성공');
+				document.getElementById('tokenValue').innerText=data;
 			},
 			error:function(){
 				alert('토큰 불러오기 실패');
 			}
 		});
-	});
+	}); --%>
 	
 </script>
 

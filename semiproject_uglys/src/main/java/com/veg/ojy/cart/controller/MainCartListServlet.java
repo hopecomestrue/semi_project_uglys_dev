@@ -1,4 +1,4 @@
-package com.veg.ojy.mypage.controller;
+package com.veg.ojy.cart.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,25 +8,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.veg.hjj.member.dto.Member;
-import com.veg.hjj.member.service.MemberService;
-import com.veg.ojy.mypage.dto.Address;
-import com.veg.ojy.mypage.service.MyinfoService;
-
+import com.veg.ojy.cart.dto.Cart;
+import com.veg.ojy.cart.service.CartService;
 
 /**
- * Servlet implementation class MypageServlet
+ * Servlet implementation class MainCartListServlet
  */
-@WebServlet("/myInfo.do")
-public class MyinfoServlet extends HttpServlet {
+@WebServlet("/cart/maincartList.do")
+public class MainCartListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyinfoServlet() {
+    public MainCartListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +33,19 @@ public class MyinfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Member m = (Member)session.getAttribute("loginMember");
-		int memberNo = m.getMemberNo();
-		//String address=request.getParameter("address");
-		List<Address> a = new MyinfoService().selectAddress(memberNo);
-		request.setAttribute("member", m);
-		request.setAttribute("address", a);
-		request.getRequestDispatcher("/views/member/mypage/myInfo.jsp").forward(request, response);
+		//로그인한 회원의 정보 가져오기
+		Member mem=(Member)request.getSession().getAttribute("loginMember");
+		
+		//해당 회원의 장바구니 리스트를 가져오기
+		List<Cart> carts=new CartService().selectAllCart(mem.getMemberNo());
+		
+		//장바구니를 session에 담기
+		request.getSession().setAttribute("carts", carts);
+		
+		//장바구니 화면으로 이동
+		request.getRequestDispatcher("/views/member/cart/mycart.jsp").forward(request, response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

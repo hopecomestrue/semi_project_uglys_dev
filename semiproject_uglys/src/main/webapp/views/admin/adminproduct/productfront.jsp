@@ -149,45 +149,41 @@
 				            <div class="datatable-dropdown">
 				                <div class="datatable-search">
 				                   <!-- 새로운 입력 필드 -->
-				                   <table>
-                        <tr>
-                            <td>등록일</td>
-                            <td><input class="datatable-input" type="date"></td>
-                            <td>~</td>
-                            <td><input class="datatable-input" type="date"></td>
-                        </tr>
-                        <tr>
-                            <td>상품번호:</td>
-                            <td><input class="datatable-input" type="text"></td>
-                            <td>상품명:</td>
-                            <td><input class="datatable-input" type="text"></td>
-                        </tr>
-                        <tr>
-                            <td>가격:</td>
-                            <td><input class="datatable-input" type="number"></td>
-                            <td>~</td>
-                            <td><input class="datatable-input" type="number"></td>
-                        </tr>
-                        <tr>
-                            <td>재고:</td>
-                            <td><input class="datatable-input" type="text"></td>
-                            <td>~</td>
-                            <td><input class="datatable-input" type="number"></td>
-                        </tr>
-                        <tr>
-                            <td>생산지:</td>
-                            <td><input class="datatable-input" type="text"></td>
-                        </tr>
-                        
-                    	</table>
-				         <div><button type="submit" style="margin-bottom: 30px; margin-top: 30px;">검색</button></div>
+				         <form action="<%=request.getContextPath()%>/searchProduction.do" method="post">
+   <table>
+      <tr>
+         <td>상품번호:</td>
+         <td><input class="datatable-input" type="text" name="product_no"></td>
+         <td>상품명:</td>
+         <td><input class="datatable-input" type="text" name="product_name"></td>
+      </tr>
+      <tr>
+         <td>가격:</td>
+         <td><input class="datatable-input" type="number" name="price_start"></td>
+         <td>~</td>
+         <td><input class="datatable-input" type="number" name="price_end"></td>
+      </tr>
+      <tr>
+         <td>재고:</td>
+         <td><input class="datatable-input" type="number" name="stock_start"></td>
+         <td>~</td>
+         <td><input class="datatable-input" type="number" name="stock_end"></td>
+      </tr>
+      <tr>
+         <td>생산지:</td>
+         <td><input class="datatable-input" type="text" name="production_place"></td>
+      </tr>
+   </table>
+   <div><button type="submit" style="margin-bottom: 30px; margin-top: 30px;">검색</button></div>
+</form>
+
     <div style="display: flex; justify-content: flex-end; align-items: center;">
     <a href="<%=request.getContextPath() %>/admin/productregi.do">
     <button style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품등록</button>
 	</a>
-
-    <button type="submit" style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품삭제</button>
-    
+	<a >
+    <button  onclick="sendValuesToServer(checkedValues);"style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품삭제</button>
+	</a>
 </div>
 				            </div>
 				        </div>
@@ -208,7 +204,46 @@
                                   <th>등록일</th>
                               </tr>
                           </thead>
-                          <tbody>
+                          <script>
+                          var checkedValues = [];
+                          window.onload = function() {
+                        	    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                        	    
+                        	    
+                        	    checkboxes.forEach(function(checkbox) {
+                        	        checkbox.addEventListener('click', function() {
+                        	            var production_no = this.parentNode.nextElementSibling.textContent;
+                        	            
+                        	            if(this.checked) {  // 체크박스가 체크된 경우
+                        	                checkedValues.push(production_no);  // 배열에 값을 추가
+                        	            } else {  // 체크박스가 해제된 경우
+                        	                var index = checkedValues.indexOf(production_no);
+                        	                if(index > -1) {
+                        	                    checkedValues.splice(index, 1);  // 배열에서 값을 제거
+                        	                }
+                        	            }
+                        	            
+                        	            console.log(checkedValues);  // 현재 체크된 체크박스의 값들을 출력
+                        	        });
+                        	    });
+                        	};
+                        	function sendValuesToServer(checkedValues) {
+                        	    fetch('<%=request.getContextPath()%>/production/deletes.do', {
+                        	        method: 'POST',
+                        	        headers: {
+                        	            'Content-Type': 'application/json',
+                        	        },
+                        	        body: JSON.stringify({
+                        	            'checkedValues': checkedValues  
+                        	        }),
+                        	    })
+                        	    .then(response => response.json())
+                        	    .then(data => console.log(data))
+                        	    .catch((error) => {
+                        	        console.error('Error:', error);
+                        	    });
+                        	}
+						</script>
                            <tbody>
                            	<%if(productions!=null&&!productions.isEmpty()){ %>
 					        	<%for(Production p : productions){%>      
@@ -235,7 +270,9 @@
                                         </div>
 									</div>
 									<ul style="display: flex; justify-content: center;">
+                                    <%if(request.getAttribute("pageBar")!=null){ %>
                                     <%=request.getAttribute("pageBar") %>
+                                    <%} %>
                                     </ul>
 								</section>
 						</div>
@@ -306,19 +343,5 @@
 				
 				
 			</script>
-			<script>
-		window.onload = function() {
-   	 		let checkboxes = document.querySelectorAll("input[type=checkbox]");
-    		for (let i = 0; i < checkboxes.length; i++) {
-        	checkboxes[i].addEventListener('change', function() {
-            if (this.checked) {
-                console.log('체크박스 ' + (i + 1) + '번이 선택되었습니다.');
-            } else {
-                console.log('체크박스 ' + (i + 1) + '번 선택이 해제되었습니다.');
-            }
-        });
-    }
-}
-</script>
 	</body>
 </html>

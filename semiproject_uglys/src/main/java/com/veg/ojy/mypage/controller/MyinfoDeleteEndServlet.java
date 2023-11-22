@@ -83,10 +83,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	view.forward(request, response);
 }
 
-//    request.setAttribute("msg", msg);
-//    request.setAttribute("loc", loc);
-//    request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-//}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
