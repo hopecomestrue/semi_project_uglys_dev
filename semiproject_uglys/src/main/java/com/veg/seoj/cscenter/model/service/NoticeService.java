@@ -32,7 +32,6 @@ public class NoticeService {
     public int selectNoticeCount() {
         Connection conn = getConnection();
         GenericDAOImpl<Notice, Integer> noticeDAO = new GenericDAOImpl<>(conn, "NOTICE");
-//		int result=noticeDAO.selectNoticeCount(conn);
         int result = noticeDAO.count(conn, (Notice)Notice
                 .builder()
                 .build(), "sql.notice.selectCount");
@@ -43,7 +42,6 @@ public class NoticeService {
     public Notice selectNoticeByNo(int noticeNo) {
         Connection conn = getConnection();
         GenericDAOImpl<Notice, Integer> noticeDAO = new GenericDAOImpl<>(conn, "NOTICE");
-//		Notice n=dao.selectNoticeByNo(conn, noticeNo);
         Notice n = noticeDAO.getById(conn, (Notice)Notice
                 .builder()
                 .build(), "sql.notice.getByNo","getById", noticeNo);

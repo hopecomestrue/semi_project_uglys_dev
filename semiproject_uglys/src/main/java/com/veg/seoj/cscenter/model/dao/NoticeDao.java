@@ -106,18 +106,6 @@ public class NoticeDao {
         return result;
     }
 
-/*	#private int noticeNo;
-	#private String noticeType;
-	#private String noticeTitle;
-	#private Date noticeDate;
-	#private String noticeState;
-	#private String noticeSMSContent;
-	#private String noticeSMSResult;
-	#private int noticePriority;
-	#private String noticeView;
-	#private String noticeRenameFilename;
-	#private String noticeOriginalFilename;*/
-
 
     private Notice getNotice(ResultSet rs) throws SQLException {
         return Notice
