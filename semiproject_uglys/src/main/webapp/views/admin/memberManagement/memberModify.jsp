@@ -1,13 +1,10 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.veg.hjj.member.dao.*" %>
 <%@ page import="com.veg.hjj.member.dto.*" %>
-<$@ page import="com.veg.ojy.mypage.dao.*" %>
-<% 
-String id = (String)session.getAttribute("loginMember");
-MemberDao m = new MemberDao();
-String memberId = request.getParameter("memberId");
-
+<%@ page import="com.veg.ojy.mypage.dao.*" %>
+<%
+ Member member =(Member)request.getAttribute("member");
 %>
 <!DOCTYPE html>
 <html>
@@ -38,62 +35,47 @@ String memberId = request.getParameter("memberId");
 	                                <tr>
 										<th>아이디</th>
 										<td>
-											<input type="hidden" value="<%=m.getMemberId()%>" name="cstmId">
+											<input type="hidden" value="" name="">
 											<%=member.getMemberId()%>
 										</td>
 									</tr>
 									<tr>
 										<th>이름</th>
 										<td>
-											<input type="text" value="<%=m.getMemberName()%>" name="cstmActive">
+											<input type="text" value="<%=member.getMemberName() %>" name="name">
 										</td>
 									</tr>
 									<tr>
 										<th>연령</th>
 										<td>
-											<%=member.getMemberAge()%>
+											<input type="text" value="<%=member.getMemberAge()%>" name="age">
 										</td>
 									</tr>
 									<tr>
 										<th>휴대폰번호</th>
 										<td>
-											<%=member.getMemberPhone()%>
+											<input type="text" value="<%=member.getMemberPhone()%>" name="phone">
 										</td>
 									</tr>
 									<tr>
 										<th>이메일</th>
 										<td>
-											<%=member.getMemberEmail()%>()%>
+										<input type="text" value="<%=member.getMemberEmail()%>" name="email">
 										</td>
 									</tr>
 									<tr>
 										<th>주소</th>
 										<td>
-											<%=member.getAddress()%>
+										<input type="text" value="<%=member.getAddress()%>" name="address">
 										</td>
 									</tr>
 									<tr>
 										<th>서비스 동의</th>
 										<td>
-											<%=member.getServiceAgree()%>
-										</td>
-									</tr>
-									<tr>
-										<th>마케팅 동의</th>
-										<td>
-											<%=member.getMarketingAgree()%>
-										</td>
-									</tr>
-									<tr>
-										<th>정보동의</th>
-										<td>
-											<%=member.getAcceptAgree()%>
-										</td>
-									</tr>
-									<tr>
-										<th>가입날짜</th>
-										<td>
-											<%=member.getEnrollDate()%>
+										<select>
+										<opiton value="Y" name="agree" <%=member.getServiceAgree().equals("Y")? "checked":""%>></opiton>
+										<option value="N" name="agree" <%=member.getServiceAgree().equals("N")? "checked":""%>></option>
+										</select>
 										</td>
 									</tr>
 	                            </table>
@@ -104,4 +86,4 @@ String memberId = request.getParameter("memberId");
                 </div>
             </main>
 </body>
-</html>  --%>
+</html> 

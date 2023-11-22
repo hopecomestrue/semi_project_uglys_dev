@@ -15,7 +15,7 @@ import com.veg.hjj.member.dto.Member;
 /**
  * Servlet implementation class SearchMemberServlet
  */
-@WebServlet("/SearchMemberServlet")
+@WebServlet("/searchMember.do")
 public class SearchMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,78 +31,50 @@ public class SearchMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      String type=request.getParameter("searchType");
-	      String keyword=request.getParameter("searchKeyword");
-	      int cPage;
+		
+	      //검색창으로 search 하는 서블릿 
+	      //넘겨준 값 갖고오기 name값 2개 가져오기 
+	      String key = request.getParameter("searchKey");
+	      String keyword = request.getParameter("searchKeyword");
+	      System.out.println(key +", "+ keyword);
+	      //서비스->dao->쿼리문까지 가져가서 select문에 넣어서 선택해서 가져오기 
+	      int cPage,selectMemberCount=10; 
 	      try {
 	         cPage=Integer.parseInt(request.getParameter("cPage"));
 	      }catch(NumberFormatException e) {
 	         cPage=1;
 	      }
-	      int numPerpage=5;
-	            
 	      
-	      List<Member> result=new MemberManagementService().searchMemberByKeyword(type,keyword,cPage,numPerpage);
-	      int totalData=new MemberManagementService().selectMemberByKeywordCount(type,keyword);
-	      int totalPage=(int)Math.ceil((double)totalData/numPerpage);
+	      int totalData = new MemberManagementService().selectMemberCount();
+	      List<Member> serachResult = new MemberManagementService().searchMember(cPage, cPage, key, keyword);
+	      
+	      int totalPage=(int)Math.ceil((double)totalData/cPage);
 	      int pageBarSize=5;
-	      int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
-	      int pageEnd=pageNo+pageBarSize-1;
-	      String pageBar="<ul class='pagination justify-content-center'>";
+	      int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1; 
+	      int pageEnd=pageNo+pageBarSize-1; 
+	      
+	      
+	      StringBuffer pageBar=new StringBuffer(); 
+	      
 	      if(pageNo==1) {
-	         pageBar+="<li class='page-item disabled'>";
-	         pageBar+="<a class='page-link' href='#'></a>";
-	         pageBar+="</li>";
+	         pageBar.append("<span>[이전]</span>"); 
+	                                 
 	      }else {
-	         pageBar+="<li class='page-item'>";
-	         pageBar+="<a class='page-link' href='"
-	                +request.getRequestURI()
-	                +"?searchType="+type
-	                +"&searchKeyword="+keyword
-	                +"&cPage="+(pageNo-1)
-	                +"'></a>";
-	         pageBar+="</li>";
+	         pageBar.append("<a href='"+request.getRequestURI()+"?cPage="+(pageNo-1)+"&member="+(keyword)+"'>");
+	         pageBar.append("[이전]</a>"); 
 	      }
 	      
 	      while(!(pageNo>pageEnd||pageNo>totalPage)) {
 	         if(cPage==pageNo) {
-	            pageBar+="<li class='page-item active'>";
-	            pageBar+="<a class='page-link' href='#'>"+pageNo+"</a>";
-	            pageBar+="</li>";
+	            pageBar.append("<span>"+pageNo+"</span>"); 
 	         }else {
-	            pageBar+="<li class='page-item'>";
-	            pageBar+="<a class='page-link' href='"
-	                   +request.getRequestURI()
-	                   +"?searchType="+type
-	                   +"&searchKeyword="+keyword
-	                   +"&cPage="+(pageNo)
-	                   +"'>"+pageNo+"</a>";
-	            pageBar+="</li>";
+	            pageBar.append("<a href='"+request.getRequestURI()+"?cPage="+pageNo+"&member="+(keyword)+"'>");
+	            pageBar.append(pageNo);
+	            pageBar.append("</a>"); 
 	         }
 	         pageNo++;
 	      }
-	      if(pageNo>totalPage) {
-	         pageBar+="<li class='page-item disabled'>";
-	         pageBar+="<a class='page-link' href='#'></a>";
-	         pageBar+="</li>";
-	      }else {
-	         pageBar+="<li class='page-item'>";
-	         pageBar+="<a class='page-link' href='"
-	                +request.getRequestURI()
-	                +"?searchType="+type
-	                +"&searchKeyword="+keyword
-	                +"&cPage="+(pageNo)
-	                +"'></a>";
-	         pageBar+="</li>";
-	      }
-	      pageBar+="</ul>";
-	      
-	      request.setAttribute("pageBar",pageBar);
-	      
-	      request.setAttribute("members", result);
-	 
-	      request.getRequestDispatcher("/views/admin/memberManagement/memberCheck.jsp").forward(request, response);
-	      
+			
 	}
 
 	/**

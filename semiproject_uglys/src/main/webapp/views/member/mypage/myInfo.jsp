@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.veg.hjj.member.dto.*" %>
  <%@ page import="com.veg.ojy.mypage.dto.Address"%>
-<%-- <%@ page import="com.veg.ojy.mypage.dto.*" %> --%>
 <%@ page import= "java.util.List,java.util.Arrays" %>
+<%-- <%@ page import="com.veg.ojy.mypage.dto.*" %> --%>
 <%-- <%@ include file="/views/common/header.jsp" %> --%>
 
 <%

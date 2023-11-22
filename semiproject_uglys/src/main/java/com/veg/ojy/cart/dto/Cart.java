@@ -16,4 +16,5 @@ public class Cart {
 	private int memberNo;
 	private int productNo;
 	private int count;
+	
 }

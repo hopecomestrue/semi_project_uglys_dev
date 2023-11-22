@@ -1,31 +1,26 @@
 package com.veg.ojy.admin.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.veg.hjj.member.dto.Member;
-import com.veg.ojy.admin.service.*;
-import com.veg.ojy.admin.dao.*;
-
+import com.veg.ksj.order.model.service.OrderService;
 
 /**
- * Servlet implementation class MemberManagementServlet
+ * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet("/MemberCheck.do")
-public class MemberManagementServlet extends HttpServlet {
+@WebServlet("/memberUpdate.do")
+public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberManagementServlet() {
+    public MemberUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,13 +29,12 @@ public class MemberManagementServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// MemberManagementDao memberDAO = new MemberManagementDao();
-		 List<Member> members = new MemberManagementService().selectMemberAll();
-		 System.out.println(members);
-	     request.setAttribute("member", members);
-	     request.getRequestDispatcher("/views/admin/memberManagement/memberCheck.jsp").forward(request, response);
-	     
-			}
+		int memberNo =Integer.parseInt(request.getParameter("memberNo"));
+		Member member = new OrderService().selectMemberByNo(memberNo);
+		request.setAttribute("member", member);
+		request.getRequestDispatcher("/views/admin/memberManagement/memberModify.jsp").forward(request, response);
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

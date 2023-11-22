@@ -17,59 +17,66 @@ import com.veg.hjj.member.dto.Member;
 
 public class MemberManagementDao {
 	 private Properties sql=new Properties();
-	   //sql 가져오기 
 	   
-	   { // 초기화블록->생성될 때마다 실행됨.
+	   { 
 	      String path=MemberManagementDao.class
 	            .getResource("/sql/admin/admin_sql.properties").getPath();
-	      //파일불러와서 넣어주기!!  절대경로 써주기.
 	      try(FileReader fr=new FileReader(path)){
 	         sql.load(fr);
-	         //load로 불러올 수 있음.
+
 	      }catch(IOException e) {
 	         e.printStackTrace();
 	      }
 	   }
 	   
+		public List<Member> selectMemberAll(Connection conn) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<Member> result = new ArrayList<>();
+			try {
+				pstmt=conn.prepareStatement(sql.getProperty("selectMemberAll"));
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					result.add(getMember(rs));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return result;
+		}
+		
+	   
 	   public List<Member> searchMemberList(Connection conn, int cPage, int numPerpage){
 	      PreparedStatement pstmt=null;
 	      ResultSet rs=null;
-	      //데이터 받아오기 때문에 resultset 필요함.
 	      List<Member> result=new ArrayList<>();
 	      try {
 	         pstmt=conn.prepareStatement(sql.getProperty("selectMemberAll"));
-	         //파일로 저장된 sql문을 가져올 수 있음.
 	         pstmt.setInt(1,(cPage-1)*numPerpage+1);
-	         // 가져오기. 
 	         pstmt.setInt(2, cPage*numPerpage);
 	         rs=pstmt.executeQuery();
 	         while(rs.next()) {
 	            result.add(MemberDao.getMember(rs));
-	            // 조회되었을 때 1개 이상이 나오기 때문!
-	            // 각 테이블에 있는 정보를 한 곳에 만들어서 불러올 수 있도록! 
 	         }
 	      }catch(SQLException e) {
 	         e.printStackTrace();
 	      }finally {
 	         close(rs);
-	         close(pstmt);
-	         // static 메소드이므로 임포트 해주기!! 
+	         close(pstmt); 
 	      }return result;
 	   }
-	   // 조회구문 만들 때는 이 트리임...!! 
-	   
+
 	   public int selectMemberCount (Connection conn) {
 		   PreparedStatement pstmt=null;
 		   ResultSet rs=null;
-		   //select문 실행 -> 전체 순회 해야하기 때문!!! 
 		   int result=0;
 		   try {
 			   pstmt=conn.prepareStatement(sql.getProperty("selectMemberCount"));
 			   rs=pstmt.executeQuery();
-			   //where절에 뭐가 읎따..
 			   if(rs.next()) result=rs.getInt(1); 
-			   // 인덱스번호. 조회한 결과에 첫번째 컬럼 가지고 오겠다!! 컬럼명 안쓰고 인덱스 번호도 가
-			   // 가상컬럼, 함수호출하는 경우 인덱스번호가 더 편함.
 		   }catch(SQLException e) {
 			   e.printStackTrace();
 		   }finally {
@@ -116,5 +123,71 @@ public class MemberManagementDao {
 			   close(pstmt);
 		   }return result;
 	   }
+	   
+	   
+	   public List<Member> memberSearchByName(Connection conn, int cPage, int numPerpage, String keyword){
+	          PreparedStatement pstmt = null;
+	           ResultSet rs = null;
+	           List<Member> result = new ArrayList<>();
+	           try {
+	               pstmt = conn.prepareCall(sql.getProperty("memberSearchByName"));
+	               pstmt.setString(1, keyword);
+	               pstmt.setInt(2, (cPage - 1) * numPerpage + 1);
+	               pstmt.setInt(3, cPage * numPerpage);
+	               rs = pstmt.executeQuery();
+	               while (rs.next()) {
+	                   result.add(getMember(rs));
+	               }
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	           } finally {
+	               close(rs);
+	               close(pstmt);
+	           }
+	           return result;
+	       }
+	       
+	       public List<Member> memberSearchById(Connection conn, int cPage, int numPerpage, String keyword){
+	          PreparedStatement pstmt = null;
+	           ResultSet rs = null;
+	           List<Member> result = new ArrayList<>();
 
+	           try {
+	               pstmt = conn.prepareCall(sql.getProperty("memberSearchById"));
+	               pstmt.setString(1, keyword);
+	               pstmt.setInt(2, (cPage - 1) * numPerpage + 1);
+	               pstmt.setInt(3, cPage * numPerpage);
+	               rs = pstmt.executeQuery();
+	               while (rs.next()) {
+	                   result.add(getMember(rs));
+	               }
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	           } finally {
+	               close(rs);
+	               close(pstmt);
+	           }
+	           return result;
+	       }
+	   
+		public static Member getMember(ResultSet rs) throws SQLException{
+			return Member.builder()
+					.memberNo(rs.getInt("MEMBER_NO"))
+					.memberId(rs.getString("MEMBER_ID"))
+					.memberPw(rs.getString("MEMBER_PW"))
+					.memberName(rs.getString("MEMBER_NAME"))
+					.memberAge(rs.getString("MEMBER_AGE"))
+					.memberEmail(rs.getString("MEMBER_EMAIL"))
+					.memberPhone(rs.getInt("MEMBER_PHONE"))
+					.acceptAgree(rs.getString("ACCEPT_AGREE"))
+					.adminCheck(rs.getString("ADMIN_CHECK"))
+					.serviceAgree(rs.getString("SERVICE_AGREE"))
+					.marketingAgree(rs.getString("MARKETING_AGREE"))
+					.enrollDate(rs.getDate("ENROLL_DATE"))
+					.photoRegist(rs.getString("PHOTO_REGIST"))
+					.address(new ArrayList<>())
+					.memberQuit(rs.getString("MEMBER_QUIT"))
+					.build();
+			
+		}
 }
