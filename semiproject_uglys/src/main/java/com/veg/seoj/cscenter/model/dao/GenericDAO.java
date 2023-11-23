@@ -17,6 +17,5 @@ public interface GenericDAO <T, PK> {
     int addUpdateDelete(Connection conn, T entity, String k, Object... params);
 
     int count(Connection conn, T entity, String k);
-//    int update(Connection conn,T entity,String k, Object... params);
-    /*    int delete(Connection conn,T entity,String k,Object... params);*/
+
 }

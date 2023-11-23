@@ -6,3 +6,4 @@ public class BadAccessException extends RuntimeException {
 		super(msg);
 	}
 }
+

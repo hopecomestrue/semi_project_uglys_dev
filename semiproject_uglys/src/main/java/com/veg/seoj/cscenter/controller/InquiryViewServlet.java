@@ -18,6 +18,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veg.hjj.member.service.MemberService;
+import com.veg.ksj.order.model.dto.Order;
+import com.veg.ksj.order.model.service.OrderService;
+import com.veg.ksj.refund.model.dto.Refund;
+import com.veg.ksj.refund.service.RefundService;
+import com.veg.pdw.production.model.dto.Production;
+import com.veg.pdw.production.service.ProductionService;
 import com.veg.seoj.cscenter.model.dto.Inquiry;
 import com.veg.seoj.cscenter.model.dto.InquiryComment;
 import com.veg.seoj.cscenter.model.service.InquiryService;
@@ -31,7 +38,7 @@ public class InquiryViewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
         int no = Integer.parseInt(request.getParameter("no"));
-        System.out.println("no : " + no);
+
         Cookie[] cookies = request.getCookies();
         String readBoard = "";
         boolean readResult = false;
@@ -55,6 +62,15 @@ public class InquiryViewServlet extends HttpServlet {
             response.addCookie(c);
         }
         Inquiry inquiry = new InquiryService().selectInquiryByNo(no);
+        Order order = new OrderService().selectOrderDetailsByOrderNo(inquiry.getFkOrderNo());
+        Production production = new ProductionService().selectProductionByNo(inquiry.getFkProductNo());
+        Refund refund =
+                new RefundService().selectRefundByOrderNo(((Object)inquiry.getRefundNo() != null|| inquiry.getRefundNo()==0) ?
+                inquiry.getRefundNo() : -1);
+        request.setAttribute("order", order);
+        request.setAttribute("production", production);
+        request.setAttribute("refund", refund);
+
         request.setAttribute("inquiry", inquiry);
 
         if (new InquiryService().selectInquiryCommentgeyByNo(no) != null) {
@@ -63,11 +79,8 @@ public class InquiryViewServlet extends HttpServlet {
         } else {
             List<InquiryComment> inquryComments = new ArrayList<>();
             request.setAttribute("inquryComments", inquryComments);
-            System.out.println("ffffffffffffffffffff" + inquryComments);
         }
 
-/*        request.setAttribute("board", b);
-        request.setAttribute("comments", comments);*/
         request
                 .getRequestDispatcher("/views/cscenter/inquiry/inquiryView.jsp")
                 .forward(request, response);

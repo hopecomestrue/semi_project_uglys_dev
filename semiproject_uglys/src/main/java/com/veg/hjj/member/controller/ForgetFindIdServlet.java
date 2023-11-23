@@ -33,12 +33,10 @@ public class ForgetFindIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-		String memberName = request.getParameter("userName");
+		String memberName = request.getParameter("memberName");
 		String memberEmail = request.getParameter("email");
 	
-		System.out.println(memberName);
-		System.out.println(memberEmail);
-		
+	
 		
 		MemberService service = new MemberService();
 		Member member = service.searchId(memberName,memberEmail);

@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.veg.hjj.member.dao.MemberDao;
-import com.veg.hjj.member.dto.Member;
 import com.veg.ojy.cart.dto.Cart;
 
 public class CartDao {
@@ -32,12 +30,16 @@ public class CartDao {
 	public List<Cart> selectAllCart(Connection conn,int memberNo){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<Cart> carts=null;
+		Cart c =null;
+		List<Cart> carts= new ArrayList<>();
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("selectAllCart"));
 			pstmt.setInt(1,memberNo);
 			rs=pstmt.executeQuery();
-			while(rs.next()) carts.add(getCart(rs));
+			if(rs.next()) {
+				c=(getCart(rs));
+				carts.add(c);
+			}
 		
 		}catch(SQLException e) {
 				e.printStackTrace();
@@ -60,5 +62,24 @@ public class CartDao {
 				.build();
 		
 	}
-	
+	public int insertCart(Connection conn, Cart c) {
+		PreparedStatement pstmt =null;
+		
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("insertCart"));
+			pstmt.setInt(1, c.getMemberNo());
+			pstmt.setInt(2, c.getProductNo());
+			pstmt.setInt(3, c.getCount());
+			
+			result=pstmt.executeUpdate();
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

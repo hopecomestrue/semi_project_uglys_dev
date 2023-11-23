@@ -21,7 +21,10 @@ public class CartService {
 		close(conn);
 		return carts;
 	}
-	
-	
-
+	public int insertCart(Cart c) {
+		Connection conn=getConnection();
+		int result=dao.insertCart(conn, c);
+		close(conn);
+		return result;
+	}
 }

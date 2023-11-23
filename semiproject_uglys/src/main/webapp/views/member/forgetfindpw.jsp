@@ -55,6 +55,9 @@ button:hover {
 		<button  onclick="location.assign('<%=request.getContextPath()%>/views/member/login.jsp')">로그인 하러가기</button>
 		</div>
 
+
+
+
 <!--footer부분  -->
      <hr>
         <p style="justify-content: center; display: flex;">
