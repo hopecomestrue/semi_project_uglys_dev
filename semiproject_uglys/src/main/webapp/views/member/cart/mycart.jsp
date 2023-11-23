@@ -8,8 +8,8 @@
 <%@ include file="/views/common/header.jsp" %>
 <%
 	List<Cart> carts=(List<Cart>)request.getSession().getAttribute("carts");
-	List<Production> productions= (List<Production>)request.getAttribute("productions");
-	List<ProductionContent> productionContents= (List<ProductionContent>)request.getAttribute("productionContents");
+	List<Production> productions= (List<Production>)request.getSession().getAttribute("productions");
+	List<ProductionContent> productionContents= (List<ProductionContent>)request.getSession().getAttribute("productionContents");
 	int discountprice=0;
 	int totalprice=0; 
 %>
