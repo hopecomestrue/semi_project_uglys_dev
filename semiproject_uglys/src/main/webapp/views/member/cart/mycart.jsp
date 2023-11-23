@@ -178,7 +178,7 @@
 					
 			
 					<p>
-						<a href="#" class="btn btn-primary py-3 px-4">주문하기</a>
+						<a href="<%=request.getContextPath() %>/order/orderPaymentEnd.do" class="btn btn-primary py-3 px-4">주문하기</a>
 					</p>
 				</div>
 			</div>
