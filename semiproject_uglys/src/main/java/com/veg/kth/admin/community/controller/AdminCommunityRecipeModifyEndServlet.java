@@ -44,7 +44,7 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 			System.out.println("시스템 오류 발생");
 		}else {
 			
-			String path = getServletContext().getRealPath("/upload/recipe/");
+			String path = getServletContext().getRealPath("/upload/");
 			path+="recipe";
 			File dir=new File(path);
 			if(!dir.exists()) dir.mkdir();
@@ -58,6 +58,7 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 				recipeNo = 0;
 			}
 			String oriMainFile = mr.getOriginalFileName("recipe_main_file");
+			//System.out.println(oriMainFile);
 			
 			String renameMainFile = mr.getFilesystemName("recipe_main_file");
 			String title = mr.getParameter("recipe_title");
