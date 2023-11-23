@@ -139,33 +139,34 @@ private Properties sql = new Properties();
 	public int updateRecipe(Connection conn, Recipe r) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-//		String query="UPDATE community_recipe SET ";
-//		if(r.getRecipeOriginalFileName()!=null) {
-//			query +=  "RECIPE_ORIGINAL_FILE_NAME = '" + r.getRecipeOriginalFileName()+"',"; 
-//		}
-//		if(r.getRecipeRenamedFileName()!=null) {
-//			query +=  "RECIPE_RENAMED_FILE_NAME = '" + r.getRecipeRenamedFileName()+"',";
-//		}
-//		if(r.getRecipeTitle()!=null) {
-//			query +=  "RECIPE_TITLE = '" + r.getRecipeTitle()+"',";
-//		}
-//		if(r.getRecipeComment()!=null) {
-//			query +=  "RECIPE_COMMENT = '" + r.getRecipeComment()+"',"; 
-//		}
-//		if(r.getRecipeLeadTime()!=null || !r.getRecipeLeadTime().equals("0")) {
-//			query +=  "RECIPE_LEADTIME = '" + r.getRecipeLeadTime()+"',"; 
-//		}
-//		if(r.getRecipeCapa()!=0) {
-//			query +=  "RECIPE_CAPA = " + r.getRecipeCapa(); 
-//		}
-//		query += " WHERE RECIPE_NO = ?";
+		String query="UPDATE community_recipe SET ";
+		if(r.getRecipeOriginalFileName()!=null) {
+			query +=  "RECIPE_ORIGINAL_FILE_NAME ='" + r.getRecipeOriginalFileName()+"',"; 
+		}
+		if(r.getRecipeRenamedFileName()!=null) {
+			query +=  "RECIPE_RENAMED_FILE_NAME ='" + r.getRecipeRenamedFileName()+"',";
+		}
+		if(r.getRecipeTitle()!=null) {
+			query +=  "RECIPE_TITLE ='" + r.getRecipeTitle()+"',";
+		}
+		if(r.getRecipeComment()!=null) {
+			query +=  "RECIPE_COMMENT ='" + r.getRecipeComment()+"',"; 
+		}
+		if(r.getRecipeLeadTime()!=null && !r.getRecipeLeadTime().equals("0")) {
+			query +=  "RECIPE_LEADTIME ='" + r.getRecipeLeadTime()+"',"; 
+		}
+		if(r.getRecipeCapa()!=0) {
+			query +=  "RECIPE_CAPA =" + r.getRecipeCapa(); 
+		}
+		query += " WHERE RECIPE_NO =?";
 		System.out.println(r.getRecipeNo());
-//		System.out.println(query);
+		System.out.println(query);
 		try {
-			pstmt = conn.prepareStatement(sql.getProperty("updateRecipe"));
+			pstmt = conn.prepareStatement(query);
+			System.out.println("pstmt 값"+pstmt);
 			pstmt.setInt(1, r.getRecipeNo());
 			result = pstmt.executeUpdate();
-			
+			System.out.println("이후 값"+result);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

@@ -136,7 +136,7 @@ function categoryChange(e) {
                 <input type="hidden" value="" name="tag" id="rdTag" />
             </div>
 				<%if(!hashtag.isEmpty()){ 
-            		for(int i=0;i<6;i++){%>
+            		for(int i=0;i<3;i++){%>
                   <button type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
                 		#<%=hashtag.get(i).getHashtagValue()%>
                 	</button>

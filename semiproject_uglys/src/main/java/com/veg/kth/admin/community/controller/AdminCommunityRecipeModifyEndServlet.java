@@ -44,7 +44,7 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 			System.out.println("시스템 오류 발생");
 		}else {
 			
-			String path = getServletContext().getRealPath("/upload/");
+			String path = getServletContext().getRealPath("/upload/recipe/");
 			path+="recipe";
 			File dir=new File(path);
 			if(!dir.exists()) dir.mkdir();
