@@ -6,6 +6,8 @@
 <%@ page import="com.veg.hjj.member.dto.*" %>
  <%@ page import="com.veg.ojy.mypage.dto.Address"%>
 <%@ page import= "java.util.List,java.util.Arrays" %>
+<%@ include file="/views/admin/common/header.jsp" %>
+
 
 <%
     List<Member> members = (List<Member>)request.getAttribute("member");
@@ -49,9 +51,9 @@
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/icomoon.css">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
 		<style>
-			#sidebar {
+/* 			#sidebar {
 				padding-top: 70px;
-			}
+			} */
             .table-wrapper table {
                 width: 100%;
                 margin: 0 auto;
@@ -67,8 +69,12 @@
             display: flex;
             align-items: center;
         }
+        .delivery-tb{
+        width: 80%;
+        margin: 0 auto;
+      }
 
-        .sort-btn:after {
+/*         .sort-btn:after {
             content: '';
             width: 0;
             height: 0;
@@ -83,7 +89,7 @@
 
         .desc:after {
             border-top: 5px solid #000;
-        }
+        } */
 		</style>
 		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	  </head>
@@ -94,42 +100,12 @@
 
 				<!-- Main -->
 					<div id="main">
-						<div class="inner">
+						 <div class="inner"> 
 							<header>
-								<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-									<div class="container">
-									  <a class="navbar-brand" href="index.html">채소랑</a>
-									  <!-- 메인화면으로 이동 // 주소바꾸기 -->
-									  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-										<span class="oi oi-menu"></span> Menu
-									  </button>
-									 <div class="collapse navbar-collapse" id="ftco-nav">
-										<ul class="navbar-nav ml-auto">
-										  <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">채소농장</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
-										  <li class="nav-item"><a href="/mypage.html" class="nav-link">관리자페이지</a></li>
-										</ul>
-									  </div>
-									</div>
-								  </nav>
-								</header>
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h2>회원관리
-											</h2>
-										</header>
-									</div>
-								</section>
-
 							<!-- Section -->
 								<section>
-									<header class="major">
-										<h2>회원조회</h2>
-									</header>
+									  <header class="major">
+										<h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">회원 관리</h1>
 									<div class="card-body">
 									<div class="datatable-wraooer datatable-loading no-footer sortable searchable fixed-colums"> 
 									<div class="datable-top">
@@ -137,34 +113,33 @@
 									</div>
 									</div>
 									 </div>
-									<div class="features">
- 									<div class="col-2">
+									<div class="delivery-tb">
+ 									 <div class="col-2">
  									<form action='<%=request.getContextPath() %>/searchMember.do' method="post">
-										<select name="searchKey" id="searchKey" >
+									 </div> 
+									<div class="datatable-search col-12">
+										<select name="searchKey" id="searchKey">
 											<option value="test">- 선택 -</option>
 											<option value="id">아이디</option>
 											<option value="memberName">이름</option>
-										</select>									
-									</div>
-									<br><br><br>
-									<div class="datatable-search col-8">
+										</select><br>
 									<input class="datatable-input" placeholder="회원조회" name="searchKeyword" title="search within table" 
 									aria-controls="datatableSimple">
+									<input type="submit" value="검색" class="primary" id="searchKey"/><br>
 									</div><br><br>
 									<div>
-									<input type="submit" value="검색" class="primary" id="searchKey"/>
 									</form>
 									</div>
                                         <div class="table-wrapper">
                                             <table id="datatablesSimple">
                                                 <thead>
                                                  <tr>
-        											<th><a href="#" class="sort-btn" data-sort="id">아이디</a></th>
-        											<th><a href="#" class="sort-btn" data-sort="name">이름</a></th>
-       												<th><a href="#" class="sort-btn" data-sort="age">연령대</a></th>
-        											<th><a href="#" class="sort-btn" data-sort="phone">휴대폰번호</a></th>
-        											<th><a href="#" class="sort-btn" data-sort="email">이메일</a></th>
-        											<th>수정/삭제</th>
+        											<th>아이디</th>
+        											<th>이름</th>
+       												<th>연령대</th>
+        											<th>휴대폰번호</th>
+        											<th>이메일</th>
+        											<th>상세보기</th>
     											</tr>
                                                 </thead>
                                                 <tbody>                                               
@@ -178,8 +153,8 @@
                                             <td><%= member.getMemberPhone() %></td>
                                             <td><%= member.getMemberEmail() %></td>
                                             <td>
-                                                <a class="subBtn" href="<%=request.getContextPath()%>/memberUpdate.do?memberNo=<%=member.getMemberNo()%>">수정</a>
-                                                <a class="subBtn" href="#">삭제</a>
+                                                <a class="subBtn" href="<%=request.getContextPath()%>/memberUpdate.do?memberNo=<%=member.getMemberNo()%>">상세보기</a>
+                                                <!-- <a class="subBtn" href="#">삭제</a> -->
                                             </td>
                                         </tr>
                                     <% } %>
@@ -199,45 +174,6 @@
                                         <li><a href="#" class="button">Next</a></li>
                                     </ul>
 								</section>
-
-						</div>
-					</div>
-
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>회원조회</h2>
-									</header>
-									<ul>
-										<li>
-											<span class="opener">회원관리</span>
-
-										</li>
-										<li>
-											<span class="opener">상품등록</span>
-										</li>
-										<li>
-											<span class="opener">주문현황</span>
-
-										</li>
-										<li>
-											<span class="opener">환불관리</span>
-										</li>
-										<li>
-											<span class="opener">고객센터</span>
-										</li>
-										<li>
-											<span class="opener">후기관리</span>
-										</li>
-										<li>
-											<span class="opener">레시피관리</span>
-										</li>
-									</ul>
-								</nav>
-
 						</div>
 					</div>
 			</div>
