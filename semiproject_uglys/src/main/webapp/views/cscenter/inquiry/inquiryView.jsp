@@ -121,8 +121,12 @@
 
                         <button type="button" class="btn btn-outline-secondary btn-sm important-button"
                                 style="margin-left: 10px !important; padding: .6rem !important; font-size: .72rem !important; margin: 0 !important;" onclick="location.replace('<%=request.getContextPath()%>/loginout.do')">로그아웃</button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm important-button"
-                                style="margin-left: 10px !important; padding: .6rem !important; font-size: .72rem !important; margin: 0 !important;" onclick="location.replace('<%=request.getContextPath()%>/admin/login.do')">관리자 페이지</button>
+                        <%if(loginMember.getAdminCheck().equals("Y")){%>
+
+                            <button type="button" class="btn btn-info btn-sm"
+                                    onclick="location.replace('<%=request.getContextPath()%>/admin/login.do')" style="font-size: 12px;">관리자페이지</button>
+
+                        <%} %>
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 3px;">
         <span style="font-weight: bolder; margin-left: 10%; font-size: .88rem !important;">

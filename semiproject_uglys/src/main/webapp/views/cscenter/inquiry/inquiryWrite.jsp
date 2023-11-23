@@ -42,6 +42,7 @@
     <script src="<%=request.getContextPath() %>/js/jquery-3.7.0.min.js"></script>
 </head>
 <body class="goto-here">
+
 <style>
 
     .navbar-nav {
@@ -72,6 +73,7 @@
 
 
 </style>
+
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">
@@ -90,38 +92,41 @@
         </style>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                
-                <li class="nav-item"><a class="nav-link" href="index.html">채소농장</a></li>
 
-                <li class="nav-item" style="list-style-type: none;"><a
-                        href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
+                <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/productionList/vegfarm.do">채소농장</a></li>
 
-                <li class="nav-item" style="list-style-type: none;"><a
-                        href="<%=request.getContextPath() %>/notice/noticeList.do" class="nav-link">고객센터</a></li>
+                <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
 
-                <li class="nav-item" style="list-style-type: none;"><a href="cart.html"
-                                                                       class="nav-link"><span
-                        class="icon-shopping_cart"></span>[0]</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link">고객센터</a></li>
+
+                <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath()%>/cart/cartList.do" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
                 <%if (loginMember == null) { %>
-                <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a>
+                <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a></li>
                 </li>
                 <%} else {%>
 
 
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px; padding-bottom: 10px;">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
-
+                        <style>
+                            .important-button:hover {
+                                color: #28a745;
+                            !important;
+                            }
+                        </style>
                         <button type="button" class="btn btn-primary btn-sm important-button"
                                 onclick="location.replace('<%=request.getContextPath()%>/myInfo.do')"
-                                style="padding: .6rem !important; font-size: .72rem !important; margin: 0 !important; color: white; !important;">
-                            마이페이지
-                        </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                style="padding: .6rem !important; font-size: .72rem !important; margin: 0 !important; color: white; !important;" onclick="location.replace('<%=request.getContextPath()%>/myInfo.do')">마이페이지</button>
 
                         <button type="button" class="btn btn-outline-secondary btn-sm important-button"
-                                style="margin-left: 10px !important; padding: .6rem !important; font-size: .72rem !important; margin: 0 !important;">
-                            로그아웃
-                        </button>
+                                style="margin-left: 10px !important; padding: .6rem !important; font-size: .72rem !important; margin: 0 !important;" onclick="location.replace('<%=request.getContextPath()%>/loginout.do')">로그아웃</button>
+                        <%if(loginMember.getAdminCheck().equals("Y")){%>
+
+                            <button type="button" class="btn btn-info btn-sm"
+                                    onclick="location.replace('<%=request.getContextPath()%>/admin/login.do')" style="font-size: 12px;">관리자페이지</button>
+
+                        <%} %>
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 3px;">
         <span style="font-weight: bolder; margin-left: 10%; font-size: .88rem !important;">
@@ -129,8 +134,6 @@
         </span>
                     </div>
                 </div>
-
-
                 <%} %>
             </ul>
         </div>
@@ -245,23 +248,13 @@
                         <h2>1:1 문의</h2>
                     </header>
                     <ul>
-                        <li>
-                            <span class="opener">공지사항</span>
-                        </li>
-                        <li>
-                            <span class="opener">자주 묻는 질문</span>
 
-                        </li>
                         <li>
-
                             <a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link"
                                class="opener">1:1 문의</a>
 
                         </li>
 
-                        <li>
-                            <span class="opener">고객의 소리(x)</span>
-                        </li>
                     </ul>
                 </nav>
 
