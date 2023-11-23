@@ -10,6 +10,7 @@
 	List<ProductionContent>productionContents=(List<ProductionContent>)request.getSession().getAttribute("productionContents");
 	int sum=0;
 	int delFee=0;
+	String buyOrderName="";
 %>
 
 
@@ -41,6 +42,7 @@
 									<td class="image-prod"></td>
 
 									<td class="product-name1">
+															<%buyOrderName+=productions.get(i).getProduction_name()+" "+carts.get(i).getCount()+"피스"; %>
 										<h3 id="product-name"><%=productions.get(i).getProduction_name() %></h3>
 									</td>
 
@@ -317,7 +319,7 @@
        IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
         var msg; //결제 성공,실패시 출력할 msg
         var buyerName=$('#buyer-name').val(); //구매자 이름
-        var name='상품명';//상품명
+        var name='<%=buyOrderName%>'//상품명
         var amount=parseInt($('#total-price').text(),10);//총가격
         var buyerEmail=$('#buyer-email').val();//구매자 이메일
         var buyerTel=$('#buyer-phone').val();//구매자 폰번호
@@ -372,7 +374,7 @@
                 data: {	
                     pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
                     merchant_uid : rsp.merchant_uid, //주문번호
-                    /* order_name : rsp.name, //주문명 */
+                    order_name : rsp.name, //주문명
                     imp_uid : rsp.imp_uid,         //결제 고유번호
                     paid_amount : rsp.paid_amount, //결제된 금액
                     buyer_name : rsp.buyer_name, //주문자 이름
@@ -413,7 +415,7 @@
        IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
         var msg; //결제 성공,실패시 출력할 msg
         var buyerName=$('#buyer-name').val(); //구매자 이름
-        var name='상품명';//상품명
+        var name='무농약 배 5kg';//상품명
         var amount=parseInt($('#total-price').text(),10);//총가격
         var buyerEmail=$('#buyer-email').val();//구매자 이메일
         var buyerTel=$('#buyer-phone').val();//구매자 폰번호

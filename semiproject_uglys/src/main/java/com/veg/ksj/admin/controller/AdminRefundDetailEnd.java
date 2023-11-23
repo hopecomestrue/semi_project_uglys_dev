@@ -100,7 +100,8 @@ public class AdminRefundDetailEnd extends HttpServlet {
 //			else System.out.println("DB 환불상태 변경 실패");
 			
 		}else {
-//			int result=new OrderService().updateRefundDetails(refundCheck,refundNo);
+			//DB에 환불승인대기||환불승인반려 저장
+			int result=new OrderService().updateRefundDetails(refundCheck,refundNo);
 		}
 		
 		gson.toJson("",response.getWriter());

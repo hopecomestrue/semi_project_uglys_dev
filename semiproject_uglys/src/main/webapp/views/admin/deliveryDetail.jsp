@@ -137,7 +137,7 @@
     </tr>
     <tr>
       <th>상품 내용</th>
-      <td>양상추 10kg</td>
+      <td>무농약 배 5kg</td>
     </tr>
     <tr>
         <th>주소</th>
