@@ -164,7 +164,7 @@
 	<div class="container text-center">
 	    <div class="row align-items-center">
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">회원관리</a>
+	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/MemberCheck.do">회원관리</a>
 	      </div>
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/production.do">상품등록</a>

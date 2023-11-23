@@ -1,8 +1,18 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% ArrayList<Member> memberList = new ArrayList<>();
+<%-- <% ArrayList<Member> memberList = new ArrayList<>();
    memberList = m.selectMember();
-%> 
+%>  --%>
+<%@ page import="com.veg.hjj.member.dto.*" %>
+ <%@ page import="com.veg.ojy.mypage.dto.Address"%>
+<%@ page import= "java.util.List,java.util.Arrays" %>
+
+<%
+    List<Member> members = (List<Member>)request.getAttribute("member");
+
+   /*  Member loginMember = (Member)session.getAttribute("loginMember"); */
+    List<Address> addresses = (List<Address>)request.getAttribute("address");
+%>
 <!DOCTYPE html>
 
 <!--
@@ -19,7 +29,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-	
+	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/open-iconic-bootstrap.min.css">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/animate.css">
 		
@@ -93,7 +103,6 @@
 									  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 										<span class="oi oi-menu"></span> Menu
 									  </button>
-							
 									 <div class="collapse navbar-collapse" id="ftco-nav">
 										<ul class="navbar-nav ml-auto">
 										  <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
@@ -101,8 +110,6 @@
 										  <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
 										  <li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
 										  <li class="nav-item"><a href="/mypage.html" class="nav-link">관리자페이지</a></li>
-										  <li class="nav-item cta cta-colored"><a href="/cart1.html" class="nav-link"><span href=""></span>[0]</a></li>
-							
 										</ul>
 									  </div>
 									</div>
@@ -112,7 +119,7 @@
 								<section id="banner">
 									<div class="content">
 										<header>
-											<h2>관리자페이지<br />
+											<h2>회원관리
 											</h2>
 										</header>
 									</div>
@@ -124,20 +131,32 @@
 										<h2>회원조회</h2>
 									</header>
 									<div class="card-body">
-									<div class="datatable-wraooer datatable-loading no-footer sortable searchable fixed-colums">
+									<div class="datatable-wraooer datatable-loading no-footer sortable searchable fixed-colums"> 
 									<div class="datable-top">
 									<div class="datatable-dropdown">
-									<div class="datatable-search">
-									<input class="datatable-input" placeholder="회원조회" type="search" title="search within table" 
-									aria-controls="datatableSimple">
 									</div>
 									</div>
-									</div>
-									</div>
-									</div>
+									 </div>
 									<div class="features">
+ 									<div class="col-2">
+ 									<form action='<%=request.getContextPath() %>/searchMember.do' method="post">
+										<select name="searchKey" id="searchKey" >
+											<option value="test">- 선택 -</option>
+											<option value="id">아이디</option>
+											<option value="memberName">이름</option>
+										</select>									
+									</div>
+									<br><br><br>
+									<div class="datatable-search col-8">
+									<input class="datatable-input" placeholder="회원조회" name="searchKeyword" title="search within table" 
+									aria-controls="datatableSimple">
+									</div><br><br>
+									<div>
+									<input type="submit" value="검색" class="primary" id="searchKey"/>
+									</form>
+									</div>
                                         <div class="table-wrapper">
-                                            <table>
+                                            <table id="datatablesSimple">
                                                 <thead>
                                                  <tr>
         											<th><a href="#" class="sort-btn" data-sort="id">아이디</a></th>
@@ -145,135 +164,25 @@
        												<th><a href="#" class="sort-btn" data-sort="age">연령대</a></th>
         											<th><a href="#" class="sort-btn" data-sort="phone">휴대폰번호</a></th>
         											<th><a href="#" class="sort-btn" data-sort="email">이메일</a></th>
-        											<th><a href="#" class="sort-btn" data-sort="address">주소</a></th>
         											<th>수정/삭제</th>
     											</tr>
                                                 </thead>
-                                                <tbody>
-                                                    <!-- <tr> -->
-                                                <!--         <td>qwer</td>
-                                                        <td>김유저</td>
-                                                        <td>10</td>
-                                                        <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>서울시</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>wwer</td>
-                                                        <td>이유저</td>
-                                                        <td>20</td>
-                                                        <td>01012345678</td>
-                                                        <td>2이메일입니당</td>
-                                                        <td>경기도</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>ewer</td>
-                                                        <td>박유저</td>
-                                                        <td>40</td>
-                                                        <td>01012345678</td>
-                                                        <td>5이메일입니당</td>
-                                                        <td>경상도</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>yqwer</td>
-                                                        <td>최유저</td>
-                                                        <td>30</td>
-                                                        <td>01012345678</td>
-                                                        <td>7이메일입니당</td>
-                                                        <td>강원도</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>quuwer</td>
-                                                        <td>이유저</td>
-                                                        <td>60</td>
-                                                        <td>01012345678</td>
-                                                        <td>이메일입니당</td>
-                                                        <td>전라도</td>
-                                                        <td>
-                                                            <a class="subBtn" href="#">
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>oer</td>
-                                                        <td>한유저</td>
-                                                        <td>50</td>
-                                                        <td>01012345678</td>
-                                                        <td>9이메일입니당</td>
-                                                        <td>서울시</td> -->
-                                                     <%
-														for(Member m : MemberList){
-													%>
-											<tr>
-												<td>
-													<%=m.getMemberId()%>
-												</td>
-												<td>
-													<%=m.getMemberName()%>
-												</td>
-												<td>
-													<%=m.getMemberAge()%>
-												</td>
-												<td>
-													<%=m.getMemberPhone()%>
-												</td>
-												<td>
-													<%=m.getMemberEmail()%>
-												</td>
-												<td>
-													<%=m.getAddress()%>
-												</td>
-													<td>
-                                                            <a class="subBtn" href="<%=request.getContextPath()%>/views/admin/memberManagement/memberModify.jsp?memberId=<%=m.getMemberId()%>'>
-                                                                수정
-                                                            </a>
-                                                            <a class="subBtn" href="#">
-                                                                삭제
-                                                            </a>
-                                                        </td>
-                                                       
-                                                    </tr>
+                                                <tbody>                                               
+                                                 <% 
+                                        for (Member member : members) {
+                                    %>
+                                        <tr>
+                                            <td><%= member.getMemberId() %></td>
+                                            <td><%= member.getMemberName() %></td>
+                                            <td><%= member.getMemberAge() %></td>
+                                            <td><%= member.getMemberPhone() %></td>
+                                            <td><%= member.getMemberEmail() %></td>
+                                            <td>
+                                                <a class="subBtn" href="<%=request.getContextPath()%>/memberUpdate.do?memberNo=<%=member.getMemberNo()%>">수정</a>
+                                                <a class="subBtn" href="#">삭제</a>
+                                            </td>
+                                        </tr>
+                                    <% } %>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -304,101 +213,44 @@
 									</header>
 									<ul>
 										<li>
-											<span class="opener">회원조회</span>
-											<ul>
-												<li><a href="#">주문 조회</a></li>
-												<li><a href="#">반품 조회</a></li>
-												<li><a href="#">장바구니</a></li>
-											</ul>
+											<span class="opener">회원관리</span>
+
 										</li>
 										<li>
-											<span class="opener">나의 활동</span>
-											<ul>
-												<li><a href="#">나의 리뷰</a></li>
-												<li><a href="#">북마크</a></li>
-												<li><a href="#">1:1문의</a></li>
-											</ul>
+											<span class="opener">상품등록</span>
 										</li>
 										<li>
-											<span class="opener">내 정보</span>
-											<ul>
-												<li><a href="#">내 정보 수정</a></li>
-												<li><a href="#">배송지 관리</a></li>
-											</ul>
+											<span class="opener">주문현황</span>
+
 										</li>
-										<li><a onclick="confirmLogout()">로그아웃</a></li>
+										<li>
+											<span class="opener">환불관리</span>
+										</li>
+										<li>
+											<span class="opener">고객센터</span>
+										</li>
+										<li>
+											<span class="opener">후기관리</span>
+										</li>
+										<li>
+											<span class="opener">레시피관리</span>
+										</li>
 									</ul>
 								</nav>
 
 						</div>
 					</div>
 			</div>
+			</main>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/browser.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/main.js"></script>
-			<script>
-				function confirmLogout() {
-					var result = confirm("로그아웃 하시겠습니까?");
-					if (result) {
-						alert("로그아웃 되었습니다."); 
-					} else {
-						alert("로그아웃 취소되었습니다.");
-					}
-				}
-			</script>
-<!-- 			<script>
-    $(document).ready(function () {
-        $('.sort-btn').on('click', function () {
-            var sortBy = $(this).data('sort');
-            sortTable(sortBy);
-        });
 
-        function sortTable(sortBy) {
-            var table, rows, switching, i, x, y, shouldSwitch;
-            table = document.querySelector('table');
-            switching = true;
-
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-
-                    x = rows[i].querySelector('td[data-sort="' + sortBy + '"]');
-                    y = rows[i + 1].querySelector('td[data-sort="' + sortBy + '"]');
-
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                }
-            }
-
-            toggleArrow(sortBy);
-        }
-
-        function toggleArrow(sortBy) {
-            var currentArrow = $('th[data-sort="' + sortBy + '"]');
-
-            if (currentArrow.hasClass('asc')) {
-                currentArrow.removeClass('asc').addClass('desc');
-            } else {
-                currentArrow.removeClass('desc').addClass('asc');
-            }
-
-            // 다른 열의 화살표를 초기화
-            $('th[data-sort]').not(currentArrow).removeClass('asc desc');
-        }
-    });
-</script> -->
+			
+			
+ 
 
 	</body>
-</html>  --%>
+</html>  

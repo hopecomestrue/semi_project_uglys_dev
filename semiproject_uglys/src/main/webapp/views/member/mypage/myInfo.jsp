@@ -3,8 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.veg.hjj.member.dto.*" %>
  <%@ page import="com.veg.ojy.mypage.dto.Address"%>
-<%-- <%@ page import="com.veg.ojy.mypage.dto.*" %> --%>
 <%@ page import= "java.util.List,java.util.Arrays" %>
+<%-- <%@ page import="com.veg.ojy.mypage.dto.*" %> --%>
 <%-- <%@ include file="/views/common/header.jsp" %> --%>
 
 <%
@@ -87,7 +87,7 @@
 									</div>
 								</section>
 							<!-- Section -->
-								<section>
+								<section id="myOrder">
 									<header class="major">
 										<h2>최근 주문 내역</h2>
 									</header>
@@ -127,7 +127,7 @@
 								</section>
 								
 							<!-- Section -->
-								<section>
+								<section id="myInfo">
 									<header class="major">
 										<h2>내 정보 수정</h2>
 									</header>
@@ -215,7 +215,7 @@
                                                   </div>
                                                 <div class="col-12 d-flex justify-content-center">
                                                     <ul class="actions">
-                                                        <li><input type="submit" value="수정완료" class="primary" onclick="confirmModify();"/></li>
+                                                        <!-- <li><input type="submit" value="수정완료" class="primary" onclick="confirmModify();"/></li> -->
                                                         <li><input type="button" value="회원탈퇴" class="primary" onclick="fn_moveinfo();" ></li>
                                                      </ul>
                                                 </div>
@@ -224,7 +224,7 @@
 										</div>
 									
 								</section>
-								<section>
+								<section id="myBookMark">
 									<header class="major">
 										<h2>북마크</h2>
 									</header>
@@ -263,7 +263,7 @@
 										</article>
 										</div>
 										</section>
-										<section>
+										<section id="myReview">
 										<header class="major">
 											<h2>리뷰</h2>
 										</header>
@@ -316,22 +316,22 @@
 										<li>
 											<span class="opener">나의 주문</span>
 											<ul>
-												<li><a href="#">주문 조회</a></li>
-												<li><a href="#">반품 조회</a></li>
+												<li><a href="#" onclick="scrollToSection('myOrder')">주문 조회</a></li>
+												<!-- <li><a href="#">반품 조회</a></li> -->
 												<li><a href="#">장바구니</a></li>
 											</ul>
 										</li>
 										<li>
 											<span class="opener">나의 활동</span>
 											<ul>
-												<li><a href="#">나의 리뷰</a></li>
-												<li><a href="#">북마크</a></li>
+												<li><a href="#" onclick="scrollToSection('myReview')">나의 리뷰</a></li>
+												<li><a href="#" onclick="scrollToSection('myBookMark')">북마크</a></li>
 											</ul>
 										</li>
 										<li>
 											<span class="opener">내 정보</span>
 											<ul>
-												<li><a href="#">내 정보 수정</a></li>
+												<li><a href="#" onclick="scrollToSection('myInfo')">내 정보 수정</a></li>
 											</ul>
 										</li>
 										<li><a onclick="confirmLogout()">로그아웃</a></li>
@@ -382,5 +382,35 @@
 				}
 			</script>
 			
+    <script>
+        function scrollToSection(myInfo) {
+            var section = document.getElementById(myInfo);
+
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        function scrollToSection(myReview) {
+            var section = document.getElementById(myReview);
+
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        function scrollToSection(myBookMark) {
+            var section = document.getElementById(myBookMark);
+
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        function scrollToSection(myOrder) {
+            var section = document.getElementById(myOrder);
+
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
 	</body>
 </html>

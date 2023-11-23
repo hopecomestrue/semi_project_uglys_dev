@@ -1,23 +1,33 @@
 package com.veg.ojy.admin.service;
 
-
-
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.veg.hjj.member.dto.Member;
 import com.veg.ojy.admin.dao.MemberManagementDao;
+
+
 import static com.veg.common.JDBCTemplate.*;
+
+
 
 public class MemberManagementService {
 	private MemberManagementDao dao = new MemberManagementDao();
 	
 	public List<Member> searchMemberList(int cPage, int numPerpage) {
 		Connection conn=getConnection();
-		// Connection 생성해서 dao에게 보내는 역할
 		List<Member> result= dao.searchMemberList(conn, cPage, numPerpage);
 		close(conn);
-		//Connection객체 쓰려면!! 닫아야함.
+		return result;
+		
+	}
+	public List<Member> selectMemberAll() {
+		Connection conn=getConnection();
+		List<Member> result= dao.selectMemberAll(conn);
+		close(conn);
 		return result;
 		
 	}
@@ -40,6 +50,18 @@ public class MemberManagementService {
 		close(conn);
 	    return result;
 	}
+	
+	public List<Member> searchMember(int cPage, int numPerpage, String key, String keyword){
+	      Connection conn = getConnection();
+	      List<Member> resultList = null;
+	      if(key.equals("memberName")) {
+	         resultList = dao.memberSearchByName(conn, cPage, numPerpage, keyword);
+	      }else {
+	         resultList = dao.memberSearchById(conn, cPage, numPerpage, keyword);
+	      }
+	      close(conn);
+	      return resultList;
+	   }
 	
 
 }

@@ -55,6 +55,10 @@ public class MyinfoUpdateEndServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp")
 		.forward(request, response);
+		
+		String URL = response.encodeRedirectURL(request.getContextPath() + "/myInfo.do");
+		response.sendRedirect(URL);
+
 	}
 
 	/**

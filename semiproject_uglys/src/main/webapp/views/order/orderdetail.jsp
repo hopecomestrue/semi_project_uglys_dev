@@ -36,7 +36,7 @@
 							<tbody>
 							<%for(int i=0;i<carts.size();i++){ %>
 								<tr class="text-center">
-									<td class="product-remove"><img src="<%=request.getContextPath()%>/upload/production/thumnail/<%=productionContents.get(i).getProductionImg()%>"></td>
+									<td class="product-remove"><img src="<%=request.getContextPath()%>/upload/production/thumnail/<%=productionContents.get(i).getProductionImg()%>" style="width: 100px; height: 100px;"></td>
 
 									<td class="image-prod"></td>
 
