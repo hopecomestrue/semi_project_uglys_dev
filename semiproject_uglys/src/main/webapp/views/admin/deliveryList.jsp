@@ -125,12 +125,12 @@
 	<div>
 		<h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">배송 현황</h1>
 	</div>
-<div class="delivery-check">
+<!-- <div class="delivery-check">
   <select class="form-select form-select-lg" aria-label=".form-select-lg example" id="delivery-check">
     <option selected>결제완료</option>
     <option value="1">배송준비중</option>
   </select>
-</div>
+</div> -->
 <div class="delivery-tb">
 <form action="<%=request.getContextPath()%>/admin/searchDelCheck.do" method="post">
 <div class="search_3">

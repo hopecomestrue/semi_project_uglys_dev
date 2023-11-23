@@ -26,6 +26,7 @@ public class MainpageEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//어드민 메인페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/views/admin/adminMain.jsp");
 		
 		

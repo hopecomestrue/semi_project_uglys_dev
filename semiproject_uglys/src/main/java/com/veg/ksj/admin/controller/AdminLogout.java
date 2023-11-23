@@ -27,6 +27,7 @@ public class AdminLogout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//어드민 로그아웃
 		//어드민 로그인 정보 삭제
 		HttpSession session=request.getSession(false);
 		if(session!=null) {

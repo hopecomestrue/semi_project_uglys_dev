@@ -58,22 +58,22 @@ public class OrderSuccess extends HttpServlet {
 		else if(orderStatus.equals("failed")) orderStatus="결제실패";
 		
 		
-		System.out.println("주문번호 : "+orderNo);
-		System.out.println("session 회원번호 : "+m.getMemberNo());
-		System.out.println("주문자 : "+buyerName);
-		System.out.println("주문자 전화번호 : "+buyerPhone);
-		System.out.println("주문자 주소 : "+buyerAddr);
-		System.out.println("배달요청사항 : "+buyerComment);
-		//주문 수량
-		System.out.println("결제가격 : "+totalPrice);
-		//배달비
-		System.out.println("결제수단 : "+pg);
-		System.out.println("결제상태 : "+orderStatus);
-		//운송장 번호
-		//주문 날짜
-		System.out.println("결제고유번호 : "+imp);
-		System.out.println("주문자 이메일 : "+buyerEmail);
-		System.out.println("상품명 : "+orderName);
+//		System.out.println("주문번호 : "+orderNo);
+//		System.out.println("session 회원번호 : "+m.getMemberNo());
+//		System.out.println("주문자 : "+buyerName);
+//		System.out.println("주문자 전화번호 : "+buyerPhone);
+//		System.out.println("주문자 주소 : "+buyerAddr);
+//		System.out.println("배달요청사항 : "+buyerComment);
+//		//주문 수량
+//		System.out.println("결제가격 : "+totalPrice);
+//		//배달비
+//		System.out.println("결제수단 : "+pg);
+//		System.out.println("결제상태 : "+orderStatus);
+//		//운송장 번호
+//		//주문 날짜
+//		System.out.println("결제고유번호 : "+imp);
+//		System.out.println("주문자 이메일 : "+buyerEmail);
+//		System.out.println("상품명 : "+orderName);
 		
 //		Date date = new Date(paidAt * 1000L); // 유닉스 타임스탬프는 초 단위이므로 밀리초로 변환하기 위해 1000을 곱함
 //		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -96,11 +96,11 @@ public class OrderSuccess extends HttpServlet {
 						.build();
 		
 		int result=new OrderService().insertOrderDetails(order,m);
-		if(result>0) {
-			System.out.println("DB저장성공");
-		}else {
-			System.out.println("DB저장실패");
-		}
+//		if(result>0) {
+//			System.out.println("DB저장성공");
+//		}else {
+//			System.out.println("DB저장실패");
+//		}
 		
 		request.getSession().setAttribute("order", order);
 		 response.setContentType("application/json;charset=utf-8");

@@ -104,7 +104,7 @@ public class AdminSearchDelCheck extends HttpServlet {
         
         request.setAttribute("orderList", result);
         
-        
+        //주문 리스트로 이동
         request.getRequestDispatcher("/views/admin/deliveryList.jsp").forward(request, response);
 		
 		

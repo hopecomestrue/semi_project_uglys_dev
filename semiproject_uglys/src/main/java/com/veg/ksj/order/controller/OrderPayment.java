@@ -32,7 +32,7 @@ public class OrderPayment extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//장바구니 담긴 값들 가져오기
 //		List<Cart> carts=(List<Cart>)request.getSession().getAttribute("carts");
-		
+		//>>장바구니 섹션에 담아서 관리
 		
 		//결제페이지로 이동
 		request.getRequestDispatcher("/views/order/orderdetail.jsp").forward(request, response);

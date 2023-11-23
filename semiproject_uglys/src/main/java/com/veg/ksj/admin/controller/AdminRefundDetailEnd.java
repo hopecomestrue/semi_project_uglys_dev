@@ -39,7 +39,7 @@ public class AdminRefundDetailEnd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Gson gson=new Gson();
-		
+		//api키,시크릿키
 		String apiKey ="1351426225816408";
         String secretKey ="cfHurcVtJYllMUeKbWmEhhvu9CQmFEAutcrNomOiB0xv3OFhJnONYdPPjHSmLKiorN4fDHTIAyEuNReb";
         
