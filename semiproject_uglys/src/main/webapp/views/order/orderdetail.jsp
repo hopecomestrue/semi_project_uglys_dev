@@ -468,7 +468,7 @@
                 data: {	
                     pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
                     merchant_uid : rsp.merchant_uid, //주문번호
-                    order_name : rsp.name, //주문명
+                    /* order_name : rsp.name, //주문명 */
                     imp_uid : rsp.imp_uid,         //결제 고유번호
                     paid_amount : rsp.paid_amount, //결제된 금액
                     buyer_name : rsp.buyer_name, //주문자 이름
