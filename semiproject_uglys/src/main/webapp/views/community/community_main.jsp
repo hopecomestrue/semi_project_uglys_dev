@@ -217,7 +217,7 @@
             <a href="<%=request.getContextPath()%>/community/recipedetail.do?recipeNo=<%=r.getRecipeNo() %>">
               <li class="item">
                 <div class="img-area">
-                  <img src="<%=request.getContextPath() %>/images/<%=r.getRecipeOriginalFileName() %>" alt="" />
+                  <img src="<%=request.getContextPath() %>/upload/recipe/<%=r.getRecipeRenamedFileName() %>" alt="" />
                 </div>
                 <div class="icon-area">
                 	<p><% for(Hashtag h : r.getHashtag()){ %>

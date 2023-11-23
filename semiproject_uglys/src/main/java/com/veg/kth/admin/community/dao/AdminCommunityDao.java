@@ -54,8 +54,7 @@ private Properties sql = new Properties();
 		ResultSet rs = null;
 		
 		String query = sql.getProperty("searchRecipeByAnything");
-		System.out.println(searchType);
-		System.out.println(searchContent);
+
 		query = query.replace("#COL", searchType);
 		List<Recipe> result = new ArrayList<>();
 		try {
@@ -89,7 +88,6 @@ private Properties sql = new Properties();
 			query+=" AND RECIPE_DATE < ?";
 		}
 		
-		System.out.println(query);
 		List<Recipe> result = new ArrayList<>();
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -107,7 +105,6 @@ private Properties sql = new Properties();
 			close(pstmt);
 			close(rs);
 		}
-		System.out.println(result);
 		return result;
 	}
 	
@@ -159,8 +156,7 @@ private Properties sql = new Properties();
 			query +=  "RECIPE_CAPA =" + r.getRecipeCapa(); 
 		}
 		query += " WHERE RECIPE_NO =?";
-		System.out.println(r.getRecipeNo());
-		System.out.println(query);
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			System.out.println("pstmt 값"+pstmt);
@@ -172,7 +168,7 @@ private Properties sql = new Properties();
 		}finally {
 			close(pstmt);
 		}
-		System.out.println(result);
+
 		return result;
 
 	}
