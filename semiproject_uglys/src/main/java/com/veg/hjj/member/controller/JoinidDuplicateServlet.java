@@ -36,7 +36,7 @@ public class JoinidDuplicateServlet extends HttpServlet {
       
       request.setAttribute("result", m==null?true:false);
       
-      System.out.println(m);
+     // System.out.println(m);
       
       
       request.getRequestDispatcher("/views/member/idduplicate.jsp")
