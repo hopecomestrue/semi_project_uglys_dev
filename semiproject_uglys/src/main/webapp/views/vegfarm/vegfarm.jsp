@@ -188,6 +188,7 @@
                    </div>
                   </div>
                      </div>
+                     <form action="<%=request.getContextPath()%>/cart/maincartList.do" method="post">
                      <div class="w-100"></div>
                      <div class="input-group col-md-6 d-flex mb-3">
                    <span class="input-group-btn mr-2">
@@ -210,8 +211,11 @@
             <%--  <span style="display: flex; gap: 10px;"><p><a href="<%=request.getContextPath() %>/mycart.do" class="btn btn-black py-3 px-5" <!-- onclick="document.addForm.submit();" --> >장바구니</a></p> --%>
 			<!-- </form> -->
 			<%if(p.getStock()>0) {%>
-			<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">장바구니</a></p>
-            <p><a href="cart.html" class="btn btn-black py-3 px-5">바로구매</a></p></span>
+			<span style="display: flex; gap: 10px;">
+			<button>장바구니</button>
+			<input type="hidden" value="<%=p.getProduction_no()%>" name="productNo">
+            </form>
+            <button>바로구매</button></span>
             <%} else{%> 
              	<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">품절</a></p>
              <%} %>
@@ -464,7 +468,7 @@
 		    });
 		    
 		});
-		var acc = document.getElementsByClassName("accordion-button");
+	var acc = document.getElementsByClassName("accordion-button");
 	var i;
 
 	for (i = 0; i < acc.length; i++) {

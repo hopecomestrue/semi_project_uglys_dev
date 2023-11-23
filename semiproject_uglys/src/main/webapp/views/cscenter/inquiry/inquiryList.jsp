@@ -95,7 +95,7 @@
         </style>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">정기배송</a></li>
+                
                 <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/productionList/vegfarm.do">채소농장</a></li>
 
                 <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
@@ -108,7 +108,6 @@
                 <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a></li>
                 </li>
                 <%} else {%>
-
 
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px; padding-bottom: 10px;">
                     <div style="display: flex; align-items: center; justify-content: space-between;">

@@ -73,9 +73,8 @@ input::-webkit-inner-spin-button {
 		<input type="text" name="writer"  value="<%=member.getMemberId() %>" readonly="readonly" style="background:grey;"><br><br>
 		
 		<h5>첨부파일</h5>
-		<img src="<%=request.getContextPath()%>/images/<%=recipe.getRecipeRenamedFileName() %>" width="25">
-		<span><%=recipe.getRecipeOriginalFileName() %></span>
-		<input type="file" name="recipe_main_file"><br>
+		<img src="<%=request.getContextPath()%>/images/brand_image (1).png" width="25">
+		<input type="file" name="recipe_main_file" src="<%=request.getContextPath()%>/upload/recipe/<%=recipe.getRecipeRenamedFileName()%>"><br>
 		<input type="text" name="recipe_title" maxlength="20" value="<%=recipe.getRecipeTitle() %>"><br>
 		<input type="text" name="recipe_explain" maxlength="240" value="<%=recipe.getRecipeComment() %>">
 		<br>
@@ -137,7 +136,7 @@ function categoryChange(e) {
                 <input type="hidden" value="" name="tag" id="rdTag" />
             </div>
 				<%if(!hashtag.isEmpty()){ 
-            		for(int i=0;i<6;i++){%>
+            		for(int i=0;i<3;i++){%>
                   <button type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
                 		#<%=hashtag.get(i).getHashtagValue()%>
                 	</button>

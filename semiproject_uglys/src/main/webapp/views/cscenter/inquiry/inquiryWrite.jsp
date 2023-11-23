@@ -90,7 +90,7 @@
         </style>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">정기배송</a></li>
+                
                 <li class="nav-item"><a class="nav-link" href="index.html">채소농장</a></li>
 
                 <li class="nav-item" style="list-style-type: none;"><a

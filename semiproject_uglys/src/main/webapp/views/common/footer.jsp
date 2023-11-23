@@ -27,8 +27,7 @@
               </div>
             </div>
             <div class="col-md-4" >
-               <button style="width: 150px; height: 100px; background-color: gray; color: white;"> 문의하기 </button>
-               <button style="width: 150px; height: 100px; background-color: gray; color: white;">자주 묻는 질문</button>
+
            </div>
             </div>  
           </div>
