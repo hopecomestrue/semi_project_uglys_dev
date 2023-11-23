@@ -13,10 +13,13 @@ import java.util.Properties;
 import com.veg.hjj.member.dao.MemberDao;
 import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dto.Order;
+import com.veg.ojy.cart.dto.Cart;
+import com.veg.pdw.production.model.dto.Production;
+
 import static com.veg.common.JDBCTemplate.*;
 
 public class OrderDao {
-
+	
 	private Properties sql=new Properties();
 	
 	{
@@ -73,6 +76,26 @@ public class OrderDao {
 		return result;
 		
 	}
+	//주문_상세 테이블에 등록(주문/결제 등록)
+		public int inserOrderDetailEnd(Connection conn,Order o,Production pro,Cart c) {
+			PreparedStatement pstmt=null;
+			int result=0;
+			try {
+				pstmt=conn.prepareStatement(sql.getProperty("inserOrderDetailEnd"));
+				pstmt.setInt(1, pro.getProduction_no());
+				pstmt.setLong(2, o.getOrderNo());
+				pstmt.setInt(3, c.getCount());
+				pstmt.setInt(4, pro.getPrice());
+				result=pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+			
+		}
 	//주문현황 모든 row 가져오기
 	public List<Order> selectAllOrderDetails(Connection conn){
 		PreparedStatement pstmt=null;

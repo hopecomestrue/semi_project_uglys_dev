@@ -1,8 +1,7 @@
 package com.veg.ksj.order.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +13,8 @@ import com.google.gson.Gson;
 import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dto.Order;
 import com.veg.ksj.order.model.service.OrderService;
+import com.veg.ojy.cart.dto.Cart;
+import com.veg.pdw.production.model.dto.Production;
 
 /**
  * Servlet implementation class OrderSuccess
@@ -101,6 +102,17 @@ public class OrderSuccess extends HttpServlet {
 //		}else {
 //			System.out.println("DB저장실패");
 //		}
+		/* 주문_상세*/
+		List<Production> proList=(List<Production>)request.getSession().getAttribute("productions");
+		List<Cart>cartsList=(List<Cart>)request.getSession().getAttribute("carts");
+		for(int i=0;i<cartsList.size();i++) {
+			Cart c=cartsList.get(i);
+			Production pro=proList.get(i);
+			int result1=new OrderService().inserOrderDetailEnd(order, pro,c);
+			
+		}
+		/* 주문_상세*/
+		
 		
 		request.getSession().setAttribute("order", order);
 		request.getSession().setAttribute("orderName", orderName);
