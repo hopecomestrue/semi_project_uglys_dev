@@ -137,11 +137,6 @@
 									</td>
 									<td class="total"><%=p.getPrice()*c.getCount()%></td>
 								</tr>
-									<%} 
-									}%>
-								
-								<%}
-									}%>
 						</table>
 					</div>
 				</div>
@@ -153,13 +148,15 @@
 						<h3>장바구니 총 결제 금액</h3>
 						<p class="d-flex total-price">
 							<span>상품금액</span> 
-							<%for(Production p : productions){ %>
-							<%discountprice += p.getPrice()*(p.getDiscount()*0.01);%>
-						<%} %>
 							<span>
-							0원
+							<%=p.getPrice()*c.getCount()%>
 							</span>
 						</p>
+					<%} 
+					}%>
+				
+				<%}
+					}%>
 						<!-- <p class="d-flex">
 							<span>배송비</span> <span>0원</span>
 						</p> -->
