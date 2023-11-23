@@ -65,7 +65,7 @@ input::-webkit-inner-spin-button {
 			반복적이거나 성의 없는 콘텐츠는 관리자에 의해<br>
 			콘텐츠 삭제 후 적립금이 반환될 수 있습니다.
 		</p>
-		<input type="file" name="recipe_main_file"><br>
+		<input type="file" name="recipe_main_file" ><br>
 		<input type="text" name="recipe_title" maxlength="20" placeholder="레시피의 이름이 무엇인가요?"><br>
 		<input type="text" name="recipe_explain" maxlength="240" placeholder="레시피에 대한 간단한 설명을 덧붙여 주세요.">
 		<h4>소요시간</h4>

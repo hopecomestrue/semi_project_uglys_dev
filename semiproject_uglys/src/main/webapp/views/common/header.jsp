@@ -47,12 +47,12 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">정기배송</a></li>
+	          <li class="nav-item active"></li>
 	          <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/productionList/vegfarm.do">채소농장</a></li>
 
 	          <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
 	          
-	          <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link">고객센터</a></li>
+	          <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do"" class="nav-link">고객센터</a></li>
 
 	          <li class="nav-item cta cta-colored" style="list-style-type: none;"><a href="<%=request.getContextPath()%>/cart/cartList.do" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 	          
