@@ -515,9 +515,9 @@
                         </div>
 
                         <div class="board-actions">
-                            <button class="btn btn-primary btn-sm">수정하기</button>
+                            <button type="button" class="btn btn-primary btn-sm">수정하기</button>
                             &nbsp;&nbsp;
-                            <button class="btn btn-primary btn-sm">삭제하기</button>
+                            <button type="button" class="btn btn-primary btn-sm">삭제하기</button>
                         </div>
 
                 </form>
