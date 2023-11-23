@@ -80,8 +80,8 @@ public class MainCartListServlet extends HttpServlet {
 		//장바구니를 session에 담기
 		request.getSession().setAttribute("carts", carts);
 		
-		request.setAttribute("productions", productions);
-		request.setAttribute("productionContents", productionContents);
+		request.getSession().setAttribute("productions", productions);
+		request.getSession().setAttribute("productionContents", productionContents);
 		
 		//장바구니 화면으로 이동
 		request.getRequestDispatcher("/views/member/cart/mycart.jsp")
