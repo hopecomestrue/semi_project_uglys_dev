@@ -23,7 +23,7 @@
 	<%-- <form action="<%request.getContextPath()%>/admin/delchange.do" method="post"> --%>
 <h1 style="text-align: center; margin-top: 5%;">주문 완료</h1>
 <div class="delivery-detail-user">
-<form action="<%=request.getContextPath()%>/myInfo.do",method="post">
+<form action="<%=request.getContextPath()%>/myInfo.do" method="post">
 <%if(order!=null){ %>
 <table class="table table-bordered">
     <tr>
