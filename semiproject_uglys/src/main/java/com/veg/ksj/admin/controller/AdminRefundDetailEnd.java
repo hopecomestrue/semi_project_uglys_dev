@@ -55,9 +55,9 @@ public class AdminRefundDetailEnd extends HttpServlet {
 		String refundCheck=request.getParameter("refundCheck"); //환불상태 : 환불승인대기,환불승인완료,환불승인반려
 		String refundReason=request.getParameter("refundReason"); //환불사유
 		
-		System.out.println(refundNo);
-		System.out.println(refundCheck);
-		System.out.println(refundReason);
+//		System.out.println(refundNo);
+//		System.out.println(refundCheck);
+//		System.out.println(refundReason);
 		
 		
 		//환불승인완료시 아임포트 결제환불
@@ -93,11 +93,11 @@ public class AdminRefundDetailEnd extends HttpServlet {
 			br.close();
 			conn.disconnect();
 			
-			System.out.println("[결제 취소 완료] 주문 번호 : "+ refundNo);
+//			System.out.println("[결제 취소 완료] 주문 번호 : "+ refundNo);
 			
 			int result=new OrderService().updateRefundDetails(refundCheck,refundNo); //환불사유 추가
-			if(result>0) System.out.println("DB 환불상태 변경 성공");
-			else System.out.println("DB 환불상태 변경 실패");
+//			if(result>0) System.out.println("DB 환불상태 변경 성공");
+//			else System.out.println("DB 환불상태 변경 실패");
 			
 		}else {
 //			int result=new OrderService().updateRefundDetails(refundCheck,refundNo);
