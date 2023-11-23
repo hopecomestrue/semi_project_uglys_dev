@@ -116,11 +116,11 @@
 									 <div class="collapse navbar-collapse" id="ftco-nav">
 										<ul class="navbar-nav ml-auto">
 										  <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">채소농장</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
-										  <li class="nav-item"><a href="/mypage.html" class="nav-link">관리자페이지</a></li>
-										  <li class="nav-item cta cta-colored"><a href="/cart1.html" class="nav-link"><span href=""></span>[0]</a></li>
+										  <li class="nav-item"><a href="<%=request.getContextPath()%>/productionList/vegfarm.do" class="nav-link">채소농장</a></li>
+										  <li class="nav-item"><a href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
+										  <li class="nav-item"><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link">고객센터</a></li>
+										  <li class="nav-item"><a href="<%=request.getContextPath()%>/admin/main.do" class="nav-link">관리자페이지</a></li>
+										  
 							
 										</ul>
 									  </div>
@@ -182,7 +182,7 @@
     <button style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품등록</button>
 	</a>
 	
-    <button  onclick="sendValuesToServer(checkedValues);"style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;">상품삭제</button>
+    <button  onclick="sendValuesToServer(checkedValues);"style="margin-right: 10px; padding: 5px 10px; margin-bottom: 30px;"id="delete">상품삭제</button>
 	
 </div>
 				            </div>
@@ -279,70 +279,13 @@
 						</div>
 					</div>
 
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>상품관리</h2>
-									</header>
-									<ul>
-										<li>
-											<span class="opener">상품관리</span>
-											<ul>
-												<li><a href="<%=request.getContextPath() %>/admin/productregi.do">상품등록</a></li>
-												<li><a href="#">상품삭제</a></li>
-												
-											</ul>
-										</li>
-										<li>
-											<span class="opener">회원관리</span>
-											<ul>
-												<li><a href="#">나의 리뷰</a></li>
-												<li><a href="#">북마크</a></li>
-												<li><a href="#">1:1문의</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">커뮤니티</span>
-											<ul>
-												<li><a href="#">내 정보 수정</a></li>
-												<li><a href="#">배송지 관리</a></li>
-											</ul>
-										</li>
-										
-										<li>
-											<span class="opener">고객센터</span>
-											<ul>
-												<li><a href="#">내 정보 수정</a></li>
-												<li><a href="#">배송지 관리</a></li>
-											</ul>
-										</li>
-										<li><a onclick="confirmLogout()">로그아웃</a></li>
-									</ul>
-								</nav>
-
-						</div>
-					</div>
+				
 			</div>
 				<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/browser.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/main.js"></script>
-			<script>
-				function confirmLogout() {
-					var result = confirm("로그아웃 하시겠습니까?");
-					if (result) {
-						alert("로그아웃 되었습니다."); 
-					} else {
-						alert("로그아웃 취소되었습니다.");
-					}
-				}
-				
-				
-				
-			</script>
+			
 	</body>
 </html>
