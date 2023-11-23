@@ -34,36 +34,7 @@ public class MyinfoDeleteEndServlet extends HttpServlet {
 	 */
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//    String memberId = request.getParameter("memberId");
-//    String memberPw = request.getParameter("memberPw");
-//    // 1. 현재 비밀번호가 맞는지 확인
-//    Member m = new MyinfoService().selectMemberByIdAndPw(memberId, memberPw);
-//    String msg = "다시 시도하세요.: ", loc = "/delete.do?memberId=" + memberId;
-//
-//    if (m != null) {
-//        // 2. 일치하면 회원 탈퇴
-//        int result = -1; // Initialize result to some default value
-//        try {
-//            result = new MyinfoService().deleteMember(memberId,memberPw);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            // Handle the exception appropriately, such as logging or showing an error message.
-//        }
-//
-//        if (result >= 0) { // Check if result is not equal to the default value
-//            msg = "회원 탈퇴가 완료되었습니다. 다시 로그인해주세요.";
-//            loc = "/"; // 로그인 페이지로 이동하도록 설정
-//            // 탈퇴 후 자동 로그아웃 스크립트
-//            String script = "opener.location.replace('" + request.getContextPath() + "/loginout.do');" + "close();";
-//            request.setAttribute("script", script);
-//        } else {
-//            msg = "회원 탈퇴 중 오류가 발생했습니다. 다시 시도하세요."; // 에러 메시지 추가
-//        }
-//    } else {
-//        msg = "비밀번호가 일치하지 않습니다. 다시 시도하세요.";
-//    }
-	
-	
+
 	// 탈퇴하려는 회원을 구분할 수 있는 유니크 정보 추출
 	HttpSession session=request.getSession();
 	Member loginMember=(Member)session.getAttribute("loginMember");

@@ -17,7 +17,7 @@ import com.veg.pdw.production.service.ProductionService;
 /**
  * Servlet implementation class SoldoutProductionJSPServlet
  */
-@WebServlet("/production/soldout.do")
+@WebServlet("/productionList/soldout.do")
 public class SoldoutProductionJSPServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

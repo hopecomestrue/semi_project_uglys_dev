@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.veg.hjj.member.dto.Member;
 import com.veg.hjj.member.service.MemberService;
+import com.veg.ksj.order.model.dto.Order;
+import com.veg.ksj.order.model.service.OrderService;
 import com.veg.ojy.mypage.dto.Address;
 import com.veg.ojy.mypage.service.MyinfoService;
 
@@ -42,6 +44,11 @@ public class MyinfoServlet extends HttpServlet {
 		List<Address> a = new MyinfoService().selectAddress(memberNo);
 		request.setAttribute("member", m);
 		request.setAttribute("address", a);
+		
+		//회원번호로 주문내역 row 전부 가져오기
+		List<Order>orders=new OrderService().selectAllOrderDetailsByMemNo(memberNo);
+		request.setAttribute("orders", orders);
+		
 		request.getRequestDispatcher("/views/member/mypage/myInfo.jsp").forward(request, response);
 	}
 	/**

@@ -21,12 +21,12 @@ import java.util.*;
 public class InquiryListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    String ProductionName = "하이1";
-    String OrderStatus = "하이2";
-    String ProductionName2 = "하이3";
-    String OrderStatus2 = "하이4";
-    String ProductionName3 = "하이5";
-    String OrderStatus3 = "하이6";
+    String productionName = "하이1";
+    String orderStatus = "하이2";
+    String productionName2 = "하이3";
+    String orderStatus2 = "하이4";
+    String productionName3 = "하이5";
+    String orderStatus3 = "하이6";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,11 +41,9 @@ public class InquiryListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
-        //DB에 저장된 전체 inquiry데이터 가져오기
         int cPage;
         int numPerpage = 10;
 
-//		if(request.getParameter("cPage")!=null) cPage=request;
         try {
             cPage = Integer.parseInt(request.getParameter("cPage"));
         } catch (NumberFormatException e) {
@@ -54,12 +52,11 @@ public class InquiryListServlet extends HttpServlet {
 
         List<Inquiry> inquiryListAndComments = new InquiryService().selectInquiry(cPage, numPerpage);
         List<Inquiry> inquiryList = removeDuplicateInquiries(inquiryListAndComments);
-        String a = new InquiryService().generateJson(ProductionName, OrderStatus, ProductionName2, OrderStatus2, ProductionName3, OrderStatus3);
+        String a = new InquiryService().generateJson(productionName, orderStatus, productionName2, orderStatus2,
+                                                     productionName3, orderStatus3);
 
-
-        System.out.println(a);
         int totalData = new InquiryService().selectInquiryCount();
-//        InquiryMember member=new InquiryMemberService().selectMemberById(member)
+
         int totalPage = (int)Math.ceil((double)totalData / numPerpage);
         int pageBarSize = 5;
         int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
@@ -88,7 +85,7 @@ public class InquiryListServlet extends HttpServlet {
         } else {
             pageBar += "<a href='" + request.getRequestURI() + "?cPage=" + pageNo + "'>  다음</a>";
         }
-
+        request.setAttribute("inquiryTotalData",totalData);
         request.setAttribute("inquiryList", inquiryList);
         request.setAttribute("inquiryListAndComments", inquiryListAndComments);
         request.setAttribute("pageBar", pageBar);
@@ -121,20 +118,8 @@ public class InquiryListServlet extends HttpServlet {
                 addedInquiryNos.add(inquiryNo);
             }
         }
-/*        sortListByInquiryDateDesc(filteredList);*/
-/*        Collections.sort(filteredList, Comparator.comparing(Inquiry::getInquiryDate).reversed());*/
+
         return filteredList;
     }
-   /* private static void sortListByInquiryDateDesc(List<Inquiry> list) {
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(i).getInquiryDate().before(list.get(j).getInquiryDate())) {
-                    // Swap the elements if they are not in the desired order
-                    Inquiry temp = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, temp);
-                }
-            }
-        }
-    }*/
+
 }

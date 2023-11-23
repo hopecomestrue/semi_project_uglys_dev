@@ -59,8 +59,6 @@ public class Inquiry implements ResultSetMapper<Inquiry> {
 
     @Override
     public Inquiry fromResultSet(ResultSet rs, String type) throws SQLException {
-        // 어차피 조회할때는 null 들어가도됨
-        // insert할 때나 sysdate같은 default값 넣을것 아님 (맞음)
 
         InquiryBuilder builder = null;
         if (type.equals("getById")) {
@@ -85,21 +83,6 @@ public class Inquiry implements ResultSetMapper<Inquiry> {
                     .refundNo(rs.getInt("REFUND_NO"))
                     .refundDate(rs.getDate("REFUND_DATE"))
                     .inquiryComments(new ArrayList<>());
-/*            while (rs.next()) {
-
-                InquiryComment comment = InquiryComment
-                        .builder()
-                        .inquiryCommentNo(rs.getInt("INQUIRY_COMMENT_NO"))
-                        .inquiryCommentWriter(rs.getString("INQUIRY_COMMENT_WRITER"))
-                        .inquiryCommentContent(rs.getString("INQUIRY_COMMENT_CONTENT"))
-                        .inquiryCommentDate(rs.getTimestamp("INQUIRY_COMMENT_DATE"))
-                        .fkInquiryNo(rs.getInt("INQUIRY_NO"))
-                        .fkMemberNo(rs.getInt("MEMBER_NO"))
-                        .build();
-
-                inquiryComments.add(comment);
-            }
-            builder.inquiryComments(inquiryComments);*/
 
         } else if (type.equals("getTo")) {
             builder = Inquiry
@@ -122,41 +105,9 @@ public class Inquiry implements ResultSetMapper<Inquiry> {
                     .productImg(rs.getString("PRODUCT_IMG"))
                     .refundNo(rs.getInt("REFUND_NO"))
                     .refundDate(rs.getDate("REFUND_DATE"))
-                    // 코멘트 빈 리스트
+
                     .inquiryComments(new ArrayList<>());
         }
         return builder.build();
     }
-	
-	   /*public void addInquiryAll(List<Inquiry> inquiry, ResultSet rs) throws SQLException {
-	     int pk = rs.getInt("inquiry_no");
-	     if(inquiry.stream().anyMatch(e->pk==(e.getInquiryNo()))) {
-	         inquiry.stream().filter(e-> Objects.equals(e.getInquiryNo(), pk))
-	               .forEach(e->{
-	                   try {
-	                       if(rs.getString("procedure_no")!=null && !e.getProcedure().contains(getProcedure(rs))) {
-	                           e.getProcedure().add(getProcedure(rs));
-	                       }
-	
-	
-	                   }catch(SQLException e1) {
-	                       e1.printStackTrace();
-	                   }
-	
-	               });
-	
-	     }else {
-	         Recipe r = getRecipe(rs);
-	         if(rs.getString("procedure_no")!=null) r.getProcedure().add(getProcedure(rs));
-	         if(rs.getString("material_no")!=null) r.getMaterial().add(getMaterial(rs));
-	         if(rs.getString("hashtag_no")!=null) r.getHashtag().add(getHashtag(rs));
-	
-	         recipe.add(r);
-	     }
-	
-	 }*/
-
-
-
-
 }

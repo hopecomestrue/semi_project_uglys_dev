@@ -16,7 +16,6 @@ import com.veg.seoj.cscenter.model.dto.Inquiry;
 import com.veg.seoj.cscenter.model.dto.InquiryComment;
 
 public class InquiryService {
-    /*private InquiryDao dao=new InquiryDao();*/
 
     public List<Inquiry> selectInquiry(int cPage, int numPerpage) {
         Connection conn = getConnection();
@@ -32,27 +31,12 @@ public class InquiryService {
         return result;
     }
 
-/*    public List<Inquiry> selectInquiry(int cPage, int numPerPage) {
-        List<Inquiry> inquiryList = // ... 조회하는 코드
-
-        // Inquiry 객체에 Member 정보 설정
-        for (Inquiry inquiry : inquiryList) {
-            int memberId = inquiry.getMember_id();
-            Member member = new MemberService().getMemberById(memberId); // 적절한 메소드 활용
-            inquiry.setMember(member);
-        }
-
-        return inquiryList;
-    }*/
-
     public int selectInquiryCount() {
         Connection conn = getConnection();
         GenericDAOImpl<Inquiry, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "INQUIRY");
-//		int result=InquiryDAO.selectInquiryCount(conn);
         int result = inquiryDAO.count(conn, (Inquiry)Inquiry
                 .builder()
                 .build(), "sql.inquiry.selectCount");
-        System.out.println("서비스 count");
         close(conn);
         return result;
     }
@@ -60,11 +44,9 @@ public class InquiryService {
     public Inquiry selectInquiryByNo(int inquiryNo) {
         Connection conn = getConnection();
         GenericDAOImpl<Inquiry, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "INQUIRY");
-//		Inquiry n=dao.selectInquiryByNo(conn, InquiryNo);
         Inquiry n = (Inquiry)inquiryDAO.getById(conn, (Inquiry)Inquiry
                 .builder()
                 .build(), "sql.inquiry.getByNo", "getById", inquiryNo);
-        System.out.println("서비스 getbyno" + n);
         close(conn);
         return n;
     }
@@ -73,16 +55,6 @@ public class InquiryService {
     public int insertInquiry(Inquiry n) {
         Connection conn = getConnection();
         GenericDAOImpl<Inquiry, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "INQUIRY");
-        /*		int result=dao.insertInquiry(conn, n);*/
-
-        System.out.println("getInquiryType : " + n.getInquiryType());
-        System.out.println("getInquiryTitle : " + n.getInquiryTitle());
-        System.out.println("getInquiryContent : " + n.getInquiryContent());
-        System.out.println("getFkMemberNo : " + n.getFkMemberNo());
-        System.out.println("getFkOrderNo : " + n.getFkOrderNo());
-        System.out.println("getInquiryRenameFilename : " + n.getInquiryRenameFilename());
-        System.out.println("getInquiryOriginalFilename : " + n.getInquiryOriginalFilename());
-        System.out.println("getFkProductNo : " + n.getFkProductNo());
 
         int result = inquiryDAO.addUpdateDelete(conn, n, "sql.inquiry.add", n.getInquiryType(), n.getInquiryTitle(),
                                                 n.getInquiryContent(),
@@ -147,20 +119,19 @@ public class InquiryService {
     }
 
 
-    public String generateJson(String ProductionName,
-                               String OrderStatus,
-                               String ProductionName2,
-                               String OrderStatus2,
-                               String ProductionName3,
-                               String OrderStatus3) {
+    public String generateJson(String productionName,
+                               String orderStatus,
+                               String productionName2,
+                               String orderStatus2,
+                               String productionName3,
+                               String orderStatus3) {
 
         String jsonTemplate = "'{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"carousel\":{\"type\":\"basicCard" +
                 "\"," + "\"items\":[{\"title\":\"%s\",\"description\":\"%s\"," + "\"thumbnail\":{\"imageUrl\":\"https://www.ibabynews" + ".com/news/photo/202012" + "/90908_40356_4011.jpg\"},\"buttons\":[{\"action\":\"message\"," + "\"label\":\"이 주문 " + "선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"}," + "{\"action\":\"webLink\"," + "\"label\":\"구경하기\"," + "\"webLinkUrl\":\"해당 문의로 가는 " + "SERVLET주소\"}]},{\"title\":\"%s\"," + "\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://pds" + ".joongang.co.kr/svcimg/newsletter/content/202206/29/d5508b55-8e0a-43f4-a677-392ca1be8728" + ".jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\"," + "\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\"," + "\"webLinkUrl\":\"해당 문의로 가는 SERVLET주소\"}]},{\"title\":\"%s\"," + "\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://www.costco.co.kr/medias/sys_master/images/hab/he3/103890527649822.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET주소\"}]}]}}]}}'";
 
 
-        String result = String.format(jsonTemplate, ProductionName, OrderStatus, ProductionName2, OrderStatus2,
-                                      ProductionName3, OrderStatus3);
-        System.out.println(result);
+        String result = String.format(jsonTemplate, productionName, orderStatus, productionName2, orderStatus2,
+                                      productionName3, orderStatus3);
 
         return result;
     }

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/header.jsp" %>
-<%@ page import="com.veg.kth.community.model.dto.*, java.util.List" %>
+<%@ page import="com.veg.kth.community.model.dto.*, java.util.List, com.veg.hjj.member.dto.Member" %>
 
 <%
 
 	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");  
-
+	List<Member> members = (List<Member>)request.getAttribute("members"); 
 %>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -189,7 +189,6 @@
 				<th><input class="form-check-input" type="checkbox" id="checkboxAll" value="" aria-label="..." ></th>
 				<th>번호</th>
 				<th>아이디</th>
-				<th>구분</th>
 				<th>레시피이름</th>
 				<th>카테고리</th>
 				<th>해시태그</th>
@@ -203,9 +202,13 @@
 		%>
 			<tr>
 				<td><input type="checkbox" name="delete_check"></td>
-				<td><%=r.getRecipeNo() %></td>
-				<td><%=r.getMember_no() %></td>
-				<td>구분자도 없음</td>
+				<td><a href="<%=request.getContextPath()%>/admin/recipedetail.do?recipeNo=<%=r.getRecipeNo()%>"><%=r.getRecipeNo() %></a></td>
+				<td><%for(Member m : members){%>
+				<%if(r.getMember_no()== m.getMemberNo()){%>
+				<%=m.getMemberId() %>
+				<%}
+				}%>
+				</td>
 				<td><%=r.getRecipeTitle() %></td>
 				<td><%=r.getCategory().getCategoryDept1() %>/<%=r.getCategory().getCategoryDept2() %></td>
 				<%List<Hashtag> hashtag = r.getHashtag(); %>
@@ -225,8 +228,8 @@
 		</tbody>
 		</table>
 	</div>
-	<div id="pageBar" class="container">
-		<%=request.getAttribute("pageBar") %>
+<%-- 	<div id="pageBar" class="container">
+		<%=request.getAttribute("pageBar") %> --%>
 	</div>
 	</div>
 </section>

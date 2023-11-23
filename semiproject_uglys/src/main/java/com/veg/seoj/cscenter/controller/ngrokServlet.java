@@ -1,16 +1,20 @@
 package com.veg.seoj.cscenter.controller;
 
-import com.veg.hjj.member.dto.Member;
-import com.veg.seoj.cscenter.model.dto.DAOImplOrder;
-import com.veg.seoj.cscenter.model.dto.DAOImplRefund;
+import com.google.gson.Gson;
+import com.veg.seoj.common.exception.BadAccessException;
 import com.veg.seoj.cscenter.model.dto.Inquiry;
+import com.veg.seoj.cscenter.model.dto.InquiryComment;
 import com.veg.seoj.cscenter.model.service.InquiryService;
 
+
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -38,216 +42,157 @@ public class ngrokServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
+
+/*        if((request.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual) !=null)){
+            String jsonBody = request.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
+        }else{
+                response.sendRedirect(request.getContextPath() + "/error/errortest.do");
+                return;
+        }*/
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-        System.out.println(request);
-/*        List<Inquiry> inquiryList = (List<Inquiry>)request.getAttribute("inquiryList");*/
+        Gson gson = new Gson();
 
+        try {
 
-        String ProductionName = "";
-        String OrderStatus = "";
-        String ProductionName2 = "";
-        String OrderStatus2 = "";
-        String ProductionName3 = "";
-        String OrderStatus3 = "";
-
-
-
-
-        String result = generateJson(request,response,ProductionName, OrderStatus, ProductionName2, OrderStatus2,
-                                     ProductionName3, OrderStatus3);
-/*        // 요청에서 JSON 데이터 추출
-        String jsonBody = request
-                .getReader()
-                .lines()
-                .reduce("", (accumulator, actual) -> accumulator + actual);
-
-        // JSON 데이터 출력 (테스트용)
-*//*        response.setContentType("text/plain");
-        PrintWriter some =  response.getWriter();
-        some.println("하이하이");*//*
-
-        *//*        System.out.println(jsonBody);*//*
-
-        // 추출한 JSON 데이터를 다른 서블릿으로 포워딩
-        request.setAttribute("jsonBody", jsonBody);*/
-        /*        request.getRequestDispatcher("/inquirylist.jsp").forward(request, response);*/
-
-        response.setContentType("application/json");
-        try (PrintWriter out = response.getWriter()) {
-            out.println(result);
-        }
-    }
-     /*   "{\"version"\": \"2.0\", \"template": {
-            "outputs": [
-            {
-                "carousel": {
-                "type": "basicCard",
-                        "items": [
-                {
-                    "title": "P.PRODUCTION_NAME",
-                        "description": "S.ORDER_STATUS",
-                        "thumbnail": {
-                    "imageUrl": "https://www.ibabynews.com/news/photo/202012/90908_40356_4011.jpg"
-                },
-                    "buttons": [
-                    {
-                        "action": "message",
-                            "label": "이 주문 선택",
-                            "messageText": "해당 주문에 대한 문의를 작성해 주세요."
-                    },
-                    {
-                        "action":  "webLink",
-                            "label": "구경하기",
-                            "webLinkUrl": "해당 문의로 가는 SERVLET주소"
-                    }
-              ]
-                },
-                {
-                    "title": "S.ORDER_STATUS2",
-                        "description": "P.PRODUCTION_NAME2",
-                        "thumbnail": {
-                    "imageUrl": "https://pds.joongang.co.kr/svcimg/newsletter/content/202206/29/d5508b55-8e0a-43f4-a677-392ca1be8728.jpg"
-                },
-                    "buttons": [
-                    {
-                        "action": "message",
-                            "label": "이 주문 선택",
-                            "messageText": "해당 주문에 대한 문의를 작성해 주세요."
-                    },
-                    {
-                        "action":  "webLink",
-                            "label": "구경하기",
-                            "webLinkUrl": "해당 문의로 가는 SERVLET주소"
-                    }
-              ]
-                },
-                {
-                    "title": "S.ORDER_STATUS3",
-                        "description": "P.PRODUCTION_NAME3",
-                        "thumbnail": {
-                    "imageUrl": "https://www.costco.co.kr/medias/sys_master/images/hab/he3/103890527649822.jpg"
-                },
-                    "buttons": [
-                    {
-                        "action": "message",
-                            "label": "이 주문 선택",
-                            "messageText": "해당 주문에 대한 문의를 작성해 주세요."
-                    },
-                    {
-                        "action":  "webLink",
-                            "label": "구경하기",
-                            "webLinkUrl": "해당 문의로 가는 SERVLET주소"
-                    }
-              ]
+            if(gson.fromJson(request.getReader(), Object.class)==null){
+                throw new BadAccessException("잘못된 접근입니다. 관리자에게 문의하세요!");
+                /*            response.sendRedirect(request.getContextPath() + "/views/cscenter/error/badaccess.jsp");*/
+            }else{
+                String result = generateJson(request,response);
+                response.setContentType("application/json");
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(result);
                 }
-          ]
             }
-            }
-    ]
+
+
+        } catch (Exception e) {
+
+            throw new BadAccessException("잘못된 접근입니다. 관리자에게 문의하세요!");
+
         }
-        }
+
 
     }
-
-
-
-
-
-
-        try (PrintWriter out = response.getWriter()) {
-            out.println("{"version":"2.0","template":{"outputs":[{"carousel":{"type":"basicCard","items":[{"title":"P.PRODUCTION_NAME","description":"S.ORDER_STATUS","thumbnail":{"imageUrl":"https://www.ibabynews.com/news/photo/202012/90908_40356_4011.jpg"},"buttons":[{"action":"message","label":"이 주문 선택","messageText":"해당 주문에 대한 문의를 작성해 주세요."},{"action":"webLink","label":"구경하기","webLinkUrl":"해당 문의로 가는 SERVLET주소"}]},{"title":"S.ORDER_STATUS2","description":"P.PRODUCTION_NAME2","thumbnail":{"imageUrl":"https://pds.joongang.co.kr/svcimg/newsletter/content/202206/29/d5508b55-8e0a-43f4-a677-392ca1be8728.jpg"},"buttons":[{"action":"message","label":"이 주문 선택","messageText":"해당 주문에 대한 문의를 작성해 주세요."},{"action":"webLink","label":"구경하기","webLinkUrl":"해당 문의로 가는 SERVLET주소"}]},{"title":"S.ORDER_STATUS3","description":"P.PRODUCTION_NAME3","thumbnail":{"imageUrl":"https://www.costco.co.kr/medias/sys_master/images/hab/he3/103890527649822.jpg"},"buttons":[{"action":"message","label":"이 주문 선택","messageText":"해당 주문에 대한 문의를 작성해 주세요."},{"action":"webLink","label":"구경하기","webLinkUrl":"해당 문의로 가는 SERVLET주소"}]}]}}]}}");
-        }
-
-
-
-
-
-
-
-
-
-
-        SELECT RESULT.*,M.MEMBER_NAME,S.TOTAL_PRICE,S.ORDER_STATUS,P.PRODUCTION_NAME,PC.PRODUCT_IMG,IC.*,R.REFUND_NO,R.REFUND_DATE FROM (SELECT ROWNUM AS RNUM, I.* FROM (SELECT * FROM INQUIRY ORDER BY INQUIRY_DATE DESC) I) RESULT JOIN MEMBER M ON RESULT.MEMBER_NO = M.MEMBER_NO LEFT JOIN SHOP_ORDER S ON RESULT.ORDER_NO = S.ORDER_NO LEFT JOIN PRODUCTION P ON RESULT.PRODUCT_NO = P.PRODUCT_NO LEFT JOIN PRODUCTION_CONT PC ON P.PRODUCT_NO = PC.PRODUCT_NO LEFT JOIN INQUIRY_COMMENT IC ON RESULT.INQUIRY_NO = IC.INQUIRY_NO LEFT JOIN REFUND R ON S.ORDER_NO = R.ORDER_NO WHERE RESULT.INQUIRY_NO = 14
-        여기서*/
-
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-/*        System.out.println(request);*/
+
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         doGet(request, response);
+
     }
 
-    public String generateJson(HttpServletRequest request, HttpServletResponse response,String ProductionName,
-                                      String OrderStatus,
-                                      String ProductionName2,
-                                      String OrderStatus2,
-                                      String ProductionName3,
-                                      String OrderStatus3) {
+    public String generateJson(HttpServletRequest request, HttpServletResponse response) {
 
+/*        ServletContext context=getServletContext();*/
+        HttpSession session = request.getSession();
+        ServletContext context = getServletContext();
         List<Inquiry> inquiryListAndComments = new InquiryService().selectInquiry(1, 9999999);
-        List<Inquiry> inquiryList = removeDuplicateInquiries(inquiryListAndComments);
-        List<Inquiry> forThisUserInquiryList = new ArrayList<>();
-/*        Inquiry inquiry = Inquiry.builder().build();*/
-        /*Member member = (Member)request.getAttribute("loginMember");*/
-/*        List<DAOImplOrder> orderList = new InquiryService().selectOrderByMemberNo(5);
-        List<DAOImplRefund> refundList = new InquiryService().selectRefundByMemberNo(5);*/
- /*       System.out.println("inquiryList(0) : "+inquiryList.get(0).getInquiryNo());*/
-        for (Inquiry inq : inquiryList) {
-            if(inq.getFkMemberNo()==39){
-     /*           System.out.println("여기 들어옴1");*/
-                forThisUserInquiryList.add(inq);
-            }
-        }
-        request.setAttribute("forThisUserInquiryList", forThisUserInquiryList);
+        List<Inquiry> forThisUserInquiryList = removeDuplicateInquiries(inquiryListAndComments);
+
+
+        String jsonTemplate="";
+
+        String productionName1="";
+        String orderStatus1="";
+        int totalPrice1=0;
+        String productionName2="";
+        String orderStatus2="";
+        int totalPrice2=0;
+        String productionName3="";
+        String orderStatus3="";
+        int totalPrice3=0;
+
+        context.setAttribute("forThisUserInquiryList",forThisUserInquiryList);
+        session.setAttribute("forThisUserInquiryList",forThisUserInquiryList);
+
+        context.setAttribute("context", "contextData");
+        context.setAttribute("forThisUserInquiryList", forThisUserInquiryList);
+
         for(int i = 0; i < 3; i++){
             if(i == 0){
-                if(forThisUserInquiryList.size() < 1){
-                    break;
-                }
-                ProductionName = forThisUserInquiryList.get(i).getProductionName();
-                request.setAttribute("ProductionName1", ProductionName);
-                request.setAttribute("productionNo1", forThisUserInquiryList.get(i).getFkProductNo());
-   /*             Object a = request.getAttribute("ProductionName1");
-                Object b = request.getAttribute("productionNo1");*/
-
-/*                System.out.println("여기22 a : "+ a);
-                System.out.println("여기23 b : "+ b);*/
-                OrderStatus = forThisUserInquiryList.get(i).getOrderStatus();
-            }else if(i == 1){
                 if(forThisUserInquiryList.size() < 2){
                     break;
                 }
-                ProductionName2 = forThisUserInquiryList.get(i).getProductionName();
-                request.setAttribute("ProductionName2", ProductionName2);
-                request.setAttribute("productionNo2", forThisUserInquiryList.get(i).getFkProductNo());
-                OrderStatus2 = forThisUserInquiryList.get(i).getOrderStatus();
+
+                productionName1=forThisUserInquiryList.get(i).getProductionName();
+                context.setAttribute("productionName1",
+                                     productionName1);
+
+                context.setAttribute("productionNo1", forThisUserInquiryList.get(i).getFkProductNo());
+
+                totalPrice1=forThisUserInquiryList.get(i).getTotalPrice();
+                context.setAttribute("totalPrice1", totalPrice1);
+
+                orderStatus1=forThisUserInquiryList.get(i).getOrderStatus();
+                session.setAttribute("orderStatus1", orderStatus1);
+
+            }else if(i == 1){
+                if(forThisUserInquiryList.size() < 3){
+                    break;
+                }
+                System.out.println(forThisUserInquiryList.get(i).getProductionName());
+
+                productionName2=forThisUserInquiryList.get(i).getProductionName();
+                context.setAttribute("productionName2",
+                                     productionName2);
+
+
+                context.setAttribute("productionNo2", forThisUserInquiryList.get(i).getFkProductNo());
+
+
+                totalPrice2=forThisUserInquiryList.get(i).getTotalPrice();
+                context.setAttribute("totalPrice2", totalPrice2);
+
+                orderStatus2=forThisUserInquiryList.get(i).getOrderStatus();
+                context.setAttribute("orderStatus2", orderStatus2);
             }else if(i == 2){
                 if(forThisUserInquiryList.size() < 3){
                     break;
                 }
-                ProductionName3 = forThisUserInquiryList.get(i).getProductionName();
-                request.setAttribute("ProductionName3", ProductionName3);
-                request.setAttribute("productionNo3", forThisUserInquiryList.get(i).getFkProductNo());
-                OrderStatus3 = forThisUserInquiryList.get(i).getOrderStatus();
+
+                productionName3=forThisUserInquiryList.get(i).getProductionName();
+                context.setAttribute("productionName3",
+                                     productionName3);
+                context.setAttribute("productionNo3", forThisUserInquiryList.get(i).getFkProductNo());
+
+
+                totalPrice3=forThisUserInquiryList.get(i).getTotalPrice();
+                context.setAttribute("totalPrice3", totalPrice3);
+
+                orderStatus3=forThisUserInquiryList.get(i).getOrderStatus();
+                context.setAttribute("orderStatus3", orderStatus3);
             }
         }
 
-/*        System.out.println("'{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"carousel\":{\"type\":\"basicCard\",\"items\":[{\"title\":\"보물상자\",\"description\":\"보물상자 안에는 뭐가 있을까\",\"thumbnail\":{\"imageUrl\":\"https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"열어보기\",\"messageText\":\"짜잔! 우리가 찾던 보물입니다\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"https://e.kakao.com/t/hello-ryan\"}]},{\"title\":\"보물상자2\",\"description\":\"보물상자2 안에는 뭐가 있을까\",\"thumbnail\":{\"imageUrl\":\"https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"열어보기\",\"messageText\":\"짜잔! 우리가 찾던 보물입니다\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"https://e.kakao.com/t/hello-ryan\"}]},{\"title\":\"보물상자3\",\"description\":\"보물상자3 안에는 뭐가 있을까\",\"thumbnail\":{\"imageUrl\":\"https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"열어보기\",\"messageText\":\"짜잔! 우리가 찾던 보물입니다\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"https://e.kakao.com/t/hello-ryan\"}]}]}}]}}'");*/
-/*        String jsonTemplate ="{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"carousel\":{\"type\":\"basicCard\"," +
-                "\"items\":[{\"title\":\"보물상자\",\"description\":\"보물상자 안에는 뭐가 있을까\"," +
-                "\"thumbnail\":{\"imageUrl\":\"https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"열어보기\",\"messageText\":\"짜잔! 우리가 찾던 보물입니다\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"https://e.kakao.com/t/hello-ryan\"}]},{\"title\":\"보물상자2\",\"description\":\"보물상자2 안에는 뭐가 있을까\",\"thumbnail\":{\"imageUrl\":\"https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"열어보기\",\"messageText\":\"짜잔! 우리가 찾던 보물입니다\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"https://e.kakao.com/t/hello-ryan\"}]},{\"title\":\"보물상자3\",\"description\":\"보물상자3 안에는 뭐가 있을까\",\"thumbnail\":{\"imageUrl\":\"https://t1.kakaocdn.net/openbuilder/sample/lj3JUcmrzC53YIjNDkqbWK.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"열어보기\",\"messageText\":\"짜잔! 우리가 찾던 보물입니다\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"https://e.kakao.com/t/hello-ryan\"}]}]}}]}}";*/
-        String jsonTemplate = "{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"carousel\":{\"type\":\"basicCard" +
-                "\"," + "\"items\":[{\"title\":\"%s\",\"description\":\"%s\"," + "\"thumbnail\":{\"imageUrl\":\"https" +
-                "://www.ibabynews" + ".com/news/photo/202012" + "/90908_40356_4011.jpg\"},\"buttons\":[{\"action\":\"message\"," + "\"label\":\"이 주문 " + "선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"}," + "{\"action\":\"webLink\"," + "\"label\":\"구경하기\"," + "\"webLinkUrl\":\"해당 문의로 가는 " + "SERVLET주소\"}]},{\"title\":\"%s\"," + "\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://pds" + ".joongang.co.kr/svcimg/newsletter/content/202206/29/d5508b55-8e0a-43f4-a677-392ca1be8728" + ".jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\"," + "\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\"," + "\"webLinkUrl\":\"해당 문의로 가는 SERVLET주소\"}]},{\"title\":\"%s\"," + "\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://www.costco.co.kr/medias/sys_master/images/hab/he3/103890527649822.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET주소\"}]}]}}]}}";
-        /*String jsonTemplate = "{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"simpleText\":{\"text\":\"%s\"}}]}}";*/
 
-        String result = String.format(jsonTemplate, ProductionName, OrderStatus, ProductionName2, OrderStatus2,
-                                      ProductionName3, OrderStatus3);
-/*        System.out.println(result);*/
+        String result = "";
+        if(forThisUserInquiryList.size()==1){
+            jsonTemplate ="{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"carousel\":{\"type\":\"basicCard\"," +
+                    "\"items\":[{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://www.ibabynews.com/news/photo/202012/90908_40356_4011.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\",\"webLinkUrl\":\"http://14.36.141.71:10071/GDJ71_uglysproject_semi/kakao2.do\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]},{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://kormedi.com/wp-content/uploads/2023/05/unnamed-file-240.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]},{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4BJ9LU4Ikr_EvZLmijfcjzQKMRCJ2bO3A8SVKNuQ78zu2KOqM\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]}]}}]}}";
+             result = String.format(jsonTemplate, productionName1, orderStatus1, totalPrice1);
+            context.setAttribute("no",1);
+        }else if(forThisUserInquiryList.size()==2){
+            jsonTemplate ="{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"carousel\":{\"type\":\"basicCard\"," +
+                    "\"items\":[{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://www.ibabynews.com/news/photo/202012/90908_40356_4011.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\",\"webLinkUrl\":\"http://14.36.141.71:10071/GDJ71_uglysproject_semi/kakao2.do\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]},{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://kormedi.com/wp-content/uploads/2023/05/unnamed-file-240.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]},{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4BJ9LU4Ikr_EvZLmijfcjzQKMRCJ2bO3A8SVKNuQ78zu2KOqM\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]}]}}]}}";
+             result = String.format(jsonTemplate, productionName1, orderStatus1, totalPrice1, productionName2,
+                                          orderStatus2, totalPrice2);
+            context.setAttribute("no",2);
+        }else if(forThisUserInquiryList.size()>=3){
+            jsonTemplate ="{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"carousel\":{\"type\":\"basicCard\"," +
+                    "\"items\":[{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://www.ibabynews.com/news/photo/202012/90908_40356_4011.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\",\"webLinkUrl\":\"http://14.36.141.71:10071/GDJ71_uglysproject_semi/kakao2.do\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]},{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://kormedi.com/wp-content/uploads/2023/05/unnamed-file-240.jpg\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]},{\"title\":\"%s\",\"description\":\"%s\",\"thumbnail\":{\"imageUrl\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4BJ9LU4Ikr_EvZLmijfcjzQKMRCJ2bO3A8SVKNuQ78zu2KOqM\"},\"buttons\":[{\"action\":\"message\",\"label\":\"이 주문 선택\",\"messageText\":\"해당 주문에 대한 문의를 작성해 주세요.\"},{\"action\":\"webLink\",\"label\":\"구경하기\",\"webLinkUrl\":\"해당 문의로 가는 SERVLET 주소\"}]}]}}]}}";
+            result = String.format(jsonTemplate, productionName1, orderStatus1, productionName2,
+                                   orderStatus2, productionName3, orderStatus3);
+            context.setAttribute("no",3);
+        }
+
+
 
         return result;
     }
@@ -255,16 +200,18 @@ public class ngrokServlet extends HttpServlet {
         List<Inquiry> filteredList = new ArrayList<>();
         Set<Integer> addedInquiryNos = new HashSet<>();
 
-        for (Inquiry inquiry : inquiryListandComments) {
-            int inquiryNo = inquiry.getInquiryNo();
 
-            if (!addedInquiryNos.contains(inquiryNo)) {
-                filteredList.add(inquiry);
-                addedInquiryNos.add(inquiryNo);
+        int previousMemberNo = -2;
+        int previousTotalPrice = -2;
+
+        for (Inquiry result : inquiryListandComments) {
+            if (result.getFkMemberNo() != previousMemberNo && result.getTotalPrice() != previousTotalPrice) {
+                filteredList.add(result);
             }
+
+            previousMemberNo = result.getFkMemberNo();
+            previousTotalPrice = result.getTotalPrice();
         }
-        /*        sortListByInquiryDateDesc(filteredList);*/
-        /*        Collections.sort(filteredList, Comparator.comparing(Inquiry::getInquiryDate).reversed());*/
         return filteredList;
     }
 }

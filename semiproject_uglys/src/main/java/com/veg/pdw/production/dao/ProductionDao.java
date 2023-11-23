@@ -2,6 +2,7 @@ package com.veg.pdw.production.dao;
 
 import static com.veg.common.JDBCTemplate.close;
 
+import java.sql.Statement;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.veg.pdw.production.model.dto.Production;
 import com.veg.pdw.production.model.dto.ProductionContent;
@@ -292,6 +295,75 @@ public class ProductionDao {
 			pstmt.setString(1, pr.getReviewContent());
 			pstmt.setInt(2, pr.getRating());
 			pstmt.setInt(3, pr.getProductionNo());
+			pstmt.setInt(4, pr.getMemberNo());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<Production>selectSearchbyKey(Connection conn,
+								Map<String,String>sql,Map<String,String>sql1){
+		Statement stmt =null;
+		ResultSet rs= null;
+		List<Production>result= new ArrayList<>();
+		
+		String btsql=sql.entrySet().stream()
+			    .map(s -> s.getKey() +  s.getValue())
+			    .collect(Collectors.joining(" AND "));
+		
+		String nsql=sql1.entrySet().stream()
+			    .map(s -> s.getKey()+" = '"+s.getValue()+"'")
+			    .collect(Collectors.joining(" AND "));
+
+		
+		StringBuffer resql=new StringBuffer();
+		
+		if(btsql.isBlank()) {
+			resql.append("SELECT * FROM PRODUCTION WHERE PRODUCTION_QUIT = 'Y'");
+		}else {
+			resql.append("SELECT * FROM PRODUCTION WHERE PRODUCTION_QUIT = 'Y' AND "+btsql);
+		}
+		
+		if(!nsql.isBlank()) {
+			resql.append(" AND "+nsql);
+		}
+			
+		String lasql=resql.toString();
+		
+		
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(lasql);
+			
+			while(rs.next()) {
+				result.add(getProduction(rs));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+			
+		return result;
+		
+	}
+	public int deleteProductionByNo(Connection conn,List<String> nos) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String resql="UPDATE PRODUCTION SET PRODUCTION_QUIT = 'N' WHERE "
+						+"PRODUCT_NO IN "
+							+ "(here)";
+		String s = nos.stream().map(e-> "'"+e+"'")
+		.collect(Collectors.joining(","));
+		resql=resql.replace("here", s);
+
+		try {
+			pstmt=conn.prepareStatement(resql);
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

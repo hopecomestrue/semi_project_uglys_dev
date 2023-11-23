@@ -36,10 +36,12 @@ public class RegisterReviewServlet extends HttpServlet {
 		int productionNo = (Integer.parseInt(request.getParameter("productionNo")));
 		int rating = (Integer.parseInt(request.getParameter("rating")));
 		String content = request.getParameter("content");
+		int memberNo = (Integer.parseInt(request.getParameter("member")));
 		
 		ProductionReview pr =ProductionReview.builder()
 											.reviewContent(content)
 											.productionNo(productionNo)
+											.memberNo(memberNo)
 											.rating(rating)
 											.build();
 		int result = new ProductionService().insertProductionReview(pr);

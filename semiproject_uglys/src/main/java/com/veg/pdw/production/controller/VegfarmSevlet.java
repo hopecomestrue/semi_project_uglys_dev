@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.veg.hjj.member.dto.Member;
 import com.veg.pdw.production.model.dto.Production;
 import com.veg.pdw.production.model.dto.ProductionContent;
 import com.veg.pdw.production.model.dto.ProductionReview;
@@ -36,8 +38,12 @@ public class VegfarmSevlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int productionNo=Integer.parseInt(request.getParameter("no"));
 		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginMember");
+		
 		Production p = new ProductionService().selectProductionByNo(productionNo);
 		ProductionContent pc = new ProductionService().selectProductionContentByNo(productionNo);
+		
 		request.setAttribute("production", p);
 		request.setAttribute("productionContent", pc);
 		Map<Integer,Integer> ReviewCount=new ProductionService().selectProductionReviewList();
@@ -47,6 +53,7 @@ public class VegfarmSevlet extends HttpServlet {
 		request.setAttribute("reviewCount", ReviewCount);
 		request.setAttribute("reviewRating", reviewRating);
 		request.setAttribute("ProductionReviews", pr);
+		request.setAttribute("member", m);
 		
 		
 		

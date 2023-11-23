@@ -31,12 +31,17 @@ public class NoticeViewServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
-        //클라이언트가 보낸 번호에 해당하는 notice를 가져와 보내주기
+
         int no = Integer.parseInt(request.getParameter("no"));
 
-        Notice n = new NoticeService().selectNoticeByNo(no);
+        try {
+            Notice n = new NoticeService().selectNoticeByNo(no);
 
-        request.setAttribute("notice", n);
+            request.setAttribute("notice", n);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         request
                 .getRequestDispatcher("/views/notice/noticeView.jsp")
