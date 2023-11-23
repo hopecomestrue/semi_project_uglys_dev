@@ -167,7 +167,7 @@
 	        <a class="dropdown-item rounded-2" href="#">회원관리</a>
 	      </div>
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">상품등록</a>
+	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/production.do">상품등록</a>
 	      </div>
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/deliveryList.do">주문현황</a>

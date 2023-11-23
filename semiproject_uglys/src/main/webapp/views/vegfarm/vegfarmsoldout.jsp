@@ -4,7 +4,7 @@
 <%@ page import= "java.util.List,java.util.Map,com.veg.pdw.production.model.dto.Production,com.veg.pdw.production.model.dto.ProductionContent,com.veg.pdw.production.model.dto.ProductionReview" %>
 <% 
 	List<Production> soldouts = (List<Production>)request.getAttribute("soldouts"); 
-	List<ProductionContent> productionContents = (List<ProductionContent>)request.getAttribute("productionContents");
+	List<ProductionContent>productionContents = (List<ProductionContent>)request.getAttribute("productionContents");
 	Map<Integer,Integer> reviewCount = (Map<Integer,Integer>)request.getAttribute("reviewCount");
 	Map<Integer,Double> reviewRating = (Map<Integer,Double>)request.getAttribute("reviewRating");
 	
