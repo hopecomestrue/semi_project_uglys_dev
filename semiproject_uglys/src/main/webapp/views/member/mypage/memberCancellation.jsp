@@ -193,11 +193,7 @@ Member loginMember=(Member)session.getAttribute("loginMember");
 			<script>
 			document.getElementById('withDraw').onclick=function(){
 			
-			
-			// 1. 탈퇴를 진행하시겠습니까?
-			// 2. 탈퇴를 하시게 되면, 데이터는 절대 복구 불가능합니다.
-			
-			if(window.confirm("탈퇴를 진행하시겠습니까?") && window.confirm("탈퇴를 하시게 되면, 데이터는 절대 복구 불가능합니다."))
+			if(window.confirm("탈퇴를 진행하시겠습니까?"))
 			{	
 				window.location.href='<%=request.getContextPath()%>/deleteEnd.do?memerId=<%=loginMember.getMemberId()%>';
 			}else

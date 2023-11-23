@@ -69,9 +69,9 @@ public class MyinfoService {
 		return result;
 	}
 	
-	public String insertAddress(int memberNo, String address) {
+	public String insertAddress(Address Address) {
 	    Connection conn = getConnection();
-	    int result = dao.insertAddress(conn, address);
+	    int result = dao.insertAddress(conn, Address);
 	    if (result > 0) {
 	        commit(conn);
 	    } else {
@@ -88,6 +88,5 @@ public class MyinfoService {
 		else rollback(conn);
 		close(conn);
 		return result;
-	}
-	
+	}	
 }

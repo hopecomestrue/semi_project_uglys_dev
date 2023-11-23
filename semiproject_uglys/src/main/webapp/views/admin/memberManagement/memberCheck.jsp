@@ -117,7 +117,7 @@
  									 <div class="col-2">
  									<form action='<%=request.getContextPath() %>/searchMember.do' method="post">
 									 </div> 
-									<div class="datatable-search col-12">
+									<div class="datatable-search col-4">
 										<select name="searchKey" id="searchKey">
 											<option value="test">- 선택 -</option>
 											<option value="id">아이디</option>
