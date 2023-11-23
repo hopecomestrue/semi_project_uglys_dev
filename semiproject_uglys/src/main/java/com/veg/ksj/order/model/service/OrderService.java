@@ -6,6 +6,9 @@ import java.util.List;
 import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dao.OrderDao;
 import com.veg.ksj.order.model.dto.Order;
+import com.veg.ojy.cart.dto.Cart;
+import com.veg.pdw.production.model.dto.Production;
+
 import static com.veg.common.JDBCTemplate.*;
 
 public class OrderService {
@@ -35,6 +38,16 @@ public class OrderService {
 		close(conn);
 		return result;
 	}
+	
+	//주문_상세 테이블에 등록(주문/결제 등록)
+		public int inserOrderDetailEnd(Order order,Production pro,Cart c) {
+			Connection conn=getConnection();
+			int result=dao.inserOrderDetailEnd(conn,order,pro,c);
+			if(result>0) commit(conn);
+			else rollback(conn);
+			close(conn);
+			return result;
+		}
 	//주문현황 모든 row 가져오기
 	public List<Order> selectAllOrderDetails(){
 		Connection conn=getConnection();
