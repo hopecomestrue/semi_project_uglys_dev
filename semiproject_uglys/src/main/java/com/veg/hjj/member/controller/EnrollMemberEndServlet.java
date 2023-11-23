@@ -94,7 +94,7 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		
 		
 		int result=new MemberService().insertMember(m);
-		System.out.println(m);
+		//System.out.println(m);
 		String msg,loc;
 		if(result>0) {
 			msg=m.getMemberName()+"님 회원가입 축하드립니다.!";
