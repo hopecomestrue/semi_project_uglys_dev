@@ -3,10 +3,10 @@
 <%@ include file="/views/common/header.jsp" %>
 <%@ page import= "java.util.List,java.util.Map,com.veg.pdw.production.model.dto.Production,com.veg.pdw.production.model.dto.ProductionContent,com.veg.pdw.production.model.dto.ProductionReview" %>
 <% 
-	List<Production> productions = (List<Production>)request.getAttribute("productions"); 
-	List<ProductionContent> productionContents = (List<ProductionContent>)request.getAttribute("productionContents");
-	Map<Integer,Integer> reviewCount = (Map<Integer,Integer>)request.getAttribute("reviewCount");
-	Map<Integer,Double> reviewRating = (Map<Integer,Double>)request.getAttribute("reviewRating");
+	List<Production>productions = (List<Production>)request.getAttribute("productions"); 
+	List<ProductionContent>productionContents = (List<ProductionContent>)request.getAttribute("productionContents");
+	Map<Integer,Integer>reviewCount = (Map<Integer,Integer>)request.getAttribute("reviewCount");
+	Map<Integer,Double>reviewRating = (Map<Integer,Double>)request.getAttribute("reviewRating");
 	
 %>
 <style>
