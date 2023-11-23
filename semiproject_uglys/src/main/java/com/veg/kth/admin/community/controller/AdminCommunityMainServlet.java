@@ -52,7 +52,7 @@ public class AdminCommunityMainServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("members", members);
-		System.out.println(members);
+
 		
 		request.setAttribute("recipes", recipes);
         //pageBar만들기

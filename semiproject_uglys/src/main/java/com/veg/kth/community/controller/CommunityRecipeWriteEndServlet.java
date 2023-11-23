@@ -71,7 +71,7 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 								.categoryDept2(category_dept2)
 								.build();
 			String[] hashtags = mr.getParameterValues("hashtag");
-			System.out.println(hashtags);
+
 			
 //			for(int i=0; i<hashtags.length;i++) {
 //				System.out.println(hashtags[i]);
@@ -104,7 +104,6 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			    		.build();
 			    materials.add(m);
 			}
-			System.out.println(materials);
 			
 			
 			/*
@@ -120,15 +119,14 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			
 			List<Procedure> procedures = new ArrayList<>();
 			
-			for(int i=0;i<materialType.length;i++) {
+			for(int i=0;i<procedureComment.length;i++) {
 			    Procedure p = Procedure.builder()
 			    		.procedureOrder((long)(i+1))
 			    		.procedureComment(procedureComment[i])
 			    		.build();
 			    procedures.add(p);
 			}
-			System.out.println(procedures);
-			
+	
 			
 			
 			Recipe r = Recipe.builder()
@@ -146,7 +144,6 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 					.member_no(member_no)
 					.build();
 			
-			System.out.println(r);
 			
 			int result = new CommunityService().insertRecipe(r);
 			

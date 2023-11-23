@@ -41,10 +41,6 @@ public class AdminCommunitySearchServlet extends HttpServlet {
 		String searchType=request.getParameter("searchType").toUpperCase();
 		String searchContent=request.getParameter("searchContent");
 		
-		System.out.println(searchType);
-		System.out.println(searchContent);
-		System.out.println(dateStart);
-		System.out.println(dateEnd);
 		
 		List<Recipe> recipe = new ArrayList<>();
 		if(dateStart!="" || dateEnd!="") {
@@ -57,10 +53,8 @@ public class AdminCommunitySearchServlet extends HttpServlet {
 			members.add(new OrderService().selectMemberByNo(r.getMember_no()));
 		}
 		
-		request.setAttribute("members", members);
 		System.out.println(members);
 		
-		request.setAttribute("recipes", recipe);
 		
 		
 		

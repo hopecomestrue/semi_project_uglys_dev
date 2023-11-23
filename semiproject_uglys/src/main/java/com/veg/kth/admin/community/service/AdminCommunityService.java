@@ -1,6 +1,7 @@
 package com.veg.kth.admin.community.service;
 
-import static com.veg.common.JDBCTemplate.close;
+import static com.veg.common.JDBCTemplate.*;
+
 import static com.veg.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -48,6 +49,14 @@ public class AdminCommunityService {
 	public int updateRecipe(Recipe r) {
 		Connection conn = getConnection();
 		int result = dao.updateRecipe(conn,r);
+		
+//		int resultM = dao.updateMaterial(conn, r);
+//		int resultP = dao.updateProcedure(conn, r);
+//		int resultC = dao.updateCategory(conn, r);
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+
 		close(conn);
 		return result;
 	}

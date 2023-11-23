@@ -54,8 +54,7 @@ private Properties sql = new Properties();
 		ResultSet rs = null;
 		
 		String query = sql.getProperty("searchRecipeByAnything");
-		System.out.println(searchType);
-		System.out.println(searchContent);
+
 		query = query.replace("#COL", searchType);
 		List<Recipe> result = new ArrayList<>();
 		try {
@@ -89,7 +88,6 @@ private Properties sql = new Properties();
 			query+=" AND RECIPE_DATE < ?";
 		}
 		
-		System.out.println(query);
 		List<Recipe> result = new ArrayList<>();
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -107,7 +105,6 @@ private Properties sql = new Properties();
 			close(pstmt);
 			close(rs);
 		}
-		System.out.println(result);
 		return result;
 	}
 	
@@ -138,20 +135,40 @@ private Properties sql = new Properties();
 	
 	public int updateRecipe(Connection conn, Recipe r) {
 		PreparedStatement pstmt = null;
-
 		int result = 0;
+		String query="UPDATE community_recipe SET ";
+		if(r.getRecipeOriginalFileName()!=null) {
+			query +=  "RECIPE_ORIGINAL_FILE_NAME ='" + r.getRecipeOriginalFileName()+"',"; 
+		}
+		if(r.getRecipeRenamedFileName()!=null) {
+			query +=  "RECIPE_RENAMED_FILE_NAME ='" + r.getRecipeRenamedFileName()+"',";
+		}
+		if(r.getRecipeTitle()!=null) {
+			query +=  "RECIPE_TITLE ='" + r.getRecipeTitle()+"',";
+		}
+		if(r.getRecipeComment()!=null) {
+			query +=  "RECIPE_COMMENT ='" + r.getRecipeComment()+"',"; 
+		}
+		if(r.getRecipeLeadTime()!=null && !r.getRecipeLeadTime().equals("0")) {
+			query +=  "RECIPE_LEADTIME ='" + r.getRecipeLeadTime()+"',"; 
+		}
+		if(r.getRecipeCapa()!=0) {
+			query +=  "RECIPE_CAPA =" + r.getRecipeCapa(); 
+		}
+		query += " WHERE RECIPE_NO =?";
+
 		try {
-			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeByNo"));
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, r.getRecipeNo());
 			result = pstmt.executeUpdate();
-			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
+
 		return result;
-		
-		
+
 	}
 	
 }

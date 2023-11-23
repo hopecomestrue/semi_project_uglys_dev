@@ -1,14 +1,26 @@
+<%@page import="com.veg.pdw.production.model.dto.*"%>
+<%@page import="com.veg.ojy.cart.dto.Cart"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
+<%
+	List<Cart>carts=(List<Cart>)request.getSession().getAttribute("carts");
+	List<Production>productions=(List<Production>)request.getSession().getAttribute("productions");
+	List<ProductionContent>productionContents=(List<ProductionContent>)request.getSession().getAttribute("productionContents");
+	int sum=0;
+	int delFee=0;
+%>
 
 
-   <form class="pay-form" id="pay-form" action="<%=request.getContextPath() %>/order/ordersuccessEnd.do" method="post">
+
+   <form class="pay-form" id="pay-form" action="<%=request.getContextPath() %>/order/ordersuccessEnd.do?productNo=<%=productions.get(0).getProduction_no() %>" method="post">
 	<section class="ftco-section ftco-cart">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 ftco-animate">
 				<h3 class="mb-4 billing-heading">장바구니</h3>
+					<%if(!carts.isEmpty()){ %>
 					<div class="cart-list">
 						<table class="table">
 							<thead class="thead-primary">
@@ -22,33 +34,32 @@
 								</tr>
 							</thead>
 							<tbody>
+							<%for(int i=0;i<carts.size();i++){ %>
 								<tr class="text-center">
-									<td class="product-remove"><a href="#"><span
-											class="ion-ios-close"></span></a></td>
+									<td class="product-remove"><img src="<%=request.getContextPath()%>/upload/production/thumnail/<%=productionContents.get(i).getProductionImg()%>" style="width: 100px; height: 100px;"></td>
 
-									<td class="image-prod"><div class="img"
-											style="background-image: url(images2/product-3.jpg);"></div></td>
+									<td class="image-prod"></td>
 
-									<td class="product-name">
-										<h3>상품명</h3>
-										<p>상품 설명</p>
+									<td class="product-name1">
+										<h3 id="product-name"><%=productions.get(i).getProduction_name() %></h3>
 									</td>
 
-									<td class="price">29,900원</td>
+									<td class="price"><%=productions.get(i).getPrice() %></td>
 
 									<td class="qua-col first-row">
 										<div class="pro-qty">
-											<input type="text" name="cartCnt" class="cartQty" id="cartQty" value="1" 
-												style="width: 100px;" disabled>
+											<span><%=carts.get(i).getCount() %></span>
 										</div>
 									</td>
 
-
-									<td class="total">29,900원</td>
+														<%sum+=productions.get(i).getPrice()*carts.get(i).getCount(); %>
+									<td class="total"><%=productions.get(i).getPrice()*carts.get(i).getCount() %></td>
 									</tr>
+									<%} %>
 							</tbody>
 						</table>
 					</div>
+					<%} %>
 				</div>
 			</div>
 			</div>
@@ -137,20 +148,28 @@
 	          			<h3 class="billing-heading mb-4">장바구니 합계</h3>
 	          			<p class="d-flex">
 		    						<span>총가격</span>
-		    						<span>23000</span>
+		    						<span><%=sum %></span>
 		    					</p>
 		    					<p class="d-flex">
 		    						<span>배송비</span>
-		    						<span id="del-pay">0</span>
+		    						<span id="del-pay">
+		    							<%if(sum<=50000){delFee=2500;}
+		    								else{delFee=0;}%><%=delFee %>
+		    						</span>
+		    						
 		    					</p>
 		    					<p class="d-flex">
+		    					<%
+		    					int sale=sum/100;
+		    					int totalSum=sum-sale+delFee;
+		    					%>
 		    						<span>할인</span>
-		    						<span id="sale-per">0</span>
+		    						<span id="sale-per"><%=sale %></span>
 		    					</p>
 		    					<hr>
 		    					<p class="d-flex total-price">
 		    						<span>총합계</span>
-		    						<span id="total-price">23000</span>
+		    						<span id="total-price"><%=totalSum %></span>
 		    					</p>
 								</div>
 	          	</div>
@@ -353,7 +372,7 @@
                 data: {	
                     pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
                     merchant_uid : rsp.merchant_uid, //주문번호
-                    order_name : rsp.name, //주문명
+                    /* order_name : rsp.name, //주문명 */
                     imp_uid : rsp.imp_uid,         //결제 고유번호
                     paid_amount : rsp.paid_amount, //결제된 금액
                     buyer_name : rsp.buyer_name, //주문자 이름
@@ -449,7 +468,7 @@
                 data: {	
                     pg_provider : rsp.pg_provider, //PG사 구분코드, kakaopay,kcp(NHN KCP)
                     merchant_uid : rsp.merchant_uid, //주문번호
-                    order_name : rsp.name, //주문명
+                    /* order_name : rsp.name, //주문명 */
                     imp_uid : rsp.imp_uid,         //결제 고유번호
                     paid_amount : rsp.paid_amount, //결제된 금액
                     buyer_name : rsp.buyer_name, //주문자 이름

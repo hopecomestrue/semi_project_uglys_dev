@@ -44,7 +44,7 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 			System.out.println("시스템 오류 발생");
 		}else {
 			
-			String path = getServletContext().getRealPath("/upload/");
+			String path = getServletContext().getRealPath("/upload/recipe/");
 			path+="recipe";
 			File dir=new File(path);
 			if(!dir.exists()) dir.mkdir();
@@ -58,6 +58,7 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 				recipeNo = 0;
 			}
 			String oriMainFile = mr.getOriginalFileName("recipe_main_file");
+			
 			String renameMainFile = mr.getFilesystemName("recipe_main_file");
 			String title = mr.getParameter("recipe_title");
 			String explain = mr.getParameter("recipe_explain");
@@ -114,19 +115,20 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 			
 			List<Procedure> procedures = new ArrayList<>();
 			
-			for(int i=0;i<materialType.length;i++) {
+			for(int i=0;i<procedureComment.length;i++) {
 			    Procedure p = Procedure.builder()
 			    		.procedureOrder((long)(i+1))
 			    		.procedureComment(procedureComment[i])
 			    		.build();
 			    procedures.add(p);
 			}
-			System.out.println(procedures);
+			
 			
 				
 			Recipe r = Recipe.builder().build();
 			if(member_no!=0 && recipeNo!=0) {
 			r = Recipe.builder()
+					.recipeNo(recipeNo)
 					.recipeOriginalFileName(oriMainFile)
 					.recipeRenamedFileName(renameMainFile)
 					.recipeTitle(title)
@@ -142,9 +144,9 @@ public class AdminCommunityRecipeModifyEndServlet extends HttpServlet {
 					.build();
 			
 			}
-			System.out.println(r);
-			
+
 			int result = new AdminCommunityService().updateRecipe(r);
+
 			
 			String msg, loc;
 			

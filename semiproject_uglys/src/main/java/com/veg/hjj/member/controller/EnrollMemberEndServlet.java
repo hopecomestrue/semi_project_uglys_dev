@@ -39,9 +39,10 @@ public class EnrollMemberEndServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(!ServletFileUpload.isMultipartContent(request)) {
-	         System.out.println("잘못된 접근입니다");
-	      }else {
+		/*
+		 * if(!ServletFileUpload.isMultipartContent(request)) {
+		 * System.out.println("잘못된 접근입니다"); }else {
+		 */
 	         String path = request.getServletContext().getRealPath("/upload/photo");
 	         int maxSize= 1024*1024*100;
 	         String encoding = "UTF-8";
@@ -93,7 +94,7 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		
 		
 		int result=new MemberService().insertMember(m);
-		System.out.println(m);
+		//System.out.println(m);
 		String msg,loc;
 		if(result>0) {
 			msg=m.getMemberName()+"님 회원가입 축하드립니다.!";
@@ -107,7 +108,7 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/views/member/msg.jsp")
 		.forward(request, response);
-	      }
+	      //}
 	}
 	
 	/**

@@ -1,9 +1,11 @@
+<%@page import="com.veg.pdw.production.model.dto.Production"%>
 <%@page import="com.veg.ksj.order.model.dto.Order"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 <%
 	Order order=(Order)request.getSession().getAttribute("order");
+	Production product=(Production)request.getAttribute("product");
 %>
 
 
@@ -23,7 +25,7 @@
 	<%-- <form action="<%request.getContextPath()%>/admin/delchange.do" method="post"> --%>
 <h1 style="text-align: center; margin-top: 5%;">주문 완료</h1>
 <div class="delivery-detail-user">
-<form action="<%=request.getContextPath()%>/myInfo.do",method="post">
+<form action="<%=request.getContextPath()%>/myInfo.do" method="post">
 <%if(order!=null){ %>
 <table class="table table-bordered">
     <tr>
@@ -44,7 +46,7 @@
     </tr>
     <tr>
       <th>상품 내용</th>
-      <td>상품명, 수량</td>
+      <td><%=product.getProduction_name() %></td>
     </tr>
     <tr>
       <th>총 금액</th>

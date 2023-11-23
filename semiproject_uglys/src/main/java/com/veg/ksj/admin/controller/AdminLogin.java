@@ -26,8 +26,7 @@ public class AdminLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		//어드민 페이지로 이동
 		request.getRequestDispatcher("/views/admin/adminMain.jsp").forward(request, response);
 		
 	}

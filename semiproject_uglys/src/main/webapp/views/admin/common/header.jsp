@@ -167,19 +167,13 @@
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/MemberCheck.do">회원관리</a>
 	      </div>
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">상품등록</a>
+	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/production.do">상품등록</a>
 	      </div>
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/deliveryList.do">주문현황</a>
 	      </div>
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/refundList.do">환불관리</a>
-	      </div>
-	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="">고객센터</a>
-	      </div>
-	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">후기관리</a>
 	      </div>
 	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/recipeList.do">레시피관리</a>

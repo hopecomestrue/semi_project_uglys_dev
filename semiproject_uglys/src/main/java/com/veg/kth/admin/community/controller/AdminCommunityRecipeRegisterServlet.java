@@ -1,4 +1,4 @@
-package com.veg.ksj.order.controller;
+package com.veg.kth.admin.community.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OrderFail
+ * Servlet implementation class AdminCommunityRecipeRegisterServlet
  */
-@WebServlet("/order/orderfail.do")
-public class OrderFail extends HttpServlet {
+@WebServlet("/admin/reciperegister.do")
+public class AdminCommunityRecipeRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderFail() {
+    public AdminCommunityRecipeRegisterServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,8 @@ public class OrderFail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//보류 서블릿
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

@@ -66,6 +66,11 @@
         margin-top: 10px;
         margin-bottom: 3px;
     }
+     .navbar-nav .btn-info,
+     .navbar-nav .btn-outline-secondary {
+         margin-top: 10px;
+         margin-bottom: 3px;
+     }
 
     .navbar-nav .important-button {
         margin-top: 3px;
@@ -95,7 +100,7 @@
         </style>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">정기배송</a></li>
+
                 <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/productionList/vegfarm.do">채소농장</a></li>
 
                 <li class="nav-item" style="list-style-type: none;"><a href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
@@ -108,7 +113,6 @@
                 <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a></li>
                 </li>
                 <%} else {%>
-
 
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px; padding-bottom: 10px;">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -125,8 +129,13 @@
 
                         <button type="button" class="btn btn-outline-secondary btn-sm important-button"
                                 style="margin-left: 10px !important; padding: .6rem !important; font-size: .72rem !important; margin: 0 !important;" onclick="location.replace('<%=request.getContextPath()%>/loginout.do')">로그아웃</button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm important-button"
-                                style="margin-left: 10px !important; padding: .6rem !important; font-size: .72rem !important; margin: 0 !important;" onclick="location.replace('<%=request.getContextPath()%>/admin/login.do')">관리자 페이지</button>
+
+                        <%if(loginMember.getAdminCheck().equals("Y")){%>
+
+                            <button type="button" class="btn btn-info btn-sm"
+                                    onclick="location.replace('<%=request.getContextPath()%>/admin/login.do')" width="60px;" style="font-size: 12px;">관리자페이지</button>
+                        <%} %>
+
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 3px;">
         <span style="font-weight: bolder; margin-left: 10%; font-size: .88rem !important;">

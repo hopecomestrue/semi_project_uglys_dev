@@ -32,7 +32,7 @@ public class AdminRefundDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//해당 주문 고유번호 가져오기
 		long refundNo=Long.parseLong(request.getParameter("orderNo"));
-		System.out.println("환불 번호 : "+refundNo);
+//		System.out.println("환불 번호 : "+refundNo);
 		//해당 주문 회원,주문상세 객체 가져오기
 		Order refund=new OrderService().selectOrderDetailsByOrderNo(refundNo);
 		Member m=new OrderService().selectMemberByNo(refund.getMemberNo());

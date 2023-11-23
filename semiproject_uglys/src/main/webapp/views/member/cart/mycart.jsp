@@ -8,8 +8,8 @@
 <%@ include file="/views/common/header.jsp" %>
 <%
 	List<Cart> carts=(List<Cart>)request.getSession().getAttribute("carts");
-	List<Production> productions= (List<Production>)request.getAttribute("productions");
-	List<ProductionContent> productionContents= (List<ProductionContent>)request.getAttribute("productionContents");
+	List<Production> productions= (List<Production>)request.getSession().getAttribute("productions");
+	List<ProductionContent> productionContents= (List<ProductionContent>)request.getSession().getAttribute("productionContents");
 	int discountprice=0;
 	int totalprice=0; 
 %>
@@ -130,13 +130,18 @@
 									<%for(Cart c : carts) {%>
 									<%if(p.getProduction_no()==c.getProductNo()) {%>
 										<div class="pro-qty">
-											<span class="dec qtybtn">-</span> <input name="cartCnt"
+											<span class="dec qtybtn"></span> <input name="cartCnt"
 												class="cartQty" id="cartQty" value="<%=c.getCount()%>" type="text"
-												style="width: 100px;"> <span class="inc qtybtn">+</span>
+												style="width: 100px;"> <span class="inc qtybtn"></span>
 										</div>
 									</td>
 									<td class="total"><%=p.getPrice()*c.getCount()%></td>
 								</tr>
+					<%} 
+					}%>
+				
+				<%}
+					}%>
 						</table>
 					</div>
 				</div>
@@ -148,15 +153,11 @@
 						<h3>장바구니 총 결제 금액</h3>
 						<p class="d-flex total-price">
 							<span>상품금액</span> 
-							<span>
-							<%=p.getPrice()*c.getCount()%>
+							<span id="totalPrice">
+										
 							</span>
+							원
 						</p>
-					<%} 
-					}%>
-				
-				<%}
-					}%>
 						<!-- <p class="d-flex">
 							<span>배송비</span> <span>0원</span>
 						</p> -->
@@ -172,13 +173,13 @@
 						</p>
 						<hr>
 						<p class="d-flex total-price">
-							<span>총 금액</span> <span>0원</span>
+							<span>총 금액</span> <span id="finalPrice"></span>
 						</p>
 					</div>
 					
 			
 					<p>
-						<a href="#" class="btn btn-primary py-3 px-4">주문하기</a>
+						<a href="<%=request.getContextPath() %>/order/orderPaymentEnd.do" class="btn btn-primary py-3 px-4">주문하기</a>
 					</p>
 				</div>
 			</div>
@@ -212,7 +213,7 @@
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/google-map.js"></script>
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/main.js"></script>
 	
-	<script>
+	<!-- <script>
     
 	$(document).ready(function(){
         $('.qtybtn').click(function(e){
@@ -229,7 +230,7 @@
             } else if ($(this).hasClass('dec') && quantity > 1) {
                 // 수량 감소 버튼이 클릭된 경우 (수량은 1 미만으로 떨어지지 않도록)
                 inputField.val(quantity - 1);
-            }
+            } 
 
             // 상품 총 금액 계산 및 업데이트
             var totalPrice = price * parseInt(inputField.val());
@@ -256,4 +257,42 @@
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
     });
+</script> -->
+<script>
+    $(document).ready(function() {
+        var totalPrice = 0;
+        <% for (Cart c : carts) { %>
+            <% for (Production p : productions) { %>
+                <% if (p.getProduction_no() == c.getProductNo()) { %>
+                    totalPrice += <%= p.getPrice() * c.getCount() %>;
+                <% } %>
+            <% } %>
+        <% } %>
+        $('#totalPrice').text(totalPrice);
+    });
 </script>
+<script>
+    $(document).ready(function() {
+        var totalPrice = 0;
+        var discountPrice = 0;
+
+        <% for (Cart c : carts) { %>
+            <% for (Production p : productions) { %>
+                <% if (p.getProduction_no() == c.getProductNo()) { %>
+                    totalPrice += <%= p.getPrice() * c.getCount() %>;
+                    discountPrice += <%= p.getPrice() * (p.getDiscount() * 0.01) %>;
+                <% } %>
+            <% } %>
+        <% } %>
+
+        $('#totalPrice').text(totalPrice);
+        var finalPrice = totalPrice - discountPrice;
+        finalPrice = Math.floor(finalPrice / 10) * 10; 
+        $('#finalPrice').text(finalPrice);
+        
+        
+
+       
+    });
+</script>
+
