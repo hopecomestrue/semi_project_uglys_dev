@@ -23,7 +23,7 @@
 	<%-- <form action="<%request.getContextPath()%>/admin/delchange.do" method="post"> --%>
 <h1 style="text-align: center; margin-top: 5%;">주문 완료</h1>
 <div class="delivery-detail-user">
-<form action="<!-- 마이페이지 -->",method="post">
+<form action="<%=request.getContextPath()%>/myInfo.do" method="post">
 <%if(order!=null){ %>
 <table class="table table-bordered">
     <tr>
@@ -53,7 +53,7 @@
   </table>
   <%} %>
   <div class="buy-confirm-btn">
-  <button type="button" class="btn btn-primary btn-lg" id="buy-confirm">구매내역 보기</button>
+  <button type="submit" class="btn btn-primary btn-lg" id="buy-confirm">구매내역 보기</button>
   </div>
 </div>
 </form>

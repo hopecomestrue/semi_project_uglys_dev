@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.veg.hjj.member.dto.Member;
-import com.veg.ojy.mypage.service.MyinfoService;
+import com.google.gson.Gson;
+import com.veg.ksj.order.model.service.OrderService;
 
 /**
- * Servlet implementation class MyAddressEndServlet
+ * Servlet implementation class MyinfoRefundRequest
  */
-@WebServlet("/myaddressend.do")
-public class MyAddressEndServlet extends HttpServlet {
+@WebServlet("/myinfo/refund.do")
+public class MyinfoRefundRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyAddressEndServlet() {
+    public MyinfoRefundRequest() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +29,17 @@ public class MyAddressEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId=request.getParameter("memberId");
-		String addressNew=request.getParameter("address_New");
-//		int result = new MyinfoService().insertAddress(memberId,addressNew);
+		Gson gson=new Gson();
+		Long orderNo=Long.parseLong(request.getParameter("orderNo"));
 		
-//		if(result>0) {
-				String msg="변경이 완료되었습니다.";
-				String script="opener.location.replace('"+request.getContextPath()+"/myInfo.do');"+"close();";
-//				request.setAttribute("script",script);
-//		}
+		int result=new OrderService().OrderRefundRequest(orderNo);
+		
+		if(result>0) System.out.println("환불요청성공");
+		else System.out.println("환불요청실패");
+		
+		gson.toJson("",response.getWriter());
+		
+		
 	}
 
 	/**

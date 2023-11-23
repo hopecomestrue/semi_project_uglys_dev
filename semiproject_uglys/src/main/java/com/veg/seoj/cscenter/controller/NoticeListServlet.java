@@ -25,7 +25,6 @@ public class NoticeListServlet extends HttpServlet {
      */
     public NoticeListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -34,11 +33,8 @@ public class NoticeListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
-        //DB에 저장된 전체 notice데이터 가져오기
         int cPage;
         int numPerpage = 10;
-
-//		if(request.getParameter("cPage")!=null) cPage=request;
         try {
             cPage = Integer.parseInt(request.getParameter("cPage"));
         } catch (NumberFormatException e) {
@@ -91,7 +87,6 @@ public class NoticeListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         doGet(request, response);
     }
 

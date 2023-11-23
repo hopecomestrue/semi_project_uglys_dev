@@ -48,7 +48,6 @@ public class InquiryMember implements ResultSetMapper<InquiryMember> {
     @Builder.Default
     List<InquiryComment> inquiryCommentList = new ArrayList<>();
 
-    /////// 안쓰는거 /////////
     @Override
     public InquiryMember fromResultSet(ResultSet rs, String type) throws SQLException {
 
@@ -154,7 +153,6 @@ public class InquiryMember implements ResultSetMapper<InquiryMember> {
                     .enrollDate(rs.getDate("ENROLL_DATE"))
                     .photoRegist(rs.getString("PHOTO_REGIST"))
                     .MemberQuit(rs.getString("MEMBER_QUIT"))
-                    // 빈 리스트
                     .inquiryList(new ArrayList<>())
                     .inquiryCommentList(new ArrayList<>());
         }

@@ -35,7 +35,7 @@ public class ProductionDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("application/json");
 		StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();
         String line;

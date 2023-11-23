@@ -1,26 +1,27 @@
 package com.veg.ojy.mypage.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.veg.hjj.member.dto.Member;
-import com.veg.ojy.mypage.service.MyinfoService;
+import com.veg.ksj.order.model.dto.Order;
+import com.veg.ksj.order.model.service.OrderService;
 
 /**
- * Servlet implementation class MyAddressEndServlet
+ * Servlet implementation class MyinfoOrderDetail
  */
-@WebServlet("/myaddressend.do")
-public class MyAddressEndServlet extends HttpServlet {
+@WebServlet("/myinfo/myOrderDetail.do")
+public class MyinfoOrderDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyAddressEndServlet() {
+    public MyinfoOrderDetail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +30,11 @@ public class MyAddressEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId=request.getParameter("memberId");
-		String addressNew=request.getParameter("address_New");
-//		int result = new MyinfoService().insertAddress(memberId,addressNew);
-		
-//		if(result>0) {
-				String msg="변경이 완료되었습니다.";
-				String script="opener.location.replace('"+request.getContextPath()+"/myInfo.do');"+"close();";
-//				request.setAttribute("script",script);
-//		}
+		long orderNo=Long.parseLong(request.getParameter("orderNo"));
+		System.out.println("주문번호 : "+orderNo);
+		Order order=new OrderService().selectOrderDetailsByOrderNo(orderNo);
+		request.setAttribute("order", order);
+		request.getRequestDispatcher("/views/member/mypage/myOrderDetail.jsp").forward(request, response);
 	}
 
 	/**

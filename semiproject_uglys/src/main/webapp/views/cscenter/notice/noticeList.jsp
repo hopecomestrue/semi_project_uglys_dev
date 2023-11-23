@@ -42,31 +42,31 @@
 </head>
 <body class="goto-here">
 <style>
-    /* 여백 조절 스타일 */
+
     .navbar-nav {
-        margin-top: 20px; /* 네비게이션 바 전체의 위쪽 여백 */
+        margin-top: 20px;
     }
 
     .navbar-nav .nav-item {
-        margin-bottom: 10px; /* 각 네비게이션 아이템의 아래쪽 여백 */
+        margin-bottom: 10px;
     }
 
     .navbar-nav .cta-colored {
-        margin-top: 20px; /* [0] 아이템의 위쪽 여백 */
+        margin-top: 20px;
     }
 
     .navbar-nav .btn-primary,
     .navbar-nav .btn-outline-secondary {
-        margin-top: 10px; /* 버튼 위쪽 여백 */
-        margin-bottom: 3px; /* 버튼 아래쪽 여백 */
+        margin-top: 10px;
+        margin-bottom: 3px;
     }
 
     .navbar-nav .important-button {
-        margin-top: 3px; /* 중요 버튼 위쪽 여백 */
+        margin-top: 3px;
     }
 
     .navbar-nav span {
-        margin-top: 3px; /* 환영 메세지 위쪽 여백 */
+        margin-top: 3px;
     }
 
 
@@ -82,9 +82,9 @@
         </button>
 
         <style>
-            /* 추가된 스타일 */
+
             .navbar-nav {
-                margin-top: 20px; /* 위쪽 여백 조정 */
+                margin-top: 20px;
             }
         </style>
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -176,14 +176,7 @@
         text-align: center;
     }
 
-    /*
-    #Smallchat,#Smallchat * {
-     box-sizing:border-box;
-     -webkit-font-smoothing:antialiased;
-     -moz-osx-font-smoothing:grayscale;
-     -webkit-tap-highlight-color:transparent
-    }
-    */
+
     #Smallchat .Layout {
         pointer-events: auto;
         box-sizing: content-box !important;
@@ -546,10 +539,10 @@
                     </div>
                 </div>
             </div>
-            <!--===============CHAT ON BUTTON STRART===============-->
+
             <div class="chat_on"><span class="chat_on_icon"><i class="fa fa-comments" aria-hidden="true"></i></span>
             </div>
-            <!--===============CHAT ON BUTTON END===============-->
+
         </div>
     </div>
 </div>
@@ -564,16 +557,6 @@
     List<Notice> notices = (List<Notice>)request.getAttribute("notices");
 %>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<%-- <%
-	// Oracle에서 Timestamp 값을 가져온다고 가정
-	Timestamp oracleTimestamp = (Timestamp) request.getAttribute("oracleTimestamp");
-
-// SimpleDateFormat을 사용하여 날짜 및 시간 형식을 지정
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-// 변환된 날짜 문자열을 얻음
-	String formattedDate = dateFormat.format(oracleTimestamp);
-%> --%>
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -606,13 +589,10 @@
         padding-top: 70px;
     }
 </style>
-<!-- 큰 div를 만들어서 같은곳에 넣어줌 -->
 <div class="container">
     <div class="row">
-        <!-- Sidebar -->
         <div id="sidebar" class="col-md-3">
             <div class="inner">
-                <!-- Menu -->
                 <nav id="menu">
                     <header class="major">
                         <h2>공지사항</h2>
@@ -623,35 +603,16 @@
                         <li class="opner" style="list-style-type: none;"><a
                                 href="<%=request.getContextPath() %>/notice/noticeList.do" class="nav-link">공지사항</a>
                         </li>
-                        <!-- 											<ul>
-                                                                        <li><a href="myorders.html">주문 조회</a></li>
-                                                                        <li><a href="myreturn.html">반품 조회</a></li>
-                                                                        <li><a href="cart1.html">장바구니</a></li>
-                                                                    </ul> -->
                         </li>
                         <li>
                             <span class="opener">자주 묻는 질문</span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myreview.html">나의 리뷰</a></li>
-                                                                            <li><a href="bookmark.html">북마크</a></li>
-                                                                            <li><a href="#">1:1문의</a></li>
-                                                                        </ul> -->
                         </li>
                         <li>
                             <span><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do"
                                      class="opener">1:1 문의</a></span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myinfo.html">내 정보 수정</a></li>
-                                                                            <li><a href="myaddress.html">배송지 관리</a></li>
-                                                                        </ul> -->
                         </li>
-                        <!-- 										<li><a onclick="confirmLogout()">로그아웃</a></li> -->
                         <li>
                             <span class="opener">고객의 소리(x)</span>
-                            <!-- 											<ul>
-                                                                            <li><a href="myinfo.html">내 정보 수정</a></li>
-                                                                            <li><a href="myaddress.html">배송지 관리</a></li>
-                                                                        </ul> -->
                         </li>
                     </ul>
                 </nav>
@@ -677,7 +638,6 @@
                     <th>제목</th>
                     <th>작성자</th>
                     <th>작성일</th>
- <%--                   <th>첨부파일</th>--%>
                     <th>조회수</th>
                 </tr>
                 <tr>

@@ -7,7 +7,7 @@
 String id = (String)session.getAttribute("loginMember");
 MemberDao m = new MemberDao();
 String memberId = request.getParameter("memberId");
-Member member = m.selectMemberById(memberId);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -63,7 +63,7 @@ Member member = m.selectMemberById(memberId);
 									<tr>
 										<th>이메일</th>
 										<td>
-											<%=member.getMemberEmail()%>ail()%>
+											<%=member.getMemberEmail()%>()%>
 										</td>
 									</tr>
 									<tr>
@@ -96,12 +96,6 @@ Member member = m.selectMemberById(memberId);
 											<%=member.getEnrollDate()%>
 										</td>
 									</tr>
-									<tr>
-										<th>프로필등록</th>
-										<td>
-											<%=member.getPhotoRegist()%>
-										</td>
-									</tr>
 	                            </table>
                            		<button class="btn btn-outline-secondary" type="submit">수정</button>
 							</form>
@@ -110,4 +104,4 @@ Member member = m.selectMemberById(memberId);
                 </div>
             </main>
 </body>
-</html> --%>
+</html>  --%>
