@@ -6,7 +6,6 @@
 <%
 	Order order=(Order)request.getSession().getAttribute("order");
 	Production product=(Production)request.getAttribute("product");
-	String orderName=(String)request.getSession().getAttribute("orderName");
 %>
 
 
@@ -25,8 +24,8 @@
 <body>
 	<%-- <form action="<%request.getContextPath()%>/admin/delchange.do" method="post"> --%>
 <h1 style="text-align: center; margin-top: 5%;">주문 완료</h1>
-<form action="<%=request.getContextPath()%>/myInfo.do" method="post">
 <div class="delivery-detail-user">
+<form action="<%=request.getContextPath()%>/myInfo.do" method="post">
 <%if(order!=null){ %>
 <table class="table table-bordered">
     <tr>
@@ -47,7 +46,7 @@
     </tr>
     <tr>
       <th>상품 내용</th>
-      <td><%=orderName %></td>
+      <td><%=product.getProduction_name() %></td>
     </tr>
     <tr>
       <th>총 금액</th>

@@ -180,9 +180,9 @@
 		
 		<div>
 		<br><br><br>
-		<button type="button" class="btn btn-primary" onclick="location href='<%=request.getContextPath() %>/admin/reciperegister.do'">등록</button>
-		<button type="button" class="btn btn-primary">선택 삭제</button>
-		<button type="button" class="btn btn-primary">일괄 삭제</button>
+		<button type="button" class="btn btn-secondary" onclick="location href='<%=request.getContextPath() %>/admin/reciperegister.do'">등록</button>
+		<button type="button" class="btn btn-secondary">선택 삭제</button>
+		<button type="button" class="btn btn-secondary">일괄 삭제</button>
 		<table class="table table-bordered">
 		<thead>
 			<tr>

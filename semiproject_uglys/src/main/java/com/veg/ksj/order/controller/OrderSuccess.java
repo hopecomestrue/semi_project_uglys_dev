@@ -50,7 +50,7 @@ public class OrderSuccess extends HttpServlet {
 		int totalPrice=Integer.parseInt(request.getParameter("paid_amount")); //결제금액
 		String buyerEmail=request.getParameter("buyer_email"); //주문자 email
 		String orderStatus=request.getParameter("order_status"); //결제상태
-		String orderName=request.getParameter("order_name"); //상품명
+		String orderName=request.getParameter("name"); //상품명
 //		long paidAt=Long.parseLong(request.getParameter("paid_at")); //결제승인시각
 		
 		//결제상태 : paid==결제완료, ready==미결제, failed==결제실패
@@ -115,8 +115,6 @@ public class OrderSuccess extends HttpServlet {
 		
 		
 		request.getSession().setAttribute("order", order);
-		request.getSession().setAttribute("orderName", orderName);
-		
 		 response.setContentType("application/json;charset=utf-8");
 		 gson.toJson(order,response.getWriter());
 

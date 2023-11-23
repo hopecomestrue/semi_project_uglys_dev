@@ -196,7 +196,7 @@
                   <div class="text text-center">
                     <p class="mb-5 pl-4 line">바쁜 일상 속에 반찬 만들기도 큰 일거리죠? 그래서 더 간단한 방법의 레시피가 필요하구요. 맛도 있고 영양도 살아있는 아삭 콩나물무침 보여드릴게요~^^</p>
                     <p class="name">콩나물무침</p>
-                    <span>Lorem Ipsum</span>
+                    <span>증말 이러기야</span>
                   </div>
                 </div>
               </div>

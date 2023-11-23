@@ -34,7 +34,6 @@ public class OrderSuccessEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int productNo=Integer.parseInt(request.getParameter("productNo"));
 		
-		
 		Production pro=new ProductionService().selectProductionByNo(productNo);
 		
 		request.setAttribute("product", pro);

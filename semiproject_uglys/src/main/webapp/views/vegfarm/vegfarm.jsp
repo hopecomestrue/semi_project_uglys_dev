@@ -235,8 +235,8 @@
       <!-- 상품설명후기탭 -->
       <div style="border-bottom-width:1px; border-color: rgb(229 231 235);  z-index: 3501;top: 56px;">
          <div style="display: flex; justify-content: center; align-items: center; width: 100%; gap: 16px;">
-            <div class="sub"style="cursor: pointer; box-sizing: border-box; font-size: 18px; line-height: 1; padding-top: 8px; padding-bottom: 16px; border-color: rgb(255 103 65); border-bottom-width: 4px;"> <a href="#accordion-content">상품 설명</a></div>
-            <div class="sub" style="cursor: pointer; box-sizing: border-box; font-size: 18px; line-height: 1; padding-top: 8px; padding-bottom: 16px; border-color: rgb(255 103 65); border-bottom-width: 4px;"><a href="#review">후기</a></div>
+            <div class="sub"style="cursor: pointer; box-sizing: border-box; font-size: 18px; line-height: 1; padding-top: 8px; padding-bottom: 16px; border-color: rgb(255 103 65); border-bottom-width: 4px;"> <a href="#">상품 설명</a></div>
+            <div class="sub" style="cursor: pointer; box-sizing: border-box; font-size: 18px; line-height: 1; padding-top: 8px; padding-bottom: 16px; border-color: rgb(255 103 65); border-bottom-width: 4px;"><a href="#">후기</a></div>
             <div><hr style="max-width: 16px;"></div>
          </div>
          <div></div>
@@ -250,6 +250,7 @@
             <%=pc.getProductionContent() %>
 
            </div>
+           <button class="accordion-button" style="background-color:white; border-radius: 10px; color: rgb(65 75 90); border-width: 1px; font-weight: 600; border-color: #e5e7eb; width: 53%; margin-top: 10px; margin-bottom: 10px; padding: 1%; border-color: rgb(65 75 90);"><span style="padding: 10px;">상품 소개 펼치기</span></button>
          </div>
         </div>
       
@@ -319,7 +320,7 @@
                           
                         </div>
                      </div>
-                     <div style="border-width: 1px; position: relative; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-color: rgb(229 231 235); display: block;"id="review">
+                     <div style="border-width: 1px; position: relative; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-color: rgb(229 231 235); display: block;">
                         <div style="padding-left: 14px; padding-right: 14px; padding-top: 16; padding-bottom: 16px; justify-content: space-between; align-items: center; cursor: pointer; display: flex;">
                            <span style="color:  rgb(31 41 55); font-weight: 400; font-size: 16px;line-height: 1;">
                               

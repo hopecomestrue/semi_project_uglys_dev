@@ -56,6 +56,9 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 				int recipeNo = 0;
 			}
 			
+			//String tag = request.getParameter("tag");
+			//System.out.println(tag);
+			
 			
 			String oriMainFile = mr.getOriginalFileName("recipe_main_file");
 			String renameMainFile = mr.getFilesystemName("recipe_main_file");
