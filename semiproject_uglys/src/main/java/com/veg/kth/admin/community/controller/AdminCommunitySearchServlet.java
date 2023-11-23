@@ -42,20 +42,20 @@ public class AdminCommunitySearchServlet extends HttpServlet {
 		String searchContent=request.getParameter("searchContent");
 		
 		
-		List<Recipe> recipe = new ArrayList<>();
+		List<Recipe> recipes = new ArrayList<>();
 		if(dateStart!="" || dateEnd!="") {
-			recipe = new AdminCommunityService().searchRecipeByAnythingAndDate(searchType,searchContent,dateStart,dateEnd);
+			recipes = new AdminCommunityService().searchRecipeByAnythingAndDate(searchType,searchContent,dateStart,dateEnd);
 		}else {
-			recipe = new AdminCommunityService().searchRecipeByAnything(searchType,searchContent);			
+			recipes = new AdminCommunityService().searchRecipeByAnything(searchType,searchContent);			
 		}
 		List<Member> members = new ArrayList<>(); 
-		for(Recipe r : recipe) {
+		for(Recipe r : recipes) {
 			members.add(new OrderService().selectMemberByNo(r.getMember_no()));
 		}
+
 		
-		System.out.println(members);
-		
-		
+		request.setAttribute("recipes", recipes);
+		request.setAttribute("members", members);
 		
 		
 		request.getRequestDispatcher("/views/admin/admincommunity/communityRecipe.jsp")

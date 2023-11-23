@@ -203,11 +203,7 @@
 			<tr>
 				<td><input type="checkbox" name="delete_check"></td>
 				<td><a href="<%=request.getContextPath()%>/admin/recipedetail.do?recipeNo=<%=r.getRecipeNo()%>"><%=r.getRecipeNo() %></a></td>
-				<td><%for(Member m : members){%>
-				<%if(r.getMember_no()== m.getMemberNo()){%>
-				<%=m.getMemberId() %>
-				<%}
-				}%>
+				<td><%=r.getMember_no() %>
 				</td>
 				<td><%=r.getRecipeTitle() %></td>
 				<td><%=r.getCategory().getCategoryDept1() %>/<%=r.getCategory().getCategoryDept2() %></td>
