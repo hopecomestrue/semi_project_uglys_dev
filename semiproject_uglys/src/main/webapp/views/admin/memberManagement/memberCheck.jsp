@@ -9,6 +9,7 @@
 
 <%
     List<Member> members = (List<Member>)request.getAttribute("member");
+
    /*  Member loginMember = (Member)session.getAttribute("loginMember"); */
     List<Address> addresses = (List<Address>)request.getAttribute("address");
 %>
@@ -109,8 +110,6 @@
 										  <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
 										  <li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
 										  <li class="nav-item"><a href="/mypage.html" class="nav-link">관리자페이지</a></li>
-										  <li class="nav-item cta cta-colored"><a href="/cart1.html" class="nav-link"><span href=""></span>[0]</a></li>
-							
 										</ul>
 									  </div>
 									</div>
@@ -140,21 +139,22 @@
 									 </div>
 									<div class="features">
  									<div class="col-2">
- 									<form action='<%=request.getContextPath() %>/searchMember.do' method="get">
+ 									<form action='<%=request.getContextPath() %>/searchMember.do' method="post">
 										<select name="searchKey" id="searchKey" >
 											<option value="test">- 선택 -</option>
 											<option value="id">아이디</option>
-											<option value="name">이름</option>
-										</select>
-									</form>
+											<option value="memberName">이름</option>
+										</select>									
 									</div>
 									<br><br><br>
 									<div class="datatable-search col-8">
-									<input class="datatable-input" placeholder="회원조회" type="search" title="search within table" 
+									<input class="datatable-input" placeholder="회원조회" name="searchKeyword" title="search within table" 
 									aria-controls="datatableSimple">
 									</div><br><br>
 									<div>
-									<input type="submit" value="검색" class="primary" id="searchKey"/></div>
+									<input type="submit" value="검색" class="primary" id="searchKey"/>
+									</form>
+									</div>
                                         <div class="table-wrapper">
                                             <table id="datatablesSimple">
                                                 <thead>
@@ -247,16 +247,8 @@
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/main.js"></script>
-			<script>
-			    const searchKey = document.getElementById("searchKey");
-			    console.log(searchKey)
-			    searchKey.addEventListener("change",function(e){
-			    location.replace("<%=request.getContextPath()%>/searchMember.do?member="+ e.target.value);
-			    });
-			    
-			    </script>
 
-			</script>
+			
 			
  
 

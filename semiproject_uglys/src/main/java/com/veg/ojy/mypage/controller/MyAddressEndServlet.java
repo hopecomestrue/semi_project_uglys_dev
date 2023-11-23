@@ -38,6 +38,9 @@ public class MyAddressEndServlet extends HttpServlet {
 				String script="opener.location.replace('"+request.getContextPath()+"/myInfo.do');"+"close();";
 //				request.setAttribute("script",script);
 //		}
+				
+				String URL = response.encodeRedirectURL(request.getContextPath() + "/myInfo.do");
+				response.sendRedirect(URL);
 	}
 
 	/**

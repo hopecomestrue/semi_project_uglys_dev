@@ -84,6 +84,7 @@ public class MemberManagementDao {
 		         close(pstmt);
 		      }return result;
 		   }
+	   
 	   public List<Member> searchMemberByKeyword(Connection conn, String type, String keyword, int cPage, int numPerpage){
 		   PreparedStatement pstmt=null;
 		   ResultSet rs= null;
@@ -92,11 +93,9 @@ public class MemberManagementDao {
 		   query=query.replace("#COL",type);
 		   try {
 			   pstmt=conn.prepareStatement(query);
-			   pstmt.setString(1, type.equals("gender")?keyword:"%"+keyword+"%");
+			   pstmt.setString(1, "%"+keyword+"%");
 			   pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			   pstmt.setInt(3, cPage*numPerpage);
-			   rs=pstmt.executeQuery();
-			   
 			   rs=pstmt.executeQuery();
 			   while(rs.next())result.add(MemberDao.getMember(rs));
 		   }catch(SQLException e) {

@@ -74,12 +74,12 @@ input[type="submit"]:hover {
 <body>
     <div class="login-container">
         <h2>아이디 찾기</h2>
-        <form action="<%=request.getContextPath()%>/forgetfindid.do" method="post">
+        <form action="<%=request.getContextPath()%>/forgetfindid.do" method="post" onsubmit="return searchId();">
             <table>
                 <tr>
                     <th>이름</th>
                     <td>
-                        <input type="text" name="userName" required>
+                        <input type="text" name="memberName" required>
                     </td>
                 </tr>
                 
@@ -110,14 +110,14 @@ input[type="submit"]:hover {
          
 <script>
   function searchId(){
-     var name = document.getElementById("userName").value;
+     var name = document.getElementById("memberName").value;
      var email = document.getElementById("email").value;
 
      if(name == "" || email == ""){
         alert("모든 정보를 입력해주세요.");
         return;
      }
-     
+  }
 </script>  
 </body>
 </html>

@@ -46,7 +46,8 @@ public class SearchMemberServlet extends HttpServlet {
 	      }
 	      
 	      int totalData = new MemberManagementService().selectMemberCount();
-	      List<Member> serachResult = new MemberManagementService().searchMember(cPage, cPage, key, keyword);
+	      List<Member> searchResult = new MemberManagementService().searchMember(cPage, cPage, key, keyword);
+	     
 	      
 	      int totalPage=(int)Math.ceil((double)totalData/cPage);
 	      int pageBarSize=5;
@@ -60,7 +61,7 @@ public class SearchMemberServlet extends HttpServlet {
 	         pageBar.append("<span>[이전]</span>"); 
 	                                 
 	      }else {
-	         pageBar.append("<a href='"+request.getRequestURI()+"?cPage="+(pageNo-1)+"&member="+(keyword)+"'>");
+	         pageBar.append("<a href='"+request.getRequestURI()+"?cPage="+(pageNo-1)+"&searchKeyword="+(keyword)+"'>");
 	         pageBar.append("[이전]</a>"); 
 	      }
 	      
@@ -68,15 +69,15 @@ public class SearchMemberServlet extends HttpServlet {
 	         if(cPage==pageNo) {
 	            pageBar.append("<span>"+pageNo+"</span>"); 
 	         }else {
-	            pageBar.append("<a href='"+request.getRequestURI()+"?cPage="+pageNo+"&member="+(keyword)+"'>");
+	            pageBar.append("<a href='"+request.getRequestURI()+"?cPage="+pageNo+"&searchKeyword="+(keyword)+"'>");
 	            pageBar.append(pageNo);
 	            pageBar.append("</a>"); 
 	         }
 	         pageNo++;
 	      }
-			
+		request.setAttribute("member", searchResult);
+		request.getRequestDispatcher("/views/admin/memberManagement/memberCheck.jsp").forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

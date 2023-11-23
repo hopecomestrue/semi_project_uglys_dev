@@ -1,11 +1,17 @@
 <%@page import="com.veg.ojy.cart.dto.Cart"%>
 <%@page import="java.util.List"%>
 <%@page import="com.veg.hjj.member.dto.Member"%>
+<%@page import="com.veg.pdw.production.model.dto.Production"%>
+<%@page import="com.veg.pdw.production.model.dto.ProductionContent"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 <%
 	List<Cart> carts=(List<Cart>)request.getSession().getAttribute("carts");
+	List<Production> productions= (List<Production>)request.getAttribute("productions");
+	List<ProductionContent> productionContents= (List<ProductionContent>)request.getAttribute("productionContents");
+	int discountprice=0;
+	int totalprice=0; 
 %>
 <title></title>
 <meta charset="utf-8">
@@ -97,89 +103,80 @@
 									<th>총금액</th>
 								</tr>
 							</thead>
-							<%if(!carts.isEmpty()){
-								for(Cart c : carts){%>
+							<%if(productions!=null&&!productions.isEmpty()){
+								for(Production p : productions){%>
 							<tbody>
-<%-- 							<% int sum =0;
-							ArrayList<Cart> cartlist =(ArrayList<Cart>) session.getAttribute("cartList");
-							for(int i = 0; i < cartlist.size(); i++){
-										Cart cart = cartlist.get(i);
-										sum += cart.getTotalPrice();}%> --%>
+
 								<tr class="text-center">
 									<td class="product-remove"><a href="#"><span
 											class="ion-ios-close"></span></a></td>
-
-									<td class="image-prod"><div class="img"
-											style="background-image: url(images2/product-3.jpg);"></div></td>
-
+									<td class="image-prod"><div class="img">
+									<%for(ProductionContent pc : productionContents) {%>
+									<% if (pc.getProductionNo()==p.getProduction_no()) {%>
+										<img style="width: 100%; height: 100%;"
+										src="<%=request.getContextPath()%>/upload/production/thumnail/<%=pc.getProductionImg()%>">
+										</div>
+									<%} 
+									}%>
+										</td>
 									<td class="product-name">
 										<h3><%-- <%=c.get %> --%></h3>
-										<p>Far far away, behind the word mountains, far from the
-											countries</p>
+										<p><%=p.getProduction_name() %></p>
 									</td>
 
-									<td class="price">39,900원</td>
+									<td class="price"><%=p.getPrice()%></td>
 
 									<td class="qua-col first-row">
+									<%for(Cart c : carts) {%>
+									<%if(p.getProduction_no()==c.getProductNo()) {%>
 										<div class="pro-qty">
 											<span class="dec qtybtn">-</span> <input name="cartCnt"
-												class="cartQty" id="cartQty" value="1" type="text"
+												class="cartQty" id="cartQty" value="<%=c.getCount()%>" type="text"
 												style="width: 100px;"> <span class="inc qtybtn">+</span>
 										</div>
 									</td>
-									<td class="total">39,900원</td>
+									<td class="total"><%=p.getPrice()*c.getCount()%></td>
 								</tr>
-
-								<tr class="text-center">
-									<td class="product-remove"><a href="#"><span
-											class="ion-ios-close"></span></a></td>
-
-									<td class="image-prod"><div class="img"
-											style="background-image: url(images2/product-4.jpg);"></div></td>
-
-									<td class="product-name">
-										<h3>고구마 3kg</h3>
-										<p>Far far away, behind the word mountains, far from the
-											countries</p>
-									</td>
-
-									<td class="price">29,900원</td>
-
-									<td class="qua-col first-row">
-										<div class="pro-qty">
-											<span class="dec qtybtn">-</span> <input name="cartCnt"
-												class="cartQty" id="cartQty" value="1" type="text"
-												style="width: 100px;"> <span class="inc qtybtn">+</span>
-										</div>
-									</td>
-
-									<td class="total">29,900원</td>
-								</tr>
-							</tbody>
-							<%}
-								}%>
 						</table>
 					</div>
 				</div>
 			</div>
+			
 			<div class="row justify-content-end" align="right">
 				<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
 					<div class="cart-total mb-3">
 						<h3>장바구니 총 결제 금액</h3>
 						<p class="d-flex total-price">
-							<span>상품금액</span> <span>0원</span>
+							<span>상품금액</span> 
+							<span>
+							<%=p.getPrice()*c.getCount()%>
+							</span>
 						</p>
+					<%} 
+					}%>
+				
+				<%}
+					}%>
 						<!-- <p class="d-flex">
 							<span>배송비</span> <span>0원</span>
 						</p> -->
 						<p class="d-flex">
-							<span>할인금액</span> <span>0원</span>
+						
+							<span>할인금액</span>
+							<span> 
+						<%for(Production p : productions){ %>
+							<%discountprice += p.getPrice()*(p.getDiscount()*0.01);%>
+						<%} %>
+							<%=discountprice%>원
+							</span>
 						</p>
 						<hr>
 						<p class="d-flex total-price">
 							<span>총 금액</span> <span>0원</span>
 						</p>
 					</div>
+					
+			
 					<p>
 						<a href="#" class="btn btn-primary py-3 px-4">주문하기</a>
 					</p>
@@ -214,8 +211,10 @@
 	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/google-map.js"></script>
 	<script src="<%=request.getContextPath() %>/js/jyjs/js2/main.js"></script>
+	
 	<script>
-    $(document).ready(function(){
+    
+	$(document).ready(function(){
         $('.qtybtn').click(function(e){
             e.preventDefault();
             var inputField = $(this).siblings('.cartQty');
@@ -249,7 +248,7 @@
             });
 
             // 합산된 금액을 총 합계 영역에 업데이트
-            $('.total-price span:last-child').text(addCommas(totalAmount) + '원');
+            $('.total-price').text(addCommas(totalAmount) + '원');
         }
 
         // 숫자에 천 단위로 콤마 추가하는 함수
