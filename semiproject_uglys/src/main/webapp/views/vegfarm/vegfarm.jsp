@@ -210,14 +210,19 @@
          	<%-- <form name="addForm" action="${request.getContextPath()}/mycart.do" method="post"> --%>
             <%--  <span style="display: flex; gap: 10px;"><p><a href="<%=request.getContextPath() %>/mycart.do" class="btn btn-black py-3 px-5" <!-- onclick="document.addForm.submit();" --> >장바구니</a></p> --%>
 			<!-- </form> -->
-			<%if(p.getStock()>0) {%>
+			<%if(p.getStock()>0&&m!=null) {%>
 			<span style="display: flex; gap: 10px;">
 			<button>장바구니</button>
 			<input type="hidden" value="<%=p.getProduction_no()%>" name="productNo">
-            </form>
             <button>바로구매</button></span>
-            <%} else{%> 
+            </form>
+            <%}else if(p.getStock()<0){%> 
              	<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">품절</a></p>
+             <%} %>
+             <% if(m==null) {%>
+             	<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">로그인을 해주세요</a></p>
+			
+            <%} {%> 
              <%} %>
              </div>
           </div>
@@ -368,7 +373,7 @@
  	 <input type="hidden" name="content" value="" id="content-input">
  	 <input type="hidden" name="productionNo" value="<%=p.getProduction_no()%>">
  	 <input type="hidden" name="member" value="<%=m.getMemberNo()%>" id="content-input">			
-  	<button type="submit" style="margin-top: 100px;" id="upload">등록</button>
+  	<button type="submit" style="margin-top: 100px; justify-content: center; display: flex; text-align: center;" id="upload">등록</button>
 	</form>
                         
  	 <%}else{%>

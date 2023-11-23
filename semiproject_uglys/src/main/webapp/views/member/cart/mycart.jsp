@@ -173,7 +173,7 @@
 						</p>
 						<hr>
 						<p class="d-flex total-price">
-							<span>총 금액</span> <span>0원</span>
+							<span>총 금액</span> <span id="finalPrice"></span>
 						</p>
 					</div>
 					
@@ -269,6 +269,30 @@
             <% } %>
         <% } %>
         $('#totalPrice').text(totalPrice);
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        var totalPrice = 0;
+        var discountPrice = 0;
+
+        <% for (Cart c : carts) { %>
+            <% for (Production p : productions) { %>
+                <% if (p.getProduction_no() == c.getProductNo()) { %>
+                    totalPrice += <%= p.getPrice() * c.getCount() %>;
+                    discountPrice += <%= p.getPrice() * (p.getDiscount() * 0.01) %>;
+                <% } %>
+            <% } %>
+        <% } %>
+
+        $('#totalPrice').text(totalPrice);
+        var finalPrice = totalPrice - discountPrice;
+        finalPrice = Math.floor(finalPrice / 10) * 10; 
+        $('#finalPrice').text(finalPrice);
+        
+        
+
+       
     });
 </script>
 
