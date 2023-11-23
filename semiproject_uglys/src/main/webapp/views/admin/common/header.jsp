@@ -176,12 +176,6 @@
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/refundList.do">환불관리</a>
 	      </div>
 	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="">고객센터</a>
-	      </div>
-	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="#">후기관리</a>
-	      </div>
-	      <div class="col">
 	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/recipeList.do">레시피관리</a>
 	      </div>
 	    </div>

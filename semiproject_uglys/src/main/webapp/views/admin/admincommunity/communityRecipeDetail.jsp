@@ -73,8 +73,8 @@ input::-webkit-inner-spin-button {
 		<input type="text" name="writer"  value="<%=member.getMemberId() %>" readonly="readonly" style="background:grey;"><br><br>
 		
 		<h5>첨부파일</h5>
-		<img src="<%=request.getContextPath()%>/images/brand_image (1).png" width="25">
-		<input type="file" name="recipe_main_file" src="<%=request.getContextPath()%>/upload/recipe/<%=recipe.getRecipeRenamedFileName()%>"><br>
+		<img src="<%=request.getContextPath()%>/upload/image/<%=recipe.getRecipeRenamedFileName() %>" width="25">
+		<input type="file" name="recipe_main_file"><br>
 		<input type="text" name="recipe_title" maxlength="20" value="<%=recipe.getRecipeTitle() %>"><br>
 		<input type="text" name="recipe_explain" maxlength="240" value="<%=recipe.getRecipeComment() %>">
 		<br>
@@ -135,12 +135,12 @@ function categoryChange(e) {
 		<div class="form-group">
                 <input type="hidden" value="" name="tag" id="rdTag" />
             </div>
-				<%if(!hashtag.isEmpty()){ 
-            		for(int i=0;i<3;i++){%>
+				<%if(!hashtag.isEmpty()){
+            		for(int i=0;i<hashtag.size();i++){%>
                   <button type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
                 		#<%=hashtag.get(i).getHashtagValue()%>
                 	</button>
-                	<%} 
+                	<%}
                 	}%>
                  <div id="tag-list"></div>
                  <div class="form-group">
@@ -179,7 +179,7 @@ function categoryChange(e) {
 		<br>
 		<h5 id="material">재료</h5>
 		<%if(!recipe.getMaterial().isEmpty()){
-		for(int i=0; i<4/* i<recipe.getMaterial().size() */;i++){ %>
+		for(int i=0; i<recipe.getMaterial().size();i++){ %>
 		<select name="material_type" id="material_type">
 			<option value="main" <%=recipe.getMaterial().get(i).getMaterialType().equals("MAIN")?"selected":"" %>>필수재료</option>
 			<option value="sub"	<%=recipe.getMaterial().get(i).getMaterialType().equals("SUB")?"selected":"" %>>부재료</option>
@@ -197,7 +197,7 @@ function categoryChange(e) {
 		<br>
 		<h5>만드는 방법</h5>
 		<%if(!recipe.getProcedure().isEmpty()){
-		for(int i=0; i<4/* <recipe.getProcedure().size() */;i++){ %>
+		for(int i=0; i<recipe.getProcedure().size();i++){ %>
 		<p id="procedure_no" name="procedure_no"><%=recipe.getProcedure().get(i).getProcedureNo() %>번</p>
 		<input type="text" id="procedure_comment" name="procedure_comment" maxlength="150" value="<%=recipe.getProcedure().get(i).getProcedureComment()%>">
 		<input type="file" id="procedure_file" name="procedure_file">

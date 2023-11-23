@@ -4,7 +4,8 @@
 <%@ page import="com.veg.kth.community.model.dto.Recipe, java.util.List,com.veg.kth.community.model.dto.Hashtag" %>
 <%
 
-	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");  
+	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");
+	List<Member> members = (List<Member>)request.getAttribute("members"); 
 
 %>
 <style>
@@ -178,8 +179,8 @@
         <div class="row">
           <div >
             <div class="sidebar-box" >
-            <h3>오늘의 레시피는?</h3>
-              <form action="#" class="search-form">
+            <!-- <h3 style="text-align:center;" >오늘의 레시피는?</h3> -->
+              <%-- <form action="#" class="search-form">
                 <div class="form-group">
                   <span class="icon ion-ios-search"></span>
                   <input type="search" id="searchtag" list="data" class="form-control" placeholder="ex) 감자">
@@ -196,20 +197,20 @@
                 	</a>
                 	<%} %>
                  <%}
-            	}%>
+            	}%> --%>
                 </div>
               </div>
             </div>
         </div>
-      </div>
-       <div class="float-button-container" style="text-align: right">
+       <div class="float-button-container" style="text-align: right"><button type="button" class="btn btn-primary">
 			  <a class="float-button" href="<%=request.getContextPath() %>/community/recipewrite.do" target="_blank">
 			    레시피 작성하기
-			  </a>
+			  </a></button>
 		</div>
-      </div>
-
+        <h3 style="text-align: center; /* 가로 방향 가운데 정렬 */">오늘의 레시피는?</h3>
         <section class="review-section rev1">
+        <div>
+        </div>
           <div class="section-inner">
             <ul class="review-items">
             <%if(!recipes.isEmpty()){ 

@@ -119,7 +119,7 @@ public class CommunityRecipeWriteEndServlet extends HttpServlet {
 			
 			List<Procedure> procedures = new ArrayList<>();
 			
-			for(int i=0;i<materialType.length;i++) {
+			for(int i=0;i<procedureComment.length;i++) {
 			    Procedure p = Procedure.builder()
 			    		.procedureOrder((long)(i+1))
 			    		.procedureComment(procedureComment[i])

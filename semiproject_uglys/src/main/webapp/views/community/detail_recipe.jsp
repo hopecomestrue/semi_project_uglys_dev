@@ -163,12 +163,12 @@ section {
                     		<th colspan="2">양념</th>
                     	</tr>
                     	<tr>
-							<td>양파</td>
-							<td>2개</td>
-							<td>두부</td>
-							<td>1모</td>
-							<td>된장</td>
-							<td>1스푼</td>
+							<td>주재료 이름</td>
+							<td>주재료 수량</td>
+							<td>부재료 이름</td>
+							<td>부재료 수량</td>
+							<td>소스 이름</td>
+							<td>소스 양</td>
                     	</tr>
                     	
                     	<% 
@@ -192,6 +192,31 @@ section {
                     </table>
                 </div>
             </div>
+            <div class="col-lg-12 mb-4 mb-sm-5">
+                <div>
+                    <span class="section-title text-primary mb-3 mb-sm-4">절차</span>
+                    <table style="width:100%; text-align: center;" >
+                    	<tr>
+                    		<th >번호</th>
+                    		<th >파일</th>
+                    		<th >코멘트</th>
+                    	</tr>
+                    		<%
+                    		if(!recipe.getProcedure().isEmpty()){
+                    		for(Procedure p : procedure){ 
+                    		%>
+                    	<tr>
+							<td><%=p.getProcedureNo() %></td>
+							<td><%=p.getProcedureOriginalFileName() %></td>
+							<td><%=p.getProcedureComment() %></td>
+                    	</tr>
+							<%}
+							}%>
+                    </table>
+                </div>
+            </div>
+            
+            
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-12 mb-4 mb-sm-5">

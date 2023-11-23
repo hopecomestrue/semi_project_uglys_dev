@@ -117,26 +117,6 @@
 				</div>
 			</div>
 		</section>
-		
-		<section class="ftco-section img" style="background-image: url(images/bg_3.jpg);">
-    	<div class="container">
-				<div class="row justify-content-end">
-          <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
-          	<span class="subheading">Best Price For You</span>
-            <h2 class="mb-4">Deal of the day</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-            <h3><a href="#">Spinach</a></h3>
-            <span class="price">$10 <a href="#">now $5 only</a></span>
-            <div id="timer" class="d-flex mt-5">
-						  <div class="time" id="days"></div>
-						  <div class="time pl-3" id="hours"></div>
-						  <div class="time pl-3" id="minutes"></div>
-						  <div class="time pl-3" id="seconds"></div>
-						</div>
-          </div>
-        </div>   		
-    	</div>
-    </section>
 
     <section class="ftco-section testimony-section">
       <div class="container">
@@ -152,71 +132,71 @@
             <div class="carousel-testimony owl-carousel">
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(images/돼지고기김치찌개.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Marketing Manager</span>
+                    <p class="mb-5 pl-4 line">진한 국물이 맛있는 돼지고기 김치찌개입니다.</p>
+                    <p class="name">돼지고기 김치찌개</p>
+                    <span>Lorem Ipsum</span>
                   </div>
                 </div>
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_2.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(images/fish.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Interface Designer</span>
+                    <p class="mb-5 pl-4 line">고등어조림을 할 때에는 묵은지나 미네랄 식이섬유소가 풍부한 시래기와 함께 조려도 맛이 좋지만, 달콤하고 시원한 무와 함께 조려 낸 고등어 무 조림은 밥도둑이 따로 없더라고요.</p>
+                    <p class="name">고등어무조림</p>
+                    <span>Lorem Ipsum</span>
                   </div>
                 </div>
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_3.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(images/무생채.jfif)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">UI Designer</span>
+                    <p class="mb-5 pl-4 line">소금에 절이지 않고 10분 만에 휘리릭 만들어 먹는 간단 반찬 무생채를 만들어 보았어요.</p>
+                    <p class="name">무생채</p>
+                    <span>Lorem Ipsum</span>
                   </div>
                 </div>
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(images/소세지야채볶음.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Web Developer</span>
+                    <p class="mb-5 pl-4 line">"우리집 단골 메뉴 소세지야채볶음! 일명 '쏘야'라고도 불리우죠. 쏘야는 아이들 반찬으로도 어른들 술안주로도 먹기 정말 좋아요!</p>
+                    <p class="name">소세지야채볶음</p>
+                    <span>Lorem Ipsum</span>
                   </div>
                 </div>
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(images/콩나물무침.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">System Analyst</span>
+                    <p class="mb-5 pl-4 line">바쁜 일상 속에 반찬 만들기도 큰 일거리죠? 그래서 더 간단한 방법의 레시피가 필요하구요. 맛도 있고 영양도 살아있는 아삭 콩나물무침 보여드릴게요~^^</p>
+                    <p class="name">콩나물무침</p>
+                    <span>Lorem Ipsum</span>
                   </div>
                 </div>
               </div>

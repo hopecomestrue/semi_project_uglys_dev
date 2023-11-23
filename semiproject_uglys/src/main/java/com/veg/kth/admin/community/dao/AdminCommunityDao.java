@@ -159,10 +159,8 @@ private Properties sql = new Properties();
 
 		try {
 			pstmt = conn.prepareStatement(query);
-			System.out.println("pstmt 값"+pstmt);
 			pstmt.setInt(1, r.getRecipeNo());
 			result = pstmt.executeUpdate();
-			System.out.println("이후 값"+result);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
