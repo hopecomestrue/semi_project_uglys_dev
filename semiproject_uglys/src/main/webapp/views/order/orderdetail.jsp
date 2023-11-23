@@ -1,6 +1,16 @@
+<%@page import="com.veg.pdw.production.model.dto.ProductionContent"%>
+<%@page import="com.veg.pdw.production.model.dto.Production"%>
+<%@page import="com.veg.ojy.cart.dto.Cart"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
+<%
+	List<Cart>carts=(List<Cart>)request.getSession().getAttribute("carts");
+	List<Production>productions=(List<Production>)request.getSession().getAttribute("productions");
+	List<ProductionContent>productionContents=(List<ProductionContent>)request.getSession().getAttribute("productionContents");
+%>
+
 
 
    <form class="pay-form" id="pay-form" action="<%=request.getContextPath() %>/order/ordersuccessEnd.do" method="post">
