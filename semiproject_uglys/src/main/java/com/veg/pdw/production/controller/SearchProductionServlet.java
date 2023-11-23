@@ -83,9 +83,6 @@ public class SearchProductionServlet extends HttpServlet {
                 iter.remove();
             }
         }
-        
-        
-        
         Iterator<Map.Entry<String, String>> iter1 = sql1.entrySet().iterator();
         while (iter1.hasNext()) {
             Map.Entry<String, String> entry = iter1.next();
