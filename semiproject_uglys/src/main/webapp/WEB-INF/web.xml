@@ -15,4 +15,18 @@
         <exception-type>com.veg.seoj.common.exception.BadAccessException</exception-type>
         <location>/views/cscenter/error/badaccess.jsp</location>
     </error-page>
+    <error-page>
+		<error-code>404</error-code>
+		<location>/views/common/badaccess.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/views/common/badaccess.jsp</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/views/common/badaccess.jsp</location>
+	</error-page>
 </web-app>
