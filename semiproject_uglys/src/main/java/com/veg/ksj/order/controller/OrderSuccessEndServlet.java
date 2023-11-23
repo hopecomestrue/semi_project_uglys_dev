@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.veg.ksj.order.model.dto.Order;
 import com.veg.ksj.order.model.service.OrderService;
+import com.veg.pdw.production.model.dto.Production;
+import com.veg.pdw.production.service.ProductionService;
 
 /**
  * Servlet implementation class OrderSuccessEndServlet
@@ -30,6 +32,11 @@ public class OrderSuccessEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int productNo=Integer.parseInt(request.getParameter("productNo"));
+		
+		Production pro=new ProductionService().selectProductionByNo(productNo);
+		
+		request.setAttribute("product", pro);
 //		Gson gson=new Gson();
 	
 //		long orderNo=Long.parseLong(request.getParameter("orderNo"));
