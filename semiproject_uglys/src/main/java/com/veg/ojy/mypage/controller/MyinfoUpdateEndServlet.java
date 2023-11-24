@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.veg.hjj.member.dto.Member;
+import com.veg.hjj.member.security.PasswordEncoder;
 import com.veg.ojy.mypage.service.MyinfoService;
 
 
@@ -33,6 +34,10 @@ public class MyinfoUpdateEndServlet extends HttpServlet {
       String memberId=request.getParameter("memberId");
       String memberPw=request.getParameter("memberPw");
       String passwordNew=request.getParameter("password_new");
+      
+      PasswordEncoder pe=new PasswordEncoder((HttpServletRequest)request);
+      passwordNew=pe.getSHA512(passwordNew);
+      
       // 1. 현재 비밀번호가 맞는지 확인
       Member m = new MyinfoService().selectMemberByIdAndPw(memberId,memberPw);
       String msg="변경실패!: ",loc="/updateInfo.do?memberId="+memberId;

@@ -168,7 +168,7 @@
 				<td>
 					<select name="ageRange">
 					
-						<option value="10세 이하">10세 이하</option>
+						<option value="10대 이하">10대 이하</option>
 						<option value="10~19세">10~19세</option>
 						<option value="20~29세">20~29세</option>
 						<option value="30~39세">30~39세</option>
