@@ -180,9 +180,9 @@
 		
 		<div>
 		<br><br><br>
-		<button type="button" class="btn btn-primary" onclick="location href='<%=request.getContextPath() %>/admin/reciperegister.do'">등록</button>
-		<button type="button" class="btn btn-primary">선택 삭제</button>
-		<button type="button" class="btn btn-primary">일괄 삭제</button>
+		<button type="button" class="btn btn-secondary" onclick="location href='<%=request.getContextPath() %>/admin/reciperegister.do'">등록</button>
+		<button type="button" class="btn btn-secondary">선택 삭제</button>
+		<button type="button" class="btn btn-secondary">일괄 삭제</button>
 		<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -203,11 +203,7 @@
 			<tr>
 				<td><input type="checkbox" name="delete_check"></td>
 				<td><a href="<%=request.getContextPath()%>/admin/recipedetail.do?recipeNo=<%=r.getRecipeNo()%>"><%=r.getRecipeNo() %></a></td>
-				<td><%for(Member m : members){%>
-				<%if(r.getMember_no()== m.getMemberNo()){%>
-				<%=m.getMemberId() %>
-				<%}
-				}%>
+				<td><%=r.getMember_no() %>
 				</td>
 				<td><%=r.getRecipeTitle() %></td>
 				<td><%=r.getCategory().getCategoryDept1() %>/<%=r.getCategory().getCategoryDept2() %></td>

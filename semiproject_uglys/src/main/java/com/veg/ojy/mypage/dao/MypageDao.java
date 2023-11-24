@@ -58,19 +58,21 @@ public class MypageDao {
 		int result = 0;
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("insertMember"));
-			 pstmt.setString(1, m.getMemberId());
-	         pstmt.setString(2, m.getMemberPw());
-	         pstmt.setString(3, m.getMemberName());
-	         pstmt.setString(4, m.getMemberAge());
-	         pstmt.setString(5, m.getMemberEmail());
-	         pstmt.setInt(6, m.getMemberPhone());
-	         pstmt.setString(7, m.getAcceptAgree());
-	         pstmt.setString(8, m.getAdminCheck());
-	         pstmt.setString(9, m.getServiceAgree());
-	         pstmt.setString(10, m.getMarketingAgree());
-	         pstmt.setDate(11, m.getEnrollDate());
-	         pstmt.setString(12, m.getPhotoRegist());
-	         pstmt.setString(13, m.getMemberQuit());
+			pstmt.setInt(1, m.getMemberNo());
+			pstmt.setString(2, m.getMemberId());
+			pstmt.setString(3, m.getMemberPw());
+			pstmt.setString(4, m.getMemberName());
+			pstmt.setString(5, m.getMemberAge());
+			pstmt.setString(6, m.getMemberEmail());
+			pstmt.setInt(7, m.getMemberPhone());
+			pstmt.setString(8, m.getAcceptAgree());
+			pstmt.setString(9, m.getAdminCheck());
+			pstmt.setString(10, m.getServiceAgree());
+			pstmt.setString(11, m.getMarketingAgree());
+			pstmt.setDate(12, m.getEnrollDate());
+			pstmt.setString(13, m.getPhotoRegist());
+			pstmt.setString(14, m.getMemberQuit());
+			
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -146,6 +148,7 @@ public class MypageDao {
 			pstmt=conn.prepareStatement(sql.getProperty("deleteMember"));
 			pstmt.setString(1, memberId);
 			result=pstmt.executeUpdate();
+//			result=1;
 			} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -209,7 +212,7 @@ public class MypageDao {
 			}finally {
 				close(pstmt);
 			}
-		return result > 0 ? result : -1; 
+		return result;
 		}
 	
 	public Address getAddress(ResultSet rs) throws SQLException{
@@ -221,6 +224,9 @@ public class MypageDao {
 				.build();
 	}
 	
+	public int insertAddress(Connection conn, String address) {
+		return 0;
+	}
 	
 	public int updateAddress(Connection conn, String memberId, String Address) {
 		PreparedStatement pstmt = null;
@@ -237,58 +243,10 @@ public class MypageDao {
 		} finally {
 			close(pstmt);
 		}
+		
 		return result;
 		
 	}
-//	   public int updateAddress(Connection conn, int memberNo, String newAddress) {
-//	        PreparedStatement pstmt = null;
-//	        int result = 0;
-//	        try {
-//	            // "updateAddress"에 해당하는 SQL 쿼리를 가져옴
-//	            pstmt = conn.prepareStatement(sql.getProperty("updateAddress"));
-//
-//	            // SQL 쿼리에 파라미터 값 설정
-//	            pstmt.setString(1, newAddress);
-//	            pstmt.setInt(2, memberNo);
-//
-//	            // 쿼리 실행
-//	            result = pstmt.executeUpdate();
-//
-//	        } catch (SQLException e) {
-//	            e.printStackTrace(); // 실제 프로덕션 코드에서는 로깅 또는 예외 처리가 필요
-//	        } finally {
-//	            close(pstmt);
-//	        }
-//
-//	        // 업데이트 결과를 반환
-//	        return result;
-//	    }
-	
-//	public int insertAddress(Connection conn, int memberNo, String newAddress) {
-//	PreparedStatement pstmt = null;
-//    int result = 0;
-//	try {
-//        pstmt = conn.prepareStatement(sql.getProperty("selectAddress"));
-//        pstmt.setInt(1, memberNo);
-//        ResultSet rs = pstmt.executeQuery();
-//        if (rs.next()) {
-//            // 이미 주소가 존재하는 경우, 에러 처리 또는 이미 등록되어 있다는 메시지를 반환할 수 있음
-//            result = -1; // 예시로 -1을 사용하며, 상황에 맞게 수정 가능
-//        } else {
-//            // 주소가 존재하지 않는 경우, 새 주소 등록
-//            pstmt = conn.prepareStatement(sql.getProperty("insertAddress"));
-//            pstmt.setInt(1, memberNo);
-//            pstmt.setString(2, newAddress);
-//            result = pstmt.executeUpdate();
-//        }
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//    } finally {
-//        close(pstmt);
-//    }
-//    
-//    return result;
-//}
 	
 		    
 }
