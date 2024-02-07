@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/views/common/header.jsp" %>
 <%@ page import= "java.util.List,java.util.Map,com.veg.pdw.production.model.dto.Production,com.veg.pdw.production.model.dto.ProductionContent,com.veg.pdw.production.model.dto.ProductionReview" %>
 <% 
@@ -51,7 +54,11 @@
                       </a></h3>
                       <div class="d-flex">
                          <div class="pricing">
-                            <p class="price"><span class="mr-2 price-dc"><%=p.getPrice()%></span><span class="price-sale"><%=(p.getPrice()*(1-(p.getDiscount()*0.01))) %></span></p>
+                            <p class="price"><span class="mr-2 price-dc">
+                            <fmt:formatNumber value="<%=p.getPrice()%>" pattern="#,###" />
+                            </span><span class="price-sale">
+                            <fmt:formatNumber value="<%= Math.round(p.getPrice()*(1-(p.getDiscount()*0.01)) / 100) * 100 %>" pattern="#,###" />
+                            </span></p>
                             <% if(reviewRating.get(p.getProduction_no())!=null&&reviewCount.get(p.getProduction_no())!=null) { %>
                             
                             <p class="rating"><span>
