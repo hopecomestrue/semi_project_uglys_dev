@@ -100,28 +100,19 @@ body {
 	border: transparent;
 	text-decoration: underline;
 }
-.fcg {
-    color: orange;
 }
 </style>
-<script>
-    function focusOnFailureField() {
-        var focusField = '<%= request.getAttribute("focusField") %>';
-        if (focusField) {
-            document.getElementById(focusField).focus();
-        }
-    }
-</script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 
-<body onload="focusOnFailureField()">
+<body>
 	<section id=enroll-container>
 		<h2>회원 가입</h2>
 		<form
 			action="<%=request.getContextPath() %>/member/enrollMemberEnd.do"
-			method="post" onsubmit="" enctype="multipart/form-data">
+			method="post" onsubmit="return validateForm();"
+			enctype="multipart/form-data">
 
 			<div
 				style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
@@ -137,39 +128,33 @@ body {
 			<table>
 
 				<tr>
-					<th><span class="fcg">*</span>
-						아이디
-					</th>
+					<th>아이디</th>
 					<td><input type="text" placeholder="4글자이상" name="memberId"
-						id="memberId" value=""> <input type="button"
-						value="중복 확인" name="memberId" onclick="fn_idduplicate();">
+						id="memberId" value="" required> <input type="button"
+						value="중복 확인" name="memberId" onclick="fn_idduplicate();" required>
 					</td>
 				</tr>
 				<tr>
-					<th><span class="fcg">*</span>
-						패스워드
-					</th>
-					<td><input type="password" name="memberPw" id="memberPw"
-						onchange="check_pw()"><br></td>
+					<th>패스워드</th>
+					<td><input type="password" placeholder="(영문자,특수기호,숫자 필수)"
+						name="memberPw" id="memberPw" onchange="check_pw()" required><br>
+					</td>
 				</tr>
 				<tr>
-					<th><span class="fcg">*</span>
-						패스워드확인
-					</th>
+					<th>패스워드확인</th>
 					<td><input type="password" id="memberPw2"
-						onchange="check_pw()"><span id="check"></span><br></td>
+						onchange="check_pw()" required><span id="check"></span><br>
+					</td>
 				</tr>
 				<tr>
-					<th><span class="fcg">*</span>
-						이름
-					</th>
-					<td><input type="text" name="memberName" id="memberName"><br>
-					</td>
+					<th>이름</th>
+					<td><input type="text" name="memberName" id="memberName"
+						required><br></td>
 				</tr>
 				<tr>
 					<th>연령대</th>
 					<td><select name="ageRange">
-							<option value="선택">선 택</option>
+							<option value="선 택">선 택</option>
 							<option value="10대 이하">10대 이하</option>
 							<option value="10~19세">10~19세</option>
 							<option value="20~29세">20~29세</option>
@@ -178,24 +163,18 @@ body {
 					</select></td>
 				</tr>
 				<tr>
-					<th><span class="fcg">*</span>
-						이메일
-					</th>
+					<th>이메일</th>
 					<td><input type="email" placeholder="abc@xyz.com" name="email"
 						id="email"><br></td>
 				</tr>
 				<tr>
-					<th><span class="fcg">*</span>
-						휴대폰
-					</th>
+					<th>휴대폰</th>
 					<td><input type="tel" placeholder="(-없이)01012345678"
 						name="phone" id="phone" maxlength="11" required><br>
 					</td>
 				</tr>
 				<tr>
-					<th><span class="fcg">*</span>
-						주소
-					</th>
+					<th>주소</th>
 					<td><input type="text" id="address" name="address" readonly />
 						<input type="button" id="address_search" value="검색"></td>
 				</tr>
@@ -217,12 +196,12 @@ body {
 						동의</span>
 				</div>
 				<div class="terms-item">
-					<input type="checkbox" name="ckbox1" id="id_b" value="Y"> <span><strong>(필수)</strong>
+					<input type="checkbox" name="ckbox1" id="id_b" value="Y"> <span><strong>(선택)</strong>
 						개인회원 약관에 동의
 						<button>상세 보기</button></span>
 				</div>
 				<div class="terms-item">
-					<input type="checkbox" name="ckbox2" id="id_c" value="Y"> <span><strong>(필수)</strong>
+					<input type="checkbox" name="ckbox2" id="id_c" value="Y"> <span><strong>(선택)</strong>
 						개인정보 수집 및 이용에 동의
 						<button>상세 보기</button></span>
 				</div>
@@ -235,8 +214,8 @@ body {
 			</div>
 
 			<div class="button-group">
-				<input type="submit" value="회원가입"> <input type="reset"
-					value="취소">
+				<input type="submit" value="회원가입" onclick="return validateForm()">
+				<input type="reset" value="취소">
 			</div>
 
 
@@ -246,75 +225,76 @@ body {
 
 
 	<script>
-//개인정보 전체선택(약관동의)
-   window.onload = function(){
-	    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-	    for (var i=0; i<checkboxes.length; i++) {
-	        checkboxes[i].addEventListener('change', function() {
-	            this.value = this.checked ? 'Y' : 'N';
-	        });
-	    }
-    }
     document.addEventListener('DOMContentLoaded', () => {
-        const ckTag = document.getElementById('id_a')
-        const evtBtnTag1 = document.getElementById('id_b')
-        const evtBtnTag2 = document.getElementById('id_c')
-         const evtBtnTag3 = document.getElementById('id_d')
-     
-       
-        
-        ckTag.addEventListener('click', (event) => {
+        const ckTag = document.getElementById('id_a');
+        const evtBtnTag1 = document.getElementById('id_b');
+        const evtBtnTag2 = document.getElementById('id_c');
+        const evtBtnTag3 = document.getElementById('id_d');
 
-            const chckValue = event.currentTarget.checked;
+        function checkAgreements() {
+            const isAgreed1 = evtBtnTag1.checked;
+            const isAgreed2 = evtBtnTag2.checked;
+            const isAgreed3 = evtBtnTag3.checked;
 
-            evtBtnTag1.checked = chckValue
-            evtBtnTag2.checked = chckValue
-            evtBtnTag3.checked = chckValue
-            ckTag.checked = chckValue
-
-        })
-
-        evtBtnTag1.addEventListener('click', (event) => {
-            if(event.currentTarget.checked == false){
+            if (isAgreed1 && isAgreed2) {
+                ckTag.checked = true;
+            } else {
                 ckTag.checked = false;
             }
-        })
-        evtBtnTag2.addEventListener('click', (event) => {
-            if(event.currentTarget.checked == false){
-                ckTag.checked = false;
-            }
-        })
-        evtBtnTag3.addEventListener('click', (event) => {
-            if(event.currentTarget.checked == false){
-                ckTag.checked = false;
-            }
-        })
-       ckTag.addEventListener('click', (event) => {
-            if(event.currentTarget.checked == false){
-                ckTag.checked = false;
-            }
-        })
-    })
+        }
+
+        ckTag.addEventListener('click', () => {
+            const chckValue = ckTag.checked;
+            evtBtnTag1.checked = chckValue;
+            evtBtnTag2.checked = chckValue;
+            evtBtnTag3.checked = chckValue;
+        });
+
+        evtBtnTag1.addEventListener('click', () => {
+            checkAgreements();
+        });
+
+        evtBtnTag2.addEventListener('click', () => {
+            checkAgreements();
+        });
+
+        evtBtnTag3.addEventListener('click', () => {
+            checkAgreements();
+        });
+    });
+
+    function validateForm() {
+        const isAgreed1 = document.getElementById('id_b').checked;
+        const isAgreed2 = document.getElementById('id_c').checked;
+
+        if (!isAgreed1 || !isAgreed2) {
+            alert("필수 항목에 동의해주세요.");
+            return false;
+        }
+
+        return true;
+    }
 </script>
 	<script>
  //아이디 중복확인
-	const fn_idduplicate=()=>{
-		const memberId=$("#memberId").val().trim();
-		if(memberId.length>=4){
-			const child=open("<%=request.getContextPath()%>/member/idduplicate.do?memberId="+memberId,
-				"_blank","width=300,height=200");
-		}else{
-			alert("아이디는 4글자이상 입력하세요");
-			$("#memberId").focus();
-		}
-	
-		
-		}
+    const fn_idduplicate=()=>{
+        const memberId=$("#memberId").val().trim();
+        if(memberId.length>=4){
+            const child=open("<%=request.getContextPath()%>/member/idduplicate.do?memberId="+memberId,
+                "_blank","width=300,height=200");
+        }else{
+            alert("아이디는 4글자이상 입력하세요");
+            $("#memberId").focus();
+        }
+    }
 </script>
 
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
 	<script>
+//주소찾기API
 window.onload = function(){
     document.getElementById("address_search").addEventListener("click", function(){ 
         new daum.Postcode({
@@ -326,33 +306,35 @@ window.onload = function(){
     });
 }
 </script>
+
 	<script>
 // 프로필 사진 
-document.getElementById("photoRegist").addEventListener("change", function(e){
-    let reader = new FileReader();
-    reader.onload = function(e){
-        document.getElementById("preview").setAttribute('src', e.target.result);
-    }
-    reader.readAsDataURL(e.target.files[0]);
-});
+    document.getElementById("photoRegist").addEventListener("change", function (e) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("preview").setAttribute('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    });
+
 </script>
 
 	<script>
- //비밀번호(정규화,일치/불일치)
+ //비밀번호 정규화,암호화,일치여부
       function check_pw(){
-    	 
+         
           var password = document.getElementById('memberPw').value;
           var SC = ["!","@","#","$","%"];
           var check_SC = 0;
           var reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
-  			
+            
           var password =$("#memberPw").val();
-  			if( !reg.test(password) ) {
-  		    alert("비밀번호 영문자,특수기호,숫자를 반드시 포함해야합니다.!!");
-  		    $("#memberPw").val("");
-  		    $("#memberPw2").val("");
-  		    $("#memberPw").focus();
-  		    return false;
+            if( !reg.test(password) ) {
+            alert("비밀번호 영문자,특수기호,숫자를 반드시 포함해야합니다.!!");
+            $("#memberPw").val("");
+            $("#memberPw2").val("");
+            $("#memberPw").focus();
+            return false;
           
           }
           if(document.getElementById('memberPw').value !='' && document.getElementById('memberPw2').value!=''){
@@ -361,47 +343,11 @@ document.getElementById("photoRegist").addEventListener("change", function(e){
                   document.getElementById('check').style.color='blue';
               }
               else{
-                  document.getElementById('check').innerHTML='불일치합니다.';
+                  document.getElementById('check').innerHTML='불일치입니다.';
                   document.getElementById('check').style.color='red';
               }
           }
         }
     </script>
-    <script>
-    function validateForm() {
-        // 필수 입력 필드에 *가 있는 부분을 검증
-        var requiredFields = document.querySelectorAll('th span.fcg');
-        for (var i = 0; i < requiredFields.length; i++) {
-            var fieldName = requiredFields[i].nextSibling.textContent.trim();
-            var inputElement = document.querySelector('[name=' + fieldName + ']');
-
-            if (!inputElement.value.trim()) {
-                alert(fieldName + '을(를) 입력하세요.');
-                inputElement.focus();
-                return false;
-            }
-        }
-
-        // 비밀번호 확인 검증 확인중
-        var password1 = document.getElementById('memberPw').value;
-        var password2 = document.getElementById('memberPw2').value;
-        if (password1 !== password2) {
-            alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-            document.getElementById('memberPw').focus();
-            return false;
-        }
-
-        // 약관 동의 검증
-        if (!document.getElementById('id_a').checked) {
-            alert('약관에 동의해야 합니다.');
-            return false;
-        }
-
-        // 여기에 필요한 추가 검증 로직을 추가할 수 있습니다.
-
-        // 모든 검증이 통과하면 true 반환
-        return true;
-    }
-</script>
 </body>
 </html>
