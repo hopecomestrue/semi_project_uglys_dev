@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/views/common/header.jsp" %>
 <%@ page import="com.veg.pdw.production.model.dto.Production,com.veg.pdw.production.model.dto.ProductionContent,java.util.Map,java.util.List,com.veg.pdw.production.model.dto.*,com.veg.hjj.member.dto.Member" %>
 <%
@@ -148,13 +151,15 @@
                <div class="flex gap-4px">
                
                <div style="display: flex;">
-               <p><%=p.getDiscount()%>%&nbsp;&nbsp;</p>
-               <p style="text-decoration: line-through;"><%=p.getPrice()%></p>
+               <p><fmt:formatNumber value="<%=p.getDiscount()%>" pattern="#,###" />%&nbsp;&nbsp;</p>
+               <p style="text-decoration: line-through;">
+               <fmt:formatNumber value="<%=p.getPrice()%>" pattern="#,###" />
+               </p>
                </div>  
                  
                <!-- 가격 -->
                <div>
-                <p class="price"><span><%=(p.getPrice()*(1-(p.getDiscount()*0.01))) %></span></p>
+                <p class="price"><span><fmt:formatNumber value="<%= Math.round(p.getPrice()*(1-(p.getDiscount()*0.01)) / 100) * 100 %>" pattern="#,###" /></span></p>
                 </div>
                <hr style="margin-top: 32px; margin-bottom: 32px;">
                <!--태그-->
@@ -196,7 +201,7 @@
                       <i class="ion-ios-remove"></i>
                       </button>
                      </span>
-                   <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                   <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
                    <span class="input-group-btn ml-2">
                       <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
                         <i class="ion-ios-add"></i>
