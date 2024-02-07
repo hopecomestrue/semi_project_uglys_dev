@@ -382,7 +382,7 @@ document.getElementById("photoRegist").addEventListener("change", function(e){
             }
         }
 
-        // 비밀번호 확인 검증
+        // 비밀번호 확인 검증 확인중
         var password1 = document.getElementById('memberPw').value;
         var password2 = document.getElementById('memberPw2').value;
         if (password1 !== password2) {
