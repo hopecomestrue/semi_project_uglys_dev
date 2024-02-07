@@ -49,11 +49,6 @@ input::-webkit-inner-spin-button {
  
  }
  
- .container_recipe{
- 	max-height: calc(150vh - 120px); /* 화면 높이에서 헤더와 푸터의 높이를 뺀 값으로 제한 */
-    overflow-y: auto;
-
- }
  
 </style>
 
@@ -86,44 +81,16 @@ input::-webkit-inner-spin-button {
 		<select name="category_dept2" id="category_dept2">
 			<option>세부 카테고리를 선택해 주세요.</option>
 		</select>
-
-           
-<script>
-function categoryChange(e) {
-	
-	
-	<%if(!category.isEmpty()){
-	for(int i=0;i<category.size();i++){
-	%>
-	
-	var good_<%=category.get(i).getCategoryDept1()%> = ["<%=category.get(i).getCategoryDept2()%>"];
-	
-	var target = document.getElementById("category_dept2");
-
-	if(e.value == "<%=category.get(i).getCategoryDept1()%>") var d = good_<%=category.get(i).getCategoryDept1()%>;
-	<%}
-	}
-	%>
-
-	target.options.length = 0;
-
-	for (x in d) {
-		var opt = document.createElement("option");
-		opt.value = d[x];
-		opt.innerHTML = d[x];
-		target.appendChild(opt);
-	}
-}
-</script>
+        
     
 		<h4>해시태그</h4>
 		<div class="tr_hashTag_area">
 		<div class="form-group">
-                <input type="hidden" value="" name="tag" id="rdTag" />
+                <input type="hidden" name="tag" id="rdTag" />
             </div>
 				<%if(!hashtags.isEmpty()){ 
             		for(int i=0;i<6;i++){%>
-                  <button type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
+                  <button style="border-radius: 10px; border: none; font-size: 14px; background-color: #82ae46; color: white; padding: 5px;" type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
                 		#<%=hashtags.get(i).getHashtagValue()%>
                 	</button>
                 	<%} 
@@ -133,28 +100,6 @@ function categoryChange(e) {
             	<input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;"/>
            </div>
          </div>
-         <script>
-         function toggleButton(button) {
-				
-        	 let $rdTag = $('.rdtag');
-        	 
-        	 console.log($rdTag.value);
-        	 
-        	 if($rdTag.value.includes(button.value)){
-        	 $rdTag.value = "";
-        	 alert("값 지움")
-					        		 
-        	 }else{
-        	alert("값 넣음")
-        	 $rdTag.value = button.value;
-        		 
-        	 }
-	    	 
-	    	
-	    	}
-        </script>
-         
-         
 		<h4>기준량</h4>
 		<div>
 		<input type="button" value="-" onclick="minusbtn();">
@@ -206,7 +151,7 @@ function categoryChange(e) {
         }
     
         // 서버에 제공
-        $("#tag-form").on("submit", function (e) {
+        $("#tag-list").on("submit", function (e) {
             var value = marginTag(); // return array
             $("#rdTag").val(value); 
 
@@ -231,7 +176,7 @@ function categoryChange(e) {
                 
                     // 해시태그가 중복되었는지 확인
                     if (result.length == 0) { 
-                        $("#tag-list").append("<button class='tag-item' name='hashtag' >#"+tagValue+"<span class='del-btn' idx='"+counter+"'> x </span></button>");
+                        $("#tag-list").append("<button class='tag-item' style='border-radius: 10px; border: none; font-size: 14px; background-color: rgb(102,204,0); color: white; padding: 5px;' name='hashtag' >#"+tagValue+"<span class='del-btn' idx='"+counter+"'> x </span></button>");
                         addTag(tagValue);
                         self.val("");
                     } else {
@@ -297,9 +242,61 @@ function categoryChange(e) {
 	        }
 
 	    }
-	    
-
-	    
 </script>
+<script>
+	$(document).ready(function(){
+		let mouseContainer = document.querySelector('.mouse');
+		
+		mouseContainer.style.display = 'none';
+		
+	});
 
+
+</script>
+<script>
+   function toggleButton(button) {
+
+  	 let $rdTag = $('.rdtag');
+  	 
+  	 console.log($rdTag.value);
+  	 
+  	 if($rdTag.value.includes(button.value)){
+  	 $rdTag.value = "";
+  	 alert("값 지움")		        		 
+  	 }else{
+  	alert("값 넣음")
+  	 $rdTag.value = button.value;
+  		 
+  	 }
+
+	}
+</script>
+<script>
+//selectbox 변경
+function categoryChange(e) {
+	
+	
+	<%if(!category.isEmpty()){
+	for(int i=0;i<category.size();i++){
+	%>
+	
+	var good_<%=category.get(i).getCategoryDept1()%> = ["<%=category.get(i).getCategoryDept2()%>"];
+	
+	var target = document.getElementById("category_dept2");
+
+	if(e.value == "<%=category.get(i).getCategoryDept1()%>") var d = good_<%=category.get(i).getCategoryDept1()%>;
+	<%}
+	}
+	%>
+
+	target.options.length = 0;
+
+	for (x in d) {
+		var opt = document.createElement("option");
+		opt.value = d[x];
+		opt.innerHTML = d[x];
+		target.appendChild(opt);
+	}
+}
+</script>
 <%@ include file="/views/common/footer.jsp" %>

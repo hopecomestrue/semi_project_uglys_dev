@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-<%@ page import="com.veg.kth.community.model.dto.Recipe, java.util.List,com.veg.kth.community.model.dto.Hashtag" %>
+<%@ page import="com.veg.kth.community.model.dto.*, java.util.List,com.veg.kth.community.model.dto.Hashtag, com.veg.hjj.member.dto.* " %>
 <%
 
 	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");
@@ -237,11 +237,14 @@
 
                 <div class="info-area">
                   <div class="line"></div>
+                  <%-- <%for(Member m : members){ %>
+                  <%if(r.getMember_no()==m.getMemberNo()){ %> --%>
                   <h5><%=r.getMember_no() %></h5>
                 </div>
               </li>
               </a>
-              <%
+              <%	/* }
+                  } */
             	}
             }
               %>
