@@ -46,7 +46,8 @@ public class RegisterReviewServlet extends HttpServlet {
 											.build();
 		int result = new ProductionService().insertProductionReview(pr);
 		
-		request.getRequestDispatcher("/vegfarm/vegfarm.do?no="+productionNo).forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/vegfarm/vegfarm.do?no="+productionNo);
+
 		
 		
 	}
