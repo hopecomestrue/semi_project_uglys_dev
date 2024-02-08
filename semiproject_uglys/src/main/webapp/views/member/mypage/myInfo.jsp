@@ -5,14 +5,14 @@
  <%@ page import="com.veg.ojy.mypage.dto.Address"%>
 <%@ page import= "java.util.List,java.util.Arrays" %>
 <%-- <%@ page import="com.veg.ojy.mypage.dto.*" %> --%>
-<%-- <%@ include file="/views/common/header.jsp" %> --%>
+ <%@ include file="/views/common/header.jsp" %> 
 
 <%
-	Member loginMember=(Member)session.getAttribute("loginMember");
+	/* Member loginMember=(Member)session.getAttribute("loginMember"); */
 	List<Address> a = (List<Address>)request.getAttribute("address");
 	List<Order> orders=(List<Order>)request.getAttribute("orders");
 %>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html>
 	<head>
 		<title></title>
@@ -47,16 +47,146 @@
 				/* top: 80px; */
 			}
 		</style>
-	  </head>
-	<body class="is-preload">
+	  </head> --%>
+	  <!-- 최근 주문내역, 내정보 수정, 나의 리뷰  -->
+	   <!--    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');"> -->
+	       <div class="hero-wrap hero-bread">
+		<div class="container">
+			<div class="row justify-content-center mb-3 pb-3">
+	  <div class="col-md-12 heading-section text-center ftco-animate">
+		  <!-- <span class="subheading">마이페이지</span> -->
+		<h2 class="mb-4">마이페이지</h2>
+		<!-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p> -->
+	  </div>
+	</div>   		
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-lg-3 ftco-animate">
+				<div class="product">
+					<a href="#" class="img-prod"><img  class="img-fluid"  src="<%=request.getContextPath()%>/images/free-icon-vegetable-5346492.png" alt="">
+						<!-- <span class="status">30%</span> -->
+						<div class="overlay"></div>
+					</a>
+					<div class="text py-3 pb-4 px-3 text-center">
+						<h3><a href="#">최근 주문내역</a></h3>
+						<div class="d-flex">
+							<div class="pricing">
+								<p class="price"><span class="mr-2 price-dc"></span><span class="price-sale"></span></p>
+							</div>
+						</div>
+						<div class="bottom-area d-flex px-3">
+							<div class="m-auto d-flex">
+								<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+									<span><i class="ion-ios-menu"></i></span>
+								</a>
+								<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+									<span><i class="ion-ios-cart"></i></span>
+								</a>
+								<a href="#" class="heart d-flex justify-content-center align-items-center ">
+									<span><i class="ion-ios-heart"></i></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-3 ftco-animate">
+				<div class="product">
+					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
+						<div class="overlay"></div>
+					</a>
+					<div class="text py-3 pb-4 px-3 text-center">
+						<h3><a href="#">내 정보 수정</a></h3>
+						<div class="d-flex">
+							<div class="pricing">
+								<p class="price"><span></span></p>
+							</div>
+						</div>
+						<div class="bottom-area d-flex px-3">
+							<div class="m-auto d-flex">
+								<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+									<span><i class="ion-ios-menu"></i></span>
+								</a>
+								<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+									<span><i class="ion-ios-cart"></i></span>
+								</a>
+								<a href="#" class="heart d-flex justify-content-center align-items-center ">
+									<span><i class="ion-ios-heart"></i></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-3 ftco-animate">
+				<div class="product">
+					<a href="#" class="img-prod"><img class="img-fluid" src="<%=request.getContextPath()%>/images/product-3.jpg" alt="Colorlib Template">
+						<div class="overlay"></div>
+					</a>
+					<div class="text py-3 pb-4 px-3 text-center">
+						<h3><a href="#">나의 리뷰</a></h3>
+						<div class="d-flex">
+							<div class="pricing">
+								<p class="price"><span></span></p>
+							</div>
+						</div>
+						<div class="bottom-area d-flex px-3">
+							<div class="m-auto d-flex">
+								<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+									<span><i class="ion-ios-menu"></i></span>
+								</a>
+								<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+									<span><i class="ion-ios-cart"></i></span>
+								</a>
+								<a href="#" class="heart d-flex justify-content-center align-items-center ">
+									<span><i class="ion-ios-heart"></i></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-3 ftco-animate">
+				<div class="product">
+					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
+						<div class="overlay"></div>
+					</a>
+					<div class="text py-3 pb-4 px-3 text-center">
+						<h3><a href="#">북마크</a></h3>
+						<div class="d-flex">
+							<div class="pricing">
+								<p class="price"><span></span></p>
+							</div>
+						</div>
+						<div class="bottom-area d-flex px-3">
+							<div class="m-auto d-flex">
+								<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+									<span><i class="ion-ios-menu"></i></span>
+								</a>
+								<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+									<span><i class="ion-ios-cart"></i></span>
+								</a>
+								<a href="#" class="heart d-flex justify-content-center align-items-center ">
+									<span><i class="ion-ios-heart"></i></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+	<!-- <body class="is-preload"> -->
 
 		<!-- Wrapper -->
-			<div id="wrapper">
+			<!-- <div id="wrapper"> -->
 
 				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							 <header>
+					<!-- <div id="main">
+						<div class="inner"> -->
+							<%--  <header>
 							 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 									<div class="container">
 									  <a class="navbar-brand" href="index.html"></a>
@@ -76,15 +206,16 @@
 									  </div>
 									</div>
 								  </nav>
-								</header>  
+								</header>   --%>
 							<!-- Banner -->
-								<section id="banner">
+							
+<!-- 								<section id="banner">
 									<div class="content">
 										<header>
 											<h2>마이페이지<br/>
 											</h2>
 										</header>
-									</div>
+									</div> -->
 								</section>
 							<!-- Section -->
 								<section id="myOrder">
@@ -308,7 +439,7 @@
 					<div id="sidebar">
 						<div class="inner">
 							<!-- Menu -->
-								<nav id="menu">
+								<!-- <nav id="menu">
 									<header class="major">
 										<h2>마이페이지</h2>
 									</header>
@@ -317,7 +448,7 @@
 											<span class="opener">나의 주문</span>
 											<ul>
 												<li><a href="#" onclick="scrollToSection('myOrder')">주문 조회</a></li>
-												<!-- <li><a href="#">반품 조회</a></li> -->
+												<li><a href="#">반품 조회</a></li>
 												<li><a href="#">장바구니</a></li>
 											</ul>
 										</li>
@@ -336,7 +467,7 @@
 										</li>
 										<li><a onclick="confirmLogout()">로그아웃</a></li>
 									</ul>
-								</nav>
+								</nav> -->
 
 						</div>
 					</div>
@@ -412,5 +543,6 @@
             }
         }
     </script>
-	</body>
-</html>
+<!-- 	</body>
+</html> -->
+<%@ include file="/views/common/footer.jsp" %>
