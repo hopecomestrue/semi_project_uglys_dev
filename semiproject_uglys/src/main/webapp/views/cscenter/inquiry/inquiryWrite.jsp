@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ page import="com.google.gson.Gson" %>
 
 <%@ page import="com.veg.ksj.admin.controller.AdminLogout" %>
 <%@ page import="com.veg.hjj.member.dto.Member" %>
@@ -9,7 +10,26 @@
         System.out.println(loginMember.getMemberNo());
     }
 %>
+<%
 
+    List<Production> productions = (List<Production>) request.getAttribute("productions");
+    List<ProductionContent> productionContents = (List<ProductionContent>) request.getAttribute("productionContents");
+    List<DAOImplOrder> selectOrderByMemberNo =(List<DAOImplOrder>) request.getAttribute("selectOrderByMemberNo");
+    List<DAOImplRefund>selectRefundByMemberNo =(List<DAOImplRefund>) request.getAttribute("selectRefundByMemberNo");
+/*    System.out.println("productionContents: " +productionContents);*/
+
+    Gson gson = new Gson();
+
+    String productionsJson = gson.toJson(productions);
+    String productionContentsJson = gson.toJson(productionContents);
+/*    System.out.println("productionContentsJson: " +productionContentsJson);*/
+
+    String selectOrderByMemberNoJson = gson.toJson(selectOrderByMemberNo);
+    String selectRefundByMemberNoJson = gson.toJson(selectRefundByMemberNo);
+/*    System.out.println("selectOrderByMemberNo: " +selectOrderByMemberNo);*/
+
+
+%>
 <!DOCTYPE html>
 <head>
     <title>채소랑</title>
@@ -202,6 +222,11 @@
         import="java.util.List,com.veg.seoj.cscenter.model.dto.Inquiry,java.sql.Timestamp,java.text.SimpleDateFormat" %>
 
 <%@ page import="com.veg.hjj.member.dto.Member" %>
+<%@ page import="com.veg.pdw.production.model.dto.Production" %>
+<%@ page import="com.veg.pdw.production.model.dto.ProductionContent" %>
+<%@ page import="com.veg.seoj.cscenter.model.dto.DAOImplOrder" %>
+<%@ page import="com.veg.seoj.cscenter.model.service.InquiryService" %>
+<%@ page import="com.veg.seoj.cscenter.model.dto.DAOImplRefund" %>
     <%
     List<Inquiry> inquiryList = (List<Inquiry>)request.getAttribute("inquiryList");
 %>
@@ -270,7 +295,6 @@
                 }
             </style>
             <h7 style="margin-right: 600px;">1:1 문의 작성</h7>
-
             <script>
                 $(document).ready(function () {
 
@@ -418,22 +442,112 @@
                         </th>
                     </tr>
                 </table>
+
+                <div id="productionContentsData" data-production-contents='<%= productionContentsJson %>' style="display:none;"></div>
+
                 <script>
+
+
+                    var productions = JSON.parse('<%= productionsJson %>');
+
+                    var orders = JSON.parse('<%= selectOrderByMemberNoJson %>');
+                    var refunds = JSON.parse('<%= selectRefundByMemberNoJson %>');
+                    alert(JSON.stringify(refunds));
+                    var productionContentsData = document.getElementById('productionContentsData').getAttribute('data-production-contents');
+                    var productionContents = JSON.parse(productionContentsData);
+                    // alert(JSON.stringify(productionContents));
+
                     function getCategoryValue(selectElement) {
                         var selectedCategory = selectElement.value;
                         var categoryValueTd = document.querySelector('td[name="category_value"]');
 
 
                         if (selectedCategory == '배송' || selectedCategory == '주문') {
-                            categoryValueTd.innerHTML = '주문/배송목록 db';
+               /*             categoryValueTd.innerHTML = '주문/배송목록 db';*/
+                            var selectHTML = `<select <!--onchange="showProductImage(this.value)"--> style="border: 1px solid #E0EDA2 !important;">
+                                <option value="-999">주문을 선택하세요</option>`;
+
+                            if(orders.length > 0) {
+                                orders.forEach(function(order) {
+                                    /*                              alert(production.production_no); */
+                                    selectHTML += '<option value="' + order.orderNo + '">'+'주문날짜 : ' + order.orderDate +' 주문 금액 : ' + order.totalPrice + '</option>';
+                                });
+
+                                selectHTML += `</select>`;
+                                selectHTML += `<img id="selectedProductImage" src="" alt="Select a product" style="width:200px; height:auto; display:none; margin-top:10px;">`;
+                            }
+
+                            categoryValueTd.innerHTML = selectHTML;
                         } else if (selectedCategory == '상품') {
-                            categoryValueTd.innerHTML = '상품목록 db';
+            /*                categoryValueTd.innerHTML = '상품목록 db';*/
+                            var selectHTML = `<select onchange="showProductImage(this.value)" style="border: 1px solid #E0EDA2 !important;">
+                                <option value="-999">상품을 선택하세요</option>`;
+
+                            if(productions.length > 0) {
+                                productions.forEach(function(production) {
+      /*                              alert(production.production_no); */
+                                    selectHTML += '<option value="' + production.production_no + '">' + production.production_name + '</option>';
+                                });
+
+                                selectHTML += `</select>`;
+                                selectHTML += `<img id="selectedProductImage" src="" alt="Select a product" style="width:200px; height:auto; display:none; margin-top:10px;">`;
+                            }
+
+                            categoryValueTd.innerHTML = selectHTML;
                         } else if (selectedCategory == '환불') {
-                            categoryValueTd.innerHTML = '환불목록 db';
+                            /*categoryValueTd.innerHTML = '환불목록 db';*/
+                            var selectHTML = `<select <!--onchange="showProductImage(this.value)"--> style="border: 1px solid #E0EDA2 !important;">
+                                <option value="-999">주문을 선택하세요</option>`;
+
+                            if(refunds.length > 0) {
+                                refunds.forEach(function(refund) {
+                                    /*                              alert(production.production_no); */
+                                    selectHTML += '<option value="' + refund.orderNo + '">'+'환불 번호 : ' + refund.refundNo +' 환불 날짜 : ' + refund.refundDate + '</option>';
+                                });
+
+                                selectHTML += `</select>`;
+                                selectHTML += `<img id="selectedProductImage" src="" alt="Select a product" style="width:200px; height:auto; display:none; margin-top:10px;">`;
+                            }
+
+                            categoryValueTd.innerHTML = selectHTML;
                         } else {
                             categoryValueTd.innerHTML = '미설정';
                         }
                     }
+
+
+                    function showProductImage(productionNo) {
+   /*                     alert(productionContents.productionNo);*/
+                        // 선택된 productionNo에 해당하는 이미지 URL 찾기
+                        var selectedProductContent = productionContents.find(function(content) {
+                            // alert(content.productionNo);
+                            return content.productionNo == productionNo;
+                        });
+
+                        var imgElement = document.getElementById('selectedProductImage');
+
+                        if (productionNo == "-999") {
+                            imgElement.style.display = 'none';
+                        } else {
+                            // 선택된 productionNo에 해당하는 이미지 URL 찾기
+                            var selectedProductContent = productionContents.find(function(content) {
+                                return content.productionNo == productionNo;
+                            });
+
+                            if (selectedProductContent && selectedProductContent.productionImg) {
+                                // 해당 상품의 이미지 URL이 있으면, img 태그의 src 속성을 업데이트하고 표시
+                                imgElement.src = selectedProductContent.productionImg;
+                                imgElement.alt = '선택한 상품 이미지';
+                                imgElement.style.display = 'block'; // 이미지 표시
+                            } else {
+                                // 해당 상품의 이미지 URL이 없으면, 기본 이미지 또는 경고 표시하고 숨기지 않음
+                                imgElement.src = 'path/to/default-image.jpg'; // 기본 이미지 경로로 교체 필요
+                                imgElement.alt = '이미지를 사용할 수 없습니다';
+                                imgElement.style.display = 'block'; // 이미지 표시
+                            }
+                        }
+                    }
+
                 </script>
             </form>
 
