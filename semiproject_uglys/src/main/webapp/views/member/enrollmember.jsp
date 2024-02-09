@@ -346,6 +346,7 @@ window.onload = function(){
               else{
                   document.getElementById('check').innerHTML='불일치입니다.';
                   document.getElementById('check').style.color='red';
+                  
               }
           }
         }
