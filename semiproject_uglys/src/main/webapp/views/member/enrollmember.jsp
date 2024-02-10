@@ -336,7 +336,6 @@ window.onload = function(){
             $("#memberPw2").val("");
             $("#memberPw").focus();
             return false;
-          
           }
           if(document.getElementById('memberPw').value !='' && document.getElementById('memberPw2').value!=''){
               if(document.getElementById('memberPw').value==document.getElementById('memberPw2').value){
