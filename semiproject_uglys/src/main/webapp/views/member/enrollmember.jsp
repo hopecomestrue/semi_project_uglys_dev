@@ -103,14 +103,16 @@ body {
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 
 
 <body>
 	<section id=enroll-container>
 		<h2>회원 가입</h2>
-		<form
-			action="<%=request.getContextPath()%>/member/enrollMemberEnd.do"
+		<form action="<%=request.getContextPath()%>/member/enrollMemberEnd.do"
 			method="post" onsubmit="return validateForm();"
 			enctype="multipart/form-data">
 
@@ -186,7 +188,7 @@ body {
 
 
 			</table>
-			
+
 			<p>약관 동의</p>
 			<div class="TandC">
 
@@ -289,9 +291,6 @@ body {
         }
     }
 </script>
-
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 	<script>
