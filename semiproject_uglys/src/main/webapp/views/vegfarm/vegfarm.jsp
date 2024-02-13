@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/views/common/header.jsp" %>
 <%@ page import="com.veg.pdw.production.model.dto.Production,com.veg.pdw.production.model.dto.ProductionContent,java.util.Map,java.util.List,com.veg.pdw.production.model.dto.*,com.veg.hjj.member.dto.Member" %>
 <%
@@ -148,13 +151,15 @@
                <div class="flex gap-4px">
                
                <div style="display: flex;">
-               <p><%=p.getDiscount()%>%&nbsp;&nbsp;</p>
-               <p style="text-decoration: line-through;"><%=p.getPrice()%></p>
+               <p><fmt:formatNumber value="<%=p.getDiscount()%>" pattern="#,###" />%&nbsp;&nbsp;</p>
+               <p style="text-decoration: line-through;">
+               <fmt:formatNumber value="<%=p.getPrice()%>" pattern="#,###" />
+               </p>
                </div>  
                  
                <!-- 가격 -->
                <div>
-                <p class="price"><span><%=(p.getPrice()*(1-(p.getDiscount()*0.01))) %></span></p>
+                <p class="price"><span><fmt:formatNumber value="<%= Math.round(p.getPrice()*(1-(p.getDiscount()*0.01)) / 100) * 100 %>" pattern="#,###" /></span></p>
                 </div>
                <hr style="margin-top: 32px; margin-bottom: 32px;">
                <!--태그-->
@@ -190,13 +195,13 @@
                      </div>
                      <form action="<%=request.getContextPath()%>/cart/maincartList.do" method="post">
                      <div class="w-100"></div>
-                     <div class="input-group col-md-6 d-flex mb-3">
+                     <div class="input-group col-md-9 d-flex mb-3">
                    <span class="input-group-btn mr-2">
                       <button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
                       <i class="ion-ios-remove"></i>
                       </button>
                      </span>
-                   <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                   <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1">
                    <span class="input-group-btn ml-2">
                       <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
                         <i class="ion-ios-add"></i>
@@ -262,7 +267,7 @@
          <div style="justify-content: center; align-items: center;">
             <!-- 상품후기페이지 -->
             <div>
-               <div>
+               <div style="padding-top: 28px; padding-bottom: 28px; padding-left: 24px; padding-right: 24px;"> 
                   <div style="display: flex; align-items: end; justify-content: space-between; ">
                      <div style="flex-direction: column;">
                         <!-- 후기갯수 디비에서 받아오기 -->
@@ -354,7 +359,7 @@
                      <!-- 후기 페이징처리란 -->
                      
                      <!-- 후기 작성란 -->
-                     <div>
+                     <div style="padding-top: 28px; padding-bottom: 28px; padding-left: 24px; padding-right: 24px;">
                         
      <h2>후기남기기</h2>         
  	 <%if(m!=null){ %>		
@@ -366,7 +371,7 @@
 	    <i class="rating__star far fa-star"></i>
 	</div>
 	
-	<div id="editor"></div>
+	<div id="editor" style="width: 20px"></div>
 	
     <form id="upload-form" action="<%=request.getContextPath()%>/production/review.do" method="post">
  	 <input type="hidden" id="ratingInput" name="rating">
@@ -392,7 +397,7 @@
           </div>
        </div>
   
-
+</body>
 
 	    <script>
         var editor;
@@ -555,7 +560,7 @@ $(document).ready(function(){
 
 
 	
-  </body>
+  
 
 <%@ include file="/views/common/footer.jsp" %>
 

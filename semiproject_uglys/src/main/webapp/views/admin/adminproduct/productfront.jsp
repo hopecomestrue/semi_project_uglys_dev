@@ -281,7 +281,7 @@
 
 				
 			</div>
-				<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
+			<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/browser.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
 			<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>

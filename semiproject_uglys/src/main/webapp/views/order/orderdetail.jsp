@@ -10,6 +10,7 @@
 	List<ProductionContent>productionContents=(List<ProductionContent>)request.getSession().getAttribute("productionContents");
 	int sum=0;
 	int delFee=0;
+	String name="";
 %>
 
 
@@ -41,6 +42,7 @@
 									<td class="image-prod"></td>
 
 									<td class="product-name1">
+											<%name+=productions.get(i).getProduction_name()+" "+carts.get(i).getCount()+", "; %>
 										<h3 id="product-name"><%=productions.get(i).getProduction_name() %></h3>
 									</td>
 
@@ -317,7 +319,7 @@
        IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
         var msg; //결제 성공,실패시 출력할 msg
         var buyerName=$('#buyer-name').val(); //구매자 이름
-        var name='상품명';//상품명
+        var name='<%=name%>';//상품명
         var amount=parseInt($('#total-price').text(),10);//총가격
         var buyerEmail=$('#buyer-email').val();//구매자 이메일
         var buyerTel=$('#buyer-phone').val();//구매자 폰번호
@@ -413,7 +415,7 @@
        IMP.init("imp53448234"); // 'iamport' 대신 부여받은 "가맹점 식별코드" 사용
         var msg; //결제 성공,실패시 출력할 msg
         var buyerName=$('#buyer-name').val(); //구매자 이름
-        var name='상품명';//상품명
+        var name='<%=name%>';//상품명
         var amount=parseInt($('#total-price').text(),10);//총가격
         var buyerEmail=$('#buyer-email').val();//구매자 이메일
         var buyerTel=$('#buyer-phone').val();//구매자 폰번호

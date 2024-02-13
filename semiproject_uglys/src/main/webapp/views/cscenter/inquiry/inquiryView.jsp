@@ -501,8 +501,14 @@
                                 <span class="board-detail-label" name="upfile2">첨부파일</span>
                                 <div class="board-file">
                                     <% if (inquiry.getInquiryOriginalFilename() != null) { %>
-                                    <img src="<%=request.getContextPath()%>/images/file.png" width="25">
-                                    <span><%=inquiry.getInquiryOriginalFilename() %></span>
+                                    <a href="<%=request.getContextPath()%>/upload/inquiry/<%= inquiry.getInquiryRenameFilename() %>"
+                                       target="_blank"
+                                       onclick="window.open(this.href, 'Image', 'resizable=yes,width=800,height=600'); return false;">
+                                        <img style="margin-left: 50px;" src="<%=request.getContextPath()%>/upload/inquiry/<%= inquiry.getInquiryRenameFilename() %>" width="100">
+                                        <div class="col-12">원본 보기 : 이미지 클릭<%=inquiry.getInquiryOriginalFilename() %>
+                                        </div>
+                                    </a>
+                                    <span></span>
                                     <% } %>
                                 </div>
                             </div>
@@ -602,7 +608,7 @@
     $(".comment-editor>form>textarea[name=content]").focus(e => {
         if (<%=loginMember==null%>) {
             alert("로그인 후 이용할 수 있는 서비스입니다.");
-            $("#userId").focus();
+            e.target.blur(); // 포커스 해제
         }
     });
     $(".btn-reply").click(e => {
