@@ -16,7 +16,7 @@
 	flex-direction: column;
   	align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
 	}
 	
 	input[type="text"]{
@@ -33,6 +33,11 @@
 	h4{
 	margin-top: 20px;
 	margin-bottom: 5px;
+	
+	}
+	input[type="text"]{
+		border: 1px solid;
+  		border-radius: 6px;
 	
 	}
 
@@ -120,7 +125,7 @@ input::-webkit-inner-spin-button {
 		</div>
 		<div class="procedure_part">
 		<h4>만드는 방법</h4>
-		<p id="procedure_no" name="procedure_no">1</p>
+		<p id="procedure_no" name="procedure_no">1번</p>
 		<input type="text" id="procedure_comment" name="procedure_comment" maxlength="150" placeholder="만드는 방법을 입력하세요.">
 		<input type="file" id="procedure_file" name="procedure_file">
 		<input type="button" value="추가" onclick="addProcedure();">
@@ -235,7 +240,7 @@ input::-webkit-inner-spin-button {
 
 	        if(count2<6){
 	            count2++;
-	            $(".procedure_part").append("<p id='procedure_no' name='procedure_no'>"+count2+"</p>\
+	            $(".procedure_part").append("<p id='procedure_no' name='procedure_no'>"+count2+"번</p>\
 	            <input type='text' id='procedure_comment' name='procedure_comment' maxlength='150' placeholder='만드는 방법을 입력하세요.'>\
 	            <input type='file' id='procedure_file' name='procedure_file'>"
 	            );

@@ -43,14 +43,20 @@ public class CommunityMainServlet extends HttpServlet {
 		
 
 		List<Member> members = new ArrayList<>(); 
-		for(Recipe r : recipes) {
-			members.add(new OrderService().selectMemberByNo(r.getMember_no()));
-		}
+		members = new CommunityService().selectMemberByNo(recipes);
+		
+		
+		/*
+		 * for(Recipe r : recipes) { members.add(new
+		 * OrderService().selectMemberByNo(r.getMember_no())); }
+		 */
 		
 		request.setAttribute("members", members);
 		
 		request.setAttribute("recipes", recipes);
 //		System.out.println(recipes);
+//		System.out.println(members);
+		
 		request.getRequestDispatcher("/views/community/community_main.jsp")
 		.forward(request, response);
 		

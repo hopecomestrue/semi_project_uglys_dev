@@ -144,6 +144,8 @@
 	border:1px solid #e9e9e9;
 	border-radius: 30px;
 	text-decoration: none !important;
+	text-align: right !important;
+	margin-right: 200px;
 
 }
 
@@ -202,10 +204,12 @@
               </div>
             </div>
         </div>
-       <div class="float-button-container" style="text-align: right"><button type="button" class="btn btn-primary">
+       <div class="float-button-container">
+       		<button type="button" class="btn btn-primary">
 			  <a class="float-button" href="<%=request.getContextPath() %>/community/recipewrite.do" target="_blank">
 			    레시피 작성하기
-			  </a></button>
+			  </a>
+			 </button>
 		</div>
         <h3 style="text-align: center; /* 가로 방향 가운데 정렬 */">오늘의 레시피는?</h3>
         <section class="review-section rev1">
