@@ -110,7 +110,7 @@ body {
 	<section id=enroll-container>
 		<h2>회원 가입</h2>
 		<form
-			action="<%=request.getContextPath() %>/member/enrollMemberEnd.do"
+			action="<%=request.getContextPath()%>/member/enrollMemberEnd.do"
 			method="post" onsubmit="return validateForm();"
 			enctype="multipart/form-data">
 
@@ -186,7 +186,7 @@ body {
 
 
 			</table>
-
+			
 			<p>약관 동의</p>
 			<div class="TandC">
 
@@ -225,6 +225,7 @@ body {
 
 
 	<script>
+	/*약관동의서  */
     document.addEventListener('DOMContentLoaded', () => {
         const ckTag = document.getElementById('id_a');
         const evtBtnTag1 = document.getElementById('id_b');
@@ -345,6 +346,7 @@ window.onload = function(){
               else{
                   document.getElementById('check').innerHTML='불일치입니다.';
                   document.getElementById('check').style.color='red';
+                  
               }
           }
         }

@@ -6,18 +6,21 @@ import static com.veg.common.JDBCTemplate.getConnection;
 import static com.veg.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.veg.hjj.member.dto.Member;
+import com.veg.ksj.order.model.dao.OrderDao;
 import com.veg.kth.community.model.dao.CommunityDao;
 import com.veg.kth.community.model.dto.Category;
 import com.veg.kth.community.model.dto.Hashtag;
-import com.veg.kth.community.model.dto.Material;
 import com.veg.kth.community.model.dto.Recipe;
 import com.veg.kth.community.model.dto.RecipeComment;
 
 public class CommunityService {
 
-	private CommunityDao dao = new CommunityDao(); 
+	private CommunityDao dao = new CommunityDao();
+	private OrderDao orderDao = new OrderDao();
 	
 	public List<Recipe> selectRecipeAll(){
 		Connection conn = getConnection();
@@ -93,6 +96,19 @@ public class CommunityService {
 		close(conn);
 		return result;
 	}
+	
+	public List<Member> selectMemberByNo(List<Recipe> recipes) {
+		Connection conn=getConnection();
+			List<Member> members = new ArrayList<>();
+			for(Recipe r : recipes) {
+				Member m=orderDao.selectMemberByNo(conn, r.getMember_no());				
+				members.add(m);
+			}
+		
+		close(conn);
+		return members;
+	}
+	
 	
 	
 }

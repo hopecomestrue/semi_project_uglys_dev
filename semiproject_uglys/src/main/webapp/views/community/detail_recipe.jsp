@@ -115,6 +115,28 @@ section {
 .rounded {
     border-radius: 0.25rem!important;
 }
+
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+tr:hover {
+  background-color: rgb(250, 236, 197);
+}
+th, td {
+  border-bottom: 1px solid #ddd;
+}
+th:nth-child(2), th:nth-child(3) {
+  border-left: 1px solid #ddd; /* 1px 굵기의 검은색 세로 라인을 적용합니다. */
+}
+
+td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6) {
+  border-left: 1px solid #ddd; /* 1px 굵기의 검은색 세로 라인을 적용합니다. */
+}
+
+
+
+
 </style>
 
 <section class="bg-light">

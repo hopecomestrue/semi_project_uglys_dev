@@ -63,8 +63,11 @@ public class InquiryWriteEndServlet extends HttpServlet {
             String ori = "";
             while (names.hasMoreElements()) {
                 name = (String)names.nextElement();
+                System.out.println("name: "+name);
                 re = mr.getFilesystemName(name);
+                System.out.println("re: "+re);
                 ori = mr.getOriginalFileName(name);
+                System.out.println("ori: "+ori);
             }
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

@@ -40,6 +40,7 @@ public class LoginEndServlet extends HttpServlet {
 			String saveId=request.getParameter("saveId");
 			
 			
+			System.out.println("test"+memberId+ memberPw);
 			
 			if(saveId!=null) {
 				Cookie c=new Cookie("saveId",memberId);

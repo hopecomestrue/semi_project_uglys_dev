@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-<%@ page import="com.veg.kth.community.model.dto.Recipe, java.util.List,com.veg.kth.community.model.dto.Hashtag" %>
+<%@ page import="com.veg.kth.community.model.dto.*, java.util.List,com.veg.kth.community.model.dto.Hashtag, com.veg.hjj.member.dto.* " %>
 <%
 
 	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");
@@ -144,6 +144,8 @@
 	border:1px solid #e9e9e9;
 	border-radius: 30px;
 	text-decoration: none !important;
+	text-align: right !important;
+	margin-right: 200px;
 
 }
 
@@ -202,10 +204,12 @@
               </div>
             </div>
         </div>
-       <div class="float-button-container" style="text-align: right"><button type="button" class="btn btn-primary">
+       <div class="float-button-container">
+       		<button type="button" class="btn btn-primary">
 			  <a class="float-button" href="<%=request.getContextPath() %>/community/recipewrite.do" target="_blank">
 			    레시피 작성하기
-			  </a></button>
+			  </a>
+			 </button>
 		</div>
         <h3 style="text-align: center; /* 가로 방향 가운데 정렬 */">오늘의 레시피는?</h3>
         <section class="review-section rev1">
@@ -237,11 +241,14 @@
 
                 <div class="info-area">
                   <div class="line"></div>
+                  <%-- <%for(Member m : members){ %>
+                  <%if(r.getMember_no()==m.getMemberNo()){ %> --%>
                   <h5><%=r.getMember_no() %></h5>
                 </div>
               </li>
               </a>
-              <%
+              <%	/* }
+                  } */
             	}
             }
               %>

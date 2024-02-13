@@ -7,6 +7,7 @@ import static com.veg.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.veg.ksj.order.model.dto.Order;
 import com.veg.seoj.cscenter.model.dao.GenericDAOImpl;
@@ -103,17 +104,18 @@ public class InquiryService {
         DAOImplOrder Some = (DAOImplOrder)DAOImplOrder
                 .builder()
                 .build();
-        List<DAOImplOrder> result = inquiryDAO.getTo(conn, Some, "sql.refund.select", "getTo", no);
+        List<DAOImplOrder> result = inquiryDAO.getTo(conn, Some, "sql.order.select", "getTo", no);
         close(conn);
         return result;
     }
     public List<DAOImplRefund> selectRefundByMemberNo(int no) {
         Connection conn = getConnection();
-        GenericDAOImpl<DAOImplRefund, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "SHOP_ORDER");
+        GenericDAOImpl<DAOImplRefund, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "REFUND");
         DAOImplRefund Some = (DAOImplRefund)DAOImplRefund
                 .builder()
                 .build();
         List<DAOImplRefund> result = inquiryDAO.getTo(conn, Some, "sql.refund.select", "getTo", no);
+        System.out.println("refund result: "+result);
         close(conn);
         return result;
     }
@@ -136,4 +138,14 @@ public class InquiryService {
         return result;
     }
 
+/*    public List<Map<String, Object>> getProductList() {
+        Connection conn = getConnection();
+        GenericDAOImpl<Order, Integer> inquiryDAO = new GenericDAOImpl<>(conn, "SHOP_ORDER");
+        Order Some = (Order)Order
+                .builder()
+                .build();
+        List<Order> result = inquiryDAO.getTo(conn, Some, "sql.order.select", "getTo");
+        close(conn);
+        return result;
+    }*/
 }
