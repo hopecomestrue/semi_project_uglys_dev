@@ -7,7 +7,9 @@ import static com.veg.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.dao.OrderDao;
@@ -100,14 +102,27 @@ public class CommunityService {
 	public List<Member> selectMemberByNo(List<Recipe> recipes) {
 		Connection conn=getConnection();
 			List<Member> members = new ArrayList<>();
-			for(Recipe r : recipes) {
-				Member m=orderDao.selectMemberByNo(conn, r.getMember_no());				
+			Set<Integer> numList = new HashSet<>();
+			for(Recipe r :recipes) {
+				numList.add(r.getMember_no());
+			}
+
+			for(Integer num : numList) {
+				Member m=orderDao.selectMemberByNo(conn, num);				
 				members.add(m);
 			}
 		
 		close(conn);
 		return members;
 	}
+	
+	public Member selectMemberByNo(int memberNo) {
+		Connection conn=getConnection();
+			Member m=orderDao.selectMemberByNo(conn, memberNo);				
+		close(conn);
+		return m;
+	}
+	
 	
 	
 	

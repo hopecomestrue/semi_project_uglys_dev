@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.veg.hjj.member.dto.Member;
+
 import lombok.Builder;
 import lombok.Data;
 

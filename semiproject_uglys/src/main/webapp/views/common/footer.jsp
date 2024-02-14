@@ -10,7 +10,7 @@
             </div>
           </div>
           <div class="row mb-5">
-            <div class="col-md"style="width:100px;">
+            <!-- <div class="col-md"style="width:100px;">
               <div class="ftco-footer-widget mb-4">
                 <h1 class="ftco-heading-2">고객센터</h1>
                 
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-4" >
 
-           </div>
+           </div> -->
             </div>  
           </div>
           <div class="row">
