@@ -64,7 +64,7 @@
 		<div class="row">
 			<div class="col-md-6 col-lg-3 ftco-animate">
 				<div class="product">
-					<a href="#" class="img-prod"><img  class="img-fluid"  src="<%=request.getContextPath()%>/images/free-icon-vegetable-5346492.png" alt="">
+					<a href="#" class="img-prod"><img  class="img-fluid"  src="<%=request.getContextPath()%>/images/free-icon-trolley-14478084.png" alt="">
 						<!-- <span class="status">30%</span> -->
 						<div class="overlay"></div>
 					</a>
@@ -93,7 +93,7 @@
 			</div>
 			<div class="col-md-6 col-lg-3 ftco-animate">
 				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
+					<a href="#" class="img-prod"><img class="img-fluid" src="<%=request.getContextPath()%>/images/free-icon-add-contact-14478119.png" alt="Colorlib Template">
 						<div class="overlay"></div>
 					</a>
 					<div class="text py-3 pb-4 px-3 text-center">
@@ -121,7 +121,7 @@
 			</div>
 			<div class="col-md-6 col-lg-3 ftco-animate">
 				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid" src="<%=request.getContextPath()%>/images/product-3.jpg" alt="Colorlib Template">
+					<a href="#" class="img-prod"><img class="img-fluid" src="<%=request.getContextPath()%>/images/free-icon-edit-14478123.png" alt="Colorlib Template">
 						<div class="overlay"></div>
 					</a>
 					<div class="text py-3 pb-4 px-3 text-center">
@@ -149,7 +149,7 @@
 			</div>
 			<div class="col-md-6 col-lg-3 ftco-animate">
 				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
+					<a href="#" class="img-prod"><img class="img-fluid" src="<%=request.getContextPath()%>/images/free-icon-bookmark-14478084.png" alt="Colorlib Template">
 						<div class="overlay"></div>
 					</a>
 					<div class="text py-3 pb-4 px-3 text-center">
