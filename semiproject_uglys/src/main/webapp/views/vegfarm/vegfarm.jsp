@@ -105,6 +105,15 @@
      .ck-editor__editable {
          height: 50vh;
      }
+     .btn{
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #ddd;
+  }
 
    </style>
   </head>
@@ -214,9 +223,9 @@
          
 			<%if(p.getStock()>0&&m!=null) {%>
 			<span style="display: flex; gap: 10px;">
-			<button>장바구니</button>
+			<button id="cartId" class="btn">장바구니</button>
 			<input type="hidden" value="<%=p.getProduction_no()%>" name="productNo">
-            <button>바로구매</button></span>
+            <button id="buyId" class="btn">바로구매</button></span>
             </form>
             <%}else if(p.getStock()<0){%> 
              	<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">품절</a></p>
@@ -495,7 +504,91 @@
 		    });
 		    
 		});
+
 	</script>
+<script>
+	var acc = document.getElementsByClassName("accordion-button");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+  	acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.previousElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+
+      /* 첫 번째 이미지를 제외한 모든 이미지를 숨깁니다 */
+      var imgs = content.getElementsByTagName('img');
+      for (var i = 1; i < imgs.length; i++) {
+        imgs[i].style.display = 'none';
+      }
+    } else {
+      /* 모든 이미지의 높이를 합산하여 max-height를 설정합니다 */
+      var imgs = content.getElementsByTagName('img');
+      var totalHeight = 0;
+      for (var i = 0; i < imgs.length; i++) {
+        imgs[i].style.display = 'block';
+        totalHeight += imgs[i].offsetHeight;
+      }
+      content.style.maxHeight = totalHeight + "px";
+    }
+
+    /* 버튼을 숨깁니다 */
+    this.style.display = 'none';
+  });
+}
+
+
+
+
+</script>
+<script>
+// 버튼 요소를 가져옵니다.
+const button1 = document.getElementById("cartId");
+const button2 = document.getElementById("buyId");
+
+// 호버 시 스타일을 변경하는 함수를 정의합니다.
+function handleHover() {
+  button1.classList.add("hovered");
+}
+
+// 호버 해제 시 스타일을 원래대로 되돌리는 함수를 정의합니다.
+function handleUnhover() {
+  button1.classList.remove("hovered");
+}
+// 호버 시 스타일을 변경하는 함수를 정의합니다.
+function handleHover2() {
+  button2.classList.add("hovered");
+}
+
+// 호버 해제 시 스타일을 원래대로 되돌리는 함수를 정의합니다.
+function handleUnhover2() {
+  button2.classList.remove("hovered");
+}
+
+// 버튼에 마우스 호버 이벤트 리스너를 등록합니다.
+button.addEventListener("mouseover", handleHover);
+button.addEventListener("mouseout", handleUnhover);
+button.addEventListener("mouseover", handleHover2);
+button.addEventListener("mouseout", handleUnhover2);
+
+
+$(document).ready(function(){
+    // 첫 번째 탭의 내용만 보여줍니다.
+    $(".accordion").hide();
+    $(".accordion:first").show();
+
+    $(".sub").click(function(){
+        // 모든 내용을 숨깁니다.
+        $(".accordion").hide();
+
+        // 클릭된 tab에 해당하는 내용만 보여줍니다.
+        var idx = $(".sub").index(this); // 클릭된 tab의 index를 가져옵니다.
+        $(".accordion").eq(idx).show(); // 해당 index의 내용만 보여줍니다.
+    });
+});
+</script>
+
  <script type="text/javascript">
     const ratingStars = [...document.getElementsByClassName("rating__star")];
     const starClassActive = "rating__star fas fa-star";

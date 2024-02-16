@@ -452,7 +452,7 @@
 
                     var orders = JSON.parse('<%= selectOrderByMemberNoJson %>');
                     var refunds = JSON.parse('<%= selectRefundByMemberNoJson %>');
-                    alert(JSON.stringify(refunds));
+/*                    alert(JSON.stringify(refunds));*/
                     var productionContentsData = document.getElementById('productionContentsData').getAttribute('data-production-contents');
                     var productionContents = JSON.parse(productionContentsData);
                     // alert(JSON.stringify(productionContents));
