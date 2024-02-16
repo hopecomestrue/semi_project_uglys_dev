@@ -1,16 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <style>
-    	footer{
-    		clear:both;
-    		height:75px;
-    		text-align:center;
-    		padding-top:40px;
-    	}
-    </style>
-		<footer>
-			<p>&lt;CopyRight 2023. <strong>CHASORANG</strong>
-			All right Reserved.&gt;</p>
-		</footer>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+    <!-- Warning Section Ends -->
+
+    <!-- Required Js -->
+    <script src="${path }/assets/js/vendor-all.min.js"></script>
+    <script src="${path }/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="${path }/assets/js/pcoded.min.js"></script>
+
+<!-- Apex Chart -->
+<script src="${path }/assets/js/plugins/apexcharts.min.js"></script>
+
+
+<!-- custom-chart js -->
+<script src="${path }/assets/js/pages/dashboard-main.js"></script>
 </body>
+
 </html>
