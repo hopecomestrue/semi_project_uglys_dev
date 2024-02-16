@@ -63,51 +63,17 @@
     }
 </style>
 
-<body class="is-preload">
+<body>
 
     <!-- Wrapper -->
-    <div id="wrapper" style="padding: 250px; margin-top: -200px;">
+    <div class="pcoded-main-container">
         <!-- Main -->
-        <div id="main">
-            <div class="inner">
-                <header>
-                    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-                        <div class="container">
-                            <a class="navbar-brand" href="index.html">채소랑</a>
-                            <!-- 메인화면으로 이동 // 주소바꾸기 -->
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="oi oi-menu"></span> Menu
-                            </button>
-                            <!-- nav -->
-                            <div class="collapse navbar-collapse" id="ftco-nav">
-                                <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                                    <li class="nav-item"><a href="<%=request.getContextPath()%>/productionList/vegfarm.do" class="nav-link">채소농장</a></li>
-                                    <li class="nav-item"><a href="<%=request.getContextPath() %>/community/communitymain.do" class="nav-link">커뮤니티</a></li>
-                                    <li class="nav-item"><a href="<%=request.getContextPath() %>/inquiry/inquiryList.do" class="nav-link">고객센터</a></li>
-                                    <li class="nav-item"><a href="<%=request.getContextPath()%>/admin/main.do" class="nav-link">관리자페이지</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </header>
-                <!-- Banner -->
-                <section id="banner">
-                    <div class="content">
-                        <header>
-                            <h2>관리자페이지<br />
-                            </h2>
-                        </header>
+        <div class="pcoded-content">
+            <div class="card">
+            	<div class="card-header">
+                        <h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">상품 등록</h1>
                     </div>
-                </section>
-
-                <!-- Section -->
-                <section>
-                    <header class="major">
-                        <h2>상품관리</h2>
-                    </header>
                     <div class="card-body">
-
                         <div class="datatable-wraooer datatable-loading no-footer sortable searchable fixed-colums">
                             <div class="datable-top">
                                 <div class="datatable-dropdown">
@@ -155,7 +121,7 @@
                         </div>
                         <div class="features">
                             <div class="table-wrapper">
-                                <table>
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -230,17 +196,15 @@
                                 </table>
                             </div>
                         </div>
-                        <ul style="display: flex; justify-content: center;">
-                            <%if(request.getAttribute("pageBar")!=null){ %>
+                        <div id="pageBar" class="container">
+                            
                             <%=request.getAttribute("pageBar") %>
-                            <%} %>
-                        </ul>
-                </section>
+                            
+                        </div>
             </div>
         </div>
     </div>
-
-</body>
+</div>
 <%@ include file="/views/admin/common/footer.jsp" %>
 <%}%>
 			
