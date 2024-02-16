@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-<%@ page import="com.veg.kth.community.model.dto.Recipe, java.util.List,com.veg.kth.community.model.dto.Hashtag" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.veg.kth.community.model.dto.*, java.util.List,com.veg.kth.community.model.dto.Hashtag, com.veg.hjj.member.dto.* " %>
 <%
 
 	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");
@@ -202,10 +204,28 @@
               </div>
             </div>
         </div>
-       <div class="float-button-container" style="text-align: right"><button type="button" class="btn btn-primary">
-			  <a class="float-button" href="<%=request.getContextPath() %>/community/recipewrite.do" target="_blank">
+       <div class="float-button-container" 
+       		style="text-align: right; z-index: 1000;
+			position: fixed;
+			transform: translate(-50%, 0%);
+			left: 90%;
+			bottom: 70%;
+		
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+			height: 40px;
+			box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+			border:1px solid #e9e9e9;
+			border-radius: 30px;
+			text-decoration: none !important;">
+       		<button type="button" class="btn btn-primary">
+			  <a class="float-button" 
+			  href="<%=request.getContextPath() %>/community/recipewrite.do" target="_blank">
 			    레시피 작성하기
-			  </a></button>
+			  </a>
+			 </button>
 		</div>
         <h3 style="text-align: center; /* 가로 방향 가운데 정렬 */">오늘의 레시피는?</h3>
         <section class="review-section rev1">
@@ -237,11 +257,14 @@
 
                 <div class="info-area">
                   <div class="line"></div>
-                  <h5><%=r.getMember_no() %></h5>
+                  <%for(Member m : members){ %>
+                  <%if(r.getMember_no()==m.getMemberNo()){ %>
+                  <h5><%=m.getMemberId() %></h5>
                 </div>
               </li>
               </a>
-              <%
+              <%	 }
+                  }
             	}
             }
               %>

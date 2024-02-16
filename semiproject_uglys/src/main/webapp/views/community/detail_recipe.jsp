@@ -2,14 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.veg.kth.community.model.dto.*,java.util.List" %>
 <%@ include file="/views/common/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
 	Recipe recipe = (Recipe)request.getAttribute("recipe");
+	Member member = (Member)request.getAttribute("member");
 	List<Procedure> procedure = recipe.getProcedure();
 	List<Hashtag> hashtag = recipe.getHashtag();
 	List<RecipeComment> comments = (List<RecipeComment>)request.getAttribute("comments");
 	
+	List<Material> mainM = (List<Material>)request.getAttribute("mainM");
+	List<Material> subM = (List<Material>)request.getAttribute("subM");
+	List<Material> sourceM = (List<Material>)request.getAttribute("sourceM");
+	int lengthM = (int)request.getAttribute("lengthM");
+	
 %>
+<c:set var="lengthM" value="${lengthM }"/>
 
 <style>body{margin-top:20px;}
 .card-style1 {
@@ -115,6 +123,28 @@ section {
 .rounded {
     border-radius: 0.25rem!important;
 }
+
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+tr:hover {
+  background-color: rgb(250, 236, 197);
+}
+th, td {
+  border-bottom: 1px solid #ddd;
+}
+th:nth-child(2), th:nth-child(3) {
+  border-left: 1px solid #ddd; /* 1px 굵기의 검은색 세로 라인을 적용합니다. */
+}
+
+td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6) {
+  border-left: 1px solid #ddd; /* 1px 굵기의 검은색 세로 라인을 적용합니다. */
+}
+
+
+
+
 </style>
 
 <section class="bg-light">
@@ -131,7 +161,7 @@ section {
                                 <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
                                     <h3 class="h2 text-white mb-0"><%=recipe.getRecipeTitle() %></h3>
                                     
-                                    <span class="text-primary"><%=recipe.getMember_no() %></span>
+                                    <span class="text-primary"><%=member.getMemberId() %></span>
                                 </div>
                                 <ul class="list-unstyled mb-1-9">
                                     <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">소요시간:</span><%=recipe.getRecipeLeadTime() %></li>
@@ -156,7 +186,7 @@ section {
             <div class="col-lg-12 mb-4 mb-sm-5">
                 <div>
                     <span class="section-title text-primary mb-3 mb-sm-4">재료</span>
-                    <table style="width:80%; text-align: center;" >
+                    <table style="width:100%; text-align: center;" >
                     	<tr>
                     		<th colspan="2">필수재료</th>
                     		<th colspan="2">부재료</th>
@@ -170,25 +200,31 @@ section {
 							<td>소스 이름</td>
 							<td>소스 양</td>
                     	</tr>
-                    	
-                    	<% 
-                    	List<Material> material = recipe.getMaterial();
-                    	if(!material.isEmpty()){
-                    		for(Material m : material){%>
+                    	<%for(int i=0;i<lengthM;i++){%>                    	
                     	<tr>
-                    		<%if(m.getMaterialType().equals("MAIN")) {%>
-                    		<td> <%=m.getMaterialName()%> main</td>
-                    		<td><%=m.getMaterialCapa()%></td><%}else{ %><td></td><td></td><%} %>
-                    		<%if(m.getMaterialType().equals("SUB")) {%>
-                    		<td><%=m.getMaterialName() %> sub</td>
-                    		<td><%=m.getMaterialCapa() %></td><%}else{ %><td></td><td></td><%} %>
-                    		<%if(m.getMaterialType().equals("SOURCE")) {%>
-                    		<td><%=m.getMaterialName() %> source</td>
-                    		<td><%=m.getMaterialCapa()%></td><%}else{ %><td></td><td></td><%} %>
+                    		<%if(i < mainM.size() && mainM.get(i) != null){%>
+                    		<td><%=mainM.get(i).getMaterialName() %></td>
+                    		<td><%=mainM.get(i).getMaterialCapa() %></td>
+                    		<%}else{ %>
+                    		<td></td>
+                    		<td></td>
+                    		<%} %>
+                    		<%if(i < subM.size() && subM.get(i) != null){%>
+                    		<td><%=subM.get(i).getMaterialName() %></td>
+                    		<td><%=subM.get(i).getMaterialCapa() %></td>
+                    		<%}else{ %>
+                    		<td></td>
+                    		<td></td>
+                    		<%} %>
+                    		<%if(i < sourceM.size() && sourceM.get(i) != null){%>
+                    		<td><%=sourceM.get(i).getMaterialName() %></td>
+                    		<td><%=sourceM.get(i).getMaterialCapa() %></td>
+                    		<%}else{ %>
+                    		<td></td>
+                    		<td></td>
+                    		<%} %>                		
                     	</tr>
-                    	<%}
-                    	}%>
-
+                    	<%} %>
                     </table>
                 </div>
             </div>
@@ -262,4 +298,5 @@ section {
         </div>
     </div>
 </section>
+
 <%@ include file="/views/common/footer.jsp" %>
