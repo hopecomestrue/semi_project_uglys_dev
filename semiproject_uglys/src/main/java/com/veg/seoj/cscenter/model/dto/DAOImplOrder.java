@@ -19,7 +19,7 @@ import lombok.Data;
 @Builder
 public class DAOImplOrder  implements ResultSetMapper<DAOImplOrder> {
     @Builder.Default
-    private int orderNo=0;
+    private long orderNo=0;
     @Builder.Default
     private int MemberNo=0;
     @Builder.Default
@@ -43,7 +43,7 @@ public class DAOImplOrder  implements ResultSetMapper<DAOImplOrder> {
     @Builder.Default
     private String orderStatus="";
     @Builder.Default
-    private int trakingNumber=0;
+    private long trakingNumber=0;
     @Builder.Default
     private Date orderDate=null;
 
@@ -52,7 +52,7 @@ public class DAOImplOrder  implements ResultSetMapper<DAOImplOrder> {
     @Override
     public DAOImplOrder fromResultSet(ResultSet rs, String type) throws SQLException {
         DAOImplOrderBuilder builder = DAOImplOrder.builder()
-                .orderNo(rs.getInt("ORDER_NO"))
+                .orderNo(rs.getLong("ORDER_NO"))
                 .MemberNo(rs.getInt("MEMBER_NO"))
                 .orderName(rs.getString("ORDER_NAME"))
                 .orderPhone(rs.getString("ORDER_PHONE"))
@@ -63,7 +63,7 @@ public class DAOImplOrder  implements ResultSetMapper<DAOImplOrder> {
                 .deliveryPay(rs.getInt("DELIVERY_PAY"))
                 .payment(rs.getString("PAYMENT"))
                 .orderStatus(rs.getString("ORDER_STATUS"))
-                .trakingNumber(rs.getInt("TRAKING_NUMBER"))
+                .trakingNumber(rs.getLong("TRAKING_NUMBER"))
                 .orderDate(rs.getDate("ORDER_DATE"));
         return builder.build();
     }

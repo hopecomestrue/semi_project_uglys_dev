@@ -204,7 +204,7 @@
                      </div>
                      <form action="<%=request.getContextPath()%>/cart/maincartList.do" method="post">
                      <div class="w-100"></div>
-                     <div class="input-group col-md-6 d-flex mb-3">
+                     <div class="input-group col-md-9 d-flex mb-3">
                    <span class="input-group-btn mr-2">
                       <button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
                       <i class="ion-ios-remove"></i>
@@ -276,7 +276,7 @@
          <div style="justify-content: center; align-items: center;">
             <!-- 상품후기페이지 -->
             <div>
-               <div>
+               <div style="padding-top: 28px; padding-bottom: 28px; padding-left: 24px; padding-right: 24px;"> 
                   <div style="display: flex; align-items: end; justify-content: space-between; ">
                      <div style="flex-direction: column;">
                         <!-- 후기갯수 디비에서 받아오기 -->
@@ -368,7 +368,7 @@
                      <!-- 후기 페이징처리란 -->
                      
                      <!-- 후기 작성란 -->
-                     <div>
+                     <div style="padding-top: 28px; padding-bottom: 28px; padding-left: 24px; padding-right: 24px;">
                         
      <h2>후기남기기</h2>         
  	 <%if(m!=null){ %>		
@@ -380,7 +380,7 @@
 	    <i class="rating__star far fa-star"></i>
 	</div>
 	
-	<div id="editor"></div>
+	<div id="editor" style="width: 20px"></div>
 	
     <form id="upload-form" action="<%=request.getContextPath()%>/production/review.do" method="post">
  	 <input type="hidden" id="ratingInput" name="rating">
@@ -406,7 +406,7 @@
           </div>
        </div>
   
-
+</body>
 
 	    <script>
         var editor;
@@ -599,7 +599,7 @@ $(document).ready(function(){
 
 
 	
-  </body>
+  
 
 <%@ include file="/views/common/footer.jsp" %>
 
