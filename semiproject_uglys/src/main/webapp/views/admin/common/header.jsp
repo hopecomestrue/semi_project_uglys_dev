@@ -1,182 +1,331 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head>
-  	<script src="/docs/5.3/assets/js/color-modes.js"></script>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+    	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    	<![endif]-->
+    <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.118.2">
-    <title>Headers · Bootstrap v5.3</title>
-	
-	<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="${path }/assets/images/favicon.ico" type="image/x-icon">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="${path }/assets/css/style.css">
     
     
 
-<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+	<nav class="pcoded-navbar  ">
+		<div class="navbar-wrapper  ">
+			<div class="navbar-content scroll-div " >
+				
+				<div class="">
+					<div class="main-menu-header">
+						<img class="img-radius" src="${path }/assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
+						<div class="user-details">
+							<span>John Doe</span>
+							<div id="more-details">UX Designer<i class="fa fa-chevron-down m-l-5"></i></div>
+						</div>
+					</div>
+					<div class="collapse" id="nav-user-link">
+						<ul class="list-unstyled">
+							<li class="list-group-item"><a href="user-profile.html"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
+							<li class="list-group-item"><a href="#!"><i class="feather icon-settings m-r-5"></i>Settings</a></li>
+							<li class="list-group-item"><a href="auth-normal-sign-in.html"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<ul class="nav pcoded-inner-navbar ">
+					<li class="nav-item pcoded-menu-caption">
+						<label>Navigation</label>
+					</li>
+					<li class="nav-item">
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					</li>
+					<li class="nav-item pcoded-hasmenu">
+					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
+					    <ul class="pcoded-submenu">
+					        <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
+					        <li><a href="layout-horizontal.html" target="_blank">Horizontal</a></li>
+					    </ul>
+					</li>
+					<li class="nav-item pcoded-menu-caption">
+						<label>UI Element</label>
+					</li>
+					<li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Basic</span></a>
+						<ul class="pcoded-submenu">
+							<li><a href="bc_alert.html">Alert</a></li>
+							<li><a href="bc_button.html">Button</a></li>
+							<li><a href="bc_badges.html">Badges</a></li>
+							<li><a href="bc_breadcrumb-pagination.html">Breadcrumb & paggination</a></li>
+							<li><a href="bc_card.html">Cards</a></li>
+							<li><a href="bc_collapse.html">Collapse</a></li>
+							<li><a href="bc_carousel.html">Carousel</a></li>
+							<li><a href="bc_grid.html">Grid system</a></li>
+							<li><a href="bc_progress.html">Progress</a></li>
+							<li><a href="bc_modal.html">Modal</a></li>
+							<li><a href="bc_spinner.html">Spinner</a></li>
+							<li><a href="bc_tabs.html">Tabs & pills</a></li>
+							<li><a href="bc_typography.html">Typography</a></li>
+							<li><a href="bc_tooltip-popover.html">Tooltip & popovers</a></li>
+							<li><a href="bc_toasts.html">Toasts</a></li>
+							<li><a href="bc_extra.html">Other</a></li>
+						</ul>
+					</li>
+					<li class="nav-item pcoded-menu-caption">
+					    <label>Forms &amp; table</label>
+					</li>
+					<li class="nav-item">
+					    <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Forms</span></a>
+					</li>
+					<li class="nav-item">
+					    <a href="tbl_bootstrap.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Bootstrap table</span></a>
+					</li>
+					<li class="nav-item pcoded-menu-caption">
+						<label>Chart & Maps</label>
+					</li>
+					<li class="nav-item">
+					    <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a>
+					</li>
+					<li class="nav-item">
+					    <a href="map-google.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">Maps</span></a>
+					</li>
+					<li class="nav-item pcoded-menu-caption">
+						<label>Pages</label>
+					</li>
+					<li class="nav-item pcoded-hasmenu">
+					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
+					    <ul class="pcoded-submenu">
+					        <li><a href="auth-signup.html" target="_blank">Sign up</a></li>
+					        <li><a href="auth-signin.html" target="_blank">Sign in</a></li>
+					    </ul>
+					</li>
+					<li class="nav-item"><a href="sample-page.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>
 
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#712cf9">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
-      
-      .admin-title{
-        color: black;
-        text-decoration: none;
-      }
-
-      .search_3{
-        align-items: center;
-        display: flex;
-        justify-content: right;
-        margin-right: 10%;
-      }
-
-      #delivery-check{
-        width: 18%;
-        margin-left: 70%;
-        margin-bottom: 3%;
-      }
-
-      .delivery-tb{
-        width: 80%;
-        margin: 0 auto;
-      }
-
-      .delivery-paging{
-        margin: 5%;
-      }
-      
-    </style>
-<body>
-  <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <div class="col-md-3 mb-2 mb-md-0">
-        <a href="<%=request.getContextPath()%>/admin/main.do" class="d-inline-flex link-body-emphasis text-decoration-none">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3YIR4yyeQgs9tgIWXuAH7AmYGRNHCQ8ZJ-Q&usqp=CAU" width="40" height="32">
-        </a>
-      </div>
-      <h1><a href="<%=request.getContextPath()%>/admin/main.do" class="admin-title">채소랑 어드민</a></h1>
-
-      <div class="col-md-3 text-end">
-        <span>관리자님, 환영합니다</span>
-        <button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/admin/logout.do')">로그아웃</button>
-      </div>
-</header>
-  </div>
-
-<!-- 상단 메뉴 -->
-	<div class="container text-center">
-	    <div class="row align-items-center">
-	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/MemberCheck.do">회원관리</a>
-	      </div>
-	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/production.do">상품등록</a>
-	      </div>
-	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/deliveryList.do">주문현황</a>
-	      </div>
-	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/refundList.do">환불관리</a>
-	      </div>
-	      <div class="col">
-	        <a class="dropdown-item rounded-2" href="<%=request.getContextPath()%>/admin/recipeList.do">레시피관리</a>
-	      </div>
-	    </div>
-  </div>
+				</ul>
+				
+				<div class="card text-center">
+					<div class="card-block">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<i class="feather icon-sunset f-40"></i>
+						<h6 class="mt-3">Upgrade To Pro</h6>
+						<p>Please contact us on our email for need any support</p>
+						<a href="https://1.envato.market/PgJNQ" target="_blank" class="btn btn-primary btn-sm text-white m-0">Upgrade</a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</nav>
+	<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark">
+		
+			
+				<div class="m-header">
+					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+					<a href="#!" class="b-brand">
+						<!-- ========   change your logo hear   ============ -->
+						<img src="assets/images/logo.png" alt="" class="logo">
+						<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">
+					</a>
+					<a href="#!" class="mob-toggler">
+						<i class="feather icon-more-vertical"></i>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
+							<div class="search-bar">
+								<input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
+								<button type="button" class="close" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</li>
+						<li class="nav-item">
+							<div class="dropdown">
+								<a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
+									Dropdown
+								</a>
+								<div class="dropdown-menu profile-notification ">
+									<ul class="pro-body">
+										<li><a href="user-profile.html" class="dropdown-item"><i class="fas fa-circle"></i> Profile</a></li>
+										<li><a href="email_inbox.html" class="dropdown-item"><i class="fas fa-circle"></i> My Messages</a></li>
+										<li><a href="auth-signin.html" class="dropdown-item"><i class="fas fa-circle"></i> Lock Screen</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="nav-item">
+							<div class="dropdown mega-menu">
+								<a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
+									Mega
+								</a>
+								<div class="dropdown-menu profile-notification ">
+									<div class="row no-gutters">
+										<div class="col">
+											<h6 class="mega-title">UI Element</h6>
+											<ul class="pro-body">
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Alert</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Button</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Badges</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Cards</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Modal</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Tabs & pills</a></li>
+											</ul>
+										</div>
+										<div class="col">
+											<h6 class="mega-title">Forms</h6>
+											<ul class="pro-body">
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Elements</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Validation</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Masking</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Wizard</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Picker</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Select</a></li>
+											</ul>
+										</div>
+										<div class="col">
+											<h6 class="mega-title">Application</h6>
+											<ul class="pro-body">
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-mail"></i> Email</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-clipboard"></i> Task</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-check-square"></i> To-Do</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-image"></i> Gallery</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-help-circle"></i> Helpdesk</a></li>
+											</ul>
+										</div>
+										<div class="col">
+											<h6 class="mega-title">Extension</h6>
+											<ul class="pro-body">
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-file-plus"></i> Editor</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-file-minus"></i> Invoice</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-calendar"></i> Full calendar</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-upload-cloud"></i> File upload</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-scissors"></i> Image cropper</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li>
+							<div class="dropdown">
+								<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+									<i class="icon feather icon-bell"></i>
+									<span class="badge badge-pill badge-danger">5</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right notification">
+									<div class="noti-head">
+										<h6 class="d-inline-block m-b-0">Notifications</h6>
+										<div class="float-right">
+											<a href="#!" class="m-r-10">mark as read</a>
+											<a href="#!">clear all</a>
+										</div>
+									</div>
+									<ul class="noti-body">
+										<li class="n-title">
+											<p class="m-b-0">NEW</p>
+										</li>
+										<li class="notification">
+											<div class="media">
+												<img class="img-radius" src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
+												<div class="media-body">
+													<p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>5 min</span></p>
+													<p>New ticket Added</p>
+												</div>
+											</div>
+										</li>
+										<li class="n-title">
+											<p class="m-b-0">EARLIER</p>
+										</li>
+										<li class="notification">
+											<div class="media">
+												<img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
+												<div class="media-body">
+													<p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>10 min</span></p>
+													<p>Prchace New Theme and make payment</p>
+												</div>
+											</div>
+										</li>
+										<li class="notification">
+											<div class="media">
+												<img class="img-radius" src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
+												<div class="media-body">
+													<p><strong>Sara Soudein</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>12 min</span></p>
+													<p>currently login</p>
+												</div>
+											</div>
+										</li>
+										<li class="notification">
+											<div class="media">
+												<img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
+												<div class="media-body">
+													<p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
+													<p>Prchace New Theme and make payment</p>
+												</div>
+											</div>
+										</li>
+									</ul>
+									<div class="noti-footer">
+										<a href="#!">show all</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="dropdown drp-user">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="feather icon-user"></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right profile-notification">
+									<div class="pro-head">
+										<img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+										<span>John Doe</span>
+										<a href="auth-signin.html" class="dud-logout" title="Logout">
+											<i class="feather icon-log-out"></i>
+										</a>
+									</div>
+									<ul class="pro-body">
+										<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
+										<li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
+										<li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+			
+	</header>
+	<!-- [ Header ] end -->
