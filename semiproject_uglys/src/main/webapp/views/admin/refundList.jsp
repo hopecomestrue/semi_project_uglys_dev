@@ -122,20 +122,53 @@
       
     </style>
 <body>
-	<div>
-		<h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">환불 현황</h1>
-	</div>
 <!-- <div class="delivery-check">
   <select class="form-select form-select-lg" aria-label=".form-select-lg example" id="delivery-check">
     <option selected>환불승인대기</option>
     <option value="1">환불완료</option>
   </select>
 </div> -->
-<div class="delivery-tb">
-<form action="<%=request.getContextPath()%>/admin/searchRefundCheck.do" method="post">
+<div class="pcoded-main-container">
+	<div class="pcoded-content">
+		<div class="card">
+                    <div class="card-header">
+                        <h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">환불 현황</h1>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                              <th>주문 상세 번호</th>
+      <th>이름</th>
+      <th>전화번호</th>
+      <th>주소</th>
+      <th>주문 날짜</th>
+      <th>승인 여부</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%if(!refundList.isEmpty()){
+	  for(Order r : refundList){%>
+  <tr>
+      <td><a href="<%=request.getContextPath()%>/admin/refundDetail.do?orderNo=<%=r.getOrderNo() %>"><%=r.getOrderNo() %></a></td>
+      <td><%=r.getOrderName() %></td>
+      <td><%=r.getOrderPhone() %></td>
+      <td><%=r.getOrderAddress() %></td>
+      <td><%=r.getOrderDate() %></td>
+      <td><%=r.getOrderStatus() %></td>
+  </tr>
+  <%}
+	  }%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <form action="<%=request.getContextPath()%>/admin/searchRefundCheck.do" method="post">
 <div class="search_3">
   <div class="del-Search">
-<select class="form-select form-select-lm" aria-label="Small select example" name="searchType">
+<select class="form-control" aria-label="Small select example" name="searchType">
     <option value="ORDER_NAME" >이름으로 조회하기</option>
     <option value="ORDER_NO" >주문번호로 조회하기</option>
     <option value="ORDER_ADDRESS" >주소로 조회하기</option>
@@ -149,38 +182,11 @@
 </div>
 </div>
 </form>
-<table class="table table-bordered">
-    <tr>
-      <th><input class="form-check-input" type="checkbox" id="checkboxAll" value="" aria-label="..."></th>
-      <th>주문 상세 번호</th>
-      <th>이름</th>
-      <th>전화번호</th>
-      <th>주소</th>
-      <th>주문 날짜</th>
-      <th>승인 여부</th>
-      <th>환불 사유</th>
-  </tr>
-  <%if(!refundList.isEmpty()){
-	  for(Order r : refundList){%>
-  <tr>
-      <td><input class="form-check-input" type="checkbox" id="checkboxNo" 
-      				name="<%=r.getOrderNo() %>" aria-label="..."></td>
-      <td><a href="<%=request.getContextPath()%>/admin/refundDetail.do?orderNo=<%=r.getOrderNo() %>"><%=r.getOrderNo() %></a></td>
-      <td><%=r.getOrderName() %></td>
-      <td><%=r.getOrderPhone() %></td>
-      <td><%=r.getOrderAddress() %></td>
-      <td><%=r.getOrderDate() %></td>
-      <td><%=r.getOrderStatus() %></td>
-      <td>추가예정</td>
-  </tr>
-  <%}
-	  }%>   
-  </table>
-</div>
 	<div id="pageBar" class="container">
 		<%=request.getAttribute("pageBar") %>
 	</div>
-
+	</div>
+	</div>
 
 <script>
 	//체크박스 All 체크
