@@ -105,6 +105,15 @@
      .ck-editor__editable {
          height: 50vh;
      }
+     .btn{
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #ddd;
+  }
 
    </style>
   </head>
@@ -217,9 +226,9 @@
 			<!-- </form> -->
 			<%if(p.getStock()>0&&m!=null) {%>
 			<span style="display: flex; gap: 10px;">
-			<button>장바구니</button>
+			<button id="cartId" class="btn">장바구니</button>
 			<input type="hidden" value="<%=p.getProduction_no()%>" name="productNo">
-            <button>바로구매</button></span>
+            <button id="buyId" class="btn">바로구매</button></span>
             </form>
             <%}else if(p.getStock()<0){%> 
              	<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">품절</a></p>
@@ -514,6 +523,36 @@
 
 </script>
 <script>
+// 버튼 요소를 가져옵니다.
+const button1 = document.getElementById("cartId");
+const button2 = document.getElementById("buyId");
+
+// 호버 시 스타일을 변경하는 함수를 정의합니다.
+function handleHover() {
+  button1.classList.add("hovered");
+}
+
+// 호버 해제 시 스타일을 원래대로 되돌리는 함수를 정의합니다.
+function handleUnhover() {
+  button1.classList.remove("hovered");
+}
+// 호버 시 스타일을 변경하는 함수를 정의합니다.
+function handleHover2() {
+  button2.classList.add("hovered");
+}
+
+// 호버 해제 시 스타일을 원래대로 되돌리는 함수를 정의합니다.
+function handleUnhover2() {
+  button2.classList.remove("hovered");
+}
+
+// 버튼에 마우스 호버 이벤트 리스너를 등록합니다.
+button.addEventListener("mouseover", handleHover);
+button.addEventListener("mouseout", handleUnhover);
+button.addEventListener("mouseover", handleHover2);
+button.addEventListener("mouseout", handleUnhover2);
+
+
 $(document).ready(function(){
     // 첫 번째 탭의 내용만 보여줍니다.
     $(".accordion").hide();
