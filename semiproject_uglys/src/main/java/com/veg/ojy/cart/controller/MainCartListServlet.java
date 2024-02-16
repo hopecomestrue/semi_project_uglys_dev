@@ -84,7 +84,7 @@ public class MainCartListServlet extends HttpServlet {
 		request.getSession().setAttribute("productionContents", productionContents);
 		
 		//장바구니 화면으로 이동
-		request.getRequestDispatcher("/views/member/cart/mycart.jsp")
+		request.getRequestDispatcher("/views/order/orderdetail.jsp")
 		.forward(request, response);
 	}
 
