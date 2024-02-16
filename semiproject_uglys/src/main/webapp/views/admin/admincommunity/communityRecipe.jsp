@@ -3,7 +3,7 @@
 <%@ page import="com.veg.kth.community.model.dto.*, java.util.List, com.veg.hjj.member.dto.Member" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ include file="/views/admin/common/header.jsp" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 
@@ -12,335 +12,160 @@
 	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");  
 	List<Member> members = (List<Member>)request.getAttribute("members"); 
 %>
-
-<head>
-    <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
-    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 11]>
-    	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    	<![endif]-->
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="">
-    <meta name="author" content="Phoenixcoded" />
-    <!-- Favicon icon -->
-    <link rel="icon" href="${path }/assets/images/favicon.ico" type="image/x-icon">
-
-    <!-- vendor css -->
-    <link rel="stylesheet" href="${path }/assets/css/style.css">
-    
-    
-
-</head>
-<body class="">
-	<!-- [ Pre-loader ] start -->
-	<div class="loader-bg">
-		<div class="loader-track">
-			<div class="loader-fill"></div>
-		</div>
-	</div>
-	<!-- [ Pre-loader ] End -->
-	<!-- [ navigation menu ] start -->
-	<nav class="pcoded-navbar  ">
-		<div class="navbar-wrapper  ">
-			<div class="navbar-content scroll-div " >
-				
-				<div class="">
-					<div class="main-menu-header">
-						<img class="img-radius" src="${path }/assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
-						<div class="user-details">
-							<span>John Doe</span>
-							<div id="more-details">UX Designer<i class="fa fa-chevron-down m-l-5"></i></div>
-						</div>
-					</div>
-					<div class="collapse" id="nav-user-link">
-						<ul class="list-unstyled">
-							<li class="list-group-item"><a href="user-profile.html"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
-							<li class="list-group-item"><a href="#!"><i class="feather icon-settings m-r-5"></i>Settings</a></li>
-							<li class="list-group-item"><a href="auth-normal-sign-in.html"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<ul class="nav pcoded-inner-navbar ">
-					<li class="nav-item pcoded-menu-caption">
-						<label>Navigation</label>
-					</li>
-					<li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
-					</li>
-					<li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
-					    <ul class="pcoded-submenu">
-					        <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
-					        <li><a href="layout-horizontal.html" target="_blank">Horizontal</a></li>
-					    </ul>
-					</li>
-					<li class="nav-item pcoded-menu-caption">
-						<label>UI Element</label>
-					</li>
-					<li class="nav-item pcoded-hasmenu">
-						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Basic</span></a>
-						<ul class="pcoded-submenu">
-							<li><a href="bc_alert.html">Alert</a></li>
-							<li><a href="bc_button.html">Button</a></li>
-							<li><a href="bc_badges.html">Badges</a></li>
-							<li><a href="bc_breadcrumb-pagination.html">Breadcrumb & paggination</a></li>
-							<li><a href="bc_card.html">Cards</a></li>
-							<li><a href="bc_collapse.html">Collapse</a></li>
-							<li><a href="bc_carousel.html">Carousel</a></li>
-							<li><a href="bc_grid.html">Grid system</a></li>
-							<li><a href="bc_progress.html">Progress</a></li>
-							<li><a href="bc_modal.html">Modal</a></li>
-							<li><a href="bc_spinner.html">Spinner</a></li>
-							<li><a href="bc_tabs.html">Tabs & pills</a></li>
-							<li><a href="bc_typography.html">Typography</a></li>
-							<li><a href="bc_tooltip-popover.html">Tooltip & popovers</a></li>
-							<li><a href="bc_toasts.html">Toasts</a></li>
-							<li><a href="bc_extra.html">Other</a></li>
-						</ul>
-					</li>
-					<li class="nav-item pcoded-menu-caption">
-					    <label>Forms &amp; table</label>
-					</li>
-					<li class="nav-item">
-					    <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Forms</span></a>
-					</li>
-					<li class="nav-item">
-					    <a href="tbl_bootstrap.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Bootstrap table</span></a>
-					</li>
-					<li class="nav-item pcoded-menu-caption">
-						<label>Chart & Maps</label>
-					</li>
-					<li class="nav-item">
-					    <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a>
-					</li>
-					<li class="nav-item">
-					    <a href="map-google.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">Maps</span></a>
-					</li>
-					<li class="nav-item pcoded-menu-caption">
-						<label>Pages</label>
-					</li>
-					<li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
-					    <ul class="pcoded-submenu">
-					        <li><a href="auth-signup.html" target="_blank">Sign up</a></li>
-					        <li><a href="auth-signin.html" target="_blank">Sign in</a></li>
-					    </ul>
-					</li>
-					<li class="nav-item"><a href="sample-page.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>
-
-				</ul>
-				
-				<div class="card text-center">
-					<div class="card-block">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<i class="feather icon-sunset f-40"></i>
-						<h6 class="mt-3">Upgrade To Pro</h6>
-						<p>Please contact us on our email for need any support</p>
-						<a href="https://1.envato.market/PgJNQ" target="_blank" class="btn btn-primary btn-sm text-white m-0">Upgrade</a>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</nav>
-	<!-- [ navigation menu ] end -->
-	<!-- [ Header ] start -->
-	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark">
-		
-			
-				<div class="m-header">
-					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-					<a href="#!" class="b-brand">
-						<!-- ========   change your logo hear   ============ -->
-						<img src="${path }/assets/images/logo.png" alt="" class="logo">
-						<img src="${path }/assets/images/logo-icon.png" alt="" class="logo-thumb">
-					</a>
-					<a href="#!" class="mob-toggler">
-						<i class="feather icon-more-vertical"></i>
-					</a>
-				</div>
-				<div class="collapse navbar-collapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
-							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
-							<div class="search-bar">
-								<input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
-								<button type="button" class="close" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-						</li>
-						<li class="nav-item">
-							<div class="dropdown">
-								<a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
-									Dropdown
-								</a>
-								<div class="dropdown-menu profile-notification ">
-									<ul class="pro-body">
-										<li><a href="user-profile.html" class="dropdown-item"><i class="fas fa-circle"></i> Profile</a></li>
-										<li><a href="email_inbox.html" class="dropdown-item"><i class="fas fa-circle"></i> My Messages</a></li>
-										<li><a href="auth-signin.html" class="dropdown-item"><i class="fas fa-circle"></i> Lock Screen</a></li>
-									</ul>
-								</div>
-							</div>
-						</li>
-						<li class="nav-item">
-							<div class="dropdown mega-menu">
-								<a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
-									Mega
-								</a>
-								<div class="dropdown-menu profile-notification ">
-									<div class="row no-gutters">
-										<div class="col">
-											<h6 class="mega-title">UI Element</h6>
-											<ul class="pro-body">
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Alert</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Button</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Badges</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Cards</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Modal</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Tabs & pills</a></li>
-											</ul>
-										</div>
-										<div class="col">
-											<h6 class="mega-title">Forms</h6>
-											<ul class="pro-body">
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Elements</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Validation</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Masking</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Wizard</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Picker</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Select</a></li>
-											</ul>
-										</div>
-										<div class="col">
-											<h6 class="mega-title">Application</h6>
-											<ul class="pro-body">
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-mail"></i> Email</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-clipboard"></i> Task</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-check-square"></i> To-Do</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-image"></i> Gallery</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-help-circle"></i> Helpdesk</a></li>
-											</ul>
-										</div>
-										<div class="col">
-											<h6 class="mega-title">Extension</h6>
-											<ul class="pro-body">
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-file-plus"></i> Editor</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-file-minus"></i> Invoice</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-calendar"></i> Full calendar</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-upload-cloud"></i> File upload</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-scissors"></i> Image cropper</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-					<ul class="navbar-nav ml-auto">
-						<li>
-							<div class="dropdown">
-								<a class="dropdown-toggle" href="#" data-toggle="dropdown">
-									<i class="icon feather icon-bell"></i>
-									<span class="badge badge-pill badge-danger">5</span>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right notification">
-									<div class="noti-head">
-										<h6 class="d-inline-block m-b-0">Notifications</h6>
-										<div class="float-right">
-											<a href="#!" class="m-r-10">mark as read</a>
-											<a href="#!">clear all</a>
-										</div>
-									</div>
-									<ul class="noti-body">
-										<li class="n-title">
-											<p class="m-b-0">NEW</p>
-										</li>
-										<li class="notification">
-											<div class="media">
-												<img class="img-radius" src="${path }/assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
-												<div class="media-body">
-													<p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>5 min</span></p>
-													<p>New ticket Added</p>
-												</div>
-											</div>
-										</li>
-										<li class="n-title">
-											<p class="m-b-0">EARLIER</p>
-										</li>
-										<li class="notification">
-											<div class="media">
-												<img class="img-radius" src="${path }/assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
-												<div class="media-body">
-													<p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>10 min</span></p>
-													<p>Prchace New Theme and make payment</p>
-												</div>
-											</div>
-										</li>
-										<li class="notification">
-											<div class="media">
-												<img class="img-radius" src="${path }/assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
-												<div class="media-body">
-													<p><strong>Sara Soudein</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>12 min</span></p>
-													<p>currently login</p>
-												</div>
-											</div>
-										</li>
-										<li class="notification">
-											<div class="media">
-												<img class="img-radius" src="${path }/assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
-												<div class="media-body">
-													<p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-													<p>Prchace New Theme and make payment</p>
-												</div>
-											</div>
-										</li>
-									</ul>
-									<div class="noti-footer">
-										<a href="#!">show all</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="dropdown drp-user">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="feather icon-user"></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right profile-notification">
-									<div class="pro-head">
-										<img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-										<span>John Doe</span>
-										<a href="auth-signin.html" class="dud-logout" title="Logout">
-											<i class="feather icon-log-out"></i>
-										</a>
-									</div>
-									<ul class="pro-body">
-										<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-										<li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-										<li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
-									</ul>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-				
-			
-	</header>
-	<!-- [ Header ] end -->
+<style>
+	p{
+/* 	display:inline-block; */
 	
+	}
+	.container_recipe_search{
+	display: flex;
+	flex-direction: column;
+  	align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+	}
 	
+        
+    button{
+    display:inline-block;
+    }
+    
+    label{
+    
+    width:120px;
+    display:flex; 
+    justify-content: flex-start; 
+    align-items: center;
+    margin-bottom: 5px;
+    }
+    
+    li{
+    
+    margin-top: 10px;
+    }
+    
+    button{
+    margin-top: 10px;
+    
+    }
+	
+	.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-<!-- [ Main Content ] start -->
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+      
+      .admin-title{
+        color: black;
+        text-decoration: none;
+      }
+
+      .search_3{
+        align-items: center;
+        display: flex;
+        justify-content: right;
+        margin-right: 2%;
+        margin-bottom: 1%;
+      }
+
+      .delivery-check{
+      
+      }
+
+      .delivery-tb{
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .delivery-paging{
+        margin: 5%;
+      }
+      
+      .col-md-6{
+      
+      max-width : 100%; !important;
+      }
+      
+      td{
+          white-space: nowrap;        /* 줄 바꿈 방지 */
+		  overflow: hidden;           /* 넘치는 부분 감춤 */
+		  text-overflow: ellipsis;    /* 생략 부호 표시 */
+		  width: 100px;               /* 예시로 요소의 가로 크기를 지정 */
+      }
+      
+      
+</style>
 <section class="pcoded-main-container">
     <div class="pcoded-content">
         <!-- [ breadcrumb ] start -->
@@ -362,96 +187,10 @@
         </div>
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
-        <div class="row">
-            <!-- [ basic-table ] start -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Basic Table</h5>
-                        <span class="d-block m-t-5">use class <code>table</code> inside table element</span>
-                    </div>
-                    <div class="card-body table-border-style">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ basic-table ] end -->
-            <!-- [ inverse-table ] start -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Inverse Table</h5>
-                        <span class="d-block m-t-5">use class <code>table-inverse</code> inside table element</span>
-                    </div>
-                    <div class="card-body table-border-style">
-                        <div class="table-responsive">
-                            <table class="table table-inverse">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ inverse-table ] end -->
             <!-- [ Hover-table ] start -->
+                    <button type="button" class="btn btn-secondary" onclick="location href='<%=request.getContextPath() %>/admin/reciperegister.do'">등록</button>
+					<button type="button" class="btn btn-secondary">선택 삭제</button>
+					<button type="button" class="btn btn-secondary">일괄 삭제</button>   
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -461,346 +200,52 @@
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
                             <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
+						 		<thead>
+									<tr>
+										<th><input type="checkbox" id="checkboxAll" value="" aria-label="..." ></th>
+										<th>번호</th>
+										<th>아이디</th>
+										<th>레시피이름</th>
+										<th>카테고리</th>
+										<th>해시태그</th>
+										<th>필수재료</th>
+										<th>등록일</th>
+									</tr>
+								</thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
+									<%if(!recipes.isEmpty()){ 
+									for(Recipe r : recipes){
+									%>
+										<tr>
+											<td><input type="checkbox" name="delete_check"></td>
+											<td><a href="<%=request.getContextPath()%>/admin/recipedetail.do?recipeNo=<%=r.getRecipeNo()%>"><%=r.getRecipeNo() %></a></td>
+											<td><%=r.getMember_no() %>
+											</td>
+											<td><%=r.getRecipeTitle() %></td>
+											<td><%=r.getCategory().getCategoryDept1() %>/<%=r.getCategory().getCategoryDept2() %></td>
+											<%List<Hashtag> hashtag = r.getHashtag(); %>
+											<td><%for(Hashtag h : hashtag){ %>
+											#<%=h.getHashtagValue() %>
+											<%} %></td>
+											<td><%List<Material> material = r.getMaterial();
+											for(Material m : material){ %>
+											<%if(m.getMaterialType().equals("MAIN")){ %>
+											#<%=m.getMaterialName() %>
+											<%}
+											}%></td>
+											<td><%=r.getRecipeDate() %></td>
+										</tr>
+									<%}
+									}%>
+								</tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- [ Hover-table ] end -->
-            <!-- [ dark-table ] start -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Dark Table</h5>
-                        <span class="d-block m-t-5">use class <code>table-dark</code> inside table element</span>
-                    </div>
-                    <div class="card-body table-border-style">
-                        <div class="table-responsive">
-                            <table class="table table-dark">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ dark-table ] end -->
-            <!-- [ stiped-table ] start -->
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Striped Table</h5>
-                        <span class="d-block m-t-5">use class <code>table-striped</code> inside table element</span>
-                    </div>
-                    <div class="card-body table-border-style">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ stiped-table ] end -->
-            <!-- [ Contextual-table ] start -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Contextual Classes</h5>
-                        <span class="d-block m-t-5">For Make row Contextual add Contextual class like <code>.table-success</code> in <code> tr tag</code> and For cell add Contextual class in <code> td or th tag</code> .</span>
-                    </div>
-                    <div class="card-body table-border-style">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="table-active">
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr class="table-success">
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="table-warning">
-                                        <td>5</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="table-danger">
-                                        <td>7</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="table-info">
-                                        <td>9</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ Contextual-table ] end -->
-            <!-- [ Background-Utilities ] start -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Background Utilities</h5>
-                        <span class="d-block m-t-5">Regular table background variants are not available with the inverse table, however, you may use <code>text or background utilities</code> to achieve similar styles.</span>
-                    </div>
-                    <div class="card-body table-border-style">
-                        <div class="table-responsive">
-                            <table class="table table-dark">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="bg-primary">
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr class="bg-success">
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="bg-warning">
-                                        <td>5</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="bg-danger">
-                                        <td>7</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="bg-info">
-                                        <td>9</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ Background-Utilities ] end -->
         </div>
         <!-- [ Main Content ] end -->
-    </div>
 </section>
-<!-- [ Main Content ] end -->
-    <!-- Warning Section start -->
-    <!-- Older IE warning message -->
-    <!--[if lt IE 11]>
-        <div class="ie-warning">
-            <h1>Warning!!</h1>
-            <p>You are using an outdated version of Internet Explorer, please upgrade
-               <br/>to any of the following web browsers to access this website.
-            </p>
-            <div class="iew-container">
-                <ul class="iew-download">
-                    <li>
-                        <a href="http://www.google.com/chrome/">
-                            <img src="assets/images/browser/chrome.png" alt="Chrome">
-                            <div>Chrome</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.mozilla.org/en-US/firefox/new/">
-                            <img src="assets/images/browser/firefox.png" alt="Firefox">
-                            <div>Firefox</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://www.opera.com">
-                            <img src="assets/images/browser/opera.png" alt="Opera">
-                            <div>Opera</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.apple.com/safari/">
-                            <img src="assets/images/browser/safari.png" alt="Safari">
-                            <div>Safari</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                            <img src="assets/images/browser/ie.png" alt="">
-                            <div>IE (11 & above)</div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <p>Sorry for the inconvenience!</p>
-        </div>
-    <![endif]-->
-    <!-- Warning Section Ends -->
 
-    <!-- Required Js -->
-    <script src="${path }/assets/js/vendor-all.min.js"></script>
-    <script src="${path }/assets/js/plugins/bootstrap.min.js"></script>
-    <script src="${path }/assets/js/pcoded.min.js"></script>
-
-
-
-</body>
-</html>
+<%@ include file="/views/admin/common/footer.jsp" %>

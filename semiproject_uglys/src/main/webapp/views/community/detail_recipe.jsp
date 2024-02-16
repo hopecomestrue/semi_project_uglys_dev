@@ -242,7 +242,7 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
                     		for(Procedure p : procedure){ 
                     		%>
                     	<tr>
-							<td><%=p.getProcedureNo() %></td>
+							<td><%=p.getProcedureOrder() %></td>
 							<td><%=p.getProcedureOriginalFileName() %></td>
 							<td><%=p.getProcedureComment() %></td>
                     	</tr>
