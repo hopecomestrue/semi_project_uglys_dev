@@ -539,7 +539,6 @@
                             <% for (InquiryComment inquiryComment : inquiryComments) {
                                 if (inquiryComment.getFkInquiryNo() != 0) {%>
 
-
                             <div class="comment" style="margin: 0 30px;">
                                 <div class="comment-writer"
                                      style="font-weight: bolder"><%=inquiryComment.getInquiryCommentWriter() %>
@@ -553,16 +552,12 @@
                                 <div class="comment-content"><%=inquiryComment.getInquiryCommentContent() %>
                                 </div>
                                 <div class="comment-actions">
-
                                     <%
                                         if (loginMember != null && loginMember
                                                 .getMemberId()
                                                 .equals("admin")) {
                                     %>
-
-                                    <button type="submit" class="btn btn-primary btn-sm"
-                                    >삭제
-                                    </button>
+                                    <button type="submit" class="btn btn-primary btn-sm">삭제</button>
 
                                     <% } %>
                                 </div>
@@ -629,7 +624,6 @@
             .after($tr);
     });
 </script>
-
 
 </div>
 </body>
