@@ -92,7 +92,7 @@
 										<h2>최근 주문 내역</h2>
 									</header>
 									<div class="features">
-									<%if(!orders.isEmpty()){
+									<%if(orders !=null ){
 										for(Order o : orders){%>
 										<article>
 											<span class=></span>

@@ -315,8 +315,9 @@ public class ProductionDao {
 			    .collect(Collectors.joining(" AND "));
 		
 		String nsql=sql1.entrySet().stream()
-			    .map(s -> s.getKey()+" = '"+s.getValue()+"'")
+			    .map(s -> s.getKey()+" LIKE '%"+s.getValue()+"%'")
 			    .collect(Collectors.joining(" AND "));
+
 
 		
 		StringBuffer resql=new StringBuffer();
@@ -333,7 +334,7 @@ public class ProductionDao {
 			
 		String lasql=resql.toString();
 		
-		
+		System.out.println(lasql);
 		try {
 			stmt=conn.createStatement();
 			rs=stmt.executeQuery(lasql);
