@@ -220,10 +220,7 @@
                 <div class="w-100"></div>
              </div>
          <br>
-         <!-- 상품장바구니 , 바로구매하기-->
-         	<%-- <form name="addForm" action="${request.getContextPath()}/mycart.do" method="post"> --%>
-            <%--  <span style="display: flex; gap: 10px;"><p><a href="<%=request.getContextPath() %>/mycart.do" class="btn btn-black py-3 px-5" <!-- onclick="document.addForm.submit();" --> >장바구니</a></p> --%>
-			<!-- </form> -->
+         
 			<%if(p.getStock()>0&&m!=null) {%>
 			<span style="display: flex; gap: 10px;">
 			<button id="cartId" class="btn">장바구니</button>
@@ -234,7 +231,7 @@
              	<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">품절</a></p>
              <%} %>
              <% if(m==null) {%>
-             	<span style="display: flex; gap: 10px;"><p><a href="#" class="btn btn-black py-3 px-5">로그인을 해주세요</a></p>
+             	<span style="display: flex; gap: 10px;"><p><a href="<%=request.getContextPath()%>/member/login.do" class="btn btn-black py-3 px-5">로그인을 해주세요</a></p>
 			
             <%} {%> 
              <%} %>
@@ -249,8 +246,8 @@
       <!-- 상품설명후기탭 -->
       <div style="border-bottom-width:1px; border-color: rgb(229 231 235);  z-index: 3501;top: 56px;">
          <div style="display: flex; justify-content: center; align-items: center; width: 100%; gap: 16px;">
-            <div class="sub"style="cursor: pointer; box-sizing: border-box; font-size: 18px; line-height: 1; padding-top: 8px; padding-bottom: 16px; border-color: rgb(255 103 65); border-bottom-width: 4px;"> <a href="#">상품 설명</a></div>
-            <div class="sub" style="cursor: pointer; box-sizing: border-box; font-size: 18px; line-height: 1; padding-top: 8px; padding-bottom: 16px; border-color: rgb(255 103 65); border-bottom-width: 4px;"><a href="#">후기</a></div>
+            <div class="sub"style="cursor: pointer; box-sizing: border-box; font-size: 18px; line-height: 1; padding-top: 8px; padding-bottom: 16px; border-color: rgb(255 103 65); border-bottom-width: 4px;"> <a href="#content">상품 설명</a></div>
+            <div class="sub" style="cursor: pointer; box-sizing: border-box; font-size: 18px; line-height: 1; padding-top: 8px; padding-bottom: 16px; border-color: rgb(255 103 65); border-bottom-width: 4px;"><a href="#review-start">후기</a></div>
             <div><hr style="max-width: 16px;"></div>
          </div>
          <div></div>
@@ -258,22 +255,21 @@
       
       <p><br><br></p>
       <!-- 상품상세설명페이지 -->
-      <div class="accordion">
-         <div class="accordion-item">
-           <div class="accordion-content">
+      <div class="accordion" id="content">
+    <div class="accordion-item">
+        <div class="accordion-content" >
             <%=pc.getProductionContent() %>
-
-           </div>
-           <button class="accordion-button" style="background-color:white; border-radius: 10px; color: rgb(65 75 90); border-width: 1px; font-weight: 600; border-color: #e5e7eb; width: 53%; margin-top: 10px; margin-bottom: 10px; padding: 1%; border-color: rgb(65 75 90);"><span style="padding: 10px;">상품 소개 펼치기</span></button>
-         </div>
         </div>
+        <button class="accordion-button" style="background-color:white; border-radius: 10px; color: rgb(65 75 90); border-width: 1px; font-weight: 600; border-color: #e5e7eb; width: 53%; margin-top: 10px; margin-bottom: 10px; padding: 1%; border-color: rgb(65 75 90);"><span style="padding: 10px;">상품 소개 펼치기</span></button>
+    </div>
+</div>
       
       </div>
       
          <div style="margin: 0;">
             <div style="my: -48px; height: 14px; background-color:  rgb(249 250 251); margin-top: 0px; margin-bottom: 40px; "></div>
          </div>
-         <div style="justify-content: center; align-items: center;">
+         <div style="justify-content: center; align-items: center; margin-left: 400px; margin-right: 400px;">
             <!-- 상품후기페이지 -->
             <div>
                <div style="padding-top: 28px; padding-bottom: 28px; padding-left: 24px; padding-right: 24px;"> 
@@ -327,9 +323,9 @@
                      <div style="background-color:  rgb(245,245,247); height: 14px; margin-top: 32px; margin-bottom: 32px;"></div>
                   </div>
                   <!-- 후기 노출란 -->
-                  <div style="padding-left: 16px; padding-right: 16px; gap: 24px; display: flex; flex-direction: column;">
+                  <div style="gap: 24px; display: flex; flex-direction: column;">
                      <div style="justify-content: space-between; display: flex; align-items: center;">
-                        <p style="font-weight: 700; font-size: 22px; line-height: 1; margin: 0;">전체 후기</p>
+                        <p style="font-weight: 700; font-size: 22px; line-height: 1; margin: 0;" id="review-start">전체 후기</p>
                         <div style="display: flex; align-items: center; gap: 8px; justify-content: center;">
                           
                         </div>
@@ -344,19 +340,40 @@
                         <!-- 후기리스트 -->
                         <%if(ProductionReviews!=null&&!ProductionReviews.isEmpty()) {
                         	 for( ProductionReview pr : ProductionReviews)    {%>
-                        <div style="gap: 12px; flex-direction: column; display: flex;">
+                        <div style="flex-direction: column; display: flex; column-gap: 2px">
+                           <br>
+                           <div style="display: flex; justify-content: space-between;">
+                                  
+	                     	<div style="background-color: grey; color: white; border-radius: 2px;">구매후기</div>
+	                     	
                            <span>
                            <%for (int i=0;i<pr.getRating();i++) {%>
                            <img src="https://d3cpiew7rze14b.cloudfront.net/assets/mypage/order-history/Vector__26__enBGagMTM.svg">
                            <%} %>
                            </span>
-                           <span><%=p.getProduction_name() %></span>
-                           <span><%=pr.getMemberNo()%></span>
-                           <span><%=pr.getReviewContent() %></span>
-                           <span><%=pr.getReviewDate() %></span>
                            
+                           </div>
+                           
+                           <strong><%=pr.getMemberNo()%></strong>
+                           <span style="font-size: 12px"><%=p.getProduction_name() %></span>
+                           <style>
+							    .review-content img {
+							        width: 100%;
+							        max-width: 140px;
+							        height: 140px;
+							    }
+							</style>
+							<div class="review-content" style="color: black; font-size: 15px">
+							    <span><%=pr.getReviewContent() %></span>
+							</div>
+							<div style="display: flex; justify-content: space-between;">
+                           <span><%=pr.getReviewDate() %></span>
+                           <a href="<%=request.getContextPath()%>/inquiry/inquiryList.do">신고</a>
+                           </div>
                         </div>
+                        <br>
                         <hr style="margin-top: 24px; margin-bottom: 24px; margin: 0; border-top-width: 1px;">
+                        
                         <%} 
                         }%>
                         
@@ -487,6 +504,9 @@
 		    });
 		    
 		});
+
+	</script>
+<script>
 	var acc = document.getElementsByClassName("accordion-button");
 	var i;
 
@@ -568,13 +588,7 @@ $(document).ready(function(){
     });
 });
 </script>
-<!-- <script>
-  function addToCart() {
-    document.addForm.submit();
-    alert('장바구니에 추가되었습니다.');
-  }
-</script>
- -->
+
  <script type="text/javascript">
     const ratingStars = [...document.getElementsByClassName("rating__star")];
     const starClassActive = "rating__star fas fa-star";
@@ -596,7 +610,39 @@ $(document).ready(function(){
         });
     });
 </script>
+<%--아코디언  --%>
+<script>
+    var acc = document.getElementsByClassName("accordion-button");
+    var i;
 
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+        	this.style.display = 'none';
+            this.classList.toggle("active");
+            var content = this.previousElementSibling;
+            var images = content.getElementsByTagName('img');
+            for (var j = 0; j < images.length; j++) {
+                if (j > 2) {
+                    if (images[j].style.display === 'none') {
+                        images[j].style.display = 'block';
+                    } else {
+                        images[j].style.display = 'none';
+                    }
+                }
+            }
+        });
+    }
+
+    window.onload = function() {
+        var content = document.getElementsByClassName('accordion-content')[0];
+        var images = content.getElementsByTagName('img');
+        for (var j = 0; j < images.length; j++) {
+            if (j > 2) {
+                images[j].style.display = 'none';
+            }
+        }
+    }
+</script>
 
 	
   

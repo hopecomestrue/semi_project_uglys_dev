@@ -266,7 +266,7 @@
 
 <div class="container">
     <div class="row">
-        <div id="sidebar">
+        <div id="sidebar" class="col-md-3">
             <div class="inner">
                 <nav id="menu">
                     <header class="major">

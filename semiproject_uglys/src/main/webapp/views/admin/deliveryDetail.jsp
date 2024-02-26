@@ -106,10 +106,17 @@
 
 <body>
 	<%-- <form action="<%request.getContextPath()%>/admin/delchange.do" method="post"> --%>
-<h1 style="text-align: center; margin-top: 5%;">배송 상세현황</h1>
-<div class="delivery-detail-user">
-<table class="table table-bordered">
-    <tr>
+
+<div class="pcoded-main-container">
+	<div class="pcoded-content">
+		<div class="card">
+                    <div class="card-header">
+                        <h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">주문 상세 현황</h1>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tr>
         <th>주문 상세 번호</th>
         <td id="orderNo"><%=order.getOrderNo()%></td>
     </tr>
@@ -165,9 +172,14 @@
       <th>총 금액</th>
       <td><%=order.getTotalPrice() %>원</td>
     </tr>    
-  </table>
-</div>
+                            </table>
+                        </div>
   <button type="submit" class="btn btn-primary" id="btn_submit">수정완료</button>
+                    </div>
+                </div>
+	</div>
+	</div>
+
 <!-- </form> -->
 
 <script>
