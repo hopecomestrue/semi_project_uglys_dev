@@ -675,7 +675,6 @@
         </section>
 
         <%!
-            // 서버 측에서 글자 수 제한 함수
             public String getTruncatedTitle(String originalTitle) {
                 int maxLength = 20;
 

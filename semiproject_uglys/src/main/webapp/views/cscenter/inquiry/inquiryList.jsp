@@ -189,7 +189,6 @@
 </script>
 
 <div class="container">
-    <div class="row">
 
       <script>
           function addChannel() {
@@ -207,7 +206,7 @@
                 </a>
 
 
-        </div>
+
     </div>
 
 
@@ -271,7 +270,7 @@
 </style>
 <div class="container">
     <div class="row">
-        <div id="sidebar">
+        <div id="sidebar" class="col-md-3">
             <div class="inner">
                 <nav id="menu">
                     <header class="major">
@@ -289,14 +288,14 @@
             </div>
         </div>
 
-        <section id="board-container" style="margin-top: 130px; margin-bottom: 100px;">
+
+        <section id="board-container" style="margin-top: 130px; margin-bottom: 100px;"  class="col-md-9">
 
             <script>
                 $(document).ready(function() {
 
                     $(".type-button").click(function() {
                         var inquiryType = $(this).data("type");
-
 
                         $.ajax({
                             url: "서버에 대한 요청 URL",
@@ -395,7 +394,6 @@
 
             </div>
         </section>
-
     </div>
 </div>
 

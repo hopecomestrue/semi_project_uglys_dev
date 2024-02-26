@@ -9,7 +9,9 @@ package com.veg.seoj.cscenter.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -74,10 +76,22 @@ public class InquiryViewServlet extends HttpServlet {
         request.setAttribute("inquiry", inquiry);
 
         if (new InquiryService().selectInquiryCommentgeyByNo(no) != null) {
+            Set<Integer> uniqueCommentNos = new HashSet<>();
+            List<InquiryComment> uniqueComments = new ArrayList<>();
             List<InquiryComment> inquryComments = new InquiryService().selectInquiryCommentgeyByNo(no);
-            request.setAttribute("inquryComments", inquryComments);
+
+            for (InquiryComment comment : inquryComments) {
+
+                if (!uniqueCommentNos.contains(comment.getInquiryCommentNo())) {
+                    uniqueComments.add(comment);
+                    uniqueCommentNos.add(comment.getInquiryCommentNo());
+                }
+            }
+
+            request.setAttribute("inquryComments", uniqueComments);
         } else {
             List<InquiryComment> inquryComments = new ArrayList<>();
+
             request.setAttribute("inquryComments", inquryComments);
         }
 
