@@ -105,11 +105,17 @@
 
 <body>
 <!-- <form> -->
-<h1 style="text-align: center; margin-top: 5%;">주문 환불 상세 현황</h1>
 
-<div class="refund-detail-user">
-<table class="table table-bordered">
-    <tr>
+<div class="pcoded-main-container">
+	<div class="pcoded-content">
+		<div class="card">
+                    <div class="card-header">
+                        <h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">주문 환불 상세 현황</h1>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tr>
         <th>주문 상세 번호</th>
         <td id="refundNo"><%=refund.getOrderNo() %></td>
     </tr>
@@ -159,8 +165,13 @@
           </select>
       </td>
     </tr>
-  </table>
-</div>
+                            </table>
+                        </div>
+  <button type="submit" class="btn btn-primary" id="btn_submit">수정완료</button>
+                    </div>
+                </div>
+	</div>
+	</div>
   <button type="submit" class="btn btn-primary" id="btn_submit">등록</button>
 <!-- </form> -->
 <script>

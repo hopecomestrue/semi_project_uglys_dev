@@ -42,7 +42,7 @@ public class CommunityDao {
 			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeAll"));
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				addRecipeAll(result,rs);
+				addRecipeAllNoPro(result,rs);
 			}
 			
 		}catch(SQLException e) {
@@ -173,6 +173,39 @@ public class CommunityDao {
 		}
 		
 	}
+	
+	
+	public static void addRecipeAllNoPro(List<Recipe> recipe, ResultSet rs) throws SQLException {
+		int pk = rs.getInt("recipe_no");
+		if(recipe.stream().anyMatch(e->pk==(e.getRecipeNo()))) {
+			recipe.stream().filter(e->Objects.equals(e.getRecipeNo(),pk))
+			.forEach(e->{
+				try {
+					
+					if(rs.getString("material_no")!=null && !e.getMaterial().contains(getMaterial(rs))) {
+						e.getMaterial().add(getMaterial(rs));
+					}
+					
+					if(rs.getString("hashtag_no")!=null && !e.getHashtag().contains(getHashtag(rs))) { 
+						e.getHashtag().add(getHashtag(rs));
+					}	
+					
+				}catch(SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+			});
+			
+		}else {
+			Recipe r = getRecipe(rs);
+			if(rs.getString("material_no")!=null) r.getMaterial().add(getMaterial(rs));
+			if(rs.getString("hashtag_no")!=null) r.getHashtag().add(getHashtag(rs));
+			
+			recipe.add(r);
+		}
+		
+	}
+	
 	
 	
 	public int insertRecipe(Connection conn, Recipe r) {

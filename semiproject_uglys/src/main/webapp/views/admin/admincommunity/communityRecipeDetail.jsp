@@ -20,7 +20,6 @@
 	flex-direction: column;
   	align-items: center;
     justify-content: center;
-    height: 1000vh;
 	}
 	
 	input[type="text"]{
@@ -53,56 +52,135 @@ input::-webkit-inner-spin-button {
  
  }
  
- .container_recipe{
- 	max-height: calc(150vh - 120px); /* 화면 높이에서 헤더와 푸터의 높이를 뺀 값으로 제한 */
-    overflow-y: auto;
-
- }
  
 </style>
 
-<section>
-	<div class="container_recipe">
-	<h4>레시피 수정</h4>
-	<form action='<%=request.getContextPath()%>/admin/recipewriteend' method="post" enctype="multipart/form-data">
-		<h5>레시피 고유 번호</h5>
-		<input type="text" name="recipe_no" value="<%=recipe.getRecipeNo() %>" readonly="readonly" style="background:grey;"><br><br>
-		
-		<h5>작성자 아이디</h5>
-		<input type="hidden" name="member_no"  value="<%=member.getMemberNo() %>" readonly="readonly" style="background:grey;">
-		<input type="text" name="writer"  value="<%=member.getMemberId() %>" readonly="readonly" style="background:grey;"><br><br>
-		
-		<h5>첨부파일</h5>
-		<img src="<%=request.getContextPath()%>/upload/image/<%=recipe.getRecipeRenamedFileName() %>" width="25">
-		<input type="file" name="recipe_main_file"><br>
-		<input type="text" name="recipe_title" maxlength="20" value="<%=recipe.getRecipeTitle() %>"><br>
-		<input type="text" name="recipe_explain" maxlength="240" value="<%=recipe.getRecipeComment() %>">
-		<br>
-		<br>
-		<h5>소요시간</h5>
-		<input type="radio" name="leadtime" value="15" <%=recipe.getRecipeLeadTime().equals("15")?"checked":"" %>>15분 컷
-		<input type="radio" name="leadtime" value="30" <%=recipe.getRecipeLeadTime().equals("30")?"checked":"" %>>30분 컷
-		<input type="radio" name="leadtime" value="45" <%=recipe.getRecipeLeadTime().equals("45")?"checked":"" %>>45분 컷
-		<input type="radio" name="leadtime" value="60" <%=recipe.getRecipeLeadTime().equals("60")?"checked":"" %>>60분 이상
-		<br>
-		<br>
-		<h5>카테고리</h5>
-		
-		<select name="category_dept1" id="category_dept1" onchange="categoryChange(this);">
-			<option>카테고리를 선택해 주세요.</option>
-		<%if(!opCategory.isEmpty()){ 
-            		for(Category c : opCategory){%>
-			<option value="<%=c.getCategoryDept1()%>" 
-			<%=c.getCategoryDept1().equals(recipe.getCategory().getCategoryDept1())?"selected":"" %>>
-			<%=c.getCategoryDept1()%></option>	
-			<%}
-           }%>
-		</select>
-		<select name="category_dept2" id="category_dept2">
-			<option>세부 카테고리를 선택해 주세요.</option>
-		</select>
-		
-		<script>
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Bootstrap Basic Tables</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Bootstrap Table</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Basic Tables</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+          	<div class="container_recipe">
+		<h4>레시피 수정</h4>
+		<form action='<%=request.getContextPath()%>/admin/recipewriteend' method="post" enctype="multipart/form-data">
+			<h5>레시피 고유 번호</h5>
+			<input type="text" name="recipe_no" value="<%=recipe.getRecipeNo() %>" readonly="readonly" style="background:grey;"><br><br>
+			
+			<h5>작성자 아이디</h5>
+			<input type="hidden" name="member_no"  value="<%=member.getMemberNo() %>" readonly="readonly" style="background:grey;">
+			<input type="text" name="writer"  value="<%=member.getMemberId() %>" readonly="readonly" style="background:grey;"><br><br>
+			
+			<h5>첨부파일</h5>
+			<img src="<%=request.getContextPath()%>/upload/image/<%=recipe.getRecipeRenamedFileName() %>" width="25">
+			<input type="file" name="recipe_main_file"><br>
+			<input type="text" name="recipe_title" maxlength="20" value="<%=recipe.getRecipeTitle() %>"><br>
+			<input type="text" name="recipe_explain" maxlength="240" value="<%=recipe.getRecipeComment() %>">
+			<br>
+			<br>
+			<h5>소요시간</h5>
+			<input type="radio" name="leadtime" value="15" <%=recipe.getRecipeLeadTime().equals("15")?"checked":"" %>>15분 컷
+			<input type="radio" name="leadtime" value="30" <%=recipe.getRecipeLeadTime().equals("30")?"checked":"" %>>30분 컷
+			<input type="radio" name="leadtime" value="45" <%=recipe.getRecipeLeadTime().equals("45")?"checked":"" %>>45분 컷
+			<input type="radio" name="leadtime" value="60" <%=recipe.getRecipeLeadTime().equals("60")?"checked":"" %>>60분 이상
+			<br>
+			<br>
+			<h5>카테고리</h5>
+			
+			<select name="category_dept1" id="category_dept1" onchange="categoryChange(this);">
+				<option>카테고리를 선택해 주세요.</option>
+			<%if(!opCategory.isEmpty()){ 
+	            		for(Category c : opCategory){%>
+				<option value="<%=c.getCategoryDept1()%>" 
+				<%=c.getCategoryDept1().equals(recipe.getCategory().getCategoryDept1())?"selected":"" %>>
+				<%=c.getCategoryDept1()%></option>	
+				<%}
+	           }%>
+			</select>
+			<select name="category_dept2" id="category_dept2">
+				<option>세부 카테고리를 선택해 주세요.</option>
+			</select>
+			<br>
+			<h5>해시태그</h5>
+			<div class="tr_hashTag_area">
+			<div class="form-group">
+	                <input type="hidden" value="" name="tag" id="rdTag" />
+	            </div>
+					<%if(!hashtag.isEmpty()){
+	            		for(int i=0;i<hashtag.size();i++){%>
+	                  <button type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
+	                		#<%=hashtag.get(i).getHashtagValue()%>
+	                	</button>
+	                	<%}
+	                	}%>
+	                 <div id="tag-list"></div>
+	                 <div class="form-group">
+	            	<input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;"/>
+	           </div>
+	         </div>
+			<br>
+			<h5>기준량</h5>
+			<div>
+			<input type="button" value="-" onclick="minusbtn();">
+			<input type="number" style="width:40px; height:40px;" name="capacity" id="capacity_ab" value='<%=recipe.getRecipeCapa() %>' min='1' max='10'>
+			<input type="button" value="+" onclick="plusbtn();">
+			<p style="display:inline-block;">인분</p>
+			</div>
+			<div class="material_part">
+			<br>
+			<h5 id="material">재료</h5>
+			<%if(!recipe.getMaterial().isEmpty()){
+			for(int i=0; i<recipe.getMaterial().size();i++){ %>
+			<select name="material_type" id="material_type">
+				<option value="main" <%=recipe.getMaterial().get(i).getMaterialType().equals("MAIN")?"selected":"" %>>필수재료</option>
+				<option value="sub"	<%=recipe.getMaterial().get(i).getMaterialType().equals("SUB")?"selected":"" %>>부재료</option>
+				<option value="source" <%=recipe.getMaterial().get(i).getMaterialType().equals("SOURCE")?"selected":"" %>>양념</option>
+			</select>
+			<input type="text" id="material_name" name="material_name" maxlength="20" value="<%=recipe.getMaterial().get(i).getMaterialName()%>">
+			<input type="text" id="material_capa" name="material_capa" maxlength="10" value="<%=recipe.getMaterial().get(i).getMaterialCapa()%>">
+			<br>
+			<%} 
+			}%>
+			
+			<input type="button" value="추가" onclick="addMaterial();">
+			</div>
+			<div class="procedure_part">
+			<br>
+			<h5>만드는 방법</h5>
+			<%if(!recipe.getProcedure().isEmpty()){
+			for(int i=0; i<recipe.getProcedure().size();i++){ %>
+			<p id="procedure_no" name="procedure_no"><%=recipe.getProcedure().get(i).getProcedureNo() %>번</p>
+			<input type="text" id="procedure_comment" name="procedure_comment" maxlength="150" value="<%=recipe.getProcedure().get(i).getProcedureComment()%>">
+			<input type="file" id="procedure_file" name="procedure_file">
+			<%} 
+			}%>
+			<input type="button" value="추가" onclick="addProcedure();">
+			</div>
+			<input type="hidden" name="member_no" value="52<%-- <%=loginMember.getMemberNo()%> --%>"> 
+			<div>
+			<input type="submit" id="lastBtn" value="완료">
+			</div>
+		</form>
+		</div>  
+        </div>
+        <!-- [ Main Content ] end -->
+</section>
+<script>
 function categoryChange(e) {
 	
 	
@@ -129,25 +207,7 @@ function categoryChange(e) {
 	}
 }
 </script>
-		<br>
-		<h5>해시태그</h5>
-		<div class="tr_hashTag_area">
-		<div class="form-group">
-                <input type="hidden" value="" name="tag" id="rdTag" />
-            </div>
-				<%if(!hashtag.isEmpty()){
-            		for(int i=0;i<hashtag.size();i++){%>
-                  <button type="button" name="hashtag"  id="hashtag" class="tag-cloud-link" onclick="toggleButton(this);">
-                		#<%=hashtag.get(i).getHashtagValue()%>
-                	</button>
-                	<%}
-                	}%>
-                 <div id="tag-list"></div>
-                 <div class="form-group">
-            	<input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;"/>
-           </div>
-         </div>
-         <script>
+<script>
          function toggleButton(button) {
 				
         	 let $rdTag = $('.rdtag');
@@ -167,51 +227,6 @@ function categoryChange(e) {
 	    	
 	    	}
 </script>
-		<br>
-		<h5>기준량</h5>
-		<div>
-		<input type="button" value="-" onclick="minusbtn();">
-		<input type="number" style="width:40px; height:40px;" name="capacity" id="capacity_ab" value='<%=recipe.getRecipeCapa() %>' min='1' max='10'>
-		<input type="button" value="+" onclick="plusbtn();">
-		<p style="display:inline-block;">인분</p>
-		</div>
-		<div class="material_part">
-		<br>
-		<h5 id="material">재료</h5>
-		<%if(!recipe.getMaterial().isEmpty()){
-		for(int i=0; i<recipe.getMaterial().size();i++){ %>
-		<select name="material_type" id="material_type">
-			<option value="main" <%=recipe.getMaterial().get(i).getMaterialType().equals("MAIN")?"selected":"" %>>필수재료</option>
-			<option value="sub"	<%=recipe.getMaterial().get(i).getMaterialType().equals("SUB")?"selected":"" %>>부재료</option>
-			<option value="source" <%=recipe.getMaterial().get(i).getMaterialType().equals("SOURCE")?"selected":"" %>>양념</option>
-		</select>
-		<input type="text" id="material_name" name="material_name" maxlength="20" value="<%=recipe.getMaterial().get(i).getMaterialName()%>">
-		<input type="text" id="material_capa" name="material_capa" maxlength="10" value="<%=recipe.getMaterial().get(i).getMaterialCapa()%>">
-		<br>
-		<%} 
-		}%>
-		
-		<input type="button" value="추가" onclick="addMaterial();">
-		</div>
-		<div class="procedure_part">
-		<br>
-		<h5>만드는 방법</h5>
-		<%if(!recipe.getProcedure().isEmpty()){
-		for(int i=0; i<recipe.getProcedure().size();i++){ %>
-		<p id="procedure_no" name="procedure_no"><%=recipe.getProcedure().get(i).getProcedureNo() %>번</p>
-		<input type="text" id="procedure_comment" name="procedure_comment" maxlength="150" value="<%=recipe.getProcedure().get(i).getProcedureComment()%>">
-		<input type="file" id="procedure_file" name="procedure_file">
-		<%} 
-		}%>
-		<input type="button" value="추가" onclick="addProcedure();">
-		</div>
-		<input type="hidden" name="member_no" value="52<%-- <%=loginMember.getMemberNo()%> --%>"> 
-		<div>
-		<input type="submit" id="lastBtn" value="완료">
-		</div>
-	</form>
-	</div>
-</section>
 <script>
     $(document).ready(function () {
         var tag = {};
@@ -321,10 +336,7 @@ function categoryChange(e) {
 	            );
 	        }
 
-	    }
-	    
-
-	    
+	    }    
 </script>
 
 
