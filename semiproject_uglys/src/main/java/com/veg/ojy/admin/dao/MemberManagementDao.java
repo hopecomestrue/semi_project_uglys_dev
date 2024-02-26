@@ -125,6 +125,7 @@ public class MemberManagementDao {
 	   
 	   
 	   public List<Member> memberSearchByName(Connection conn, int cPage, int numPerpage, String keyword){
+		   System.out.println("test1: "+ keyword);
 	          PreparedStatement pstmt = null;
 	           ResultSet rs = null;
 	           List<Member> result = new ArrayList<>();
@@ -147,6 +148,7 @@ public class MemberManagementDao {
 	       }
 	       
 	       public List<Member> memberSearchById(Connection conn, int cPage, int numPerpage, String keyword){
+	    	   System.out.println("test2: "+ keyword);
 	          PreparedStatement pstmt = null;
 	           ResultSet rs = null;
 	           List<Member> result = new ArrayList<>();

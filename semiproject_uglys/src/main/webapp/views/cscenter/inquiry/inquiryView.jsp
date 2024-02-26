@@ -8,7 +8,6 @@
     if (loginMember != null) {
         System.out.println(loginMember.getMemberNo());
     }
-
 %>
 <!DOCTYPE html>
 <head>
@@ -70,8 +69,6 @@
     .navbar-nav span {
         margin-top: 3px;
     }
-
-
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -85,7 +82,6 @@
         </button>
 
         <style>
-
             .navbar-nav {
                 margin-top: 20px;
             }
@@ -105,8 +101,6 @@
                 <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.do" class="nav-link">로그인</a></li>
                 </li>
                 <%} else {%>
-
-
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px; padding-bottom: 10px;">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <style>
@@ -143,8 +137,6 @@
 
 <%--===============================================================================================================--%>
 <style>
-
-
     .chat_on {
         position: fixed;
         z-index: 10;
@@ -161,11 +153,7 @@
         cursor: pointer;
         display: block;
     }
-
-
-
 </style>
-
 
 <%--===============================================================================================================--%>
 
@@ -216,6 +204,7 @@
 
         inquiryComments = new ArrayList<>();
     }
+    System.out.println("inquiryComments.size()"+inquiryComments.size());
 %>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -255,11 +244,6 @@
         display: flex;
     }
 
-    #sidebar {
-        padding-top: 70px;
-        flex: 1;
-    }
-
     #board-container {
         margin: 0 auto;
         margin-top: 50px;
@@ -274,7 +258,7 @@
     <div class="row">
         <div id="container-wrapper">
 
-            <div id="sidebar">
+            <div id="sidebar" class="col-md-3">
                 <div class="inner">
 
                     <nav id="menu">
@@ -488,7 +472,7 @@
                                 <span class="board-detail-value"><%=inquiry.getProductionName() %></span>
                             </div>
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.1) !important;">
-                            <div class="board-detail-row">
+<%--                            <div class="board-detail-row">
                                 <span class="board-detail-label" name="refundNo">환불신청 번호 </span>
                                 <span class="board-detail-value"><%=inquiry.getRefundNo() %></span>
                             </div>
@@ -496,7 +480,7 @@
                                 <span class="board-detail-label">환불신청 일자 </span>
                                 <span class="board-detail-value"><%=inquiry.getRefundDate() %></span>
                             </div>
-                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.1) !important;">
+                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.1) !important;">--%>
                             <div class="board-detail-row">
                                 <span class="board-detail-label" name="upfile2">첨부파일</span>
                                 <div class="board-file">
@@ -505,8 +489,9 @@
                                        target="_blank"
                                        onclick="window.open(this.href, 'Image', 'resizable=yes,width=800,height=600'); return false;">
                                         <img style="margin-left: 50px;" src="<%=request.getContextPath()%>/upload/inquiry/<%= inquiry.getInquiryRenameFilename() %>" width="100">
-                                        <div class="col-12">원본 보기 : 이미지 클릭<%=inquiry.getInquiryOriginalFilename() %>
+                                       <div class="col-12">파일명 : <%=inquiry.getInquiryOriginalFilename() %>
                                         </div>
+                                        <div class="col-12">원본 보기 : 이미지 클릭</div>
                                     </a>
                                     <span></span>
                                     <% } %>
@@ -525,7 +510,7 @@
                             &nbsp;&nbsp;
                             <button type="button" class="btn btn-primary btn-sm">삭제하기</button>
                         </div>
-
+                    </div>
                 </form>
 
                 <form action="<%=request.getContextPath() %>/board/insertComment.do" method="post">

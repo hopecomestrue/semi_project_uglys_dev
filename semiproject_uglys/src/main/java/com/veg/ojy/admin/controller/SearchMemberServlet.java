@@ -45,9 +45,10 @@ public class SearchMemberServlet extends HttpServlet {
 	         cPage=1;
 	      }
 	      
+	      
 	      int totalData = new MemberManagementService().selectMemberCount();
 	      List<Member> searchResult = new MemberManagementService().searchMember(cPage, cPage, key, keyword);
-	     
+	     System.out.println("result:"+ searchResult);
 	      
 	      int totalPage=(int)Math.ceil((double)totalData/cPage);
 	      int pageBarSize=5;

@@ -3,6 +3,7 @@ package com.veg.ojy.cart.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.veg.hjj.member.dto.Member;
 import com.veg.ojy.cart.dto.Cart;
-import com.veg.ojy.cart.service.CartService;
 import com.veg.pdw.production.model.dto.Production;
 import com.veg.pdw.production.model.dto.ProductionContent;
 import com.veg.pdw.production.service.ProductionService;
@@ -46,25 +46,36 @@ public class MainCartListServlet extends HttpServlet {
 		
 		
 		
-		List<Cart> carts = (List<Cart>) request.getSession().getAttribute("carts");
+		List<Cart> carts =(List<Cart>)request.getSession().getAttribute("carts");
 
 		
 		if (carts == null) {
 		    carts = new ArrayList<>();
 		}
 
-		Cart c = Cart.builder()
+		Optional<Cart> optionalCart = carts.stream()
+		        .filter(cart -> cart.getProductNo() == productNo)
+		        .findFirst();
+
+		if (optionalCart.isPresent()) {
+		    // 같은 상품이 이미 있으면, 수량만 증가시키기
+		    Cart existingCart = optionalCart.get();
+		    existingCart.setCount(existingCart.getCount() + count);
+		} else {
+		    // 같은 상품이 없으면, 새로운 Cart 객체를 생성해서 장바구니에 추가하기
+		    memberNo = mem.getMemberNo();
+		    Cart c = Cart.builder()
 		            .memberNo(memberNo)
 		            .count(count)
 		            .productNo(productNo)
 		            .build();
-
-		
-		carts.add(c);
+		    carts.add(c);
+		}
 		
 		
 		List<Production>productions=new ArrayList<>();
 		List<ProductionContent>productionContents=new ArrayList<>();
+		
 		for(Cart c1 : carts) {
 			Production p = new ProductionService().selectProductionByNo(c1.getProductNo());
 			productions.add(p);
