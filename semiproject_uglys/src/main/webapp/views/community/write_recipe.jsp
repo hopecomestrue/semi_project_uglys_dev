@@ -221,7 +221,7 @@ input::-webkit-inner-spin-button {
 	    let count2 = 1;
 	    let addMaterial=()=>{
 
-	        if(count1<6){
+	        if(count1<30){
 	        let $select = $(".material_part").append("<div><select name='material_type' id='material_type'> \
 	            <option value='main'>필수재료</option> \
 				<option value='sub'>부재료</option> \
@@ -238,7 +238,7 @@ input::-webkit-inner-spin-button {
 	    
 	    let addProcedure=()=>{
 
-	        if(count2<6){
+	        if(count2<30){
 	            count2++;
 	            $(".procedure_part").append("<p id='procedure_no' name='procedure_no'>"+count2+"번</p>\
 	            <input type='text' id='procedure_comment' name='procedure_comment' maxlength='150' placeholder='만드는 방법을 입력하세요.'>\

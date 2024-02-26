@@ -234,8 +234,8 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
                     <table style="width:100%; text-align: center;" >
                     	<tr>
                     		<th >번호</th>
-                    		<th >파일</th>
-                    		<th >코멘트</th>
+                    		<!-- <th >파일</th> -->
+                    		<th >요리설명</th>
                     	</tr>
                     		<%
                     		if(!recipe.getProcedure().isEmpty()){
@@ -243,7 +243,7 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
                     		%>
                     	<tr>
 							<td><%=p.getProcedureOrder() %></td>
-							<td><%=p.getProcedureOriginalFileName() %></td>
+							<%-- <td><%=p.getProcedureOriginalFileName() %></td> --%>
 							<td><%=p.getProcedureComment() %></td>
                     	</tr>
 							<%}
@@ -264,7 +264,7 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
                        	}%>
                         </ol>
                         <div>
-                        	<form>
+                        	<!-- <form>
                             <span class="section-title text-primary mb-3 mb-sm-4">댓글</span>
                         	<input type="hidden" name="boardRef" value="">
 							<input type="hidden" name="level" value="1">
@@ -273,13 +273,13 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
 							<input type="hidden" name="boardCommentRef" value="0"><br>
                             <textarea name="content" rows="3" cols="55"></textarea>
                             <button type="submit" id="btn-insert">작성</button>
-                            </form>
+                            </form> -->
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-            <%if(!comments.isEmpty()){ %>
+           <%--  <%if(!comments.isEmpty()){ %>
             <table id="tbl-comment">
             <%for(RecipeComment r : comments){ %>
             	<tr class="level1">
@@ -292,7 +292,7 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
 					</tr>
 			<%} %>
 			</table>
-		<%} %>
+		<%} %> --%>
             
             </div>
         </div>

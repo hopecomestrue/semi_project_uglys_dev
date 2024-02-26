@@ -118,34 +118,33 @@
   font-weight: 500;
   color: white;
   cursor: pointer;
+  }
   
-  .container_recipe_search{
+ .container_recipe_search{
 	display: flex;
 	flex-direction: column;
-  	align-items: center;
-    justify-content: center;
-	}
+ 	align-items: center;
+   justify-content: center;
+}
 	
 	
 	.float-button-container {
-	z-index: 1000;
-	position: fixed;
-	transform: translate(-50%, 0%);
-	left: 50%;
-	bottom: 30px;
-
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-around;
-	padding:0 10px;
-
-	background: white;
-	height: 40px;
-	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-	border:1px solid #e9e9e9;
-	border-radius: 30px;
-	text-decoration: none !important;
+			text-align: right; 
+			z-index: 1000;
+			position: fixed;
+			transform: translate(-50%, 0%);
+			left: 90%;
+			bottom: 70%;
+		
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+			height: 40px;
+			box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+			border:1px solid #e9e9e9;
+			border-radius: 30px;
+			text-decoration: none !important;"
 
 }
 
@@ -177,49 +176,7 @@
 }
 
 </style>
-      <div class="container_recipe_search">
-        <div class="row">
-          <div >
-            <div class="sidebar-box" >
-            <!-- <h3 style="text-align:center;" >오늘의 레시피는?</h3> -->
-              <%-- <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon ion-ios-search"></span>
-                  <input type="search" id="searchtag" list="data" class="form-control" placeholder="ex) 감자">
-                	<datalist id="data"></datalist>
-                </div>
-              </form>
-              <div class="sidebar-box ftco-animate">
-                <div class="tagcloud">
-                <%if(!recipes.isEmpty()){ 
-            		for(Recipe r : recipes){%>
-                  <% for(Hashtag h : r.getHashtag()){ %>
-                  <a href="" class="tag-cloud-link">
-                		#<%=h.getHashtagValue()%>
-                	</a>
-                	<%} %>
-                 <%}
-            	}%> --%>
-                </div>
-              </div>
-            </div>
-        </div>
-       <div class="float-button-container" 
-       		style="text-align: right; z-index: 1000;
-			position: fixed;
-			transform: translate(-50%, 0%);
-			left: 90%;
-			bottom: 70%;
-		
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: space-around;
-			height: 40px;
-			box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-			border:1px solid #e9e9e9;
-			border-radius: 30px;
-			text-decoration: none !important;">
+       <div class="float-button-container" >
        		<button type="button" class="btn btn-primary">
 			  <a class="float-button" 
 			  href="<%=request.getContextPath() %>/community/recipewrite.do" target="_blank">
@@ -228,6 +185,21 @@
 			 </button>
 		</div>
         <h3 style="text-align: center; /* 가로 방향 가운데 정렬 */">오늘의 레시피는?</h3>
+        <div class="container_recipe_search">
+	        <div class="row">
+	          <div >
+	            <div class="sidebar-box" >
+	            <div id="register_sal">
+					<input type="search" id="searchId" list="data" placeholder="사원번호를 입력해 주세요." style="width:200px;"/>
+					<button type="button" class="btn btn-primary btn-sm" style="width:100px" onclick="fn_changeEmployee()">검색</button>
+					<datalist id="data"></datalist>
+				</div>
+	            </div>
+	          </div>
+	        </div>
+	    </div>
+        
+        
         <section class="review-section rev1">
         <div>
         </div>
@@ -235,6 +207,7 @@
             <ul class="review-items">
             <%if(!recipes.isEmpty()){ 
             for(Recipe r : recipes){%>
+            <%if(r.getRecipeNo()>70){ %>
             <a href="<%=request.getContextPath()%>/community/recipedetail.do?recipeNo=<%=r.getRecipeNo() %>">
               <li class="item">
                 <div class="img-area">
@@ -259,13 +232,14 @@
                   <div class="line"></div>
                   <%for(Member m : members){ %>
                   <%if(r.getMember_no()==m.getMemberNo()){ %>
-                  <h5><%=m.getMemberId() %></h5>
+                  <h5><%=m.getMemberName() %></h5>
                 </div>
               </li>
               </a>
               <%	 }
                   }
             	}
+            }
             }
               %>
             </ul>

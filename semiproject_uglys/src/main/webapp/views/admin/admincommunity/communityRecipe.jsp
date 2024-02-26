@@ -174,29 +174,41 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Bootstrap Basic Tables</h5>
+                            <h4 class="m-b-10">레시피 관리</h4>
                         </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#!">Bootstrap Table</a></li>
-                            <li class="breadcrumb-item"><a href="#!">Basic Tables</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
+            <form action="<%=request.getContextPath()%>/admin/recipeSearch.do" id="myForm" method="post">
+		<ul class="list-group">
+		<li>
+		<label for="search_date">등록일</label>
+		<input type="date" name="search_date_start">~<input type="date" name="search_date_end">
+		</li>
+		<li>
+		<label for="searchType">검색 구분</label>
+		<select name="searchType">
+			<option value="recipe_title">레시피 이름</option>
+			<option value="category_dept1">카테고리</option>
+			<option value="hashtag_value">해시태그</option>
+			<option value="member_no">아이디</option>
+			<option value="material_type">메인 재료</option>
+		</select>
+		<label for="searchContent"></label>
+		<input type="text" name="searchContent">
+		</li>
+		</ul>
+		<input type="submit" value="검색" >
+		</form>
+            <button type="button" class="btn btn-secondary" onclick="location href='<%=request.getContextPath() %>/admin/reciperegister.do'">등록</button>
+			<button type="button" class="btn btn-secondary" onclick="deleteRecipe();">선택 삭제</button>
+			<button type="button" class="btn btn-secondary">일괄 삭제</button>   
         </div>
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
             <!-- [ Hover-table ] start -->
-                    <button type="button" class="btn btn-secondary" onclick="location href='<%=request.getContextPath() %>/admin/reciperegister.do'">등록</button>
-					<button type="button" class="btn btn-secondary">선택 삭제</button>
-					<button type="button" class="btn btn-secondary">일괄 삭제</button>   
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
-                        <h5>Hover Table</h5>
-                        <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span>
-                    </div>
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
                             <table class="table table-hover">
@@ -217,7 +229,7 @@
 									for(Recipe r : recipes){
 									%>
 										<tr>
-											<td><input type="checkbox" name="delete_check"></td>
+											<td><input type="checkbox" id="<%=r.getRecipeNo() %>" name="delete_check"></td>
 											<td><a href="<%=request.getContextPath()%>/admin/recipedetail.do?recipeNo=<%=r.getRecipeNo()%>"><%=r.getRecipeNo() %></a></td>
 											<td><%=r.getMember_no() %>
 											</td>
@@ -247,5 +259,57 @@
         </div>
         <!-- [ Main Content ] end -->
 </section>
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+       var checkboxAll = document.getElementById('checkboxAll');
+       
+       checkboxAll.addEventListener('change', function() {
+           if (this.checked) {
+               var inputAll = document.querySelectorAll('input[type=checkbox]');
+               
+               for (var i = 0; i < inputAll.length; i++) {
+                   inputAll[i].checked = true;
+               }
+           }else{
+				var inputAll = document.querySelectorAll('input[type=checkbox]');
+               
+               for (var i = 0; i < inputAll.length; i++) {
+                   inputAll[i].checked = false;
+               }
+        	   
+           }
+       });
+   });
+</script>
+<script>
+	deleteRecipe=()=>{
+		if(confirm("정말 삭제하시겠습니까?")){
+			let inputCheckList = document.querySelectorAll('input[type=checkbox]:checked');
+
+			if (inputCheckList.length > 0) {
+	            var checkedIds = Array.from(inputCheckList).slice(1).map(checkbox => checkbox.id);
+	            
+	            $.ajax({
+					url: "${path}/admin/deleteRecipe.do",
+					type:'post',
+					data: {"idList":checkedIds},
+					success: function(response) {
+	                    alert("성공하였습니다.");
+	                    // 서버 응답(response)에 따른 추가 작업 수행
+	                },
+	                error: function(error) {
+	                    alert("실패했습니다.");
+	                    console.error(error);
+	                }
+	            });            
+			}else{
+				alert("체크된 항목이 없습니다.");
+			}
+		}else{
+			alert("취소하였습니다.");
+		}
+	}
+
+</script>
 
 <%@ include file="/views/admin/common/footer.jsp" %>
