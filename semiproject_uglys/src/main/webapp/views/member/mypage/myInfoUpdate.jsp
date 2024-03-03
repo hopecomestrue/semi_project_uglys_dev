@@ -44,17 +44,19 @@
                             </div>
                             <div class="group-input">
                                 <label for="username">기존 비밀번호</label>
-                                <input type="password" name="memberPw" placeholder="비밀번호">
+                                <input type="password" name="memberPw" placeholder="비밀번호" required>
                             </div>
                             <div class="group-input">
                                 <label for="pass">변경할 비밀번호</label>
-                                <input type="password" name="password_new" placeholder="비밀번호">
+                                <input type="password" name="password_new" placeholder="비밀번호" required>
                             </div>
                             <div class="group-input">
                                 <label for="pass">변경할 비밀번호 확인</label>
-                                <input type="password" name="password_chk" placeholder="비밀번호 재확인">
+                                <input type="password" name="password_chk" required placeholder="비밀번호 재확인" required>
+                                <span id="result"></span>
                             </div><br>
-                            <button type="submit" class="primary" onclick="return fn_passwordvalidate();" >변경</button>
+                            <input type="submit" class="primary" onclick="return fn_passwordvalidate();" value="변경">
+                            <input type="button" class="primary" value="닫기">
                         </form>
                     </div>
                 </div>
@@ -76,15 +78,14 @@ passwordck.addEventListener("keyup",e=>{
    if(pwck.length>=8){
       if(pw==pwck){
          msg="일치합니다.";
-         color="lime";
+         color="lightblue";
          result=false;
-         /* $submit.disabled=false; */
+      /*   $submit.disabled=false; */
       }else{
          msg="일치하지않습니다.";
          color="yellow";
          result=true;
       }
-      const $result=document.getElementById("result");
       $result.innerText=msg;
       $result.style.color=color;
       $submit.disabled=result;
@@ -94,7 +95,7 @@ passwordck.addEventListener("keyup",e=>{
    }
 });
     const fn_passwordvalidate=()=>{
-    	window.location.href='<%=request.getContextPath()%>/updateInfo.do';
+    	 window.location.href='<%=request.getContextPath()%>/updateInfo.do';
     }
    </script>
 </body>
