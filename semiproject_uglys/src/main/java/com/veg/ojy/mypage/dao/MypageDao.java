@@ -148,7 +148,7 @@ public class MypageDao {
 			pstmt=conn.prepareStatement(sql.getProperty("deleteMember"));
 			pstmt.setString(1, memberId);
 			result=pstmt.executeUpdate();
-//			result=1;
+			result=1; // 주석처리 했었는데... 
 			} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -173,6 +173,7 @@ public class MypageDao {
 		                .marketingAgree(rs.getString("marketing_Agree"))
 		                .enrollDate(rs.getDate("enroll_Date"))
 		                .photoRegist(rs.getString("photo_Regist"))
+		                .address(new ArrayList<>()) // 이거 수정
 		                .memberQuit(rs.getString("member_quit"))
 		                .build();
 		    }

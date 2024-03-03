@@ -24,23 +24,26 @@ public class MemberManagementService {
 		return result;
 		
 	}
-	public List<Member> selectMemberAll() {
+	
+	// 전체 회원 조회
+	public List<Member> selectMemberAll(int cPage, int numPerpage) {
 		Connection conn=getConnection();
-		List<Member> result= dao.selectMemberAll(conn);
+		List<Member> result= dao.selectMemberAll(conn,cPage, numPerpage);
 		close(conn);
 		return result;
 		
 	}
-	public int selectMemberCount() {
+	
+	public int selectMemberCount(String key, String keyword) {
 	     Connection conn=getConnection();
 	     int count=dao.selectMemberCount(conn);
 	     close(conn);
 	     return count;
 	   }
 	
-	public List<Member> searchMemberByKeyword(String type, String keyword, int cPage, int numPerpage){
+	public List<Member> searchMember(String type, String keyword, int cPage, int numPerpage){
 		Connection conn = getConnection();
-		List<Member> result= dao.searchMemberByKeyword(conn, type, keyword, cPage, numPerpage);
+		List<Member> result= dao.searchMember(conn, type, keyword, cPage, numPerpage);
 		close(conn);
 		return result;
 	}
@@ -51,17 +54,17 @@ public class MemberManagementService {
 	    return result;
 	}
 	
-	public List<Member> searchMember(int cPage, int numPerpage, String key, String keyword){
-	      Connection conn = getConnection();
-	      List<Member> resultList = null;
-	      if(key.equals("memberName")) {
-	         resultList = dao.memberSearchByName(conn, cPage, numPerpage, keyword);
-	      }else {
-	         resultList = dao.memberSearchById(conn, cPage, numPerpage, keyword);
-	      }
-	      close(conn);
-	      return resultList;
-	   }
-	
+//	public List<Member> searchMember(int cPage, int numPerpage, String key, String keyword){
+//	      Connection conn = getConnection();
+//	      List<Member> resultList = null;
+//	      if(key.equals("memberName")) {
+//	         resultList = dao.memberSearchByName(conn, cPage, numPerpage, keyword);
+//	      }else {
+//	         resultList = dao.memberSearchById(conn, cPage, numPerpage, keyword);
+//	      }
+//	      close(conn);
+//	      return resultList;
+//	   }
+//	
 
 }

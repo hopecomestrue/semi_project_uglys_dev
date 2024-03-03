@@ -155,10 +155,10 @@
 					<div class="search_3">
 						<div class="del-Search">
 							<select class="form-control" aria-label="Small select example"
-								name="searchKey"  id="searchKey">
+								name="searchKey">
 								<option value="test">-선택-</option>
-								<option value="id">아이디</option>
-								<option value="memberName">이름</option>
+								<option value="MEMBER_ID">아이디</option>
+								<option value="MEMBER_NAME">이름</option>
 							</select>
 						</div>
 						<div>
@@ -166,7 +166,7 @@
 								placeholder="내용을 적어주세요.">
 						</div>
 						<div>
-							<input type="submit" class="btn btn-primary" id="searchKey"
+							<input type="submit" class="btn btn-primary"
 								value="검색" />
 						</div>
 					</div>

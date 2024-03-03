@@ -112,20 +112,19 @@
                     <label for="email">이메일</label>
                     <input type="url" class="form-control" id="email"  value="<%=loginMember.getMemberEmail() %>">
                   </div>
-                  <div class="form-group">
-                    <label for="address">주소</label>
-                    <% if (a != null ) {
-                                for (Address addr : a) {%>
-							<input type="text" name="address" id="address"
-								class="form-control" value="<%=addr.getAddress() %>"
-								placeholder="주소" />
-							<% } } else {%>
-							<input type="text" name="address" id="address"
-								class="form-control" placeholder="주소" />
-							<% } %>
-                   <input type="url" class="form-control" id="website"> 
-                  </div>
-                 <div class="form-group" style="text-align: center">
+					<div class="form-group">
+						<label for="address">주소</label>
+						<% if (a != null) {
+							for (Address addr : a) {
+						%>
+						<input type="text" name="address" class="form-control"
+							value="<%=addr.getAddress()%>" placeholder="주소" />
+						<% } } else {
+						%><input type="text" name="address" class="form-control" placeholder="주소" />
+						<% } %>
+						<input type="text" class="form-control" id="address" name="address">
+					</div>
+					<div class="form-group" style="text-align: center">
 				<input type="checkbox" id="demo-human" name="demo-human" checked>
 					<label>[선택] 할인 등 정보 혜택 수신 동의 </label>
 					<br>

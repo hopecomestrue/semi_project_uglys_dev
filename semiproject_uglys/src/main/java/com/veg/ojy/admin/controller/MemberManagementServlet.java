@@ -43,9 +43,10 @@ public class MemberManagementServlet extends HttpServlet {
         }catch(NumberFormatException e) {
                 cPage=1;
         }
-        int numPerpage=10;
+        int numPerpage=5;
         
-		 List<Member> members = new MemberManagementService().selectMemberAll();
+       //DB Member테이블 전체 데이터 가져오기
+		 List<Member> members = new MemberManagementService().selectMemberAll(cPage, numPerpage);
 		 System.out.println(members);
 	     request.setAttribute("member", members);
         
@@ -88,10 +89,7 @@ public class MemberManagementServlet extends HttpServlet {
         pageBar+="</ul>";        
         request.setAttribute("pageBar", pageBar);
 		
-		// MemberManagementDao memberDAO = new MemberManagementDao();
-//		 List<Member> members = new MemberManagementService().selectMemberAll();
-//		 System.out.println(members);
-//	     request.setAttribute("member", members);
+
 	     request.getRequestDispatcher("/views/admin/memberManagement/memberCheck.jsp").forward(request, response);
 	     
 			}
