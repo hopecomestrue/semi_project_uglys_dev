@@ -26,4 +26,21 @@
 
 </div>
 
-## 프로젝트 구성 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Mushroom.png" alt="Mushroom" width="30" height="30" />
+## 프로젝트 소개 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Mushroom.png" alt="Mushroom" width="30" height="30" />
+
+- 사이트 이름 :
+
+- 목적 :
+
+- 주요 기능 :
+  사용자/관리자
+
+- 사이트맵
+
+- 화면 구성
+  ※여기에 각자 화면 캡쳐(2,4,6.. 짝수 스크린샷이미지) + 내용 작성(2~3줄)
+  
+<br><br><br><br>
+- 화면설계서(오븐)
+- ERD
+- 노션링크
