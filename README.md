@@ -27,7 +27,3 @@
 </div>
 
 ## 프로젝트 구성 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Mushroom.png" alt="Mushroom" width="30" height="30" />
-
-|:-:|:-:|:-:|:-:|
-||||
-
