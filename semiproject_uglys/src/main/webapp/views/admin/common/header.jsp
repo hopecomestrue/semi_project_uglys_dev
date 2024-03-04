@@ -25,10 +25,9 @@
 
     <!-- vendor css -->
     <link rel="stylesheet" href="${path }/assets/css/style.css">
-    
-    
-
+    <script src="<%=request.getContextPath() %>/js/jquery-3.7.0.min.js"></script>
 </head>
+
 <body class="">
 	<!-- [ Pre-loader ] start -->
 	<div class="loader-bg">
@@ -58,7 +57,7 @@
 					    <a href="<%=request.getContextPath()%>/admin/refundList.do" class="nav-link "><span class="pcoded-micon"><i class="feather icon-refresh-cw"></i></span><span class="pcoded-mtext">환불현황</span></a>
 					</li>
 					<li class="nav-item">
-					    <a href="<%=request.getContextPath()%>/admin/recipeList.do" class="nav-link "><span class="pcoded-micon"><i class="feather icon-edit"></i></span><span class="pcoded-mtext">레시피등록</span></a>
+					    <a href="<%=request.getContextPath()%>/admin/recipeList.do" class="nav-link "><span class="pcoded-micon"><i class="feather icon-edit"></i></span><span class="pcoded-mtext">레시피관리</span></a>
 					</li>
 				</ul>
 				

@@ -36,7 +36,7 @@ private Properties sql = new Properties();
 			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeAllByPage"));
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				addRecipeAll(result,rs);
+				addRecipeAllNoPro(result,rs);
 			}
 			
 		}catch(SQLException e) {

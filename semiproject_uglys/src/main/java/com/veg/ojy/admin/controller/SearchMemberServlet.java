@@ -31,23 +31,25 @@ public class SearchMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 	      //검색창으로 search 하는 서블릿 
 	      //넘겨준 값 갖고오기 name값 2개 가져오기 
 	      String key = request.getParameter("searchKey");
 	      String keyword = request.getParameter("searchKeyword");
 	      System.out.println(key +", "+ keyword);
 	      //서비스->dao->쿼리문까지 가져가서 select문에 넣어서 선택해서 가져오기 
-	      int cPage,selectMemberCount=10; 
+	      int cPage;
 	      try {
 	         cPage=Integer.parseInt(request.getParameter("cPage"));
 	      }catch(NumberFormatException e) {
 	         cPage=1;
 	      }
+	      int numPerpage=10;
 	      
-	      int totalData = new MemberManagementService().selectMemberCount();
-	      List<Member> searchResult = new MemberManagementService().searchMember(cPage, cPage, key, keyword);
-	     
+	      List<Member> searchResult = new MemberManagementService().searchMember(key, keyword,cPage,numPerpage);
+	      int totalData = new MemberManagementService().selectMemberCount(key,keyword);
+	     System.out.println("result:"+ searchResult);
 	      
 	      int totalPage=(int)Math.ceil((double)totalData/cPage);
 	      int pageBarSize=5;

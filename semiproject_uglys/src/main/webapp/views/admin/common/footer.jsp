@@ -17,6 +17,7 @@
 
 <!-- custom-chart js -->
 <script src="${path }/assets/js/pages/dashboard-main.js"></script>
+
 </body>
 
 </html>

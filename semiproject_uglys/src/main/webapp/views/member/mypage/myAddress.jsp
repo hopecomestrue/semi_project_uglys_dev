@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="com.veg.hjj.member.dto.*" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="com.veg.hjj.member.dto.*"%>
 <%
 /* if(session.getAttribute("loginMember") == null ){
 	response.sendRedirect(request.getContextPath()+"/views/index.jsp");
@@ -14,166 +14,104 @@ Member loginMember=(Member)session.getAttribute("loginMember");
 %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<title></title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css/main.css" />
-		<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-	
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/open-iconic-bootstrap.min.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/animate.css">
-		
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.theme.default.min.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/magnific-popup.css">
-	
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/aos.css">
-	
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/ionicons.min.css">
-	
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/bootstrap-datepicker.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/jquery.timepicker.css">
-	
-		
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/flaticon.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/css/icomoon.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
-		<style>
-			#sidebar {
-				padding-top: 70px;
-				position: sticky;
-  				top: 0;
-			}
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css/main.css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
+	rel="stylesheet">
 
-		</style>
-	  </head>
-	<body class="is-preload">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/animate.css">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/owl.theme.default.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/magnific-popup.css">
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<header>
-								<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-									<div class="container">
-									  <a class="navbar-brand" href="/index.html">채소랑</a>
-									  <!-- 메인화면으로 이동 // 주소바꾸기 -->
-									  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-										<span class="oi oi-menu"></span> Menu
-									  </button>
-							
-									 <div class="collapse navbar-collapse" id="ftco-nav">
-										<ul class="navbar-nav ml-auto">
-										  <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">채소농장</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-										  <li class="nav-item"><a href="#" class="nav-link">고객센터</a></li>
-										  <li class="nav-item"><a href="/mypage.html" class="nav-link">마이페이지</a></li>
-										  <li class="nav-item cta cta-colored"><a href="#" class="nav-link"><span href=""></span>[0]</a></li>
-							
-										</ul>
-									  </div>
-									</div>
-								  </nav>
-								</header>
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h2>마이페이지<br />
-											</h2>
-										</header>
-									</div>
-								</section>
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>새 배송지 등록</h2>
-									</header>
-									<div class="posts">
-									  <div class="register-login-section spad">
-        								<div class="container">
-           								 <div class="row">
-                							<div class="col-12  offset-lg-3">
-                    							<div class="register-form">
-                        							<!-- <h2>Register</h2> -->
-                        								<form action="<%=request.getContextPath() %>/myaddressend.do" method="post">
-                           									<div class="group-input">
-                                								<label for="username">주소</label>
-                                								<input class="form-control" type="text" id="sample6_postcode" placeholder="우편번호"><br>
-																<input class="site-btn register-btn" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br><br>
-																<input class="form-control" name="cstmAddress1" type="text" id="sample6_address" placeholder="주소"><br>
-																<input class="form-control" name="cstmAddress2" type="text" id="sample6_detailAddress" placeholder="상세주소">
-																<input class="form-control" type="hidden" id="sample6_extraAddress" placeholder="참고항목"><br>
-                            								</div><br>
-                           		 							<button type="submit" class="site-btn register-btn" id="complete" onclick="return fn_addressvalidate();">등록하기</button>
-                        								</form>
-                        									<div class="switch-login">
-                            								<a href="<%=request.getContextPath()%>/main.do" class="or-login">돌아가기</a>
-                        									</div>
-                   			 							</div>
-                									</div>
-           						 				</div>
-        									</div>
-    									</div>
-									</div>
-								</section>
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/aos.css">
 
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/ionicons.min.css">
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/bootstrap-datepicker.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/jquery.timepicker.css">
+
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/flaticon.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/css/icomoon.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/css/jycss/css2/style.css">
+<body class="is-preload">
+	<div class="address-container">
+		<div class="row">
+			<div class="col-12 d-flex justify-content-center">
+				<div class="address-form">
+					<h2>새 배송지 등록</h2>
+					<form action="<%=request.getContextPath() %>/myaddressend.do"
+						method="post">
+						<div class="group-input">
+							<!--  <label for="username">주소</label> -->
+							<input class="form-control" type="text" id="sample6_postcode"
+								placeholder="우편번호">
+						</div><br>
+						<div class="group-input">
+							<!-- <label for="username">기존 비밀번호</label> -->
+							<input class="site-btn register-btn" type="button"
+								onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+						</div><br>
+						<div class="group-input">
+							<input class="form-control" name="cstmAddress1" type="text"
+								id="sample6_address" placeholder="주소">
+						</div><br>
+						<div class="group-input">
+							<input class="form-control" name="cstmAddress2" type="text"
+								id="sample6_detailAddress" placeholder="상세주소">
+						</div><br>
+						<div class="group-input">
+							<input class="form-control" type="hidden"
+								id="sample6_extraAddress" placeholder="참고항목">
 						</div>
-					</div>
-
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>마이페이지</h2>
-									</header>
-									<ul>
-										<li>
-											<span class="opener">나의 주문</span>
-											<ul>
-												<li><a href="/myorders.html">주문 조회</a></li>
-												<li><a href="/myreturn.html">반품 조회</a></li>
-												<li><a href="/cart1.html">장바구니</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">나의 활동</span>
-											<ul>
-												<li><a href="#">나의 리뷰</a></li>
-												<li><a href="#">북마크</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">내 정보</span>
-											<ul>
-												<li><a href="#">내 정보 수정</a></li>
-											</ul>
-										</li>
-										<li><a onclick="confirmLogout()">로그아웃</a></li>
-									</ul>
-								</nav>
-
-						</div>
-					</div>
-
+						<button type="submit" class="site-btn register-btn" id="complete"
+							onclick="return fn_addressvalidate();">등록하기</button>
+					</form>
+					<div class="switch-login">
+					<a href="<%=request.getContextPath()%>/main.do" class="or-login">돌아가기</a>
+				</div>
+				</div>
 			</div>
+		</div>
+	</div>
 
-		<!-- Scripts -->
-			<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
-			<script src="<%=request.getContextPath() %>/js/jyjs/js/browser.min.js"></script>
-			<script src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
-			<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>
-			<script src="<%=request.getContextPath() %>/js/jyjs/js/main.js"></script>
-			<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+	<!-- Scripts -->
+	<script src="<%=request.getContextPath() %>/js/jyjs/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js/browser.min.js"></script>
+	<script
+		src="<%=request.getContextPath() %>/js/jyjs/js/breakpoints.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js/util.js"></script>
+	<script src="<%=request.getContextPath() %>/js/jyjs/js/main.js"></script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -225,4 +163,3 @@ Member loginMember=(Member)session.getAttribute("loginMember");
     	window.location.href='<%=request.getContextPath()%>/myaddress.do';
     }
 </script>
-<%@ include file="/views/common/footer.jsp" %>
