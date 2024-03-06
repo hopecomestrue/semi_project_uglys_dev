@@ -51,8 +51,6 @@ public class AdminCommunityMainServlet extends HttpServlet {
 			members.add(new OrderService().selectMemberByNo(r.getMember_no()));
 		}
 		
-		System.out.println(recipes);
-		
 		request.setAttribute("members", members);
 		request.setAttribute("recipes", recipes);
         //pageBar만들기

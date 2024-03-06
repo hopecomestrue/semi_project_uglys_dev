@@ -124,6 +124,12 @@ public class CommunityService {
 	}
 	
 	
-	
+	public List<Recipe> selectRecipeByTitle(String title) {
+		Connection conn = getConnection();
+		List<Recipe> result = dao.selectRecipeByTitle(conn,title);
+		close(conn);
+		return result;
+	}
+
 	
 }
