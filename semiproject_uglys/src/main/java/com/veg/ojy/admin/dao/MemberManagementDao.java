@@ -29,7 +29,8 @@ public class MemberManagementDao {
 	      }
 	   }
 	   
-		public List<Member> selectMemberAll(Connection conn) {
+	   // 전체 회원 조회
+		public List<Member> selectMemberAll(Connection conn,int cPage, int numPerpage) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			List<Member> result = new ArrayList<>();
@@ -48,7 +49,6 @@ public class MemberManagementDao {
 			return result;
 		}
 		
-	   
 	   public List<Member> searchMemberList(Connection conn, int cPage, int numPerpage){
 	      PreparedStatement pstmt=null;
 	      ResultSet rs=null;
@@ -69,6 +69,8 @@ public class MemberManagementDao {
 	      }return result;
 	   }
 
+		
+		
 	   public int selectMemberCount (Connection conn) {
 		   PreparedStatement pstmt=null;
 		   ResultSet rs=null;
@@ -85,11 +87,11 @@ public class MemberManagementDao {
 		      }return result;
 		   }
 	   
-	   public List<Member> searchMemberByKeyword(Connection conn, String type, String keyword, int cPage, int numPerpage){
+	   public List<Member> searchMember(Connection conn, String type, String keyword, int cPage, int numPerpage){
 		   PreparedStatement pstmt=null;
 		   ResultSet rs= null;
-		   List<Member> result = new ArrayList<>();
-		   String query= sql.getProperty("searchMemberByKeyword");
+		   List<Member> result = new ArrayList<Member>();
+		   String query= sql.getProperty("searchMember");
 		   query=query.replace("#COL",type);
 		   try {
 			   pstmt=conn.prepareStatement(query);
@@ -125,6 +127,7 @@ public class MemberManagementDao {
 	   
 	   
 	   public List<Member> memberSearchByName(Connection conn, int cPage, int numPerpage, String keyword){
+		   System.out.println("test1: "+ keyword);
 	          PreparedStatement pstmt = null;
 	           ResultSet rs = null;
 	           List<Member> result = new ArrayList<>();
@@ -147,6 +150,7 @@ public class MemberManagementDao {
 	       }
 	       
 	       public List<Member> memberSearchById(Connection conn, int cPage, int numPerpage, String keyword){
+	    	   System.out.println("test2: "+ keyword);
 	          PreparedStatement pstmt = null;
 	           ResultSet rs = null;
 	           List<Member> result = new ArrayList<>();

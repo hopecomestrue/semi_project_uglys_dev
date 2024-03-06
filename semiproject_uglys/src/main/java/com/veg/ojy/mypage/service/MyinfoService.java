@@ -26,22 +26,22 @@ public class MyinfoService {
 	    return m;
 	}
 	
-	public int insertMember(Member m) {
-		Connection conn = getConnection();
-		int result=dao.insertMember(conn,m);
-		if(result>0) commit(conn);
-		else rollback(conn);
-		close(conn);
-		return result;
-	}
-
-	public Member selectMemberById(String memberId) {
-		Connection conn=getConnection();
-		Member m =dao.selectMemberById(conn, memberId);
-		close(conn);
-		return m;
-	}
-	
+//	public int insertMember(Member m) {
+//		Connection conn = getConnection();
+//		int result=dao.insertMember(conn,m);
+//		if(result>0) commit(conn);
+//		else rollback(conn);
+//		close(conn);
+//		return result;
+//	}
+//
+//	public Member selectMemberById(String memberId) {
+//		Connection conn=getConnection();
+//		Member m =dao.selectMemberById(conn, memberId);
+//		close(conn);
+//		return m;
+//	}
+//	
 	public List<Address> selectAddress(int memberNo) {
 		Connection conn=getConnection();
 		List<Address> a =dao.selectAddress(conn, memberNo);

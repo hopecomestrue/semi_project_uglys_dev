@@ -53,72 +53,73 @@ public class MypageDao {
 	    }
 	    return m;
 	}
-	public int insertMember(Connection conn, Member m) {
-		PreparedStatement pstmt=null;
-		int result = 0;
-		try {
-			pstmt=conn.prepareStatement(sql.getProperty("insertMember"));
-			pstmt.setInt(1, m.getMemberNo());
-			pstmt.setString(2, m.getMemberId());
-			pstmt.setString(3, m.getMemberPw());
-			pstmt.setString(4, m.getMemberName());
-			pstmt.setString(5, m.getMemberAge());
-			pstmt.setString(6, m.getMemberEmail());
-			pstmt.setInt(7, m.getMemberPhone());
-			pstmt.setString(8, m.getAcceptAgree());
-			pstmt.setString(9, m.getAdminCheck());
-			pstmt.setString(10, m.getServiceAgree());
-			pstmt.setString(11, m.getMarketingAgree());
-			pstmt.setDate(12, m.getEnrollDate());
-			pstmt.setString(13, m.getPhotoRegist());
-			pstmt.setString(14, m.getMemberQuit());
-			
-			result=pstmt.executeUpdate();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}return result;
-	}
+	
+//	public int insertMember(Connection conn, Member m) {
+//		PreparedStatement pstmt=null;
+//		int result = 0;
+//		try {
+//			pstmt=conn.prepareStatement(sql.getProperty("insertMember"));
+//			pstmt.setInt(1, m.getMemberNo());
+//			pstmt.setString(2, m.getMemberId());
+//			pstmt.setString(3, m.getMemberPw());
+//			pstmt.setString(4, m.getMemberName());
+//			pstmt.setString(5, m.getMemberAge());
+//			pstmt.setString(6, m.getMemberEmail());
+//			pstmt.setInt(7, m.getMemberPhone());
+//			pstmt.setString(8, m.getAcceptAgree());
+//			pstmt.setString(9, m.getAdminCheck());
+//			pstmt.setString(10, m.getServiceAgree());
+//			pstmt.setString(11, m.getMarketingAgree());
+//			pstmt.setDate(12, m.getEnrollDate());
+//			pstmt.setString(13, m.getPhotoRegist());
+//			pstmt.setString(14, m.getMemberQuit());
+//			
+//			result=pstmt.executeUpdate();
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(pstmt);
+//		}return result;
+//	}
+//	
 	
 	
-	
-	public Member selectMemberById(Connection conn, String memberId, String memberPw) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		Member m=null;
-		try {
-			pstmt=conn.prepareStatement(sql.getProperty("selectMemberById"));
-			pstmt.setString(1,memberId);
-			pstmt.setString(2, memberPw);
-			rs=pstmt.executeQuery();
-			if(rs.next()) m=getMember(rs);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}return m;
-	}
-
-	
-	public Member selectMemberById(Connection conn,String memberId) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		Member m=null;
-		try {
-			pstmt=conn.prepareStatement(sql.getProperty("selectMemberById"));
-			pstmt.setString(1,memberId);
-			rs=pstmt.executeQuery();
-			if(rs.next()) m=getMember(rs);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}return m;
-	}
-	
+//	public Member selectMemberById(Connection conn, String memberId, String memberPw) {
+//		PreparedStatement pstmt=null;
+//		ResultSet rs=null;
+//		Member m=null;
+//		try {
+//			pstmt=conn.prepareStatement(sql.getProperty("selectMemberById"));
+//			pstmt.setString(1,memberId);
+//			pstmt.setString(2, memberPw);
+//			rs=pstmt.executeQuery();
+//			if(rs.next()) m=getMember(rs);
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}return m;
+//	}
+//
+//	
+//	public Member selectMemberById(Connection conn,String memberId) {
+//		PreparedStatement pstmt=null;
+//		ResultSet rs=null;
+//		Member m=null;
+//		try {
+//			pstmt=conn.prepareStatement(sql.getProperty("selectMemberById"));
+//			pstmt.setString(1,memberId);
+//			rs=pstmt.executeQuery();
+//			if(rs.next()) m=getMember(rs);
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}return m;
+//	}
+//	
 	
 	public int updatePassword(Connection conn, String memberId, String memberPw) {
 		PreparedStatement pstmt = null;
@@ -148,7 +149,7 @@ public class MypageDao {
 			pstmt=conn.prepareStatement(sql.getProperty("deleteMember"));
 			pstmt.setString(1, memberId);
 			result=pstmt.executeUpdate();
-//			result=1;
+			result=1; // 주석처리 했었는데... 
 			} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -173,6 +174,7 @@ public class MypageDao {
 		                .marketingAgree(rs.getString("marketing_Agree"))
 		                .enrollDate(rs.getDate("enroll_Date"))
 		                .photoRegist(rs.getString("photo_Regist"))
+		                .address(new ArrayList<>()) // 이거 수정
 		                .memberQuit(rs.getString("member_quit"))
 		                .build();
 		    }
