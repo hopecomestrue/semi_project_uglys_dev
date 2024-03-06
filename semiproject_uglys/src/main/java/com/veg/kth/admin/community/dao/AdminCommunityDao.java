@@ -127,8 +127,7 @@ private Properties sql = new Properties();
 			close(rs);
 		}
 		return result.get(0);
-		
-		
+	
 	}
 	
 	
@@ -170,5 +169,24 @@ private Properties sql = new Properties();
 		return result;
 
 	}
+	
+	public int deleteRecipeByNo(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("deleteRecipeByNo"));
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	
+	}
+	
 	
 }

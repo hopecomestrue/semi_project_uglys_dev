@@ -190,7 +190,7 @@
 	          <div >
 	            <div class="sidebar-box" >
 	            <div id="register_sal">
-					<input type="search" id="searchId" list="data" placeholder="사원번호를 입력해 주세요." style="width:200px;"/>
+					<input type="search" id="searchId" list="data" placeholder="레시피 제목을 검색하세요." style="width:200px;"/>
 					<button type="button" class="btn btn-primary btn-sm" style="width:100px" onclick="fn_changeEmployee()">검색</button>
 					<datalist id="data"></datalist>
 				</div>

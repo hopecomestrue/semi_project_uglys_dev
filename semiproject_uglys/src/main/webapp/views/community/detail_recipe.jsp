@@ -161,10 +161,10 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
                                 <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
                                     <h3 class="h2 text-white mb-0"><%=recipe.getRecipeTitle() %></h3>
                                     
-                                    <span class="text-primary"><%=member.getMemberId() %></span>
+                                    <span class="text-primary"><%=member.getMemberName() %></span>
                                 </div>
                                 <ul class="list-unstyled mb-1-9">
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">소요시간:</span><%=recipe.getRecipeLeadTime() %></li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">소요시간:</span><%=recipe.getRecipeLeadTime() %>분</li>
                                     <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">카테고리:</span><%=recipe.getCategory().getCategoryDept1() %>/<%=recipe.getCategory().getCategoryDept2() %></li>
                                     <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">내용:</span> <br>
                                     <%=recipe.getRecipeComment() %>
@@ -239,12 +239,12 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
                     	</tr>
                     		<%
                     		if(!recipe.getProcedure().isEmpty()){
-                    		for(Procedure p : procedure){ 
+                    		for(int i=procedure.size()-1;i>=0;i-- ){ 
                     		%>
                     	<tr>
-							<td><%=p.getProcedureOrder() %></td>
+							<td><%=procedure.get(i).getProcedureOrder() %></td>
 							<%-- <td><%=p.getProcedureOriginalFileName() %></td> --%>
-							<td><%=p.getProcedureComment() %></td>
+							<td><%=procedure.get(i).getProcedureComment() %></td>
                     	</tr>
 							<%}
 							}%>

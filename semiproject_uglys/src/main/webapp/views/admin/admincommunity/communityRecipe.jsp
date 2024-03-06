@@ -292,14 +292,18 @@
 	            $.ajax({
 					url: "${path}/admin/deleteRecipe.do",
 					type:'post',
-					data: {"idList":checkedIds},
-					success: function(response) {
-	                    alert("성공하였습니다.");
-	                    // 서버 응답(response)에 따른 추가 작업 수행
+					contentType: "application/json;",
+					data: JSON.stringify(checkedIds),
+					success: function(data) {
+
+						if(Number(data)>0){
+	                    	alert("정상적으로 삭제하였습니다.");
+						}else{
+							alert("삭제되지 않았습니다.");
+						}
 	                },
-	                error: function(error) {
+	                error: function(data) {
 	                    alert("실패했습니다.");
-	                    console.error(error);
 	                }
 	            });            
 			}else{
