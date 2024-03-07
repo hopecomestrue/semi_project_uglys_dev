@@ -14,6 +14,7 @@ import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.service.OrderService;
 import com.veg.kth.admin.community.service.AdminCommunityService;
 import com.veg.kth.community.model.dto.Recipe;
+import com.veg.kth.community.service.CommunityService;
 
 /**
  * Servlet implementation class AdminCommunityMainServlet
@@ -47,9 +48,7 @@ public class AdminCommunityMainServlet extends HttpServlet {
 		List<Recipe> recipes = new AdminCommunityService().selectRecipeAllByPage();
 
 		List<Member> members = new ArrayList<>(); 
-		for(Recipe r : recipes) {
-			members.add(new OrderService().selectMemberByNo(r.getMember_no()));
-		}
+		members = new CommunityService().selectMemberByNo(recipes);
 		
 		request.setAttribute("members", members);
 		request.setAttribute("recipes", recipes);

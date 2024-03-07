@@ -1,6 +1,7 @@
 package com.veg.kth.admin.community.controller;
 
 import java.io.IOException;
+import java.security.spec.EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.veg.hjj.member.dto.Member;
 import com.veg.ksj.order.model.service.OrderService;
 import com.veg.kth.admin.community.service.AdminCommunityService;
 import com.veg.kth.community.model.dto.Recipe;
+import com.veg.kth.community.service.CommunityService;
 
 /**
  * Servlet implementation class AdminCommunitySearchServlet
@@ -34,7 +36,7 @@ public class AdminCommunitySearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		
 		String dateStart=request.getParameter("search_date_start");
 		String dateEnd=request.getParameter("search_date_end");
@@ -49,11 +51,8 @@ public class AdminCommunitySearchServlet extends HttpServlet {
 			recipes = new AdminCommunityService().searchRecipeByAnything(searchType,searchContent);			
 		}
 		List<Member> members = new ArrayList<>(); 
-		for(Recipe r : recipes) {
-			members.add(new OrderService().selectMemberByNo(r.getMember_no()));
-		}
+		members = new CommunityService().selectMemberByNo(recipes);
 
-		
 		request.setAttribute("recipes", recipes);
 		request.setAttribute("members", members);
 		

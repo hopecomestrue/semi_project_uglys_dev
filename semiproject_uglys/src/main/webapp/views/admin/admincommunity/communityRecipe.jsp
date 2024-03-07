@@ -10,7 +10,8 @@
 <%
 
 	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");  
-	List<Member> members = (List<Member>)request.getAttribute("members"); 
+	List<Member> members = (List<Member>)request.getAttribute("members");
+	
 %>
 <style>
 	p{
@@ -219,7 +220,7 @@
 										<th>아이디</th>
 										<th>레시피이름</th>
 										<th>카테고리</th>
-										<th>해시태그</th>
+										<!-- <th>해시태그</th> -->
 										<th>필수재료</th>
 										<th>등록일</th>
 									</tr>
@@ -231,14 +232,26 @@
 										<tr>
 											<td><input type="checkbox" id="<%=r.getRecipeNo() %>" name="delete_check"></td>
 											<td><a href="<%=request.getContextPath()%>/admin/recipedetail.do?recipeNo=<%=r.getRecipeNo()%>"><%=r.getRecipeNo() %></a></td>
-											<td><%=r.getMember_no() %>
+											<td><%
+												for(Member m : members){
+													if(r.getMember_no()==m.getMemberNo()){%>
+														<%=m.getMemberId()%>
+													<%
+													}
+												}
+												%>
 											</td>
 											<td><%=r.getRecipeTitle() %></td>
 											<td><%=r.getCategory().getCategoryDept1() %>/<%=r.getCategory().getCategoryDept2() %></td>
 											<%List<Hashtag> hashtag = r.getHashtag(); %>
-											<td><%for(Hashtag h : hashtag){ %>
+											<%-- <td>
+											<%if(hashtag!=null){%>
+											<%for(Hashtag h : hashtag){ %>
 											#<%=h.getHashtagValue() %>
-											<%} %></td>
+											<%}
+											}else{
+											}%>
+											</td> --%>
 											<td><%List<Material> material = r.getMaterial();
 											for(Material m : material){ %>
 											<%if(m.getMaterialType().equals("MAIN")){ %>
