@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.veg.kth.admin.community.service.AdminCommunityService;
 
 /**
@@ -35,14 +36,15 @@ public class AdminCommunityRecipeDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		BufferedReader reader = request.getReader();
 	    StringBuilder requestData = new StringBuilder();
 	    String line;
 	    while ((line = reader.readLine()) != null) {
 	        requestData.append(line);
 	    }
-
+	    
+	    try {
 	    // JSON 데이터를 파싱
 	    JsonElement jsonElement = JsonParser.parseString(requestData.toString());
 
@@ -56,10 +58,12 @@ public class AdminCommunityRecipeDeleteServlet extends HttpServlet {
 	        // 여기에서 value를 사용하여 원하는 작업 수행
 	        recipeNo.add((Integer.parseInt(value)));
 	    }
-	    
 	    int result = new AdminCommunityService().deleteRecipeByNo(recipeNo);
 	    
 	    response.getWriter().write(String.valueOf(result));
+	    }catch(JsonSyntaxException e) {
+	    	e.printStackTrace();
+	    }
 	}
 
 	/**

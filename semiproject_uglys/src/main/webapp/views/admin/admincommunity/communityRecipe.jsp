@@ -287,17 +287,22 @@
 			let inputCheckList = document.querySelectorAll('input[type=checkbox]:checked');
 
 			if (inputCheckList.length > 0) {
-	            var checkedIds = Array.from(inputCheckList).slice(1).map(checkbox => checkbox.id);
-	            
+				let $checkboxAll = document.getElementById('checkboxAll');
+					if($checkboxAll.checked){
+						var checkedIds = Array.from(inputCheckList).slice(1).map(checkbox => checkbox.id);
+					}else{
+						var checkedIds = Array.from(inputCheckList).map(checkbox => checkbox.id);
+					}
+	       			
 	            $.ajax({
 					url: "${path}/admin/deleteRecipe.do",
 					type:'post',
-					contentType: "application/json;",
+					contentType: 'application/json; charset=UTF-8',
 					data: JSON.stringify(checkedIds),
 					success: function(data) {
-
 						if(Number(data)>0){
 	                    	alert("정상적으로 삭제하였습니다.");
+	                    	location.reload();
 						}else{
 							alert("삭제되지 않았습니다.");
 						}
