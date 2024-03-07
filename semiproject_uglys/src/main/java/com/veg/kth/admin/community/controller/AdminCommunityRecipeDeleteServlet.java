@@ -58,6 +58,7 @@ public class AdminCommunityRecipeDeleteServlet extends HttpServlet {
 	        // 여기에서 value를 사용하여 원하는 작업 수행
 	        recipeNo.add((Integer.parseInt(value)));
 	    }
+	    //들어온 값을 레시피 번호로 넣음
 	    int result = new AdminCommunityService().deleteRecipeByNo(recipeNo);
 	    
 	    response.getWriter().write(String.valueOf(result));
