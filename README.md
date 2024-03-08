@@ -28,12 +28,26 @@
 
 ## 프로젝트 소개 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Mushroom.png" alt="Mushroom" width="30" height="30" />
 
-- 사이트 이름 :
+- 사이트 이름 : 채소랑
 
-- 목적 :
+- 목적 : 
+  1. 못난 신선한 채소를 소비자와의 직거래로 빠르게 배송
+  2. 구매한 채소를 활용해 자신만의 레시피를 공유
 
-- 주요 기능 :
-  사용자/관리자
+- 주요 기능 : 
+  사용자
+    ◎ 로그인, 회원 가입
+    ◎ 채소 구매
+    ◎ 마이페이지(장바구니, 주문내역, 내 정보 수정 등)
+    ◎ 커뮤니티(레시피)
+    ◎ 고객센터
+  
+  관리자
+    ◎ 회원관리
+    ◎ 상품등록
+    ◎ 주문현황
+    ◎ 환불현황
+    ◎ 레시피관리
 
 - 사이트맵
 
