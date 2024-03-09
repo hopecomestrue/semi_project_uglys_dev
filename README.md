@@ -56,7 +56,9 @@
   <br><br>
 
 - 김태하
-|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/4cd0f816-91d3-4ff7-90bf-e485ba1d10eb"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/7cb4836c-5a7c-4f95-9228-3710ade6e1f0"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/688d3a45-8c19-4b7b-af36-3f72c1991a9d"/>|
+<br>
+
+|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/4cd0f816-91d3-4ff7-90bf-e485ba1d10eb"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/7cb4836c-5a7c-4f95-9228-3710ade6e1f0"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/688d3a45-8c19-4b7b-af36-3f72c1991a9d"/>|
 |:-:|:-:|:-:|
 | 메인페이지 | 커뮤니티 | 레시피 상세 |
 
