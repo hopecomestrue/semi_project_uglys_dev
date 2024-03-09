@@ -55,8 +55,7 @@
   이미지 업로드 시 상단 메뉴(issue)에 등록 후 이미지 링크 사용!!!
   <br><br>
 
-<details>
-<summary>오지영</summary>
+- 오지영
 <br>
   
 |<img width="1435" alt="마이페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/f8687125-86e4-4f38-b9fb-9bc6074a9dfc">|<img width="1435" alt="최근주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/7f1f3101-cb7d-475a-9b64-f9402eb0f9a3">|<img width="1435" alt="상세주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428">|
@@ -71,7 +70,6 @@
 |:-:|:-:|
 | 회원조회 | 회원상세조회 | 
 
-</details> 
 <br><br><br><br>
 - 화면설계서(오븐)
 - ERD
