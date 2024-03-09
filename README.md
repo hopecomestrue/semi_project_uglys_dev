@@ -121,19 +121,19 @@
 
 <p float="left">
   <div style="width:24%; display:inline-block; text-align:center;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/68e5f812-1f3c-473f-a3f1-ea187546d13f" style="width:100%;" />
+    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/68e5f812-1f3c-473f-a3f1-ea187546d13f" style="width:24%;" />
     <p>마이페이지</p>
   </div>
   <div style="width:24%; display:inline-block; text-align:center;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/21328831-7077-4dd3-afb2-018c4788e779" style="width:100%;" />
+    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/21328831-7077-4dd3-afb2-018c4788e779" style="width:24%;" />
     <p>최근주문내역</p>
   </div>
   <div style="width:24%; display:inline-block; text-align:center;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c" style="width:100%;" />
+    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c" style="width:24%;" />
     <p>상세주문내역</p>
   </div>
   <div style="width:24%; display:inline-block; text-align:center;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/41e04c63-0822-4cef-b8f6-cbc6ef2b9ab1" style="width:100%;" />
+    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/41e04c63-0822-4cef-b8f6-cbc6ef2b9ab1" style="width:24%;" />
     <p>상세주문내역</p>
   </div>
 </p>
