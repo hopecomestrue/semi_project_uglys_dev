@@ -103,6 +103,13 @@
 |:-:|:-:|:-:|
 | 관리자 상품등록1 | 관리자 상품등록2 | 관리자 상품메인 |
 
+- 박대웅
+<br>
+
+|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/2206bc7b-6041-438a-b806-c5de3ef91735"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/e74e26ce-690d-40b7-91a7-a8597e0dbacd"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/23cb407c-260a-4f81-a848-75169c60738b"/>|
+|:-:|:-:|:-:|
+| 회원가입 | 로그인 페이지 | 비밀번호 찾기 |
+
 |<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7529a024-405a-433c-b991-5bbe7888a566">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/a25ef808-8cbb-46ba-b247-16dc2ca1f821">|
 |:-:|:-:|
 | 채소농장메인 | 채소농장후기 |
