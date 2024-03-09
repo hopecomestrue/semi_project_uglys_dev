@@ -119,25 +119,10 @@
 <br>
 
 
-<div style="font-size:0; text-align:center;">
-  <span style="width:24%; display:inline-block; margin-right:-4px;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/517dde2c-4912-46d4-9fc9-a8806b480373" style="width:24%;" />
-    <br>마이페이지
-  </span>
-  <span style="width:24%; display:inline-block; margin-right:-4px;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/7f1f3101-cb7d-475a-9b64-f9402eb0f9a3" style="width:24%;" />
-    <br>최근주문내역
-  </span>
-  <span style="width:24%; display:inline-block; margin-right:-4px;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428" style="width:24%;" />
-    <br>상세주문내역
-  </span>
-  <span style="width:24%; display:inline-block; margin-right:-4px;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428" style="width:24%;" />
-    <br>상세주문내역
-  </span>
-</div>
 
+| ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/517dde2c-4912-46d4-9fc9-a8806b480373) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/7f1f3101-cb7d-475a-9b64-f9402eb0f9a3) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/517dde2c-4912-46d4-9fc9-a8806b480373) |
+|:---:|:---:|:---:|:---:|
+| 마이페이지 | 최근주문내역 | 상세주문내역 | 네 번째 이미지 설명 |
 
 
 
