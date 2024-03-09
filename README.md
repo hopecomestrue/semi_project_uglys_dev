@@ -52,9 +52,10 @@
 <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/c0349672-c0e4-4a22-9d0b-f883e7b5f7c6"/>
 </picture>
 <br>
-- 화면 구성
 
-- 사용자
+- 화면구성
+
+[사용자]
 <br>
 
 |<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/4cd0f816-91d3-4ff7-90bf-e485ba1d10eb"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/7cb4836c-5a7c-4f95-9228-3710ade6e1f0"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/688d3a45-8c19-4b7b-af36-3f72c1991a9d"/>|
@@ -95,7 +96,7 @@
 
 <br>
 
-- 관리자
+[관리자]
 <br>
 
 |<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/980f601e-5421-4f31-8105-eaa9b28806b2">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/69be7e3c-267a-4c18-858c-945a835ae949">|
@@ -128,5 +129,6 @@
 <img height="500" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccf0da81-c796-4beb-8df8-044aa4f64edc"/>
 </picture>
 <br><br>
-- 노션링크
+
+- 노션(회의록)
 https://unmarred-trust-a0f.notion.site/45e645fd183d42789d013f76f5ccac0f
