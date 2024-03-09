@@ -61,10 +61,14 @@
 |:-:|:-:|:-:|
 | 메인페이지 | 커뮤니티 | 레시피 상세 |
 
-|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccc1015f-2408-433d-aa3c-74c3c5074363"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/07895f8c-2ff9-460a-974e-4486cc70c649"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/1569e606-2ef1-4ce2-8aa7-34905a7d6444"/>|
+|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccc1015f-2408-433d-aa3c-74c3c5074363"/>|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7529a024-405a-433c-b991-5bbe7888a566">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/a25ef808-8cbb-46ba-b247-16dc2ca1f821">|
 |:-:|:-:|:-:|
-| 레시피 작성 | (관리자)레시피 조회 | (관리자)레시피 수정 |
-  
+| 레시피 작성 | 채소농장메인 | 채소농장후기 |
+
+|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/e300e28f-8a1a-41d3-b475-be16e9be1bb1">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7ada5b01-2296-4361-8d38-0f9b55248a2f">|
+|:-:|:-:|
+| 채소농장후기등록 | 장바구니 | 
+
 |<img width="1436" alt="마이페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/517dde2c-4912-46d4-9fc9-a8806b480373">|<img width="1435" alt="최근주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/7f1f3101-cb7d-475a-9b64-f9402eb0f9a3">|<img width="1435" alt="상세주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428">|
 |:-:|:-:|:-:|
 | 마이페이지 | 최근주문내역 | 상세주문내역 |
@@ -81,15 +85,6 @@
 |:-:|:-:|:-:|
 | DAUM주소 | 아임포트 API(kakao) | 아임포트 API(kcp) | 
 
-
-|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7529a024-405a-433c-b991-5bbe7888a566">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/a25ef808-8cbb-46ba-b247-16dc2ca1f821">|
-|:-:|:-:|
-| 채소농장메인 | 채소농장후기 |
-
-|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/e300e28f-8a1a-41d3-b475-be16e9be1bb1">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7ada5b01-2296-4361-8d38-0f9b55248a2f">|
-|:-:|:-:|
-| 채소농장후기등록 | 장바구니 | 
-
 |<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/2206bc7b-6041-438a-b806-c5de3ef91735"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/e74e26ce-690d-40b7-91a7-a8597e0dbacd"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/23cb407c-260a-4f81-a848-75169c60738b"/>|
 |:-:|:-:|:-:|
 | 회원가입 | 로그인 페이지 | 비밀번호 찾기 |
@@ -98,6 +93,7 @@
 |:---:|:---:|:---:|:---:|
 | 문의글 카카오 챗봇 연동 | 문의 목록 | 문의 작성 | 문의 상세 |
 
+<br>
 
 - 관리자
 <br>
@@ -112,8 +108,11 @@
 
 |<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/f8bae50c-674a-4afa-9757-dae3821ff236"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/71fc7871-b5c8-4ad3-b0ad-658482364658"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/65d0718f-70d1-4361-bdeb-1c6763b7c089"/>|
 |:-:|:-:|:-:|
-| 관리자 상품등록1 | 관리자 상품등록2 | 관리자 상품메인 |
+| 상품등록1 | 상품등록2 | 상품관리 |
 
+|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/07895f8c-2ff9-460a-974e-4486cc70c649"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/1569e606-2ef1-4ce2-8aa7-34905a7d6444"/>|
+|:-:|:-:|
+| 레시피조회 | 레시피수정 |
 
 
 <br><br><br><br>
