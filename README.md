@@ -55,6 +55,16 @@
   이미지 업로드 시 상단 메뉴(issue)에 등록 후 이미지 링크 사용!!!
   <br><br>
 
+- 김태하
+|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/4cd0f816-91d3-4ff7-90bf-e485ba1d10eb"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/7cb4836c-5a7c-4f95-9228-3710ade6e1f0"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/688d3a45-8c19-4b7b-af36-3f72c1991a9d"/>|
+|:-:|:-:|:-:|
+| 메인페이지 | 커뮤니티 | 레시피 상세 |
+
+|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccc1015f-2408-433d-aa3c-74c3c5074363"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccc1015f-2408-433d-aa3c-74c3c5074363"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/1569e606-2ef1-4ce2-8aa7-34905a7d6444"/>|
+|:-:|:-:|:-:|
+| 레시피 작성 | (관리자)레시피 조회 | 레시피 수정 |
+
+
 - 오지영
 <br>
   
