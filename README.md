@@ -62,9 +62,9 @@
 |:-:|:-:|:-:|
 | 메인페이지 | 커뮤니티 | 레시피 상세 |
 
-|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccc1015f-2408-433d-aa3c-74c3c5074363"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccc1015f-2408-433d-aa3c-74c3c5074363"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/1569e606-2ef1-4ce2-8aa7-34905a7d6444"/>|
+|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccc1015f-2408-433d-aa3c-74c3c5074363"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/07895f8c-2ff9-460a-974e-4486cc70c649"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/1569e606-2ef1-4ce2-8aa7-34905a7d6444"/>|
 |:-:|:-:|:-:|
-| 레시피 작성 | (관리자)레시피 조회 | 레시피 수정 |
+| 레시피 작성 | (관리자)레시피 조회 | (관리자)레시피 수정 |
 
 
 - 오지영
