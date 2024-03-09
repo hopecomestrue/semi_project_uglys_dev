@@ -122,7 +122,7 @@
 
 | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/68e5f812-1f3c-473f-a3f1-ea187546d13f) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/41e04c63-0822-4cef-b8f6-cbc6ef2b9ab1) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/a294afbf-6a87-49ef-a1d5-33dc33dc2158) |
 |:---:|:---:|:---:|:---:|
-| 마이페이지 | 최근주문내역 | 상세주문내역 | 네 번째 이미지 설명 |
+| 문의글 카카오 챗봇 연동 | 문의 목록 | 문의 작성 | 문의 상세 |
 
 
 
