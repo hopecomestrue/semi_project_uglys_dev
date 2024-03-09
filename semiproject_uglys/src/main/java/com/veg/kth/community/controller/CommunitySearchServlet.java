@@ -1,7 +1,6 @@
-package com.veg.kth.admin.community.controller;
+package com.veg.kth.community.controller;
 
 import java.io.IOException;
-import java.security.spec.EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,22 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.veg.hjj.member.dto.Member;
-import com.veg.ksj.order.model.service.OrderService;
-import com.veg.kth.admin.community.service.AdminCommunityService;
 import com.veg.kth.community.model.dto.Recipe;
 import com.veg.kth.community.service.CommunityService;
 
 /**
- * Servlet implementation class AdminCommunitySearchServlet
+ * Servlet implementation class CommunitySearchServlet
  */
-@WebServlet("/admin/recipeSearch.do")
-public class AdminCommunitySearchServlet extends HttpServlet {
+@WebServlet("/community/search.do")
+public class CommunitySearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminCommunitySearchServlet() {
+    public CommunitySearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,29 +33,26 @@ public class AdminCommunitySearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		
-		String dateStart=request.getParameter("search_date_start");
-		String dateEnd=request.getParameter("search_date_end");
-		String searchType=request.getParameter("searchType").toUpperCase();
-		String searchContent=request.getParameter("searchContent");
+		String searchTitle = request.getParameter("searchTitle");
 		
+		List<Recipe> recipes = new CommunityService().selectRecipeByTitle(searchTitle);
 		
-		List<Recipe> recipes = new ArrayList<>();
-		if(dateStart!="" || dateEnd!="") {
-			recipes = new AdminCommunityService().searchRecipeByAnythingAndDate(searchType,searchContent,dateStart,dateEnd);
-		}else {
-			recipes = new AdminCommunityService().searchRecipeByAnything(searchType,searchContent);			
-		}
+		System.out.println(recipes);
+		
 		List<Member> members = new ArrayList<>(); 
 		members = new CommunityService().selectMemberByNo(recipes);
+		
 
-		request.setAttribute("recipes", recipes);
+		
 		request.setAttribute("members", members);
 		
+		request.setAttribute("recipes", recipes);
 		
-		request.getRequestDispatcher("/views/admin/admincommunity/communityRecipe.jsp")
+		request.getRequestDispatcher("/views/community/community_main.jsp")
 		.forward(request, response);
+		
+		
 	}
 
 	/**

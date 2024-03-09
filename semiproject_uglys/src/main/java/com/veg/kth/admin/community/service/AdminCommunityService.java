@@ -61,4 +61,19 @@ public class AdminCommunityService {
 		return result;
 	}
 	
+	public int deleteRecipeByNo(List<Integer> recipeNo_list) {
+		Connection conn = getConnection();
+		int result = 0;
+		for(int i=0;i<recipeNo_list.size();i++) {
+			result += dao.deleteRecipeByNo(conn,recipeNo_list.get(i));
+		}
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+
+		close(conn);
+		return result;
+	}
+	
+	
 }

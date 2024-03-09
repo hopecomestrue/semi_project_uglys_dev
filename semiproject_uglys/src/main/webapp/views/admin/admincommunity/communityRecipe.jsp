@@ -10,7 +10,8 @@
 <%
 
 	List<Recipe> recipes = (List<Recipe>)request.getAttribute("recipes");  
-	List<Member> members = (List<Member>)request.getAttribute("members"); 
+	List<Member> members = (List<Member>)request.getAttribute("members");
+	
 %>
 <style>
 	p{
@@ -219,7 +220,7 @@
 										<th>아이디</th>
 										<th>레시피이름</th>
 										<th>카테고리</th>
-										<th>해시태그</th>
+										<!-- <th>해시태그</th> -->
 										<th>필수재료</th>
 										<th>등록일</th>
 									</tr>
@@ -231,14 +232,26 @@
 										<tr>
 											<td><input type="checkbox" id="<%=r.getRecipeNo() %>" name="delete_check"></td>
 											<td><a href="<%=request.getContextPath()%>/admin/recipedetail.do?recipeNo=<%=r.getRecipeNo()%>"><%=r.getRecipeNo() %></a></td>
-											<td><%=r.getMember_no() %>
+											<td><%
+												for(Member m : members){
+													if(r.getMember_no()==m.getMemberNo()){%>
+														<%=m.getMemberId()%>
+													<%
+													}
+												}
+												%>
 											</td>
 											<td><%=r.getRecipeTitle() %></td>
 											<td><%=r.getCategory().getCategoryDept1() %>/<%=r.getCategory().getCategoryDept2() %></td>
 											<%List<Hashtag> hashtag = r.getHashtag(); %>
-											<td><%for(Hashtag h : hashtag){ %>
+											<%-- <td>
+											<%if(hashtag!=null){%>
+											<%for(Hashtag h : hashtag){ %>
 											#<%=h.getHashtagValue() %>
-											<%} %></td>
+											<%}
+											}else{
+											}%>
+											</td> --%>
 											<td><%List<Material> material = r.getMaterial();
 											for(Material m : material){ %>
 											<%if(m.getMaterialType().equals("MAIN")){ %>
@@ -287,19 +300,28 @@
 			let inputCheckList = document.querySelectorAll('input[type=checkbox]:checked');
 
 			if (inputCheckList.length > 0) {
-	            var checkedIds = Array.from(inputCheckList).slice(1).map(checkbox => checkbox.id);
-	            
+				let $checkboxAll = document.getElementById('checkboxAll');
+					if($checkboxAll.checked){
+						var checkedIds = Array.from(inputCheckList).slice(1).map(checkbox => checkbox.id);
+					}else{
+						var checkedIds = Array.from(inputCheckList).map(checkbox => checkbox.id);
+					}
+	       			
 	            $.ajax({
 					url: "${path}/admin/deleteRecipe.do",
 					type:'post',
-					data: {"idList":checkedIds},
-					success: function(response) {
-	                    alert("성공하였습니다.");
-	                    // 서버 응답(response)에 따른 추가 작업 수행
+					contentType: 'application/json; charset=UTF-8',
+					data: JSON.stringify(checkedIds),
+					success: function(data) {
+						if(Number(data)>0){
+	                    	alert("정상적으로 삭제하였습니다.");
+	                    	location.reload();
+						}else{
+							alert("삭제되지 않았습니다.");
+						}
 	                },
-	                error: function(error) {
+	                error: function(data) {
 	                    alert("실패했습니다.");
-	                    console.error(error);
 	                }
 	            });            
 			}else{

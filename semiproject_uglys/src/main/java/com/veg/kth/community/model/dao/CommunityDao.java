@@ -405,6 +405,29 @@ public class CommunityDao {
 		
 	}
 	
+	public List<Recipe> selectRecipeByTitle(Connection conn, String title){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Recipe> result = new ArrayList<>();
+		String $title = "%"+title+"%";
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectRecipeByTitle"));
+			pstmt.setString(1, $title);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				addRecipeAllNoPro(result,rs);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
+	
 	
 	
 	

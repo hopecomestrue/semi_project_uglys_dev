@@ -190,9 +190,8 @@
 	          <div >
 	            <div class="sidebar-box" >
 	            <div id="register_sal">
-					<input type="search" id="searchId" list="data" placeholder="사원번호를 입력해 주세요." style="width:200px;"/>
-					<button type="button" class="btn btn-primary btn-sm" style="width:100px" onclick="fn_changeEmployee()">검색</button>
-					<datalist id="data"></datalist>
+					<input type="text" id="searchId" list="data" placeholder="레시피 제목을 검색하세요." style="width:200px;"/>
+					<button type="button" class="btn btn-primary btn-sm" style="width:100px" onclick="fn_recipeList();">검색</button>
 				</div>
 	            </div>
 	          </div>
@@ -246,23 +245,11 @@
             </div>
        </section>
  <script>
-  $("#searchtag").keyup(e=>{
-	const value=e.target.value;
-	$.ajax({
-		url:"<%=request.getContextPath()%>/community/searchhashtag.do",
-		data:{"keyword":value},
-		success:data=>{
-			const hashtag=data.split(",");
-			$("#data").html("");
-			hashtag.forEach(e=>{
-				const $op=#("<option>").attr("value",e).text(e);
-				$("#data").append($op);
-			});
-		}
-		
-	})
-	  
-  });
+ 	fn_recipeList=()=>{
+		let search = document.getElementById('searchId');
+		location.assign('<%=request.getContextPath()%>/community/search.do?searchTitle='+search.value);
+ 	}
+ 
  
  </script>
 <%@ include file="/views/common/footer.jsp" %>
