@@ -124,7 +124,7 @@
 | 문의글 카카오 챗봇 연동 | 문의 게시 |
 
 
-|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/a294afbf-6a87-49ef-a1d5-33dc33dc2158"/>|<img width="1436" src=""/>|
+|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c"/>|<img width="700" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/a294afbf-6a87-49ef-a1d5-33dc33dc2158"/>|<img width="1436" src=""/>|
 |:-:|:-:|:-:|
 | 문의 작성 | 문의글 상세 |  |
 
