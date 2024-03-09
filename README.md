@@ -53,9 +53,6 @@
 </picture>
 <br>
 - 화면 구성
-  ※여기에 각자 화면 캡쳐(2,4,6.. 짝수 스크린샷이미지) + 내용 작성(2~3줄)
-  이미지 업로드 시 상단 메뉴(issue)에 등록 후 이미지 링크 사용!!!
-  <br><br>
 
 - 김태하
 <br>
@@ -123,9 +120,18 @@
 | 문의글 카카오 챗봇 연동 | 문의 목록 | 문의 작성 | 문의 상세 |
 
 
-
-
 <br><br><br><br>
 - 화면설계서(오븐)
+<br>
+
+|<img width="1432" height="1000" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/2461f0a0-bd44-49d6-86eb-8206aaea5bcd"/>|<img width="1432" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/761d08d3-8a87-4617-a391-1fe5a62061ce"/>|
+|:-:|:-:|
+| 메인페이지 예시 | 상품 상세 예시 |
+
 - ERD
+<picture>
+<img height="500" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccf0da81-c796-4beb-8df8-044aa4f64edc"/>
+</picture>
+<br><br>
 - 노션링크
+https://unmarred-trust-a0f.notion.site/45e645fd183d42789d013f76f5ccac0f
