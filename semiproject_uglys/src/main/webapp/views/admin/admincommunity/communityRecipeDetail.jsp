@@ -63,12 +63,12 @@ input::-webkit-inner-spin-button {
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Bootstrap Basic Tables</h5>
+                            <h4 class="m-b-10">레시피 관리</h4>
                         </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#!">Bootstrap Table</a></li>
-                            <li class="breadcrumb-item"><a href="#!">Basic Tables</a></li>
+                         <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/MemberCheck.do"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/recipeList.do">레시피 관리</a></li>
+                            <li class="breadcrumb-item">레시피 상세</li>
                         </ul>
                     </div>
                 </div>
