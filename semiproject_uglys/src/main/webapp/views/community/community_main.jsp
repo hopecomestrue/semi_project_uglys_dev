@@ -134,13 +134,13 @@
 			position: fixed;
 			transform: translate(-50%, 0%);
 			left: 90%;
-			bottom: 70%;
+			bottom: 10%;
 		
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-around;
-			height: 40px;
+			height: 35px;
 			box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 			border:1px solid #e9e9e9;
 			border-radius: 30px;
