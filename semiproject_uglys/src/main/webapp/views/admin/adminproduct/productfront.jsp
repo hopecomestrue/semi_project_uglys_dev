@@ -81,9 +81,9 @@
                                         <!-- 새로운 입력 필드 -->
                                         <form action="<%=request.getContextPath()%>/searchProduction.do" method="post">
                                             <table>
-                                                <tr>
+                                                <tr >
                                                     <td>상품번호:</td>
-                                                    <td><input class="datatable-input" type="text" name="product_no"></td>
+                                                    <td><input class="datatable-input" type="text" name="product_no" ></td>
                                                     <td>상품명:</td>
                                                     <td><input class="datatable-input" type="text" name="product_name"></td>
                                                 </tr>
@@ -121,7 +121,7 @@
                         </div>
                         <div class="features">
                             <div class="table-wrapper">
-                                <table class="table table-hover">
+                                <table class="table table-hover" style="font-size: 12px;">
                                     <thead>
                                         <tr>
                                             <th></th>

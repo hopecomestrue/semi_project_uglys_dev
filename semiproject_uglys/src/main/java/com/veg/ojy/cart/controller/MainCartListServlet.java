@@ -57,20 +57,20 @@ public class MainCartListServlet extends HttpServlet {
 		        .filter(cart -> cart.getProductNo() == productNo)
 		        .findFirst();
 
-		if (optionalCart.isPresent()) {
-		    // 같은 상품이 이미 있으면, 수량만 증가시키기
-		    Cart existingCart = optionalCart.get();
-		    existingCart.setCount(existingCart.getCount() + count);
-		} else {
-		    // 같은 상품이 없으면, 새로운 Cart 객체를 생성해서 장바구니에 추가하기
-		    memberNo = mem.getMemberNo();
+		if (!optionalCart.isPresent()) {
+			memberNo = mem.getMemberNo();
 		    Cart c = Cart.builder()
 		            .memberNo(memberNo)
 		            .count(count)
 		            .productNo(productNo)
 		            .build();
 		    carts.add(c);
+		}else {
+			Cart existingCart = optionalCart.get();
+		    existingCart.setCount(count);
+		    
 		}
+		
 		
 		
 		List<Production>productions=new ArrayList<>();
