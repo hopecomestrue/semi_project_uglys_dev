@@ -118,11 +118,13 @@
 - 서진
 <br>
 
-|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/68e5f812-1f3c-473f-a3f1-ea187546d13f"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/21328831-7077-4dd3-afb2-018c4788e779"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c"/>|
-|:-:|:-:|:-:|
-| 관리자 상품등록1 | 관리자 상품등록2 | 관리자 상품메인 |
 
-|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/41e04c63-0822-4cef-b8f6-cbc6ef2b9ab1">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/a294afbf-6a87-49ef-a1d5-33dc33dc2158">|
+|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/68e5f812-1f3c-473f-a3f1-ea187546d13f">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/21328831-7077-4dd3-afb2-018c4788e779">|
+|:-:|:-:|
+| 채소농장메인 | 채소농장후기 |
+
+
+|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/a294afbf-6a87-49ef-a1d5-33dc33dc2158">|
 |:-:|:-:|
 | 채소농장메인 | 채소농장후기 |
 
