@@ -48,7 +48,9 @@
     ◎ 레시피관리 <br>
 <br>
 - 사이트맵
+<picture>
 <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/c0349672-c0e4-4a22-9d0b-f883e7b5f7c6"/>
+</picture>
 <br>
 - 화면 구성
   ※여기에 각자 화면 캡쳐(2,4,6.. 짝수 스크린샷이미지) + 내용 작성(2~3줄)
