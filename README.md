@@ -84,15 +84,15 @@
 - 김선진
 <br>
   
-|<img width="1436" alt="주문/결제" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/763d5718-b5d3-4e0c-a2db-7f308e98c2fd">|<img width="1435" alt="주문 완료 페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/a6f41a4f-339a-4f07-be8a-44f51b875902">|
+|<img width="1436" alt="주문/결제" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/0244d229-d107-48cd-bc7a-2e81f2925ed2">|<img width="1435" alt="주문 완료 페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/76a9d5b7-c5be-4937-a6c2-272625f4e355">|
 |:-:|:-:|
 | 주문/결제 | 상품 주문 | 주문 완료 |
 
-|<img width="573" alt="배송 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/5aa12b64-52c8-4250-9cfe-eb53bac7c55a">|<img width="278" alt="환불 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/93a035c9-da85-49ad-822d-acfa62096223">|<img width="1030" alt="환불 상세 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/372ac5eb-2cdb-4666-a4ec-40cbc0ef3772">|
+|<img width="573" alt="배송 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/65567cf4-3d75-40f9-a748-eda2e35c3242">|<img width="278" alt="환불 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/7406a41e-ece9-4044-b779-5d897548b3fa">|<img width="1030" alt="환불 상세 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/a9a90666-e2fb-4eeb-866d-26424b9bdaef">|
 |:-:|:-:|:-:|
 | 관리자페이지 | 배송 현황 | 환불 현황 |
 
-|<img width="1432" alt="다음 주소 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/2bf82a16-00ac-4c1f-bbf2-b0b0fd4f93a5">|<img width="1438" alt="카카오 결제 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/a0a2487a-0cc7-4dc3-ac56-cb48a202cc52">|<img width="1030" alt="KCP 결제 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/3abdcd28-0410-4a9f-a723-6e515060f463">|
+|<img width="1432" alt="다음 주소 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/42fe8785-89ba-4099-bc38-2b3b4860dfa2">|<img width="1438" alt="카카오 결제 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/c3e11117-fe04-4705-8927-5a48aef86799">|<img width="1030" alt="KCP 결제 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/b1adda00-ba11-4af1-9314-be38a4c042e2">|
 |:-:|:-:|:-:|
 | DAUM주소 | 아임포트 API(kakao,kcp) | 
 
@@ -103,12 +103,6 @@
 |:-:|:-:|:-:|
 | 관리자 상품등록1 | 관리자 상품등록2 | 관리자 상품메인 |
 
-- 박대웅
-<br>
-
-|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/2206bc7b-6041-438a-b806-c5de3ef91735"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/e74e26ce-690d-40b7-91a7-a8597e0dbacd"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/23cb407c-260a-4f81-a848-75169c60738b"/>|
-|:-:|:-:|:-:|
-| 회원가입 | 로그인 페이지 | 비밀번호 찾기 |
 
 |<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7529a024-405a-433c-b991-5bbe7888a566">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/a25ef808-8cbb-46ba-b247-16dc2ca1f821">|
 |:-:|:-:|
@@ -117,6 +111,13 @@
 |<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/e300e28f-8a1a-41d3-b475-be16e9be1bb1">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7ada5b01-2296-4361-8d38-0f9b55248a2f">|
 |:-:|:-:|
 | 채소농장후기등록 | 장바구니 | 
+
+- 홍정재
+<br>
+
+|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/2206bc7b-6041-438a-b806-c5de3ef91735"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/e74e26ce-690d-40b7-91a7-a8597e0dbacd"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/23cb407c-260a-4f81-a848-75169c60738b"/>|
+|:-:|:-:|:-:|
+| 회원가입 | 로그인 페이지 | 비밀번호 찾기 |
 
 
 - 서진
