@@ -119,24 +119,25 @@
 <br>
 
 
-<p float="left">
-  <div style="width:24%; display:inline-block; text-align:center;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/68e5f812-1f3c-473f-a3f1-ea187546d13f" style="width:24%;" />
-    <p>마이페이지</p>
-  </div>
-  <div style="width:24%; display:inline-block; text-align:center;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/21328831-7077-4dd3-afb2-018c4788e779" style="width:24%;" />
-    <p>최근주문내역</p>
-  </div>
-  <div style="width:24%; display:inline-block; text-align:center;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c" style="width:24%;" />
-    <p>상세주문내역</p>
-  </div>
-  <div style="width:24%; display:inline-block; text-align:center;">
-    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/41e04c63-0822-4cef-b8f6-cbc6ef2b9ab1" style="width:24%;" />
-    <p>상세주문내역</p>
-  </div>
-</p>
+<div style="font-size:0; text-align:center;">
+  <span style="width:24%; display:inline-block; margin-right:-4px;">
+    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/517dde2c-4912-46d4-9fc9-a8806b480373" style="width:24%;" />
+    <br>마이페이지
+  </span>
+  <span style="width:24%; display:inline-block; margin-right:-4px;">
+    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/7f1f3101-cb7d-475a-9b64-f9402eb0f9a3" style="width:24%;" />
+    <br>최근주문내역
+  </span>
+  <span style="width:24%; display:inline-block; margin-right:-4px;">
+    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428" style="width:24%;" />
+    <br>상세주문내역
+  </span>
+  <span style="width:24%; display:inline-block; margin-right:-4px;">
+    <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428" style="width:24%;" />
+    <br>상세주문내역
+  </span>
+</div>
+
 
 
 
