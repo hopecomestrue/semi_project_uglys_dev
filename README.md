@@ -99,6 +99,22 @@
 |:-:|:-:|:-:|
 | DAUM주소 | 아임포트 API(kakao,kcp) | 
 
+- 박대웅
+<br>
+
+|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/f8bae50c-674a-4afa-9757-dae3821ff236"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/71fc7871-b5c8-4ad3-b0ad-658482364658"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/65d0718f-70d1-4361-bdeb-1c6763b7c089"/>|
+|:-:|:-:|:-:|
+| 관리자 상품등록1 | 관리자 상품등록2 | 관리자 상품메인 |
+
+|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7529a024-405a-433c-b991-5bbe7888a566">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/a25ef808-8cbb-46ba-b247-16dc2ca1f821">|
+|:-:|:-:|
+| 채소농장메인 | 채소농장후기 |
+
+|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/e300e28f-8a1a-41d3-b475-be16e9be1bb1">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7ada5b01-2296-4361-8d38-0f9b55248a2f">|
+|:-:|:-:|
+| 채소농장후기등록 | 장바구니 | 
+
+
 
 
 <br><br><br><br>
