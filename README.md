@@ -84,6 +84,23 @@
 |:-:|:-:|
 | 회원조회 | 회원상세조회 | 
 
+- 김선진
+<br>
+  
+|<img width="1436" alt="주문/결제" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/763d5718-b5d3-4e0c-a2db-7f308e98c2fd">|<img width="1435" alt="주문 완료 페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/a6f41a4f-339a-4f07-be8a-44f51b875902">|
+|:-:|:-:|
+| 주문/결제 | 상품 주문 | 주문 완료 |
+
+|<img width="573" alt="배송 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/5aa12b64-52c8-4250-9cfe-eb53bac7c55a">|<img width="278" alt="환불 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/93a035c9-da85-49ad-822d-acfa62096223">|<img width="1030" alt="환불 상세 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/372ac5eb-2cdb-4666-a4ec-40cbc0ef3772">|
+|:-:|:-:|:-:|
+| 관리자페이지 | 배송 현황 | 환불 현황 |
+
+|<img width="1432" alt="다음 주소 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/2bf82a16-00ac-4c1f-bbf2-b0b0fd4f93a5">|<img width="1438" alt="카카오 결제 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/a0a2487a-0cc7-4dc3-ac56-cb48a202cc52">|<img width="1030" alt="KCP 결제 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/3abdcd28-0410-4a9f-a723-6e515060f463">|
+|:-:|:-:|:-:|
+| DAUM주소 | 아임포트 API(kakao,kcp) | 
+
+
+
 <br><br><br><br>
 - 화면설계서(오븐)
 - ERD
