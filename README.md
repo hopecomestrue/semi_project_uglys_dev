@@ -59,7 +59,7 @@
 <summary>오지영</summary>
 <br>
   
-|<img width="1435" alt="마이페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/f8687125-86e4-4f38-b9fb-9bc6074a9dfc">|<img width="1435" alt="최근주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/7f1f3101-cb7d-475a-9b64-f9402eb0f9a3">|<img width="1372" alt="상세주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428">|
+|<img width="1435" alt="마이페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/f8687125-86e4-4f38-b9fb-9bc6074a9dfc">|<img width="1435" alt="최근주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/7f1f3101-cb7d-475a-9b64-f9402eb0f9a3">|<img width="1435" alt="상세주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428">|
 |:-:|:-:|:-:|
 | 마이페이지 | 최근주문내역 | 상세주문내역 |
 
