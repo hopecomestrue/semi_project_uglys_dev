@@ -158,7 +158,8 @@
     <tr>
       <th>환불 응답</th>
       <td>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="refund-check">
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="refund-check"
+        	<%=refund.getOrderStatus().equals("환불승인완료")?"disabled":"" %>>
             <option value="환불승인대기" <%=refund.getOrderStatus().equals("환불승인대기")?"selected":"" %>>환불승인대기</option>
             <option value="환불승인완료" <%=refund.getOrderStatus().equals("환불승인완료")?"selected":"" %>>환불승인완료</option>
             <option value="환불승인반려" <%=refund.getOrderStatus().equals("환불승인반려")?"selected":"" %>>환불승인반려</option>
@@ -172,7 +173,6 @@
                 </div>
 	</div>
 	</div>
-  <button type="submit" class="btn btn-primary" id="btn_submit">등록</button>
 <!-- </form> -->
 <script>
 	//등록완료 하면 ajax로 환불상태 DB변경
