@@ -45,7 +45,7 @@
 						<label>관리자메뉴</label>
 					</li>
 					<li class="nav-item">
-					    <a href="<%=request.getContextPath()%>/MemberCheck.do" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">직원관리</span></a>
+					    <a href="<%=request.getContextPath()%>/MemberCheck.do" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">회원관리</span></a>
 					</li>
 					<li class="nav-item">
 					    <a href="<%=request.getContextPath()%>/admin/production.do" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">상품등록</span></a>

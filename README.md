@@ -48,15 +48,83 @@
     ◎ 레시피관리 <br>
 <br>
 - 사이트맵
+<picture>
 <img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/c0349672-c0e4-4a22-9d0b-f883e7b5f7c6"/>
+</picture>
 <br>
-- 화면 구성
-  ※여기에 각자 화면 캡쳐(2,4,6.. 짝수 스크린샷이미지) + 내용 작성(2~3줄)
-  이미지 업로드 시 상단 메뉴(issue)에 등록 후 이미지 링크 사용!!!
 
+- 화면구성
+
+[사용자]
+<br>
+
+|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/4cd0f816-91d3-4ff7-90bf-e485ba1d10eb"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/7cb4836c-5a7c-4f95-9228-3710ade6e1f0"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/688d3a45-8c19-4b7b-af36-3f72c1991a9d"/>|
+|:-:|:-:|:-:|
+| 메인페이지 | 커뮤니티 | 레시피 상세 |
+
+|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccc1015f-2408-433d-aa3c-74c3c5074363"/>|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/7529a024-405a-433c-b991-5bbe7888a566">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/a25ef808-8cbb-46ba-b247-16dc2ca1f821">|
+|:-:|:-:|:-:|
+| 레시피 작성 | 채소농장메인 | 채소농장후기 |
+
+|<img width="1436" alt="마이페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/517dde2c-4912-46d4-9fc9-a8806b480373">|<img width="1435" alt="상세주문내역" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/aca4fe7a-ac59-47a7-ac43-c9a8ec449428">|
+|:-:|:-:|
+| 마이페이지 | 상세주문내역 |
+
+|<img width="573" alt="내정보수정" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/7eae6f09-9cbc-43c5-8026-5cad1451b44c">|<img width="1030" alt="배송지 등록" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/c995f269-ed11-4327-9d6b-4d7db543a762">|
+|:-:|:-:|
+| 내 정보 수정 | 배송지 등록 |
   
-  
+|<img width="1436" alt="주문/결제" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/0244d229-d107-48cd-bc7a-2e81f2925ed2">|<img width="1435" alt="주문 완료 페이지" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/76a9d5b7-c5be-4937-a6c2-272625f4e355">|
+|:-:|:-:|
+| 주문/결제 | 상품 주문 | 주문 완료 |
+
+|<img width="1432" alt="다음 주소 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/42fe8785-89ba-4099-bc38-2b3b4860dfa2">|<img width="1438" alt="카카오 결제 API" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/c3e11117-fe04-4705-8927-5a48aef86799">|
+|:-:|:-:|
+| DAUM주소 | 아임포트 API(kakao) | 
+
+|<img width="1400" height="500" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/2206bc7b-6041-438a-b806-c5de3ef91735"/>|<img width="1400" height="500" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/e74e26ce-690d-40b7-91a7-a8597e0dbacd"/>|
+|:-:|:-:|
+| 회원가입 | 로그인 페이지 |
+
+| ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/68e5f812-1f3c-473f-a3f1-ea187546d13f) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/41e04c63-0822-4cef-b8f6-cbc6ef2b9ab1) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/94016eca-f6cf-4cd6-a3d5-3e29789a422c) | ![](https://github.com/hopecomestrue/semi_project_uglys_dev/assets/143709978/a294afbf-6a87-49ef-a1d5-33dc33dc2158) |
+|:---:|:---:|:---:|:---:|
+| 문의글 카카오 챗봇 연동 | 문의 목록 | 문의 작성 | 문의 상세 |
+
+<br>
+
+[관리자]
+<br>
+
+|<img width="1432" alt="회원조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/980f601e-5421-4f31-8105-eaa9b28806b2">|<img width="1438" alt="회원상세조회" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295633/69be7e3c-267a-4c18-858c-945a835ae949">|
+|:-:|:-:|
+| 회원조회 | 회원상세조회 | 
+
+|<img width="573" alt="배송 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/65567cf4-3d75-40f9-a748-eda2e35c3242">|<img width="278" alt="환불 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/7406a41e-ece9-4044-b779-5d897548b3fa">|<img width="1030" alt="환불 상세 현황" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295592/a9a90666-e2fb-4eeb-866d-26424b9bdaef">|
+|:-:|:-:|:-:|
+| 관리자페이지 | 배송 현황 | 환불 현황 |
+
+|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/f8bae50c-674a-4afa-9757-dae3821ff236"/>|<img width="1436" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295523/65d0718f-70d1-4361-bdeb-1c6763b7c089"/>|
+|:-:|:-:|
+| 상품등록1 | 상품관리 |
+
+|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/07895f8c-2ff9-460a-974e-4486cc70c649"/>|<img src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/1569e606-2ef1-4ce2-8aa7-34905a7d6444"/>|
+|:-:|:-:|
+| 레시피조회 | 레시피수정 |
+
+
 <br><br><br><br>
 - 화면설계서(오븐)
+<br>
+
+|<img width="1432" height="1000" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/2461f0a0-bd44-49d6-86eb-8206aaea5bcd"/>|<img width="1432" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/761d08d3-8a87-4617-a391-1fe5a62061ce"/>|
+|:-:|:-:|
+| 메인페이지 예시 | 상품 상세 예시 |
+
 - ERD
-- 노션링크
+<picture>
+<img height="500" src="https://github.com/hopecomestrue/semi_project_uglys_dev/assets/148295605/ccf0da81-c796-4beb-8df8-044aa4f64edc"/>
+</picture>
+<br><br>
+
+- 노션(회의록)
+https://unmarred-trust-a0f.notion.site/45e645fd183d42789d013f76f5ccac0f

@@ -169,8 +169,11 @@ td:nth-child(2), td:nth-child(3),td:nth-child(4),td:nth-child(5), td:nth-child(6
                                     <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">내용:</span> <br>
                                     <%=recipe.getRecipeComment() %>
 									</li>
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">해시태그:</span> #간단요리, #다이어트요리, #가벼운 요리</li>
-                                    <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600"></span> 댓글 0  좋아요 7</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">해시태그:</span>
+                                    <%for(Hashtag h:hashtag){ %> 
+                                    #<%=h.getHashtagValue() %> 
+                                    <% }%> </li>
+<!--                                     <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600"></span> 댓글 0  좋아요 7</li> -->
                                 </ul>
                                 <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
                                     <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
